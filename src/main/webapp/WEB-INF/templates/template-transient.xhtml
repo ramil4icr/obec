@@ -9,23 +9,14 @@
     <h:head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <link rel="icon" href="#{resource['image/favicon.png']}" sizes="16x16" type="image/png"/>
+      <link rel="icon" href="#{resource['image/erb.png']}" sizes="16x16" type="image/png"/>
       <h:outputStylesheet name="css/style.css"/>
       <title>#{title}</title>
     </h:head>
     <h:body>
       <ui:include src="inc/header.xhtml"/>
 
-      <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_ENUM_VALUES"/>
-      <div class="categories">
-	 • 
-	<ui:repeat var="category" value="#{Categories.ALL_ENUM_VALUES}">
-	  <h:link value="#{category.label}" outcome="/kategorie.xhtml">
-            <f:param name="k" value="#{category}"/>
-          </h:link>
-	   • 
-	</ui:repeat>
-      </div>
+      <ui:include src="inc/menu.xhtml"/>
       
       <div class="ui-fluid">
         <p:growl id="growl" showDetail="true" sticky="true" />
