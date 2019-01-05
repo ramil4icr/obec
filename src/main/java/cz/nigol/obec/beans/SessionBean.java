@@ -1,4 +1,4 @@
-package cz.nigol.zpravodaj.beans;
+package cz.nigol.obec.beans;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import cz.nigol.zpravodaj.entities.User;
+import cz.nigol.obec.entities.User;
 
 @Named
 @SessionScoped

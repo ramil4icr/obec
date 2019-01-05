@@ -1,4 +1,4 @@
-package cz.nigol.zpravodaj.converters;
+package cz.nigol.obec.converters;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;
@@ -7,8 +7,8 @@ import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import cz.nigol.zpravodaj.entities.User;
-import cz.nigol.zpravodaj.services.UserService;
+import cz.nigol.obec.entities.User;
+import cz.nigol.obec.services.UserService;
 
 @Named
 @ApplicationScoped

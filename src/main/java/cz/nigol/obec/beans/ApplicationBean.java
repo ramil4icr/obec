@@ -1,4 +1,4 @@
-package cz.nigol.zpravodaj.beans;
+package cz.nigol.obec.beans;
 
 import java.util.Calendar;
 import java.util.Date;

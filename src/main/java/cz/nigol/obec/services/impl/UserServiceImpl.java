@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import cz.nigol.zpravodaj.entities.User;
-import cz.nigol.zpravodaj.services.UserService;
+import cz.nigol.obec.entities.User;
+import cz.nigol.obec.services.UserService;
 
 @Stateless
 public class UserServiceImpl implements UserService {

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 
-import cz.nigol.zpravodaj.beans.SessionBean;
+import cz.nigol.obec.beans.SessionBean;
 
 @Named
 @RequestScoped

@@ -3,43 +3,14 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/templateTransient.xhtml"
+                template="/WEB-INF/templates/template-transient.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:param name="title" value="Tršický zpravodaj"/>
+    <ui:param name="title" value="Obec Tršice"/>
 
     <ui:define name="content">
       <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	<h:link outcome="/clanek.xhtml" style="text-decoration: none">
-	  <f:param name="id" value="#{indexBean.featuredArticle.id}"/>  
-	  <h:panelGroup layout="block"
-			rendered="#{!empty indexBean.featuredArticle}"
-			style="background: #fff url('#{indexBean.featuredArticle.featuredUrl}') no-repeat left; padding: 1em; margin-top: 1em; margin-bottom: 1em; border-radius: 6px">
-	    <h3 style="padding: 1em; margin-bottom: 2em; background: rgba(0,0,0,0.7); border-radius: 6px; color: #fff">
-	      #{indexBean.featuredArticle.label}
-	    </h3>
-	    <div style="padding: 1em; background: rgba(0,0,0,0.7); border-radius: 6px; color: #fff">
-	      #{indexBean.featuredArticle.leadParagraph}
-	    </div>
-	  </h:panelGroup>
-	</h:link>
-
-	<p:dataGrid value="#{indexBean.articles}"
-		    var="article"
-		    columns="2"
-		    layout="grid"
-		    emptyMessage="Není k dispozici žádný článek.">
-	  <h:link outcome="/clanek.xhtml" style="text-decoration: none">
-	    <f:param name="id" value="#{article.id}"/>
-	    <div class="categoryArticle">
-	      #{article.category.label}
-	    </div>
-	    <h3>#{article.label}</h3>
-	    <p>
-	      #{article.leadParagraph}
-	    </p>
-	  </h:link>
-	</p:dataGrid>
+	<h1>Obec Tršice</h1>
       </p:panelGrid>
     </ui:define>
 </ui:composition>

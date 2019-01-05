@@ -17,8 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import cz.nigol.zpravodaj.enums.Role;
-
 @NamedQueries({
 	@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u ORDER BY u.id ASC"),
 	    @NamedQuery(name=User.GET_ACTIVE, query="SELECT u FROM User u WHERE u.active = true"),
@@ -39,10 +37,6 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name="ROLE")
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
     @Column(name="EMAIL", columnDefinition="VARCHAR(300)")
     private String email;
 
@@ -54,9 +48,6 @@ public class User implements Serializable {
 
     @Column(name="ACTIVE")
     private boolean active;
-
-    @OneToMany(mappedBy="createdBy")
-    private List<Article> articles;
 
 	/**
 	 * @return the id
@@ -84,20 +75,6 @@ public class User implements Serializable {
 	 */
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
-	}
-
-	/**
-	 * @return the role
-	 */
-	public Role getRole() {
-		return role;
-	}
-
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(Role role) {
-		this.role = role;
 	}
 
 	/**
@@ -154,20 +131,6 @@ public class User implements Serializable {
 	 */
 	public void setActive(boolean active) {
 		this.active = active;
-	}
-
-	/**
-	 * @return the articles
-	 */
-	public List<Article> getArticles() {
-		return articles;
-	}
-
-	/**
-	 * @param articles the articles to set
-	 */
-	public void setArticles(List<Article> articles) {
-		this.articles = articles;
 	}
 
     @Override

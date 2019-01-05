@@ -1,4 +1,4 @@
-package cz.nigol.zpravodaj.beans;
+package cz.nigol.obec.beans;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -8,8 +8,8 @@ import javax.inject.Named;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import cz.nigol.zpravodaj.entities.User;
-import cz.nigol.zpravodaj.services.UserService;
+import cz.nigol.obec.entities.User;
+import cz.nigol.obec.services.UserService;
 
 @Named
 @RequestScoped

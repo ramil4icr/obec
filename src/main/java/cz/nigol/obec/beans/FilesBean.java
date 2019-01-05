@@ -1,4 +1,4 @@
-package cz.nigol.zpravodaj.beans;
+package cz.nigol.obec.beans;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,13 +15,13 @@ import org.apache.commons.logging.Log;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import cz.nigol.zpravodaj.entities.FileMetadata;
-import cz.nigol.zpravodaj.entities.User;
-import cz.nigol.zpravodaj.exceptions.UploadFailedException;
-import cz.nigol.zpravodaj.qualifiers.LoggedUser;
-import cz.nigol.zpravodaj.qualifiers.PathToWebapp;
-import cz.nigol.zpravodaj.services.FileMetadataService;
-import cz.nigol.zpravodaj.services.UserService;
+import cz.nigol.obec.entities.FileMetadata;
+import cz.nigol.obec.entities.User;
+import cz.nigol.obec.exceptions.UploadFailedException;
+import cz.nigol.obec.qualifiers.LoggedUser;
+import cz.nigol.obec.qualifiers.PathToWebapp;
+import cz.nigol.obec.services.FileMetadataService;
+import cz.nigol.obec.services.UserService;
 
 @Named
 @ViewScoped

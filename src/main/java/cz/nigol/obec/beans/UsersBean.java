@@ -1,4 +1,4 @@
-package cz.nigol.zpravodaj.beans;
+package cz.nigol.obec.beans;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,9 +12,8 @@ import javax.inject.Named;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import cz.nigol.zpravodaj.entities.User;
-import cz.nigol.zpravodaj.enums.Role;
-import cz.nigol.zpravodaj.services.UserService;
+import cz.nigol.obec.entities.User;
+import cz.nigol.obec.services.UserService;
 
 @Named
 @ViewScoped
