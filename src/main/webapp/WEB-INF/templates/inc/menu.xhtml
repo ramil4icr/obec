@@ -6,16 +6,12 @@
 		xmlns:p="http://primefaces.org/ui">
 
   <h:form id="mainMenuForm" rendered="#{sessionBean.user ne null}">
-    <p:menubar style="font-size: 85%; background-color: #eee">
-      <p:menuitem value="Moje články" icon="fa fa-files-o" outcome="/au/moje-clanky.xhtml?faces-redirect=true"/>
-      <p:menuitem value="Všechny články" icon="fa fa-files-o" outcome="/ed/clanky.xhtml?faces-redirect=true"/>
-      <p:menuitem value="Uživatelé" icon="fa fa-users" outcome="/ed/uzivatele.xhtml?faces-redirect=true"/>
-      <f:facet name="options">
-	<p:commandButton value="Odhlásit #{sessionBean.user.id}"
-			 icon="fa fa-sign-out"
-			 action="#{sessionBean.logout}"
-			 ajax="false"/>
-      </f:facet>
-    </p:menubar>
+    <p:megaMenu orientation="horizontal">
+      <p:submenu label="Obec">
+      </p:submenu>
+
+      <p:submenu label="Obecní úřad">
+      </p:submenu>
+    </p:megaMenu>
   </h:form>  
 </ui:composition>
