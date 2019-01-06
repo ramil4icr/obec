@@ -6,12 +6,16 @@
 		xmlns:p="http://primefaces.org/ui">
 
   <h:form id="mainMenuForm" rendered="#{sessionBean.user ne null}">
-    <p:megaMenu orientation="horizontal">
+    <p:megaMenu id="mainMenu"
+		styleClass="mainMenu"
+		orientation="horizontal">
       <p:submenu label="Obec">
       </p:submenu>
 
       <p:submenu label="Obecní úřad">
       </p:submenu>
     </p:megaMenu>
+
+    <p:sticky target="mainMenu"/>
   </h:form>  
 </ui:composition>
