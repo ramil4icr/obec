@@ -6,6 +6,51 @@
 		xmlns:p="http://primefaces.org/ui">
 
   <footer>
+    <div class="ui-fluid">
+      <p:panelGrid layout="grid"
+		   columns="1"
+		   styleClass="ui-noborder">
+	&#169; MMXVIII Obec Tršice
+      </p:panelGrid>
+
+      <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+	<p:column>
+	  <h:link outcome="/index.xhtml"
+		  value="Uvod">
+	  </h:link>
+	  <br/>
+	  <h:outputLink value="https://www.trsice.cz/zpravodaj">
+	    Tršický Zpravodaj
+	  </h:outputLink>
+	</p:column>
+
+	<p:column>
+	  <b>Obecní úřad Tršice</b><br/>
+	  Tršice 50<br/>
+	  783 57 Tršice<br/>
+	  <i class="fa fa-phone"></i> 585 957 230<br/>
+	  <i class="fa fa-at"></i> ou@trsice.cz<br/>
+	  Datová schránka: <b>wsvbawp</b><br/>
+	  <br/>
+	  <b>Stavební úřad Tršice</b><br/>
+	  Tršice 50<br/>
+	  783 57 Tršice<br/>
+	  <i class="fa fa-phone"></i> 585 750 663<br/>
+	  <i class="fa fa-at"></i> su.trsice@seznam.cz<br/>
+	  Datová schránka: <b>wsvbawp</b><br/>
+	</p:column>
+
+	<p:column>
+	  <h:outputLink value="http://www.edpp.cz/dpp/trsice/">
+	    Povodňový plán obce Tršice <i class="fa fa-external-link"></i>
+	  </h:outputLink>
+	  <br/>
+	  <h:outputLink value="http://monitor.statnipokladna.cz/2018/obce/detail/00299588#">
+	    Monitor obecních rozpočtů, Obec Tršice <i class="fa fa-external-link"></i>
+	  </h:outputLink>
+	</p:column>
+      </p:panelGrid>
+    </div>
     &#169; Obec Tršice • zpravodaj obce Tršice • periodický tisk územního samosprávného celku • vydává Obec Tršice, Tršice 50, Tršice 783 57, IČ: 00299588 • registrace u MK ČR E 12519
     <br/>
     <h:link outcome="/login.xhtml"
