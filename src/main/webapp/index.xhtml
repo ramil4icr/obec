@@ -6,42 +6,66 @@
                 template="/WEB-INF/templates/template-transient.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:param name="title" value="Obec Tršice"/>
+  <ui:param name="title" value="Obec Tršice"/>
 
-    <ui:define name="content">
-      <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	<h1>Obec Tršice</h1>
-	
-	<p:carousel numVisible="1"
-		    effect="easeInStrong"
-		    autoPlayInterval="5000"
-		    circular="true"
-		    headerText="Aktuality"
-		    responsive="true"
-		    pageLinks="6">
-	  <p:tab>
-	    <h:outputText value="Obec Hlubočky – pozvánky na koncert Vlasty Redla a Obecní ples v lednu 2019"/>
-	  </p:tab>
-	  <p:tab>
-	    <h:outputText value="Pozvání na Vánoční koncert v neděli 30. prosince 2018 ve Velkém Újezdě"/>
-	  </p:tab>
-	  <p:tab>
-	    <h:outputText value="Technické služby města Přerova – Žádost a informace ohledně vysypávání popela do odpadových nádob"/>
-	  </p:tab>
-	</p:carousel>
+  <ui:define name="content">
+    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+      <h1>Obec Tršice</h1>
+      
+      <p:carousel numVisible="1"
+		  effect="easeInStrong"
+		  autoPlayInterval="5000"
+		  circular="true"
+		  headerText="Aktuality"
+		  responsive="true"
+		  pageLinks="6">
+	<p:tab>
+	  <h:outputText value="Obec Hlubočky – pozvánky na koncert Vlasty Redla a Obecní ples v lednu 2019"/>
+	</p:tab>
+	<p:tab>
+	  <h:outputText value="Pozvání na Vánoční koncert v neděli 30. prosince 2018 ve Velkém Újezdě"/>
+	</p:tab>
+	<p:tab>
+	  <h:outputText value="Technické služby města Přerova – Žádost a informace ohledně vysypávání popela do odpadových nádob"/>
+	</p:tab>
+      </p:carousel>
 
-	<p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-	</p:panelGrid>
+      <p:panelGrid layout="grid"
+		   columns="2"
+		   style="margin-top: 40px"
+		   styleClass="ui-noborder">
+	<h:panelGroup layout="block"
+		      styleClass="grayTableBlock">
+	  <h4>
+	    <i class="fa fa-list"></i>
+	  </h4>
+	  <h5>Úřední deska</h5>
+	  <p:dataTable id="officialDesk"
+		       emptyMessage="Nenalezen žádný výsledek."
+		       var="item">
+	    <p:column headerText="Dokument">
+	    </p:column>
+	    <p:column headerText="Vyvěšeno">
+	    </p:column>
+	  </p:dataTable>
+	</h:panelGroup>
 
-	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Vivamus luctus egestas leo. Integer malesuada. Cras pede libero, dapibus nec, pretium sit amet, tempor quis. Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo. In enim a arcu imperdiet malesuada. Praesent dapibus. In convallis.</p>
+	<h:panelGroup layout="block"
+		      styleClass="grayTableBlock">
+	  <h4>
+	    <i class="fa fa-volume-down"></i>
+	  </h4>
+	  <h5>Hlášení rozhlasu</h5>
+	  <p:dataTable id="archive"
+		       emptyMessage="Nenalezen žádný výsledek."
+		       var="item">
+	    <p:column headerText="Hlášení ze dne">
+	    </p:column>
+	  </p:dataTable>
+	</h:panelGroup>
 
-	<p>Quisque tincidunt scelerisque libero. Cras elementum. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Mauris tincidunt sem sed arcu. Nullam eget nisl. Praesent id justo in neque elementum ultrices. Mauris tincidunt sem sed arcu. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. In enim a arcu imperdiet malesuada. Duis pulvinar. Phasellus faucibus molestie nisl. Proin mattis lacinia justo. Nullam eget nisl.</p>
-
-	<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Maecenas lorem. Integer pellentesque quam vel velit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Curabitur vitae diam non enim vestibulum interdum. Pellentesque ipsum. Pellentesque sapien. Vivamus ac leo pretium faucibus. Nunc tincidunt ante vitae massa. Aliquam erat volutpat.</p>
-
-	<p>Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Maecenas libero. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Etiam dictum tincidunt diam. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Integer lacinia. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Praesent in mauris eu tortor porttitor accumsan. Aenean fermentum risus id tortor. Aenean id metus id velit ullamcorper pulvinar. Vivamus porttitor turpis ac leo. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Sed convallis magna eu sem. Cras pede libero, dapibus nec, pretium sit amet, tempor quis.</p>
-
-	<p>Aenean id metus id velit ullamcorper pulvinar. Donec vitae arcu. Integer imperdiet lectus quis justo. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo. Integer malesuada. Fusce tellus. Suspendisse sagittis ultrices augue. Phasellus et lorem id felis nonummy placerat. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Etiam posuere lacus quis dolor. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Pellentesque arcu.</p>
       </p:panelGrid>
-    </ui:define>
+
+    </p:panelGrid>
+  </ui:define>
 </ui:composition>

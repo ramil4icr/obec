@@ -7,7 +7,21 @@ html,body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: rgb(51, 63, 72);
+    color: #666;
+}
+
+h4 {
+    text-align: center;
+    font-size: 300%;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+h5 {
+    margin-top: 0px;
+    font-size: 120%;
+    text-align: center;
+    font-weight: lighter;
 }
 
 body {
@@ -50,6 +64,20 @@ footer .ui-panelgrid-cell {
     color: rgb(255,255,0) !important;
 }
 
+.grayTableBlock {
+    background-color: #eee;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.grayTableBlock th {
+    background-color: #eee;
+}
+
+.grayTableBlock td {
+    background-color: #eee;
+}
+
 .mainMenu {
     background-color: rgb(0,113,254) !important;
     box-shadow: 3px 3px 5px #888 !important;
@@ -66,6 +94,7 @@ footer .ui-panelgrid-cell {
 .ui-menuitem-text {
     color: rgb(0,0,0) !important;
     text-transform: uppercase !important;
+    font-weight: bold;
 }
 
 .articleBody .ql-align-center {
