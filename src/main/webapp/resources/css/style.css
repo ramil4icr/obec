@@ -10,6 +10,12 @@ h1, h2, h3, h4, h5, h6 {
     color: #666;
 }
 
+h3 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 160%;
+}
+
 h4 {
     text-align: center;
     font-size: 300%;
@@ -142,16 +148,32 @@ footer .ui-panelgrid-cell {
     font-variant: small-caps;
 }
 
+.mapResponsive {
+    overflow:hidden;
+    padding-bottom:36.25%;
+    position:relative;
+    height:0;
+}
+.mapResponsive iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+.grayHoverBorder :hover {
+    border: 1px #ccc solid;
+}
+
 @media only screen and (max-width: 700px) {
     #content {
 	margin-left: 1em;
 	margin-right: 1em
     }
 
-    .logo img {
-	width: 1.7em;
-	height: 2em;
-	margin-top: 1.7em;
+    .mapResponsive {
+	display: none;
     }
 }
 
@@ -162,9 +184,7 @@ footer .ui-panelgrid-cell {
 	max-width: 960px;
     }
 
-    .logo img {
-	width: 4.3em;
-	height: 5em;
-	margin-top: 4em;
+    .mapResponsive {
+	display: block;
     }
 }
