@@ -9,13 +9,21 @@
     <p:megaMenu id="mainMenu"
 		styleClass="mainMenu"
 		orientation="horizontal">
-      <p:submenu label="Obec">
+      <p:submenu label="OBEC">
       </p:submenu>
 
-      <p:submenu label="Obecní úřad">
+      <p:submenu label="OBECNÍ ÚŘAD">
       </p:submenu>
 
-      <p:submenu label="Stavební úřad">
+      <p:submenu label="STAVEBNÍ ÚŘAD">
+      </p:submenu>
+
+      <p:submenu label="UŽIVATEL">
+	<p:column>
+	  <p:submenu label="Administrace">
+	    <p:menuitem value="Články" url="/administrace/clanky.jsf"/>
+	  </p:submenu>
+	</p:column>
       </p:submenu>
     </p:megaMenu>
 

@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 	    @NamedQuery(name=User.GET_ACTIVE, query="SELECT u FROM User u WHERE u.active = true"),
     })
 @Entity
-@Table(name = "ZPR_USER")
+@Table(name = "OB_USER")
 public class User implements Serializable {
     private static final long serialVersionUID = -8877869295129979225L;
 
