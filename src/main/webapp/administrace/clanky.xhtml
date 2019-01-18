@@ -3,7 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/template-transient.xhtml"
+                template="/WEB-INF/templates/template.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
   <ui:param name="title" value="Administrace článků - Obec Tršice"/>
@@ -49,19 +49,24 @@
 	<p:column/>
 	<p:column/>
 	<p:column/>
-	<p:column/>
 	<p:commandButton value="Nový článek" 
-                         action="#{articlesBean.newArticle}" 
+                         action="#{articlesBean.newArticle}"
+			 disabled="#{!empty articlesBean.article}"
                          update="@form"
-			 resetValues="true"
-                         immediate="true"/>
-	<p:commandButton value="Smazat článek" 
+			 resetValues="true"/>
+	<p:commandButton value="Smazat" 
                          action="#{articlesBean.delete}"
 			 disabled="#{empty articlesBean.article}"
 			 onclick="return confirm('Opravdu smazat článek: #{articlesBean.article.id}?')"
                          update="@form :growl"
 			 resetValues="true"
                          immediate="true"/>
+	<p:selectBooleanButton value="#{articlesBean.editSource}"
+			       style="padding: 5px"
+			       onLabel="HTML"
+			       offLabel="Text">
+	  <p:ajax update="@form"/>
+	</p:selectBooleanButton>
       </p:panelGrid>
 
       <p:dataTable id="articles" 
@@ -85,9 +90,9 @@
           <h:outputText value="#{article.id}"/>
         </p:column>
 	<p:column headerText="Autor"
-		  filterBy="#{article.createdBy.fullName}"
+		  filterBy="#{article.changedBy.fullName}"
 		  filterMatchMode="contains">
-          <h:outputText value="#{article.createdBy.fullName}"/>
+          <h:outputText value="#{article.changedBy.fullName}"/>
         </p:column>
 	<p:column headerText="Změněno">
           <h:outputText value="#{article.changedAt}">
@@ -95,6 +100,40 @@
 	  </h:outputText>
         </p:column>
       </p:dataTable>
+
+      <p:panelGrid layout="grid"
+		   columns="1"
+		   rendered="#{!empty articlesBean.article}"
+		   styleClass="ui-noborder">
+	<p:outputLabel value="Id" for="articleId"/>
+	<p:inputText id="articleId" value="#{articlesBean.article.id}">
+	  <f:validateLength maximum="300"/>
+	</p:inputText>
+
+	<p:outputLabel value="Text článku" for="body"/>
+        <p:textEditor id="body"
+		      value="#{articlesBean.body}"
+		      rendered="#{!articlesBean.editSource}"
+		      height="300"/>
+	<p:inputTextarea rows="10"
+			 cols="30"
+			 value="#{articlesBean.body}"
+			 rendered="#{articlesBean.editSource}"/>
+
+	<p:panelGrid layout="grid"
+		     columns="2"
+		     styleClass="ui-noborder">
+	  <p:commandButton value="Uložit" 
+                           action="#{articlesBean.save}"
+			   styleClass="default"
+			   update=":growl @form"/>
+	  <p:commandButton value="Zrušit" 
+                           action="#{articlesBean.cancelEdit}"
+			   immediate="true"
+			   resetValues="true"
+                           update="@form"/>
+	</p:panelGrid>	
+      </p:panelGrid>
     </h:form>    
   </ui:define>
 </ui:composition>

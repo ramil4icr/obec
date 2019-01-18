@@ -33,7 +33,8 @@ public class ArticlesBean implements Serializable {
     private List<Article> articles;
     private Article article;
     private String body;
-    private static final String NEW_ID = "nový článek";
+    private boolean editSource;
+    private static final String NEW_ID = "článek";
 
     @PostConstruct
     public void init() {
@@ -43,6 +44,7 @@ public class ArticlesBean implements Serializable {
 
     public void newArticle() {
 	article = new Article();
+	body = null;
 	article.setId(NEW_ID);
 	articles.add(article);
     }
@@ -56,20 +58,24 @@ public class ArticlesBean implements Serializable {
 
     public void save() {
 	article.setChangedAt(new Date());
-	if (NEW_ID.equals(article.getId())) {
-	    article.setCreatedBy(user);
-	}
-	article.setCreatedBy(user);
+	article.setChangedBy(user);
 	articleService.saveArticle(article, body);
+	String id = article.getId();
 	article = null;
 	body = null;
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Článek '" +
-						       article.getId() + "' byl uložen."));
+						       id + "' byl uložen."));
     }
 
     public void onArticleSelect() {
 	article = articleService.loadArticleBody(article);
 	body = article.getBody();
+    }
+
+    public void cancelEdit() {
+	article = null;
+	body = null;
+	init();
     }
 
     /**
@@ -112,5 +118,19 @@ public class ArticlesBean implements Serializable {
      */
     public void setBody(String body) {
 	this.body = body;
+    }
+
+    /**
+     * @return the editSource
+     */
+    public boolean isEditSource() {
+	return editSource;
+    }
+
+    /**
+     * @param editSource the editSource to set
+     */
+    public void setEditSource(boolean editSource) {
+	this.editSource = editSource;
     }
 }

@@ -21,9 +21,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQueries({
-	@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a"),
+	@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a ORDER BY a.changedAt DESC"),
 	    @NamedQuery(name=Article.GET_BY_USER,
-			query="SELECT a FROM Article a WHERE a.createdBy = :user ORDER BY a.changedAt DESC"),
+			query="SELECT a FROM Article a WHERE a.changedBy = :user ORDER BY a.changedAt DESC"),
 	    })
 @Entity
 @Table(name = "OB_ARTICLE")
@@ -41,7 +41,7 @@ public class Article implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="USER_ID")
-    private User createdBy;
+    private User changedBy;
 
     @Column(name="BODY")
     @Lob
@@ -69,21 +69,21 @@ public class Article implements Serializable {
 	this.id = id;
     }
 
-    /**
-     * @return the createdBy
-     */
-    public User getCreatedBy() {
-	return createdBy;
-    }
+	/**
+	 * @return the changedBy
+	 */
+	public User getChangedBy() {
+		return changedBy;
+	}
 
-    /**
-     * @param createdBy the createdBy to set
-     */
-    public void setCreatedBy(User createdBy) {
-	this.createdBy = createdBy;
-    }
+	/**
+	 * @param changedBy the changedBy to set
+	 */
+	public void setChangedBy(User changedBy) {
+		this.changedBy = changedBy;
+	}
 
-    /**
+	/**
      * @return the body
      */
     public String getBody() {
