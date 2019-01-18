@@ -28,13 +28,13 @@ public class LoginBean {
 	User user = userService.getUserById(loginName);
 	if (user != null && user.isActive() && BCrypt.checkpw(password, user.getPassword())) {
 	    sessionBean.setUser(user);
-	    result = "/au/moje-clanky.xhtml?faces-redirect=true";
+	    result = "/index.xhtml?faces-redirect=true";
 	} else {
 	    sessionBean.setUser(null);
 	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							   "Chyba",  "Nesprávné přihlašovací údaje."));
+							   "",  "Nesprávné přihlašovací údaje."));
 	    facesContext.getExternalContext().getFlash().setKeepMessages(true);
-	    result = "/login.xhtml?faces-redirect=true";
+	    result = "/prihlaseni.xhtml?faces-redirect=true";
 	}
 	return result;
     }

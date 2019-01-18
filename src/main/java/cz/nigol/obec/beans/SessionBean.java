@@ -2,11 +2,13 @@ package cz.nigol.obec.beans;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import cz.nigol.obec.dev.PrepareDevData;
 import cz.nigol.obec.entities.User;
 
 @Named
@@ -15,7 +17,14 @@ public class SessionBean implements Serializable {
     private static final long serialVersionUID = 9212583897602369531L;
     @Inject
     private FacesContext facesContext;
-    private User user = new User();
+    @Inject
+    private PrepareDevData prepareDevData;
+    private User user;
+
+    @PostConstruct
+    public void init() {
+	//prepareDevData.createData();
+    }
 
     public String logout() {
 	user = null;
