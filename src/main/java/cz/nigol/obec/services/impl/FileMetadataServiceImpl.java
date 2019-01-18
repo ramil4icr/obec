@@ -30,7 +30,7 @@ import java.nio.channels.SeekableByteChannel;
 
 @Stateless
 public class FileMetadataServiceImpl implements FileMetadataService {
-    @PersistenceContext(unitName="zpravodajPU")
+    @PersistenceContext(unitName="obecPU")
     private EntityManager em;
 
         @Override

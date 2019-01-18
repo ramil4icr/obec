@@ -13,7 +13,7 @@ import cz.nigol.obec.services.UserService;
 
 @Stateless
 public class UserServiceImpl implements UserService {
-    @PersistenceContext(unitName="zpravodajPU")
+    @PersistenceContext(unitName="obecPU")
     private EntityManager em;
 
     @Override
