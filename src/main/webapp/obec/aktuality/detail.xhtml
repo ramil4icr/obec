@@ -6,18 +6,24 @@
                 template="/WEB-INF/templates/template-transient.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
-  <ui:param name="title" value="Aktualita - Obec Tršice"/>
+  <ui:param name="title" value="#{newsDetailBean.news.label} - Obec Tršice"/>
 
   <ui:define name="metadata">
     <f:metadata>
-      <f:viewParam name="id" value="#{singleArticleBean.id}"/>
-      <f:viewAction action="#{singleArticleBean.onLoad}"/>
+      <f:viewParam name="id" value="#{newsDetailBean.id}"/>
+      <f:viewAction action="#{newsDetailBean.onLoad}"/>
     </f:metadata>
   </ui:define>
 
   <ui:define name="content">
-    <h2>Aktualita</h2>
-    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-    </p:panelGrid>
+    <h2>#{newsDetailBean.news.label}</h2>
+
+    <div class="articleBody">
+      <h:outputText value="#{newsDetailBean.news.article.body}" escape="false"/>
+    </div>
+    
+    <p>
+      <h:link outcome="/obec/aktuality/aktuality.xhtml" value="Seznam aktualit"/>
+    </p>
   </ui:define>
 </ui:composition>

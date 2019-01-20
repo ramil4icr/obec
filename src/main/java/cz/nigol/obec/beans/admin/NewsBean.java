@@ -1,4 +1,4 @@
-package cz.nigol.obec.beans;
+package cz.nigol.obec.beans.admin;
 
 import java.io.Serializable;
 import java.util.Date;

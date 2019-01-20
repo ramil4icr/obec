@@ -80,16 +80,18 @@
 		update="@form"
 		resetValues="true"/>
         <p:column headerText="Aktualita"
+		  style="width: 50%"
 		  filterBy="#{news.label}"
 		  filterMatchMode="contains">
           <h:outputText value="#{news.label}"/>
         </p:column>
 	<p:column headerText="Změnil"
+		  style="width: 30%"
 		  filterBy="#{news.article.changedBy.fullName}"
 		  filterMatchMode="contains">
           <h:outputText value="#{news.article.changedBy.fullName}"/>
         </p:column>
-	<p:column headerText="Změněno">
+	<p:column headerText="Změněno" style="width: 20%">
           <h:outputText value="#{news.changedAt}">
 	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
 	  </h:outputText>

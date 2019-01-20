@@ -13,21 +13,20 @@
       <h1>Obec Tršice</h1>
       
       <p:carousel numVisible="1"
+		  value="#{indexBean.newsList}"
+		  var="news"
 		  effect="easeInStrong"
 		  autoPlayInterval="5000"
 		  circular="true"
 		  headerText="Aktuality"
 		  responsive="true"
 		  pageLinks="6">
-	<p:tab>
-	  <h:outputText value="Obec Hlubočky – pozvánky na koncert Vlasty Redla a Obecní ples v lednu 2019"/>
-	</p:tab>
-	<p:tab>
-	  <h:outputText value="Pozvání na Vánoční koncert v neděli 30. prosince 2018 ve Velkém Újezdě"/>
-	</p:tab>
-	<p:tab>
-	  <h:outputText value="Technické služby města Přerova – Žádost a informace ohledně vysypávání popela do odpadových nádob"/>
-	</p:tab>
+	<h:link outcome="/obec/aktuality/detail.xhtml" style="text-decoration: none">
+	  <f:param name="id" value="#{news.id}"/>
+	  <p style="font-size: 120%; font-style: italic; color: #888; padding-left: 1em">
+	    #{news.label}
+	  </p>
+	</h:link>
       </p:carousel>
 
       <p style="text-align: center; font-size: 130%">
