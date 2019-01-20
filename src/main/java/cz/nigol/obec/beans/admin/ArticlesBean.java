@@ -65,6 +65,7 @@ public class ArticlesBean implements Serializable {
 	body = null;
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Článek '" +
 						       id + "' byl uložen."));
+	init();
     }
 
     public void onArticleSelect() {

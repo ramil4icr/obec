@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/template-transient.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:param name="title" value="Hlášení obecního rozhlasu - Obec Tršice"/>
+
+  <ui:define name="content">
+    <h2>Hlášení obecního rozhlasu</h2>
+    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+      <h:form>
+	<p:dataTable id="archive"
+		     emptyMessage="Nenalezen žádný výsledek."
+		     var="item">
+	  <p:column headerText="Hlášení ze dne">
+	  </p:column>
+	</p:dataTable>
+      </h:form>
+    </p:panelGrid>
+  </ui:define>
+</ui:composition>
