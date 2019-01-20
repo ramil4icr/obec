@@ -17,6 +17,7 @@ import cz.nigol.obec.entities.User;
 import cz.nigol.obec.qualifiers.LoggedUser;
 import cz.nigol.obec.services.ArticleService;
 import cz.nigol.obec.services.NewsService;
+import cz.nigol.obec.services.UserService;
 
 @Named
 @ViewScoped
@@ -28,24 +29,34 @@ public class NewsBean implements Serializable {
     @LoggedUser
     private User user;
     @Inject
-    private ArticleService articleService;
-    @Inject
     private FacesContext facesContext;
+    @Inject
+    private UserService userService;
+    @Inject
+    private ArticleService articleService;
     private List<News> newsList;
     private News news;
     private String body;
 
     @PostConstruct
     public void init() {
-	newsList = newsService.getAll();
+	user = userService.getUserById(user.getId());
+	loadNews();
     }
 
+    private void loadNews() {
+	newsList = newsService.getAll();
+    } 
+
     public void onNewsSelect() {
+	news.setArticle(articleService.loadArticleBody(news.getArticle()));
+	body = news.getArticle().getBody();
     }
 
     public void newNews() {
 	news = new News();
 	news.setArticle(new Article());
+	newsList.add(news);
 	body = null;
     }
 
@@ -62,19 +73,20 @@ public class NewsBean implements Serializable {
 	body = null;
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Aktualita '" +
 						       label + "' byla uložena."));
+	loadNews();
     }
 
     public void cancelEdit() {
 	news = null;
 	body = null;
-	init();
+	loadNews();
     }
 
     public void delete() {
 	newsService.delete(news);
 	news = null;
 	body = null;
-	init();
+	loadNews();
     }
 
     /**

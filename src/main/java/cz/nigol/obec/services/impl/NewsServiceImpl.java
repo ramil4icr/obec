@@ -4,20 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import cz.nigol.obec.entities.Article;
 import cz.nigol.obec.entities.News;
+import cz.nigol.obec.services.ArticleService;
 import cz.nigol.obec.services.NewsService;
 
 @Stateless
 public class NewsServiceImpl implements NewsService {
     @PersistenceContext(unitName="obecPU")
     private EntityManager em;
+    @Inject
+    private ArticleService articleService;
 
     @Override
     public News save(News news) {
+	Article article = articleService.saveArticle(news.getArticle(), news.getArticle().getBody());
+	news.setArticle(article);
 	return em.merge(news);
     }
 

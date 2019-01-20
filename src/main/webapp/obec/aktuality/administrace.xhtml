@@ -3,14 +3,127 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/template-transient.xhtml"
+                template="/WEB-INF/templates/template.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
   <ui:param name="title" value="Administrace aktualit - Obec Tršice"/>
 
   <ui:define name="content">
+    <script>
+      var Link = Quill.import('formats/link');
+      class MyLink extends Link {
+	  static create(value) {
+	      const node = super.create(value);
+	      node.removeAttribute('target');
+	      return node;
+	  }
+      }
+      Quill.register(MyLink, true);
+    </script>
+
     <h2>Administrace aktualit</h2>
-    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+
+    <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
+      <p:column/>
+      <p:column/>
+      <p:column/>
+      <p:column/>
+      <p:column/>
+      <p:commandButton id="filesButton"
+		       value="Soubory"
+		       type="button"/>
+      <p:overlayPanel id="files"
+		      for="filesButton"
+		      hideEffect="fade"
+		      dynamic="true"
+		      my="left top"
+		      at="left bottom"
+		      style="width: 70%"
+		      modal="false">
+	<ui:include src="/WEB-INF/includes/filesHandling.xhtml"/>
+      </p:overlayPanel>
     </p:panelGrid>
+
+    <h:form>
+      <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
+	<p:column/>
+	<p:column/>
+	<p:column/>
+	<p:column/>
+	<p:commandButton value="Nová aktualita" 
+                         action="#{newsBean.newNews}"
+			 disabled="#{!empty newsBean.news}"
+                         update="@form"
+			 resetValues="true"/>
+	<p:commandButton value="Smazat" 
+                         action="#{newsBean.delete}"
+			 disabled="#{empty newsBean.news}"
+			 onclick="return confirm('Opravdu smazat: #{newsBean.news.label}?')"
+                         update="@form :growl"
+			 resetValues="true"
+                         immediate="true"/>
+      </p:panelGrid>
+
+      <p:dataTable id="news" 
+                   value="#{newsBean.newsList}" 
+                   emptyMessage="Nenalezen žádný výsledek."
+                   selectionMode="single"
+                   selection="#{newsBean.news}"
+                   rowKey="#{news.id}"
+		   rows="5"
+		   paginator="true"
+		   paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+		   paginatorPosition="bottom"
+                   var="news">
+        <p:ajax event="rowSelect"
+		listener="#{newsBean.onNewsSelect}"
+		update="@form"
+		resetValues="true"/>
+        <p:column headerText="Aktualita"
+		  filterBy="#{news.label}"
+		  filterMatchMode="contains">
+          <h:outputText value="#{news.label}"/>
+        </p:column>
+	<p:column headerText="Změnil"
+		  filterBy="#{news.article.changedBy.fullName}"
+		  filterMatchMode="contains">
+          <h:outputText value="#{news.article.changedBy.fullName}"/>
+        </p:column>
+	<p:column headerText="Změněno">
+          <h:outputText value="#{news.changedAt}">
+	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+	  </h:outputText>
+        </p:column>
+      </p:dataTable>
+
+      <p:panelGrid layout="grid"
+		   columns="1"
+		   rendered="#{!empty newsBean.news}"
+		   styleClass="ui-noborder">
+	<p:outputLabel value="Název" for="label"/>
+	<p:inputText id="label" value="#{newsBean.news.label}">
+	  <f:validateLength maximum="300"/>
+	</p:inputText>
+
+	<p:outputLabel value="Text" for="body"/>
+        <p:textEditor id="body"
+		      value="#{newsBean.body}"
+		      height="300"/>
+
+	<p:panelGrid layout="grid"
+		     columns="2"
+		     styleClass="ui-noborder">
+	  <p:commandButton value="Uložit" 
+                           action="#{newsBean.save}"
+			   styleClass="default"
+			   update=":growl @form"/>
+	  <p:commandButton value="Zrušit" 
+                           action="#{newsBean.cancelEdit}"
+			   immediate="true"
+			   resetValues="true"
+                           update="@form"/>
+	</p:panelGrid>	
+      </p:panelGrid>
+    </h:form>    
   </ui:define>
 </ui:composition>
