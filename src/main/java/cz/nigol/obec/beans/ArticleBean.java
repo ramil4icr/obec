@@ -16,7 +16,9 @@ public class ArticleBean {
 
     public void loadArticle(String id) {
 	article = articleService.getArticleById(id);
-	article = articleService.loadArticleBody(article);
+	if (article != null) {
+	    article = articleService.loadArticleBody(article);
+	}
     }
 
     /**

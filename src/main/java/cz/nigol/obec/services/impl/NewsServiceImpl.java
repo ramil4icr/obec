@@ -43,4 +43,10 @@ public class NewsServiceImpl implements NewsService {
     public void delete(News news) {
 	em.remove(em.merge(news));
     }
+
+    @Override
+    public List<News> getFeatured() {
+	TypedQuery<News> typedQuery = em.createNamedQuery(News.GET_FEATURED, News.class);
+	return new ArrayList<>(typedQuery.getResultList());
+    }
 }

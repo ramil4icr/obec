@@ -91,10 +91,13 @@
 		  filterMatchMode="contains">
           <h:outputText value="#{news.article.changedBy.fullName}"/>
         </p:column>
-	<p:column headerText="Změněno" style="width: 20%">
+	<p:column headerText="Změněno" style="width: 15%">
           <h:outputText value="#{news.changedAt}">
 	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
 	  </h:outputText>
+        </p:column>
+	<p:column headerText="Úvod" style="width: 5%">
+	  <p:selectBooleanCheckbox value="#{news.featured}" disabled="true"/>
         </p:column>
       </p:dataTable>
 
@@ -102,10 +105,20 @@
 		   columns="1"
 		   rendered="#{!empty newsBean.news}"
 		   styleClass="ui-noborder">
-	<p:outputLabel value="Název" for="label"/>
-	<p:inputText id="label" value="#{newsBean.news.label}">
-	  <f:validateLength maximum="300"/>
-	</p:inputText>
+	<p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+	  <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+	    <p:outputLabel value="Název" for="label"/>
+	    <p:inputText id="label" value="#{newsBean.news.label}">
+	      <f:validateLength maximum="300"/>
+	    </p:inputText>
+	  </p:panelGrid>
+
+	  <p:column>
+	    <p:selectBooleanCheckbox id="featured" value="#{newsBean.news.featured}"/>
+	    &#160;&#160;
+	    <p:outputLabel value="Úvodní stránka" for="featured"/>
+	  </p:column>
+	</p:panelGrid>
 
 	<p:outputLabel value="Text" for="body"/>
         <p:textEditor id="body"

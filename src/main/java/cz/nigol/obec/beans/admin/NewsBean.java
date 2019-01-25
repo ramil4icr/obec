@@ -57,11 +57,11 @@ public class NewsBean implements Serializable {
 	news = new News();
 	news.setArticle(new Article());
 	newsList.add(news);
+	news.setChangedAt(new Date());
 	body = null;
     }
 
     public void save() {
-	news.setChangedAt(new Date());
 	Article article = news.getArticle();
 	article.setChangedAt(news.getChangedAt());
 	article.setId(article.getId() == null ? news.getLabel() : article.getId());

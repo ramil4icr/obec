@@ -20,7 +20,7 @@ public class IndexBean {
 
     @PostConstruct
     public void init() {
-	newsList = newsService.getAll();
+	newsList = newsService.getFeatured();
     }
 
     /**

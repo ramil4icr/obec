@@ -19,6 +19,8 @@ import javax.persistence.TemporalType;
 
 @NamedQueries({
 	@NamedQuery(name=News.GET_ALL, query="SELECT n FROM News n ORDER BY n.changedAt DESC"),
+	    @NamedQuery(name=News.GET_FEATURED,
+			query="SELECT n FROM News n WHERE n.featured = true ORDER BY n.changedAt DESC"),
     })
 @Entity
 @Table(name="OB_NEWS")
@@ -26,6 +28,7 @@ public class News implements Serializable {
     private static final long serialVersionUID = -4378072789330339015L;
 
     public static final String GET_ALL = "News.GET_ALL";
+    public static final String GET_FEATURED = "News.GET_FEATURED";
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -41,6 +44,9 @@ public class News implements Serializable {
 
     @OneToOne(cascade=CascadeType.ALL)
     private Article article;
+
+    @Column(name="FEATURED")
+    private boolean featured;
 
     /**
      * @return the id
@@ -98,7 +104,21 @@ public class News implements Serializable {
 	this.article = article;
     }
 
-    @Override
+	/**
+	 * @return the featured
+	 */
+	public boolean isFeatured() {
+		return featured;
+	}
+
+	/**
+	 * @param featured the featured to set
+	 */
+	public void setFeatured(boolean featured) {
+		this.featured = featured;
+	}
+
+	@Override
     public boolean equals(Object o) {
 	if (this == o) return true;
 	if (!(o instanceof News)) return false;
