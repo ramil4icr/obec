@@ -10,14 +10,28 @@
 
   <ui:define name="metadata">
     <f:metadata>
-      <f:viewParam name="id" value="#{singleArticleBean.id}"/>
-      <f:viewAction action="#{singleArticleBean.onLoad}"/>
+      <f:viewParam name="id" value="#{announcementDetailBean.id}"/>
+      <f:viewAction action="#{announcementDetailBean.onLoad}"/>
     </f:metadata>
   </ui:define>
 
   <ui:define name="content">
-    <h2>Hlášení obecního rozhlasu ze dne </h2>
+    <h2>Hlášení obecního rozhlasu</h2>
+
+    <div style="text-align: center">
+      <h:outputText value="#{announcementDetailBean.announcement.createdAt}">
+	<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+      </h:outputText>
+    </div>
+    
     <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+      <div class="articleBody">
+	<h:outputText value="#{announcementDetailBean.announcement.body}" escape="false"/>
+      </div>
+      
+      <p>
+	<h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml" value="Archiv hlášení"/>
+      </p>
     </p:panelGrid>
   </ui:define>
 </ui:composition>

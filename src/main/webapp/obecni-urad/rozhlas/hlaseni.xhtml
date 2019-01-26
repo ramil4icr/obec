@@ -12,11 +12,24 @@
     <h2>Hlášení obecního rozhlasu</h2>
     <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
       <h:form>
-	<p:dataTable id="archive"
-		     emptyMessage="Nenalezen žádný výsledek."
-		     var="item">
-	  <p:column headerText="Hlášení ze dne">
-	  </p:column>
+	<p:dataTable id="announcements" 
+                     value="#{announcementTableBean.announcements}" 
+                     emptyMessage="Nenalezen žádný výsledek."
+                     rowKey="#{announcement.id}"
+		     rows="20"
+		     paginator="true"
+		     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+		     paginatorPosition="bottom"
+                     var="announcement">
+          <p:column headerText="Hlášení">
+	    <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
+	      <f:param name="id" value="#{announcement.id}"/>
+	      Hlášení obecního rozhlasu ze dne 
+	      <h:outputText value="#{announcement.createdAt}">
+		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+	      </h:outputText>
+	    </h:link>
+          </p:column>
 	</p:dataTable>
       </h:form>
     </p:panelGrid>
