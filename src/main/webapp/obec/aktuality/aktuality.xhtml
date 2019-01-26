@@ -30,8 +30,8 @@
 	    #{news.label}
 	  </h:link>
         </p:column>
-	<p:column headerText="Změněno" style="width: 30%">
-          <h:outputText value="#{news.changedAt}">
+	<p:column headerText="Vytvořeno" style="width: 30%">
+          <h:outputText value="#{news.createdAt}">
 	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
 	  </h:outputText>
         </p:column>

@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -18,9 +20,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQueries({
-	@NamedQuery(name=News.GET_ALL, query="SELECT n FROM News n ORDER BY n.changedAt DESC"),
+	@NamedQuery(name=News.GET_ALL, query="SELECT n FROM News n ORDER BY n.createdAt DESC"),
 	    @NamedQuery(name=News.GET_FEATURED,
-			query="SELECT n FROM News n WHERE n.featured = true ORDER BY n.changedAt DESC"),
+			query="SELECT n FROM News n WHERE n.featured = true ORDER BY n.createdAt DESC"),
     })
 @Entity
 @Table(name="OB_NEWS")
@@ -38,9 +40,9 @@ public class News implements Serializable {
     @Column(name="LABEL", columnDefinition="VARCHAR(300)")
     private String label;
 
-    @Column(name="CHANGED_AT")
+    @Column(name="CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date changedAt;
+    private Date createdAt;
 
     @OneToOne(cascade=CascadeType.ALL)
     private Article article;
@@ -76,21 +78,21 @@ public class News implements Serializable {
 	this.label = label;
     }
 
-    /**
-     * @return the changedAt
-     */
-    public Date getChangedAt() {
-	return changedAt;
-    }
+	/**
+	 * @return the createdAt
+	 */
+	public Date getCreatedAt() {
+		return createdAt;
+	}
 
-    /**
-     * @param changedAt the changedAt to set
-     */
-    public void setChangedAt(Date changedAt) {
-	this.changedAt = changedAt;
-    }
+	/**
+	 * @param createdAt the createdAt to set
+	 */
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
 
-    /**
+	/**
      * @return the article
      */
     public Article getArticle() {
