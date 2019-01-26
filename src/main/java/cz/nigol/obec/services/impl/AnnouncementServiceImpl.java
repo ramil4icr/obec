@@ -34,7 +34,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
     @Override
     public void delete(Announcement announcement) {
-	em.remove(announcement);
+	em.remove(em.merge(announcement));
     }
     
 }
