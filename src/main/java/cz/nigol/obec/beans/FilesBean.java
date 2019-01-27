@@ -1,6 +1,10 @@
 package cz.nigol.obec.beans;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
@@ -51,7 +55,7 @@ public class FilesBean implements Serializable {
     }
 
     public String endOfPath(String path) {
-	return path.substring(path.lastIndexOf('/') + 1, path.length()).split("\\d{8,}")[1];
+	return path.substring(path.lastIndexOf('/') + 1, path.length()).split("~")[1];
     }
 
     public void newFile() {
@@ -62,11 +66,10 @@ public class FilesBean implements Serializable {
 	file.setCreatedAt(new Date());
 	file.setUser(user);
 	UploadedFile uploadedFile = event.getFile();
-	Date date = new Date();
-	file.setPath("/upload/" + date.getTime() + uploadedFile.getFileName());
 	try {
+	    file.setPath(preparePath(uploadedFile));
 	    file = fileMetadataService.save(file, path, uploadedFile.getContents());
-	} catch (UploadFailedException e) {
+	} catch (UploadFailedException | NoSuchAlgorithmException e) {
 	    log.error(file.getPath(), e);
 	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							   "Chyba", "Chyba při nahrávání souboru."));
@@ -74,6 +77,18 @@ public class FilesBean implements Serializable {
 	file = null;
 	init();
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo",  "Soubor byl uložen."));
+    }
+
+	private String preparePath(UploadedFile uploadedFile)
+			throws NoSuchAlgorithmException {
+	Date date = new Date();
+	String msString = String.valueOf(date.getTime());
+	String folder = msString.substring(msString.length() - 1);
+	String fileName = uploadedFile.getFileName();
+	String open = user.getId() + msString + fileName;
+	MessageDigest digest = MessageDigest.getInstance("MD5");
+	byte[] hashBytes = digest.digest(open.getBytes());
+	return "/upload/" + folder + "/" + String.valueOf(hashBytes) + "~" + fileName;
     }
 
     /**
@@ -102,5 +117,6 @@ public class FilesBean implements Serializable {
      */
     public void setFile(FileMetadata file) {
 	this.file = file;
-    }
-}
+    }}
+	    
+	    

@@ -50,6 +50,8 @@
 	  <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 	    <p:outputLabel for="file" value="Soubor"/>
 	    <p:fileUpload id="file"
+			  mode="advanced"
+			  auto="true"
 			  fileUploadListener="#{filesBean.handleUpload}"
 			  update=":growl @form"/>
 	  </p:panelGrid>
