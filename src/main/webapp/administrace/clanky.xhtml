@@ -10,6 +10,8 @@
 
   <ui:define name="content">
     <ui:include src="/WEB-INF/includes/editorSettings.xhtml"/>
+
+    <script src="../assets/editarea_0_8_2/edit_area/edit_area_full.js"></script>
     
     <h2>Články, administrace</h2>
     
@@ -34,7 +36,7 @@
       </p:overlayPanel>
     </p:panelGrid>
 
-    <h:form>
+    <h:form id="articleForm">
       <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
 	<p:column/>
 	<p:column/>
@@ -53,9 +55,11 @@
                          immediate="true"/>
 	<p:selectBooleanButton value="#{articlesBean.editSource}"
 			       style="padding: 5px"
+			       disabled="#{articlesBean.editSource}"
 			       onLabel="HTML"
 			       offLabel="Text">
-	  <p:ajax update="@form"/>
+	  <p:ajax update="@form"
+		  oncomplete="editAreaLoader.init({id :'articleForm:textarea',syntax:'html',start_highlight:true,allow_toggle:false});"/>
 	</p:selectBooleanButton>
       </p:panelGrid>
 
@@ -72,6 +76,7 @@
                    var="article">
         <p:ajax event="rowSelect"
 		listener="#{articlesBean.onArticleSelect}"
+		oncomplete="try {editAreaLoader.delete_instance('articleForm:textarea');} catch(e) {}"
 		update="@form"
 		resetValues="true"/>
         <p:column headerText="Id článku"
@@ -107,9 +112,11 @@
 		      value="#{articlesBean.body}"
 		      rendered="#{!articlesBean.editSource}"
 		      height="300"/>
-	<p:inputTextarea rows="10"
+	<p:inputTextarea id="textarea"
+			 rows="10"
 			 cols="30"
 			 value="#{articlesBean.body}"
+			 style="max-height: 350px"
 			 rendered="#{articlesBean.editSource}"/>
 
 	<p:panelGrid layout="grid"
@@ -118,7 +125,9 @@
 	  <p:commandButton value="Uložit" 
                            action="#{articlesBean.save}"
 			   styleClass="default"
-			   update=":growl @form"/>
+			   onclick="editAreaLoader.toggle('articleForm:textarea'); return true;"
+			   oncomplete="editAreaLoader.toggle('articleForm:textarea'); return true;"
+			   update=":growl"/>
 	  <p:commandButton value="Zrušit" 
                            action="#{articlesBean.cancelEdit}"
 			   immediate="true"
@@ -126,6 +135,6 @@
                            update="@form"/>
 	</p:panelGrid>	
       </p:panelGrid>
-    </h:form>    
+    </h:form>
   </ui:define>
 </ui:composition>

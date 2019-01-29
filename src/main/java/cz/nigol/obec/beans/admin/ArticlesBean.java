@@ -61,21 +61,20 @@ public class ArticlesBean implements Serializable {
 	article.setChangedBy(user);
 	articleService.saveArticle(article, body);
 	String id = article.getId();
-	article = null;
-	body = null;
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Článek '" +
 						       id + "' byl uložen."));
-	init();
     }
 
     public void onArticleSelect() {
 	article = articleService.loadArticleBody(article);
 	body = article.getBody();
+	editSource = false;
     }
 
     public void cancelEdit() {
 	article = null;
 	body = null;
+	editSource = false;
 	init();
     }
 
