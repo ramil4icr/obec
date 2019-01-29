@@ -24,14 +24,12 @@
       </h:outputText>
     </div>
     
-    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-      <div class="articleBody">
-	<h:outputText value="#{announcementDetailBean.announcement.body}" escape="false"/>
-      </div>
-      
-      <p>
-	<h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml" value="Archiv hlášení"/>
-      </p>
-    </p:panelGrid>
+    <div class="articleBody">
+      <h:outputText value="#{announcementDetailBean.announcement.body}" escape="false"/>
+    </div>
+    
+    <p>
+      <h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml" value="Archiv hlášení"/>
+    </p>
   </ui:define>
 </ui:composition>

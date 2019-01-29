@@ -77,9 +77,18 @@
 	  </h4>
 	  <h5>Hlášení rozhlasu</h5>
 	  <p:dataTable id="archive"
+		       value="#{indexBean.announcements}"
+		       rows="5"
 		       emptyMessage="Nenalezen žádný výsledek."
-		       var="item">
-	    <p:column headerText="Hlášení ze dne">
+		       var="announcement">
+	    <p:column headerText="Hlášení">
+	      <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
+		<f:param name="id" value="#{announcement.id}"/>
+		Hlášení obecního rozhlasu ze dne 
+		<h:outputText value="#{announcement.createdAt}">
+		  <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+		</h:outputText>
+	      </h:link>
 	    </p:column>
 	  </p:dataTable>
 	  <br />

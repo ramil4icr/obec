@@ -193,10 +193,6 @@ button.ui-button.ui-state-default {
     position:absolute;
 }
 
-.grayHoverBorder :hover {
-    border: 1px #ccc solid;
-}
-
 .signal {
     border: 5px solid #333;
     border-radius: 30px;

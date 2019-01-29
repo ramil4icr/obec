@@ -36,5 +36,12 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     public void delete(Announcement announcement) {
 	em.remove(em.merge(announcement));
     }
+
+    @Override
+    public List<Announcement> getLastFive() {
+	TypedQuery<Announcement> typedQuery = em.createNamedQuery(Announcement.GET_ALL, Announcement.class);
+	typedQuery.setMaxResults(5);
+	return new ArrayList<>(typedQuery.getResultList());	
+    }
     
 }

@@ -9,4 +9,5 @@ public interface AnnouncementService {
     Announcement save(Announcement announcement);
     Announcement getById(long id);
     void delete(Announcement announcement);
+    List<Announcement> getLastFive();
 }
