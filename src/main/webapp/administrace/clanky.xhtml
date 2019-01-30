@@ -11,8 +11,6 @@
   <ui:define name="content">
     <ui:include src="/WEB-INF/includes/editorSettings.xhtml"/>
 
-    <script src="../assets/editarea_0_8_2/edit_area/edit_area_full.js"></script>
-    
     <h2>Články, administrace</h2>
     
     <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
@@ -55,11 +53,9 @@
                          immediate="true"/>
 	<p:selectBooleanButton value="#{articlesBean.editSource}"
 			       style="padding: 5px"
-			       disabled="#{articlesBean.editSource}"
 			       onLabel="HTML"
 			       offLabel="Text">
-	  <p:ajax update="@form"
-		  oncomplete="editAreaLoader.init({id :'articleForm:textarea',syntax:'html',start_highlight:true,allow_toggle:false});"/>
+	  <p:ajax update="@form"/>
 	</p:selectBooleanButton>
       </p:panelGrid>
 
@@ -76,7 +72,6 @@
                    var="article">
         <p:ajax event="rowSelect"
 		listener="#{articlesBean.onArticleSelect}"
-		oncomplete="try {editAreaLoader.delete_instance('articleForm:textarea');} catch(e) {}"
 		update="@form"
 		resetValues="true"/>
         <p:column headerText="Id článku"
@@ -125,8 +120,6 @@
 	  <p:commandButton value="Uložit" 
                            action="#{articlesBean.save}"
 			   styleClass="default"
-			   onclick="editAreaLoader.toggle('articleForm:textarea'); return true;"
-			   oncomplete="editAreaLoader.toggle('articleForm:textarea'); return true;"
 			   update=":growl"/>
 	  <p:commandButton value="Zrušit" 
                            action="#{articlesBean.cancelEdit}"

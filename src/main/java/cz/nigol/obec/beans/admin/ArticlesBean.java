@@ -68,13 +68,11 @@ public class ArticlesBean implements Serializable {
     public void onArticleSelect() {
 	article = articleService.loadArticleBody(article);
 	body = article.getBody();
-	editSource = false;
     }
 
     public void cancelEdit() {
 	article = null;
 	body = null;
-	editSource = false;
 	init();
     }
 
