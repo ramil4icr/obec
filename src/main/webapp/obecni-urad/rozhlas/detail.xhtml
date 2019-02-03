@@ -16,20 +16,27 @@
   </ui:define>
 
   <ui:define name="content">
-    <h2>Hlášení obecního rozhlasu</h2>
+    <h:panelGroup id="printingArea" layout="block">
+      <h2>Hlášení obecního rozhlasu</h2>
 
-    <div style="text-align: center">
-      <h:outputText value="#{announcementDetailBean.announcement.createdAt}">
-	<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-      </h:outputText>
-    </div>
-    
-    <div class="articleBody">
-      <h:outputText value="#{announcementDetailBean.announcement.body}" escape="false"/>
-    </div>
+      <div style="text-align: center">
+	<h:outputText value="#{announcementDetailBean.announcement.createdAt}">
+	  <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+	</h:outputText>
+      </div>
+      
+      <div class="articleBody">
+	<h:outputText value="#{announcementDetailBean.announcement.body}" escape="false"/>
+      </div>
+    </h:panelGroup>
     
     <p>
       <h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml" value="Archiv hlášení"/>
+      &#160;
+      <p:commandLink>
+	<i class="fa fa-print"></i>
+	<p:printer target="printingArea"/>
+      </p:commandLink>
     </p>
   </ui:define>
 </ui:composition>
