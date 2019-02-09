@@ -48,6 +48,7 @@ public class OfficialDeskBean implements Serializable {
 	deskItem = new DeskItem();
 	deskItem.setCreatedAt(new Date());
 	deskItem.setCreatedBy(user);
+	deskItem.setActiveFrom(new Date());
 	deskItems.add(deskItem);
     }
 

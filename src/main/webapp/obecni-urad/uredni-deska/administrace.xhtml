@@ -50,6 +50,8 @@
         <p:ajax event="rowSelect"
 		update="@form"
 		resetValues="true"/>
+	<p:column selectionMode="single"
+		  style="width:16px;text-align:center"/>
         <p:column headerText="Dokument"
 		  style="width: 70%"
 		  filterBy="#{deskItem.body}"
@@ -78,7 +80,10 @@
 	    <p:calendar id="from"
 			value="#{officialDeskBean.deskItem.activeFrom}"
 			locale="cz"
-			mode="inline" />
+			pattern="dd-MM-yyyy"
+			mask="true">
+	      <p:ajax event="dateSelect" update="to"/>
+	    </p:calendar>
 	  </p:panelGrid>
 
  	  <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
@@ -86,7 +91,9 @@
 	    <p:calendar id="to"
 			value="#{officialDeskBean.deskItem.activeTo}"
 			locale="cz"
-			mode="inline" />
+			pattern="dd-MM-yyyy"
+			mask="true"
+			mindate="#{officialDeskBean.deskItem.activeFrom}"/>
 	  </p:panelGrid>
 	</p:panelGrid>
 
@@ -101,7 +108,6 @@
 	  <p:commandButton value="Uložit" 
                            action="#{officialDeskBean.save}"
 			   styleClass="default"
-			   ajax="false"
 			   update=":growl @form"/>
 	  <p:commandButton value="Zrušit" 
                            action="#{officialDeskBean.cancelEdit}"
