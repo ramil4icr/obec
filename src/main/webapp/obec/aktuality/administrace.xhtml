@@ -13,26 +13,7 @@
     
     <h2>Aktuality, administrace</h2>
 
-    <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
-      <p:column/>
-      <p:column/>
-      <p:column/>
-      <p:column/>
-      <p:column/>
-      <p:commandButton id="filesButton"
-		       value="Soubory"
-		       type="button"/>
-      <p:overlayPanel id="files"
-		      for="filesButton"
-		      hideEffect="fade"
-		      dynamic="true"
-		      my="left top"
-		      at="left bottom"
-		      style="width: 70%"
-		      modal="false">
-	<ui:include src="/WEB-INF/includes/filesHandling.xhtml"/>
-      </p:overlayPanel>
-    </p:panelGrid>
+    <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>    
 
     <h:form>
       <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
