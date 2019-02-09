@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,6 +22,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 	@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u ORDER BY u.id ASC"),
 	    @NamedQuery(name=User.GET_ACTIVE, query="SELECT u FROM User u WHERE u.active = true"),
+	    @NamedQuery(name=User.GET_BY_USER_ID, query="SELECT u FROM User u WHERE u.userId = :userId AND u.active = true"),
     })
 @Entity
 @Table(name = "OB_USER")
@@ -28,10 +31,17 @@ public class User implements Serializable {
 
     public static final String GET_ALL = "User.GET_ALL";
     public static final String GET_ACTIVE = "User.GET_ACTIVE";
+    public static final String GET_BY_USER_ID = "User.GET_BY_USER_ID";
+
+    public static final String USER_ID_PARAM = "userId";
 
     @Id
-    @Column(name="ID", columnDefinition="VARCHAR(50)")
-    private String id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="ID")
+    private long id;
+
+    @Column(name="USER_ID", columnDefinition="VARCHAR(50)")
+    private String userId;
 
     @Column(name="CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
@@ -52,15 +62,29 @@ public class User implements Serializable {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	/**
@@ -138,7 +162,7 @@ public class User implements Serializable {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return id.equals((user.getId()));
+        return id == user.getId();
     }
  
     @Override

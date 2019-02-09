@@ -20,7 +20,7 @@ public class UserConverter implements Converter {
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
 	User result = null;
 	if (arg2 != null && !"".equals(arg2)) {
-	    result = userService.getUserById(arg2);
+	    result = userService.getUserById(Long.parseLong(arg2));
 	}
 	return result;
     }
@@ -30,7 +30,7 @@ public class UserConverter implements Converter {
 	String result = "";
 	if (arg2 != null) {
 	    User user = (User) arg2;
-	    result = user.getId();
+	    result = result + user.getId();
 	}
 	return result;
     }

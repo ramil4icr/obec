@@ -34,7 +34,6 @@ public class UsersBean implements Serializable {
 
     public void newUser() {
 	user = new User();
-	user.setId("new");
 	users.add(user);
     }
 

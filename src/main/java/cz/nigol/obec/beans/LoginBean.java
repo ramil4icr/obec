@@ -25,7 +25,7 @@ public class LoginBean {
 
 	public String login() {
 	String result;
-	User user = userService.getUserById(loginName);
+	User user = userService.getByUserId(loginName);
 	if (user != null && user.isActive() && BCrypt.checkpw(password, user.getPassword())) {
 	    sessionBean.setUser(user);
 	    result = "/index.xhtml?faces-redirect=true";

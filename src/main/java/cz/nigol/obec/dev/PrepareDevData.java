@@ -17,7 +17,7 @@ public class PrepareDevData {
 
     public void createData() {
 	User user = new User();
-	user.setId("aaa");
+	user.setUserId("aaa");
 	user.setFullName("Josef Test");
 	user.setPassword(BCrypt.hashpw("aaa", BCrypt.gensalt()));
 	user.setActive(true);

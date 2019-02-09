@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(String id) {
+    public User getUserById(long id) {
 	return em.find(User.class, id);
     }
 
@@ -36,5 +36,13 @@ public class UserServiceImpl implements UserService {
     public List<User> getActiveUsers() {
 	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE, User.class);
 	return new ArrayList<>(typedQuery.getResultList());
+    }
+
+    @Override
+    public User getByUserId(String userId) {
+	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_USER_ID, User.class);
+	typedQuery.setParameter(User.USER_ID_PARAM, userId);
+	List<User> users = typedQuery.getResultList();
+	return users.isEmpty() ? null : users.get(0);
     }
 }
