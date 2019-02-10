@@ -226,6 +226,10 @@ button.ui-button.ui-state-default {
     padding-bottom: 3em;
 }
 
+.activeDeskItem {
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 700px) {
     #content {
 	margin-left: 1em;

@@ -53,13 +53,21 @@
 	    <i class="fa fa-list"></i>
 	  </h4>
 	  <h5>Úřední deska</h5>
-	  <p:dataTable id="officialDesk"
-		       emptyMessage="Nenalezen žádný výsledek."
-		       var="item">
-	    <p:column headerText="Dokument">
-	    </p:column>
-	    <p:column headerText="Vyvěšeno">
-	    </p:column>
+	  <p:dataTable id="officialDesk" 
+                       value="#{indexBean.deskItems}" 
+                       emptyMessage="Nenalezen žádný výsledek."
+                       var="deskItem">
+            <p:column headerText="Dokument"
+		      style="width: 70%"
+		      filterBy="#{deskItem.body}"
+		      filterMatchMode="contains">
+              <h:outputText value="#{deskItem.body}" escape="false"/>
+            </p:column>
+	    <p:column headerText="Vyvěšeno" style="width: 30%">
+              <h:outputText value="#{deskItem.activeFrom}">
+		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+	      </h:outputText>
+            </p:column>
 	  </p:dataTable>
 	  <br />
 	  <h:panelGroup layout="block"

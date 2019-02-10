@@ -1,5 +1,6 @@
 package cz.nigol.obec.beans;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,9 +9,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.obec.entities.Announcement;
+import cz.nigol.obec.entities.DeskItem;
 import cz.nigol.obec.entities.News;
 import cz.nigol.obec.services.AnnouncementService;
 import cz.nigol.obec.services.NewsService;
+import cz.nigol.obec.services.OfficialDeskService;
 
 
 @Named
@@ -20,13 +23,17 @@ public class IndexBean {
     private NewsService newsService;
     @Inject
     private AnnouncementService announcementService;
+    @Inject
+    private OfficialDeskService officialDeskService;
     private List<News> newsList;
     private List<Announcement> announcements;
+    private List<DeskItem> deskItems;
 
     @PostConstruct
     public void init() {
 	newsList = newsService.getFeatured();
 	announcements = announcementService.getLastFive();
+	deskItems = officialDeskService.getActiveDeskItemsFor(new Date());
     }
 
     /**
@@ -55,6 +62,20 @@ public class IndexBean {
      */
     public void setAnnouncements(List<Announcement> announcements) {
 	this.announcements = announcements;
+    }
+
+    /**
+     * @return the deskItems
+     */
+    public List<DeskItem> getDeskItems() {
+	return deskItems;
+    }
+
+    /**
+     * @param deskItems the deskItems to set
+     */
+    public void setDeskItems(List<DeskItem> deskItems) {
+	this.deskItems = deskItems;
     }
 
 }
