@@ -230,7 +230,17 @@ button.ui-button.ui-state-default {
     font-weight: bold;
 }
 
-@media only screen and (max-width: 700px) {
+.mainMenuContainer {
+    padding: 0px;
+    margin: 0px;
+}
+
+.mainMenuContainer.ui-shadow {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+@media only screen and (max-width: 979px) {
     #content {
 	margin-left: 1em;
 	margin-right: 1em
@@ -238,6 +248,14 @@ button.ui-button.ui-state-default {
 
     .mapResponsive {
 	display: none;
+    }
+
+    .mainMenu {
+	display: none;
+    }
+
+    .menuButtonContainer {
+	display: block;
     }
 }
 
@@ -250,5 +268,13 @@ button.ui-button.ui-state-default {
 
     .mapResponsive {
 	display: block;
+    }
+
+    .mainMenu {
+	display: block;
+    }
+
+    .menuButtonContainer {
+	display: none;
     }
 }

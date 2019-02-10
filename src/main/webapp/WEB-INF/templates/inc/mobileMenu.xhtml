@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+
+  <h:panelGroup styleClass="menuButtonContainer">
+    <p:commandButton id="menuButton"
+		     value="Nabídka"
+		     type="button"
+		     styleClass="menuButton"
+		     icon="fa fa-bars"/>
+  </h:panelGroup>
+  
+  <p:slideMenu overlay="true"
+	       trigger="menuButton"
+	       my="left top"
+	       at="left bottom"
+	       backLabel="Zpět"
+	       style="width:180px">
+    <p:submenu label="OBEC">
+      <ui:include src="submenus/obecInformace.xhtml"/>
+      <ui:include src="submenus/obecZastupitelstvo.xhtml"/>
+    </p:submenu>
+    <p:submenu label="OBECNÍ ÚŘAD">
+      <ui:include src="submenus/obecniUradInformace.xhtml"/>
+    </p:submenu>
+    <p:submenu label="STAVEBNÍ ÚŘAD">
+    </p:submenu>
+    <p:submenu label="UŽIVATEL">
+      <ui:include src="submenus/uzivatelAdministrace.xhtml"/>
+    </p:submenu>
+  </p:slideMenu>
+</ui:composition>
