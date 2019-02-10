@@ -107,6 +107,12 @@ button.ui-button.ui-state-default {
     box-shadow: none !important;
 }
 
+.dottedTableBlock {
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px dotted #ccc;
+}
+
 .grayTableBlock {
     background-color: #eee;
     border-radius: 3px;

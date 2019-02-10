@@ -46,9 +46,8 @@
       <p:panelGrid layout="grid"
 		   columns="2"
 		   style="margin-top: 40px"
-		   styleClass="ui-noborder">
-	<h:panelGroup layout="block"
-		      styleClass="grayTableBlock">
+		   styleClass="ui-noborder dottedTableBlock">
+	<h:panelGroup layout="block">
 	  <h4>
 	    <i class="fa fa-list"></i>
 	  </h4>
@@ -58,9 +57,7 @@
                        emptyMessage="Nenalezen žádný výsledek."
                        var="deskItem">
             <p:column headerText="Dokument"
-		      style="width: 70%"
-		      filterBy="#{deskItem.body}"
-		      filterMatchMode="contains">
+		      style="width: 70%">
               <h:outputText value="#{deskItem.body}" escape="false"/>
             </p:column>
 	    <p:column headerText="Vyvěšeno" style="width: 30%">
@@ -78,8 +75,7 @@
 	  </h:panelGroup>
 	</h:panelGroup>
 
-	<h:panelGroup layout="block"
-		      styleClass="grayTableBlock">
+	<h:panelGroup layout="block">
 	  <h4>
 	    <i class="fa fa-volume-down"></i>
 	  </h4>
