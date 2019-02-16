@@ -3,7 +3,9 @@ package cz.nigol.obec.beans;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -13,9 +15,24 @@ import javax.inject.Named;
 @ApplicationScoped
 public class ApplicationBean {
     private Map<Integer, String> daysOfWeek;
+    private Set<String> securedPaths;
 
     @PostConstruct
     public void init() {
+	prepareDaysOfWeek();
+	preparePaths();
+    }
+
+    private void preparePaths() {
+	securedPaths = new HashSet<>();
+	securedPaths.add("/administrace/clanky.jsf");
+	securedPaths.add("/administrace/nahled.jsf");
+	securedPaths.add("/obec/aktuality/administrace.jsf");
+	securedPaths.add("/obecni-urad/rozhlas/administrace.jsf");
+	securedPaths.add("/obecni-urad/uredni-deska/administrace.jsf");
+    }
+
+    private void prepareDaysOfWeek() {
 	daysOfWeek = new HashMap<>();
 	daysOfWeek.put(1, "neděle");
 	daysOfWeek.put(2, "pondělí");
@@ -35,5 +52,12 @@ public class ApplicationBean {
 	calendar.setTime(today());
 	int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 	return daysOfWeek.get(dayOfWeek);
+    }
+
+    /**
+     * @return the securedPaths
+     */
+    public Set<String> getSecuredPaths() {
+	return securedPaths;
     }
 }
