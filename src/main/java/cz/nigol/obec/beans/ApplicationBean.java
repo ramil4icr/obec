@@ -11,11 +11,13 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
+import cz.nigol.obec.entities.Path;
+
 @Named
 @ApplicationScoped
 public class ApplicationBean {
     private Map<Integer, String> daysOfWeek;
-    private Set<String> securedPaths;
+    private Set<Path> securedPaths;
 
     @PostConstruct
     public void init() {
@@ -25,11 +27,11 @@ public class ApplicationBean {
 
     private void preparePaths() {
 	securedPaths = new HashSet<>();
-	securedPaths.add("/administrace/clanky.jsf");
-	securedPaths.add("/administrace/nahled.jsf");
-	securedPaths.add("/obec/aktuality/administrace.jsf");
-	securedPaths.add("/obecni-urad/rozhlas/administrace.jsf");
-	securedPaths.add("/obecni-urad/uredni-deska/administrace.jsf");
+	securedPaths.add(new Path("/administrace/clanky.jsf"));
+	securedPaths.add(new Path("/administrace/nahled.jsf"));
+	securedPaths.add(new Path("/obec/aktuality/administrace.jsf"));
+	securedPaths.add(new Path("/obecni-urad/rozhlas/administrace.jsf"));
+	securedPaths.add(new Path("/obecni-urad/uredni-deska/administrace.jsf"));
     }
 
     private void prepareDaysOfWeek() {
@@ -57,7 +59,7 @@ public class ApplicationBean {
     /**
      * @return the securedPaths
      */
-    public Set<String> getSecuredPaths() {
+    public Set<Path> getSecuredPaths() {
 	return securedPaths;
     }
 }

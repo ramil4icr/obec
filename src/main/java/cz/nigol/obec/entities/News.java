@@ -118,7 +118,7 @@ public class News implements Serializable {
 		this.featured = featured;
 	}
 
-	@Override
+    @Override
     public boolean equals(Object o) {
 	if (this == o) return true;
 	if (!(o instanceof News)) return false;
