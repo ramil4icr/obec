@@ -10,13 +10,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="OB_ROLE")
+@NamedQueries({
+	@NamedQuery(name=Role.GET_ALL, query="SELECT r FROM Role r ORDER BY r.name ASC"),
+})
 public class Role implements Serializable {
     private static final long serialVersionUID = 4244545735191926653L;
+
+    public static final String GET_ALL = "Role.GET_ALL";
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

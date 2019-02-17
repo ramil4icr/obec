@@ -2,12 +2,15 @@ package cz.nigol.obec.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import cz.nigol.obec.entities.Path;
+import cz.nigol.obec.entities.Role;
 import cz.nigol.obec.entities.User;
 import cz.nigol.obec.services.UserService;
 
@@ -44,5 +47,37 @@ public class UserServiceImpl implements UserService {
 	typedQuery.setParameter(User.USER_ID_PARAM, userId);
 	List<User> users = typedQuery.getResultList();
 	return users.isEmpty() ? null : users.get(0);
+    }
+
+    @Override
+    public List<Role> getAllRoles() {
+	TypedQuery<Role> typedQuery = em.createNamedQuery(Role.GET_ALL, Role.class);
+	return new ArrayList<>(typedQuery.getResultList());
+    }
+
+    @Override
+    public Role saveRole(Role role) {
+	return em.merge(role);
+    }
+
+    @Override
+    public void deleteRole(Role role) {
+	em.remove(em.merge(role));
+    }
+
+    @Override
+    public Role getRoleById(long id) {
+	return em.find(Role.class, id);
+    }
+
+    @Override
+    public List<Path> initializePaths(List<String> paths) {
+	return paths.stream()
+	    .map(this::createPath)
+	    .collect(Collectors.toList());
+    }
+
+    private Path createPath(String path) {
+	return em.merge(new Path(path));
     }
 }

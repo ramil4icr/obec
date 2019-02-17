@@ -1,23 +1,29 @@
 package cz.nigol.obec.beans;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.obec.entities.Path;
+import cz.nigol.obec.qualifiers.SecuredPaths;
+import cz.nigol.obec.services.UserService;
 
 @Named
 @ApplicationScoped
 public class ApplicationBean {
+    @Inject
+    private UserService userService;
     private Map<Integer, String> daysOfWeek;
-    private Set<Path> securedPaths;
+    private List<Path> securedPaths;
 
     @PostConstruct
     public void init() {
@@ -26,12 +32,13 @@ public class ApplicationBean {
     }
 
     private void preparePaths() {
-	securedPaths = new HashSet<>();
-	securedPaths.add(new Path("/administrace/clanky.jsf"));
-	securedPaths.add(new Path("/administrace/nahled.jsf"));
-	securedPaths.add(new Path("/obec/aktuality/administrace.jsf"));
-	securedPaths.add(new Path("/obecni-urad/rozhlas/administrace.jsf"));
-	securedPaths.add(new Path("/obecni-urad/uredni-deska/administrace.jsf"));
+	List<String> paths = new ArrayList<>();
+	paths.add("/administrace/clanky.jsf");
+	paths.add("/administrace/nahled.jsf");
+	paths.add("/obec/aktuality/administrace.jsf");
+	paths.add("/obecni-urad/rozhlas/administrace.jsf");
+	paths.add("/obecni-urad/uredni-deska/administrace.jsf");
+	securedPaths = userService.initializePaths(paths);
     }
 
     private void prepareDaysOfWeek() {
@@ -59,7 +66,9 @@ public class ApplicationBean {
     /**
      * @return the securedPaths
      */
-    public Set<Path> getSecuredPaths() {
+    @Produces
+    @SecuredPaths
+    public List<Path> getSecuredPaths() {
 	return securedPaths;
     }
 }
