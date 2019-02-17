@@ -1,4 +1,4 @@
-package cz.nigol.obec.beans;
+package cz.nigol.obec.beans.admin;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,28 +12,34 @@ import javax.inject.Named;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import cz.nigol.obec.entities.Role;
 import cz.nigol.obec.entities.User;
 import cz.nigol.obec.services.UserService;
 
 @Named
 @ViewScoped
 public class UsersBean implements Serializable {
-    private static final long serialVersionUID = -9142079800335130185L;
+    private static final long serialVersionUID = -1174277303661709368L;
     @Inject
     private UserService userService;
     @Inject
     private FacesContext facesContext;
-    private List<User> users;
     private User user;
+    private List<User> users;
+    private List<Role> roles;
     private String password;
 
     @PostConstruct
     public void init() {
 	users = userService.getAllUsers();
+	roles = userService.getAllRoles();
     }
 
     public void newUser() {
 	user = new User();
+	if (!roles.isEmpty()) {
+	    user.setRole(roles.get(0));
+	}
 	users.add(user);
     }
 
@@ -42,9 +48,29 @@ public class UsersBean implements Serializable {
 	    user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
 	}
 	userService.saveUser(user);
-	init();
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Uživatel '" +
+						       user.getUserId() + "' byl uložen."));
 	user = null;
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo", "Uživatel byl uložen."));
+	init();
+    }
+
+    public void cancelEdit() {
+	user = null;
+	init();
+    }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+	return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+	this.user = user;
     }
 
     /**
@@ -62,17 +88,17 @@ public class UsersBean implements Serializable {
     }
 
     /**
-     * @return the user
+     * @return the roles
      */
-    public User getUser() {
-	return user;
+    public List<Role> getRoles() {
+	return roles;
     }
 
     /**
-     * @param user the user to set
+     * @param roles the roles to set
      */
-    public void setUser(User user) {
-	this.user = user;
+    public void setRoles(List<Role> roles) {
+	this.roles = roles;
     }
 
     /**

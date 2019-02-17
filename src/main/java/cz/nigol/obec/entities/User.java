@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,7 +19,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 	@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u ORDER BY u.id ASC"),
 	    @NamedQuery(name=User.GET_ACTIVE, query="SELECT u FROM User u WHERE u.active = true"),
-	    @NamedQuery(name=User.GET_BY_USER_ID, query="SELECT u FROM User u WHERE u.userId = :userId AND u.active = true"),
+	    @NamedQuery(name=User.GET_ACTIVE_BY_USER_ID, query="SELECT u FROM User u WHERE u.userId = :userId AND u.active = true"),
+	    @NamedQuery(name=User.GET_BY_USER_ID, query="SELECT u FROM User u WHERE u.userId = :userId"),
     })
 @Entity
 @Table(name = "OB_USER")
@@ -28,6 +30,7 @@ public class User implements Serializable {
     public static final String GET_ALL = "User.GET_ALL";
     public static final String GET_ACTIVE = "User.GET_ACTIVE";
     public static final String GET_BY_USER_ID = "User.GET_BY_USER_ID";
+    public static final String GET_ACTIVE_BY_USER_ID = "User.GET_ACTIVE_BY_USER_ID";
 
     public static final String USER_ID_PARAM = "userId";
 
@@ -54,6 +57,9 @@ public class User implements Serializable {
 
     @Column(name="ACTIVE")
     private boolean active;
+
+    @OneToOne
+    private Role role;
 
 	/**
 	 * @return the id
@@ -153,7 +159,21 @@ public class User implements Serializable {
 		this.active = active;
 	}
 
-    @Override
+	/**
+	 * @return the role
+	 */
+	public Role getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;

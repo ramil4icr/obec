@@ -15,7 +15,7 @@ import cz.nigol.obec.services.ArticleService;
 @ApplicationScoped
 public class ArticleIdValidator implements Validator {
     @Inject
-	private ArticleService articleService;
+    private ArticleService articleService;
 
 	@Override
 	public void validate(FacesContext arg0, UIComponent arg1, Object arg2) throws ValidatorException {

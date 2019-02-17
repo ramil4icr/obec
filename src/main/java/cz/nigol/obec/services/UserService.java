@@ -11,7 +11,8 @@ public interface UserService {
     User getUserById(long id);
     User saveUser(User user);
     List<User> getActiveUsers();
-    User getByUserId(String userId);
+    User getActiveUserByUserId(String userId);
+    User getUserByUserId(String userId);
     List<Role> getAllRoles();
     Role saveRole(Role role);
     void deleteRole(Role role);

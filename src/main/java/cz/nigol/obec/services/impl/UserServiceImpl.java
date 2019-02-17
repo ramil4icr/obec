@@ -43,8 +43,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByUserId(String userId) {
-	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_USER_ID, User.class);
+    public User getActiveUserByUserId(String userId) {
+	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE_BY_USER_ID, User.class);
 	typedQuery.setParameter(User.USER_ID_PARAM, userId);
 	List<User> users = typedQuery.getResultList();
 	return users.isEmpty() ? null : users.get(0);
@@ -93,5 +93,13 @@ public class UserServiceImpl implements UserService {
 	roleInContext.setPaths(new HashSet<>());
 	roleInContext.getPaths().addAll(paths);
 	return roleInContext;
+    }
+
+    @Override
+    public User getUserByUserId(String userId) {
+	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_USER_ID, User.class);
+	typedQuery.setParameter(User.USER_ID_PARAM, userId);
+	List<User> users = typedQuery.getResultList();
+	return users.isEmpty() ? null : users.get(0);
     }
 }
