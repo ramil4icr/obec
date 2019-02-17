@@ -17,4 +17,6 @@ public interface UserService {
     void deleteRole(Role role);
     Role getRoleById(long id);
     List<Path> initializePaths(List<String> paths);
+    Path getPathById(String id);
+    Role saveRole(Role role, List<Path> paths);
 }

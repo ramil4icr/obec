@@ -44,7 +44,7 @@ public class Path implements Serializable {
 	if (this == o) return true;
 	if (!(o instanceof Path)) return false;
 	Path path = (Path) o;
-	return id == path.getId();
+	return id.equals(path.getId());
     }
 
     @Override

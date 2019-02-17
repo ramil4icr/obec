@@ -1,6 +1,7 @@
 package cz.nigol.obec.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,5 +80,18 @@ public class UserServiceImpl implements UserService {
 
     private Path createPath(String path) {
 	return em.merge(new Path(path));
+    }
+
+    @Override
+    public Path getPathById(String id) {
+	return em.find(Path.class, id);
+    }
+
+    @Override
+    public Role saveRole(Role role, List<Path> paths) {
+	Role roleInContext = em.merge(role);
+	roleInContext.setPaths(new HashSet<>());
+	roleInContext.getPaths().addAll(paths);
+	return roleInContext;
     }
 }

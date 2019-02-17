@@ -1,6 +1,7 @@
 package cz.nigol.obec.beans.admin;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -37,6 +38,8 @@ public class RolesBean implements Serializable {
 
     public void newRole() {
 	role = new Role();
+	roles.add(role);
+	selectedPaths = new ArrayList<>();
     }
 
     public void delete() {
@@ -46,7 +49,7 @@ public class RolesBean implements Serializable {
     }
 
     public void save() {
-	userService.saveRole(role);
+	userService.saveRole(role, selectedPaths);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Role '" +
 						       role.getName() + "' byla uložena."));
 	role = null;
@@ -56,6 +59,10 @@ public class RolesBean implements Serializable {
     public void cancelEdit() {
 	role = null;
 	init();
+    }
+
+    public void onRoleSelect() {
+	selectedPaths = new ArrayList<>(role.getPaths());
     }
 
     /**
