@@ -16,29 +16,28 @@
     <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>
 
     <h:form id="articleForm">
-      <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:commandButton value="Nový článek" 
-                         action="#{articlesBean.newArticle}"
-			 disabled="#{!empty articlesBean.article}"
-                         update="@form"
-			 resetValues="true"/>
-	<p:commandButton value="Smazat" 
-                         action="#{articlesBean.delete}"
-			 disabled="#{empty articlesBean.article}"
-			 onclick="return confirm('Opravdu smazat článek: #{articlesBean.article.id}?')"
-                         update="@form :growl"
-			 resetValues="true"
-                         immediate="true"/>
-	<p:selectBooleanButton value="#{articlesBean.editSource}"
-			       style="padding: 5px"
-			       onLabel="HTML"
-			       offLabel="Text">
-	  <p:ajax update="@form"/>
-	</p:selectBooleanButton>
-      </p:panelGrid>
+        <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+            <p:commandButton value="Nový článek" 
+                    icon="fa fa-plus-square-o"
+                    action="#{articlesBean.newArticle}"
+                    disabled="#{!empty articlesBean.article}"
+                    update="@form"
+                    resetValues="true"/>
+            <p:commandButton value="Smazat" 
+                    icon="fa fa-trash-o"
+                    action="#{articlesBean.delete}"
+                    disabled="#{empty articlesBean.article}"
+                    onclick="return confirm('Opravdu smazat článek: #{articlesBean.article.id}?')"
+                    update="@form :growl"
+                    resetValues="true"
+                    immediate="true"/>
+            <p:selectBooleanButton value="#{articlesBean.editSource}"
+                    style="padding: 5px"
+                    onLabel="HTML"
+                    offLabel="Text">
+                <p:ajax update="@form"/>
+            </p:selectBooleanButton>
+        </p:panelGrid>
 
       <p:dataTable id="articles" 
                    value="#{articlesBean.articles}" 
