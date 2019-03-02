@@ -26,15 +26,17 @@
 	  <p:inputText id="loginName" value="#{loginBean.loginName}" required="true" requiredMessage="Jméno: Musí být vyplněno."/>
 	  <p:outputLabel for="password" value="Heslo"/>
 	  <p:password id="password" value="#{loginBean.password}" required="true" requiredMessage="Heslo: Musí být vyplněno."/>
-	  <p:commandButton value="Přihlásit"
-			   action="#{loginBean.login}"
-			   icon="fa fa-sign-in"
-			   styleClass="default"
-			   ajax="false"/>
-	</p:panelGrid>
-      </h:form>
-      
-      <p:column/>
+      <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+          <p:commandButton value="Přihlásit"
+                  action="#{loginBean.login}"
+                  icon="fa fa-sign-in"
+                  styleClass="default"
+                  ajax="false"/>
+      </p:panelGrid>
+  </p:panelGrid>
+  </h:form>
+
+  <p:column/>
     </p:panelGrid>
-  </ui:define>
+</ui:define>
 </ui:composition>
