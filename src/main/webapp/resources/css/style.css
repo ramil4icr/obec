@@ -153,6 +153,7 @@ button.ui-button.ui-state-default {
     border-radius: 0px !important;
     padding-left: 220px !important;
     background-image: url("#{resource['image/menu.png']}");
+    background-size: 200px 36px;
     background-position: left center;
     background-repeat: no-repeat;
 }
