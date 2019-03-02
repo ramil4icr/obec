@@ -36,65 +36,65 @@ public class OfficialDeskBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	loadDeskItems();
-	user = userService.getUserById(user.getId());
+        loadDeskItems();
+        user = userService.getUserById(user.getId());
     }
 
     private void loadDeskItems() {
-	deskItems = officialDeskService.getAllDeskItems();
+        deskItems = officialDeskService.getAllDeskItems();
     }
 
     public void newDeskItem() {
-	deskItem = new DeskItem();
-	deskItem.setCreatedAt(new Date());
-	deskItem.setCreatedBy(user);
-	deskItem.setActiveFrom(new Date());
-	deskItems.add(deskItem);
+        deskItem = new DeskItem();
+        deskItem.setCreatedAt(new Date());
+        deskItem.setCreatedBy(user);
+        deskItem.setActiveFrom(new Date());
+        deskItems.add(deskItem);
     }
 
     public void delete() {
-	officialDeskService.deleteDeskItem(deskItem);
-	deskItem = null;
-	loadDeskItems();
+        officialDeskService.deleteDeskItem(deskItem);
+        deskItem = null;
+        loadDeskItems();
     }
 
     public void save() {
-	officialDeskService.saveDeskItem(deskItem);
-	deskItem = null;
-	loadDeskItems();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Dokument byl uložen."));
+        officialDeskService.saveDeskItem(deskItem);
+        deskItem = null;
+        loadDeskItems();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Dokument byl uložen."));
     }
 
     public void cancelEdit() {
-	deskItem = null;
-	loadDeskItems();
+        deskItem = null;
+        loadDeskItems();
     }
 
     /**
      * @return the deskItems
      */
     public List<DeskItem> getDeskItems() {
-	return deskItems;
+        return deskItems;
     }
 
     /**
      * @param deskItems the deskItems to set
      */
     public void setDeskItems(List<DeskItem> deskItems) {
-	this.deskItems = deskItems;
+        this.deskItems = deskItems;
     }
 
     /**
      * @return the deskItem
      */
     public DeskItem getDeskItem() {
-	return deskItem;
+        return deskItem;
     }
 
     /**
      * @param deskItem the deskItem to set
      */
     public void setDeskItem(DeskItem deskItem) {
-	this.deskItem = deskItem;
+        this.deskItem = deskItem;
     }
 }

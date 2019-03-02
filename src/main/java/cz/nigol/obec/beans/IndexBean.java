@@ -31,51 +31,51 @@ public class IndexBean {
 
     @PostConstruct
     public void init() {
-	newsList = newsService.getFeatured();
-	announcements = announcementService.getLastFive();
-	deskItems = officialDeskService.getActiveDeskItemsFor(new Date());
+        newsList = newsService.getFeatured();
+        announcements = announcementService.getLastFive();
+        deskItems = officialDeskService.getActiveDeskItemsFor(new Date());
     }
 
     /**
      * @return the newsList
      */
     public List<News> getNewsList() {
-	return newsList;
+        return newsList;
     }
 
     /**
      * @param newsList the newsList to set
      */
     public void setNewsList(List<News> newsList) {
-	this.newsList = newsList;
+        this.newsList = newsList;
     }
 
     /**
      * @return the announcements
      */
     public List<Announcement> getAnnouncements() {
-	return announcements;
+        return announcements;
     }
 
     /**
      * @param announcements the announcements to set
      */
     public void setAnnouncements(List<Announcement> announcements) {
-	this.announcements = announcements;
+        this.announcements = announcements;
     }
 
     /**
      * @return the deskItems
      */
     public List<DeskItem> getDeskItems() {
-	return deskItems;
+        return deskItems;
     }
 
     /**
      * @param deskItems the deskItems to set
      */
     public void setDeskItems(List<DeskItem> deskItems) {
-	this.deskItems = deskItems;
+        this.deskItems = deskItems;
     }
 
 }

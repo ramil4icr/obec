@@ -11,8 +11,8 @@ import java.lang.annotation.Target;
 
 import javax.inject.Qualifier;
 
-@Qualifier
-@Retention(RUNTIME)
-@Target({TYPE, METHOD, FIELD, PARAMETER})
-public @interface SecuredPaths {
-}
+    @Qualifier
+    @Retention(RUNTIME)
+    @Target({TYPE, METHOD, FIELD, PARAMETER})
+    public @interface SecuredPaths {
+    }

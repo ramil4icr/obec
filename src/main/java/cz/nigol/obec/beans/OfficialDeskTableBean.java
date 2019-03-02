@@ -22,29 +22,29 @@ public class OfficialDeskTableBean implements Serializable {
 
     @PostConstruct
     public void init() {
-    	deskItems = officialDeskService.getAllValidDeskItems(new Date());
+        deskItems = officialDeskService.getAllValidDeskItems(new Date());
     }
 
     public boolean activeItem(DeskItem deskItem) {
-	Date today = new Date();
-	Date to = deskItem.getActiveTo();
-	to = to == null ? new Date(today.getTime() + 24 * 60 * 60 * 1000) : to;
-	return today.compareTo(deskItem.getActiveFrom()) > 0 &&
-	    today.compareTo(to) < 0;
+        Date today = new Date();
+        Date to = deskItem.getActiveTo();
+        to = to == null ? new Date(today.getTime() + 24 * 60 * 60 * 1000) : to;
+        return today.compareTo(deskItem.getActiveFrom()) > 0 &&
+            today.compareTo(to) < 0;
     }
 
     /**
      * @return the deskItems
      */
     public List<DeskItem> getDeskItems() {
-	return deskItems;
+        return deskItems;
     }
 
     /**
      * @param deskItems the deskItems to set
      */
     public void setDeskItems(List<DeskItem> deskItems) {
-	this.deskItems = deskItems;
+        this.deskItems = deskItems;
     }
-    
+
 }

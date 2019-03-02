@@ -48,73 +48,73 @@ public class FilesBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	user = userService.getUserById(user.getId());
-	files = fileMetadataService.getByUser(user);
+        user = userService.getUserById(user.getId());
+        files = fileMetadataService.getByUser(user);
     }
 
     public String endOfPath(String path) {
-	return path.substring(path.lastIndexOf('/') + 1, path.length()).split("~")[1];
+        return path.substring(path.lastIndexOf('/') + 1, path.length()).split("~")[1];
     }
 
     public void newFile() {
-	file = new FileMetadata();
+        file = new FileMetadata();
     }
 
     public void handleUpload(FileUploadEvent event) {
-	file.setCreatedAt(new Date());
-	file.setUser(user);
-	UploadedFile uploadedFile = event.getFile();
-	try {
-	    file.setPath(preparePath(uploadedFile));
-	    file = fileMetadataService.save(file, path, uploadedFile.getContents());
-	} catch (UploadFailedException | NoSuchAlgorithmException e) {
-	    log.error(file.getPath(), e);
-	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							   "Chyba", "Chyba při nahrávání souboru."));
-	}
-	file = null;
-	init();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo",  "Soubor byl uložen."));
+        file.setCreatedAt(new Date());
+        file.setUser(user);
+        UploadedFile uploadedFile = event.getFile();
+        try {
+            file.setPath(preparePath(uploadedFile));
+            file = fileMetadataService.save(file, path, uploadedFile.getContents());
+        } catch (UploadFailedException | NoSuchAlgorithmException e) {
+            log.error(file.getPath(), e);
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Chyba", "Chyba při nahrávání souboru."));
+        }
+        file = null;
+        init();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo",  "Soubor byl uložen."));
     }
 
-	private String preparePath(UploadedFile uploadedFile)
-			throws NoSuchAlgorithmException {
-	Date date = new Date();
-	String msString = String.valueOf(date.getTime());
-	String folder = msString.substring(msString.length() - 1);
-	String fileName = uploadedFile.getFileName();
-	String open = user.getId() + msString + fileName;
-	MessageDigest digest = MessageDigest.getInstance("MD5");
-	byte[] hashBytes = digest.digest(open.getBytes());
-	return "/upload/" + folder + "/" + String.valueOf(hashBytes) + "~" + fileName;
+    private String preparePath(UploadedFile uploadedFile)
+        throws NoSuchAlgorithmException {
+        Date date = new Date();
+        String msString = String.valueOf(date.getTime());
+        String folder = msString.substring(msString.length() - 1);
+        String fileName = uploadedFile.getFileName();
+        String open = user.getId() + msString + fileName;
+        MessageDigest digest = MessageDigest.getInstance("MD5");
+        byte[] hashBytes = digest.digest(open.getBytes());
+        return "/upload/" + folder + "/" + String.valueOf(hashBytes) + "~" + fileName;
     }
 
     /**
      * @return the files
      */
     public List<FileMetadata> getFiles() {
-	return files;
+        return files;
     }
 
     /**
      * @param files the files to set
      */
     public void setFiles(List<FileMetadata> files) {
-	this.files = files;
+        this.files = files;
     }
 
     /**
      * @return the file
      */
     public FileMetadata getFile() {
-	return file;
+        return file;
     }
 
     /**
      * @param file the file to set
      */
     public void setFile(FileMetadata file) {
-	this.file = file;
+        this.file = file;
     }}
-	    
-	    
+
+

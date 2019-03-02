@@ -23,30 +23,30 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News save(News news) {
-	Article article = articleService.saveArticle(news.getArticle(), news.getArticle().getBody());
-	news.setArticle(article);
-	return em.merge(news);
+        Article article = articleService.saveArticle(news.getArticle(), news.getArticle().getBody());
+        news.setArticle(article);
+        return em.merge(news);
     }
 
     @Override
     public List<News> getAll() {
-	TypedQuery<News> typedQuery = em.createNamedQuery(News.GET_ALL, News.class);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<News> typedQuery = em.createNamedQuery(News.GET_ALL, News.class);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 
     @Override
     public News getById(long id) {
-	return em.find(News.class, id);
+        return em.find(News.class, id);
     }
 
     @Override
     public void delete(News news) {
-	em.remove(em.merge(news));
+        em.remove(em.merge(news));
     }
 
     @Override
     public List<News> getFeatured() {
-	TypedQuery<News> typedQuery = em.createNamedQuery(News.GET_FEATURED, News.class);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<News> typedQuery = em.createNamedQuery(News.GET_FEATURED, News.class);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 }

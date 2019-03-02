@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="OB_ROLE")
 @NamedQueries({
-	@NamedQuery(name=Role.GET_ALL, query="SELECT r FROM Role r ORDER BY r.name ASC"),
+@NamedQuery(name=Role.GET_ALL, query="SELECT r FROM Role r ORDER BY r.name ASC"),
 })
 public class Role implements Serializable {
     private static final long serialVersionUID = 4244545735191926653L;
@@ -41,54 +41,54 @@ public class Role implements Serializable {
      * @return the id
      */
     public long getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(long id) {
-	this.id = id;
+        this.id = id;
     }
 
     /**
      * @return the name
      */
     public String getName() {
-	return name;
+        return name;
     }
 
     /**
      * @param name the name to set
      */
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     /**
      * @return the paths
      */
     public Set<Path> getPaths() {
-	return paths;
+        return paths;
     }
 
     /**
      * @param paths the paths to set
      */
     public void setPaths(Set<Path> paths) {
-	this.paths = paths;
+        this.paths = paths;
     }
 
     @Override
     public boolean equals(Object o) {
-	if (this == o) return true;
-	if (!(o instanceof Role)) return false;
-	Role role = (Role) o;
-	return id == role.getId();
+        if (this == o) return true;
+        if (!(o instanceof Role)) return false;
+        Role role = (Role) o;
+        return id == role.getId();
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(id);
+        return Objects.hash(id);
     }
 }

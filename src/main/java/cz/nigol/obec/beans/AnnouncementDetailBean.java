@@ -16,34 +16,34 @@ public class AnnouncementDetailBean {
     private Announcement announcement;
 
     public void onLoad() {
-	announcement = announcementService.getById(id);
+        announcement = announcementService.getById(id);
     }
 
     /**
      * @return the id
      */
     public long getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(long id) {
-	this.id = id;
+        this.id = id;
     }
 
     /**
      * @return the announcement
      */
     public Announcement getAnnouncement() {
-	return announcement;
+        return announcement;
     }
 
     /**
      * @param announcement the announcement to set
      */
     public void setAnnouncement(Announcement announcement) {
-	this.announcement = announcement;
+        this.announcement = announcement;
     }
 }

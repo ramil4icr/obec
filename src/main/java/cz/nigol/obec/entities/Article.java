@@ -19,10 +19,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQueries({
-	@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a ORDER BY a.changedAt DESC"),
-	    @NamedQuery(name=Article.GET_BY_USER,
-			query="SELECT a FROM Article a WHERE a.changedBy = :user ORDER BY a.changedAt DESC"),
-	    })
+@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a ORDER BY a.changedAt DESC"),
+    @NamedQuery(name=Article.GET_BY_USER,
+    query="SELECT a FROM Article a WHERE a.changedBy = :user ORDER BY a.changedAt DESC"),
+})
 @Entity
 @Table(name = "OB_ARTICLE")
 public class Article implements Serializable {
@@ -47,7 +47,7 @@ public class Article implements Serializable {
     private String body;
 
     @Column(name="LABEL", columnDefinition="VARCHAR(200)")
-    private String label;
+        private String label;
 
     @Column(name="CHANGED_AT")
     @Temporal(TemporalType.TIMESTAMP)
@@ -57,82 +57,82 @@ public class Article implements Serializable {
      * @return the id
      */
     public String getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(String id) {
-	this.id = id;
+        this.id = id;
     }
 
-	/**
-	 * @return the changedBy
-	 */
-	public User getChangedBy() {
-		return changedBy;
-	}
+    /**
+     * @return the changedBy
+     */
+    public User getChangedBy() {
+        return changedBy;
+    }
 
-	/**
-	 * @param changedBy the changedBy to set
-	 */
-	public void setChangedBy(User changedBy) {
-		this.changedBy = changedBy;
-	}
+    /**
+     * @param changedBy the changedBy to set
+     */
+    public void setChangedBy(User changedBy) {
+        this.changedBy = changedBy;
+    }
 
-	/**
+    /**
      * @return the body
      */
     public String getBody() {
-	return body;
+        return body;
     }
 
     /**
      * @param body the body to set
      */
     public void setBody(String body) {
-	this.body = body;
+        this.body = body;
     }
 
     /**
      * @return the label
      */
     public String getLabel() {
-	return label;
+        return label;
     }
 
     /**
      * @param label the label to set
      */
     public void setLabel(String label) {
-	this.label = label;
+        this.label = label;
     }
 
     /**
      * @return the changedAt
      */
     public Date getChangedAt() {
-	return changedAt;
+        return changedAt;
     }
 
     /**
      * @param changedAt the changedAt to set
      */
     public void setChangedAt(Date changedAt) {
-	this.changedAt = changedAt;
+        this.changedAt = changedAt;
     }
 
     @Override
     public boolean equals(Object o) {
-	if (this == o) return true;
-	if (!(o instanceof Article)) return false;
-	Article article = (Article) o;
-	return id.equals(article.getId());
+        if (this == o) return true;
+        if (!(o instanceof Article)) return false;
+        Article article = (Article) o;
+        return id.equals(article.getId());
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(id);
+        return Objects.hash(id);
     }
 }

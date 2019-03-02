@@ -21,20 +21,20 @@ public class NewsTableBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	newsList = newsService.getAll();
+        newsList = newsService.getAll();
     }
 
     /**
      * @return the newsList
      */
     public List<News> getNewsList() {
-	return newsList;
+        return newsList;
     }
 
     /**
      * @param newsList the newsList to set
      */
     public void setNewsList(List<News> newsList) {
-	this.newsList = newsList;
+        this.newsList = newsList;
     }
 }

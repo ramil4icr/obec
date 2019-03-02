@@ -22,84 +22,84 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ALL, User.class);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ALL, User.class);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 
     @Override
     public User getUserById(long id) {
-	return em.find(User.class, id);
+        return em.find(User.class, id);
     }
 
     @Override
     public User saveUser(User user) {
-	return em.merge(user);
+        return em.merge(user);
     }
 
     @Override
     public List<User> getActiveUsers() {
-	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE, User.class);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE, User.class);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 
     @Override
     public User getActiveUserByUserId(String userId) {
-	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE_BY_USER_ID, User.class);
-	typedQuery.setParameter(User.USER_ID_PARAM, userId);
-	List<User> users = typedQuery.getResultList();
-	return users.isEmpty() ? null : users.get(0);
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE_BY_USER_ID, User.class);
+        typedQuery.setParameter(User.USER_ID_PARAM, userId);
+        List<User> users = typedQuery.getResultList();
+        return users.isEmpty() ? null : users.get(0);
     }
 
     @Override
     public List<Role> getAllRoles() {
-	TypedQuery<Role> typedQuery = em.createNamedQuery(Role.GET_ALL, Role.class);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<Role> typedQuery = em.createNamedQuery(Role.GET_ALL, Role.class);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 
     @Override
     public Role saveRole(Role role) {
-	return em.merge(role);
+        return em.merge(role);
     }
 
     @Override
     public void deleteRole(Role role) {
-	em.remove(em.merge(role));
+        em.remove(em.merge(role));
     }
 
     @Override
     public Role getRoleById(long id) {
-	return em.find(Role.class, id);
+        return em.find(Role.class, id);
     }
 
     @Override
     public List<Path> initializePaths(List<String> paths) {
-	return paths.stream()
-	    .map(this::createPath)
-	    .collect(Collectors.toList());
+        return paths.stream()
+            .map(this::createPath)
+            .collect(Collectors.toList());
     }
 
     private Path createPath(String path) {
-	return em.merge(new Path(path));
+        return em.merge(new Path(path));
     }
 
     @Override
     public Path getPathById(String id) {
-	return em.find(Path.class, id);
+        return em.find(Path.class, id);
     }
 
     @Override
     public Role saveRole(Role role, List<Path> paths) {
-	Role roleInContext = em.merge(role);
-	roleInContext.setPaths(new HashSet<>());
-	roleInContext.getPaths().addAll(paths);
-	return roleInContext;
+        Role roleInContext = em.merge(role);
+        roleInContext.setPaths(new HashSet<>());
+        roleInContext.getPaths().addAll(paths);
+        return roleInContext;
     }
 
     @Override
     public User getUserByUserId(String userId) {
-	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_USER_ID, User.class);
-	typedQuery.setParameter(User.USER_ID_PARAM, userId);
-	List<User> users = typedQuery.getResultList();
-	return users.isEmpty() ? null : users.get(0);
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_USER_ID, User.class);
+        typedQuery.setParameter(User.USER_ID_PARAM, userId);
+        List<User> users = typedQuery.getResultList();
+        return users.isEmpty() ? null : users.get(0);
     }
 }

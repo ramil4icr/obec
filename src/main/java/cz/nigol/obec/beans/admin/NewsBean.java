@@ -40,94 +40,94 @@ public class NewsBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	user = userService.getUserById(user.getId());
-	loadNews();
+        user = userService.getUserById(user.getId());
+        loadNews();
     }
 
     private void loadNews() {
-	newsList = newsService.getAll();
+        newsList = newsService.getAll();
     } 
 
     public void onNewsSelect() {
-	news.setArticle(articleService.loadArticleBody(news.getArticle()));
-	body = news.getArticle().getBody();
+        news.setArticle(articleService.loadArticleBody(news.getArticle()));
+        body = news.getArticle().getBody();
     }
 
     public void newNews() {
-	news = new News();
-	news.setArticle(new Article());
-	newsList.add(news);
-	news.setCreatedAt(new Date());
-	body = null;
+        news = new News();
+        news.setArticle(new Article());
+        newsList.add(news);
+        news.setCreatedAt(new Date());
+        body = null;
     }
 
     public void save() {
-	Article article = news.getArticle();
-	article.setChangedAt(news.getCreatedAt());
-	article.setId(article.getId() == null ? news.getLabel() : article.getId());
-	article.setChangedBy(user);
-	article.setBody(body);
-	newsService.save(news);
-	String label = news.getLabel();
-	news = null;
-	body = null;
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Aktualita '" +
-						       label + "' byla uložena."));
-	loadNews();
+        Article article = news.getArticle();
+        article.setChangedAt(news.getCreatedAt());
+        article.setId(article.getId() == null ? news.getLabel() : article.getId());
+        article.setChangedBy(user);
+        article.setBody(body);
+        newsService.save(news);
+        String label = news.getLabel();
+        news = null;
+        body = null;
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Aktualita '" +
+                    label + "' byla uložena."));
+        loadNews();
     }
 
     public void cancelEdit() {
-	news = null;
-	body = null;
-	loadNews();
+        news = null;
+        body = null;
+        loadNews();
     }
 
     public void delete() {
-	newsService.delete(news);
-	news = null;
-	body = null;
-	loadNews();
+        newsService.delete(news);
+        news = null;
+        body = null;
+        loadNews();
     }
 
     /**
      * @return the newsList
      */
     public List<News> getNewsList() {
-	return newsList;
+        return newsList;
     }
 
     /**
      * @param newsList the newsList to set
      */
     public void setNewsList(List<News> newsList) {
-	this.newsList = newsList;
+        this.newsList = newsList;
     }
 
     /**
      * @return the news
      */
     public News getNews() {
-	return news;
+        return news;
     }
 
     /**
      * @param news the news to set
      */
     public void setNews(News news) {
-	this.news = news;
+        this.news = news;
     }
 
     /**
      * @return the body
      */
     public String getBody() {
-	return body;
+        return body;
     }
 
     /**
      * @param body the body to set
      */
     public void setBody(String body) {
-	this.body = body;
+        this.body = body;
     }
 }

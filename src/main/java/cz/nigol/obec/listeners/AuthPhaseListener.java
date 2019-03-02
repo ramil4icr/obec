@@ -21,17 +21,17 @@ public class AuthPhaseListener implements PhaseListener {
     private Log log;
     @Inject
     private SessionBean sessionBean;
-    
+
     public void beforePhase(PhaseEvent pe) {
         HttpServletRequest req = (HttpServletRequest) pe.getFacesContext().getExternalContext().getRequest();
         String uri = req.getRequestURI();
         boolean reject = pe.getPhaseId() == PhaseId.RESTORE_VIEW;
     }
-    
+
     public void afterPhase(PhaseEvent pe) {
-        
+
     }
-    
+
     public PhaseId getPhaseId() {
         return PhaseId.ANY_PHASE;
     }

@@ -38,97 +38,97 @@ public class ArticlesBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	articles = articleService.getAllArticles();
-	user = userService.getUserById(user.getId());
+        articles = articleService.getAllArticles();
+        user = userService.getUserById(user.getId());
     }
 
     public void newArticle() {
-	article = new Article();
-	body = null;
-	article.setId(NEW_ID);
-	articles.add(article);
+        article = new Article();
+        body = null;
+        article.setId(NEW_ID);
+        articles.add(article);
     }
 
     public void delete() {
-	articleService.deleteArticle(article);
-	article = null;
-	body = null;
-	init();
+        articleService.deleteArticle(article);
+        article = null;
+        body = null;
+        init();
     }
 
     public void save() {
-	article.setChangedAt(new Date());
-	article.setChangedBy(user);
-	articleService.saveArticle(article, body);
-	String id = article.getId();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Článek '" +
-						       id + "' byl uložen."));
+        article.setChangedAt(new Date());
+        article.setChangedBy(user);
+        articleService.saveArticle(article, body);
+        String id = article.getId();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Článek '" +
+                    id + "' byl uložen."));
     }
 
     public void onArticleSelect() {
-	article = articleService.loadArticleBody(article);
-	body = article.getBody();
+        article = articleService.loadArticleBody(article);
+        body = article.getBody();
     }
 
     public void cancelEdit() {
-	article = null;
-	body = null;
-	init();
+        article = null;
+        body = null;
+        init();
     }
 
     /**
      * @return the articles
      */
     public List<Article> getArticles() {
-	return articles;
+        return articles;
     }
 
     /**
      * @param articles the articles to set
      */
     public void setArticles(List<Article> articles) {
-	this.articles = articles;
+        this.articles = articles;
     }
 
     /**
      * @return the article
      */
     public Article getArticle() {
-	return article;
+        return article;
     }
 
     /**
      * @param article the article to set
      */
     public void setArticle(Article article) {
-	this.article = article;
+        this.article = article;
     }
 
     /**
      * @return the body
      */
     public String getBody() {
-	return body;
+        return body;
     }
 
     /**
      * @param body the body to set
      */
     public void setBody(String body) {
-	this.body = body;
+        this.body = body;
     }
 
     /**
      * @return the editSource
      */
     public boolean isEditSource() {
-	return editSource;
+        return editSource;
     }
 
     /**
      * @param editSource the editSource to set
      */
     public void setEditSource(boolean editSource) {
-	this.editSource = editSource;
+        this.editSource = editSource;
     }
 }

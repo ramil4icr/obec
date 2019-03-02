@@ -19,37 +19,37 @@ public class NewsDetailBean {
     private long id;
 
     public void onLoad() {
-	news = newsService.getById(id);
-	if (news != null) {
-	    news.setArticle(articleService.loadArticleBody(news.getArticle()));
-	}
+        news = newsService.getById(id);
+        if (news != null) {
+            news.setArticle(articleService.loadArticleBody(news.getArticle()));
+        }
     }
 
     /**
      * @return the news
      */
     public News getNews() {
-	return news;
+        return news;
     }
 
     /**
      * @param news the news to set
      */
     public void setNews(News news) {
-	this.news = news;
+        this.news = news;
     }
 
     /**
      * @return the id
      */
     public long getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(long id) {
-	this.id = id;
+        this.id = id;
     }
 }

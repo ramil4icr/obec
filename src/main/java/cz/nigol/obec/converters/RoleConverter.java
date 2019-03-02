@@ -18,20 +18,20 @@ public class RoleConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
-	Role result = null;
-	if (arg2 != null && !"".equals(arg2)) {
-	    result = userService.getRoleById(Long.parseLong(arg2));
-	}
-	return result;
+        Role result = null;
+        if (arg2 != null && !"".equals(arg2)) {
+            result = userService.getRoleById(Long.parseLong(arg2));
+        }
+        return result;
     }
 
     @Override
     public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-	String result = "";
-	if (arg2 != null) {
-	    Role role = (Role) arg2;
-	    result = result + role.getId();
-	}
-	return result;
+        String result = "";
+        if (arg2 != null) {
+            Role role = (Role) arg2;
+            result = result + role.getId();
+        }
+        return result;
     }
 }

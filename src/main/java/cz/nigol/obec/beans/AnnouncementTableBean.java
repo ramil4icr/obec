@@ -21,20 +21,20 @@ public class AnnouncementTableBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	announcements = announcementService.getAll();
+        announcements = announcementService.getAll();
     }
 
     /**
      * @return the announcements
      */
     public List<Announcement> getAnnouncements() {
-	return announcements;
+        return announcements;
     }
 
     /**
      * @param announcements the announcements to set
      */
     public void setAnnouncements(List<Announcement> announcements) {
-	this.announcements = announcements;
+        this.announcements = announcements;
     }
 }

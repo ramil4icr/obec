@@ -24,7 +24,7 @@ query="SELECT d FROM DeskItem d ORDER BY d.activeFrom DESC"),
     query="SELECT d FROM DeskItem d WHERE :date BETWEEN d.activeFrom AND d.activeTo ORDER BY d.activeFrom"),
     @NamedQuery(name=DeskItem.GET_VALID_TO_DATE,
     query="SELECT d FROM DeskItem d WHERE :date >= d.activeFrom ORDER BY d.activeFrom"),
-    })
+})
 @Entity
 @Table(name="OB_DESK_ITEM")
 public class DeskItem implements Serializable {
@@ -44,13 +44,13 @@ public class DeskItem implements Serializable {
     @Column(name="CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    
+
     @ManyToOne
     @JoinColumn(name="USER_ID")
     private User createdBy;
 
     @Column(name="BODY", columnDefinition="VARCHAR(2000)")
-    private String body;
+        private String body;
 
     @Column(name="ACTIVE_FROM")
     @Temporal(TemporalType.DATE)
@@ -64,96 +64,96 @@ public class DeskItem implements Serializable {
      * @return the id
      */
     public long getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(long id) {
-	this.id = id;
+        this.id = id;
     }
 
     /**
      * @return the createdAt
      */
     public Date getCreatedAt() {
-	return createdAt;
+        return createdAt;
     }
 
     /**
      * @param createdAt the createdAt to set
      */
     public void setCreatedAt(Date createdAt) {
-	this.createdAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     /**
      * @return the createdBy
      */
     public User getCreatedBy() {
-	return createdBy;
+        return createdBy;
     }
 
     /**
      * @param createdBy the createdBy to set
      */
     public void setCreatedBy(User createdBy) {
-	this.createdBy = createdBy;
+        this.createdBy = createdBy;
     }
 
     /**
      * @return the body
      */
     public String getBody() {
-	return body;
+        return body;
     }
 
     /**
      * @param body the body to set
      */
     public void setBody(String body) {
-	this.body = body;
+        this.body = body;
     }
 
     /**
      * @return the activeFrom
      */
     public Date getActiveFrom() {
-	return activeFrom;
+        return activeFrom;
     }
 
     /**
      * @param activeFrom the activeFrom to set
      */
     public void setActiveFrom(Date activeFrom) {
-	this.activeFrom = activeFrom;
+        this.activeFrom = activeFrom;
     }
 
     /**
      * @return the activeTo
      */
     public Date getActiveTo() {
-	return activeTo;
+        return activeTo;
     }
 
     /**
      * @param activeTo the activeTo to set
      */
     public void setActiveTo(Date activeTo) {
-	this.activeTo = activeTo;
+        this.activeTo = activeTo;
     }
 
     @Override
     public boolean equals(Object o) {
-	if (this == o) return true;
-	if (!(o instanceof DeskItem)) return false;
-	DeskItem deskItem = (DeskItem) o;
-	return id == deskItem.getId();
+        if (this == o) return true;
+        if (!(o instanceof DeskItem)) return false;
+        DeskItem deskItem = (DeskItem) o;
+        return id == deskItem.getId();
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(id);
+        return Objects.hash(id);
     }
 }

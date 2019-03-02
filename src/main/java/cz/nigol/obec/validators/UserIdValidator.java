@@ -23,11 +23,11 @@ public class UserIdValidator implements Validator {
 
     @Override
     public void validate(FacesContext arg0, UIComponent arg1, Object arg2) throws ValidatorException {
-	String userId = (String) arg2;
-	User user = userService.getUserByUserId(userId); 
-	if (user != null && usersBean.getUser().getId() != user.getId()) {
-	    throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							  "Toto uživatelské id již existuje.", null));
-	}
+        String userId = (String) arg2;
+        User user = userService.getUserByUserId(userId); 
+        if (user != null && usersBean.getUser().getId() != user.getId()) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Toto uživatelské id již existuje.", null));
+        }
     }
 }

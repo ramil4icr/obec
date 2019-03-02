@@ -18,37 +18,37 @@ public class Path implements Serializable {
     private String id;
 
     public Path() {
-	// default constructor
+        // default constructor
     }
 
     public Path(String path) {
-	this.id = path;
+        this.id = path;
     }
 
     /**
      * @return the id
      */
     public String getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(String id) {
-	this.id = id;
+        this.id = id;
     }
 
     @Override
     public boolean equals(Object o) {
-	if (this == o) return true;
-	if (!(o instanceof Path)) return false;
-	Path path = (Path) o;
-	return id.equals(path.getId());
+        if (this == o) return true;
+        if (!(o instanceof Path)) return false;
+        Path path = (Path) o;
+        return id.equals(path.getId());
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(id);
+        return Objects.hash(id);
     }
 }

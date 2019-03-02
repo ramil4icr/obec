@@ -18,8 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQueries({
-	@NamedQuery(name=Announcement.GET_ALL, query="SELECT a FROM Announcement a ORDER BY a.createdAt DESC"),
-    })
+@NamedQuery(name=Announcement.GET_ALL, query="SELECT a FROM Announcement a ORDER BY a.createdAt DESC"),
+})
 @Entity
 @Table(name="OB_ANNOUNCEMENT")
 public class Announcement implements Serializable {
@@ -41,74 +41,74 @@ public class Announcement implements Serializable {
     private User createdBy;
 
     @Column(name="BODY", columnDefinition="VARCHAR(2000)")
-    private String body;
+        private String body;
 
     /**
      * @return the id
      */
     public long getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(long id) {
-	this.id = id;
+        this.id = id;
     }
 
     /**
      * @return the createdAt
      */
     public Date getCreatedAt() {
-	return createdAt;
+        return createdAt;
     }
 
     /**
      * @param createdAt the createdAt to set
      */
     public void setCreatedAt(Date createdAt) {
-	this.createdAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     /**
      * @return the createdBy
      */
     public User getCreatedBy() {
-	return createdBy;
+        return createdBy;
     }
 
     /**
      * @param createdBy the createdBy to set
      */
     public void setCreatedBy(User createdBy) {
-	this.createdBy = createdBy;
+        this.createdBy = createdBy;
     }
 
     /**
      * @return the body
      */
     public String getBody() {
-	return body;
+        return body;
     }
 
     /**
      * @param body the body to set
      */
     public void setBody(String body) {
-	this.body = body;
+        this.body = body;
     }
 
     @Override
     public boolean equals(Object o) {
-	if (this == o) return true;
-	if (!(o instanceof Announcement)) return false;
-	Announcement announcement = (Announcement) o;
-	return id == announcement.getId();
+        if (this == o) return true;
+        if (!(o instanceof Announcement)) return false;
+        Announcement announcement = (Announcement) o;
+        return id == announcement.getId();
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(id);
+        return Objects.hash(id);
     }
 }

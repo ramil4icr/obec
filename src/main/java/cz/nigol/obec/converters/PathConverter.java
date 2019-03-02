@@ -18,20 +18,20 @@ public class PathConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
-	Path result = null;
-	if (arg2 != null && !"".equals(arg2)) {
-	    result = userService.getPathById(arg2);
-	}
-	return result;
+        Path result = null;
+        if (arg2 != null && !"".equals(arg2)) {
+            result = userService.getPathById(arg2);
+        }
+        return result;
     }
 
     @Override
     public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-	String result = "";
-	if (arg2 != null) {
-	    Path path = (Path) arg2;
-	    result = path.getId();
-	}
-	return result;
+        String result = "";
+        if (arg2 != null) {
+            Path path = (Path) arg2;
+            result = path.getId();
+        }
+        return result;
     }
 }

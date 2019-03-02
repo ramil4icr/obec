@@ -18,30 +18,30 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
     @Override
     public List<Announcement> getAll() {
-	TypedQuery<Announcement> typedQuery = em.createNamedQuery(Announcement.GET_ALL, Announcement.class);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<Announcement> typedQuery = em.createNamedQuery(Announcement.GET_ALL, Announcement.class);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 
     @Override
     public Announcement save(Announcement announcement) {
-	return em.merge(announcement);
+        return em.merge(announcement);
     }
 
     @Override
     public Announcement getById(long id) {
-	return em.find(Announcement.class, id);
+        return em.find(Announcement.class, id);
     }
 
     @Override
     public void delete(Announcement announcement) {
-	em.remove(em.merge(announcement));
+        em.remove(em.merge(announcement));
     }
 
     @Override
     public List<Announcement> getLastFive() {
-	TypedQuery<Announcement> typedQuery = em.createNamedQuery(Announcement.GET_ALL, Announcement.class);
-	typedQuery.setMaxResults(5);
-	return new ArrayList<>(typedQuery.getResultList());	
+        TypedQuery<Announcement> typedQuery = em.createNamedQuery(Announcement.GET_ALL, Announcement.class);
+        typedQuery.setMaxResults(5);
+        return new ArrayList<>(typedQuery.getResultList());	
     }
-    
+
 }

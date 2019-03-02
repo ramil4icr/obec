@@ -15,23 +15,23 @@ public class ArticleBean {
     private Article article;
 
     public void loadArticle(String id) {
-	article = articleService.getArticleById(id);
-	if (article != null) {
-	    article = articleService.loadArticleBody(article);
-	}
+        article = articleService.getArticleById(id);
+        if (article != null) {
+            article = articleService.loadArticleBody(article);
+        }
     }
 
     /**
      * @return the article
      */
     public Article getArticle() {
-	return article;
+        return article;
     }
 
     /**
      * @param article the article to set
      */
     public void setArticle(Article article) {
-	this.article = article;
+        this.article = article;
     }
 }

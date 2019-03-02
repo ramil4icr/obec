@@ -33,91 +33,91 @@ public class RolesBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	roles = userService.getAllRoles();
+        roles = userService.getAllRoles();
     }
 
     public void newRole() {
-	role = new Role();
-	roles.add(role);
-	selectedPaths = new ArrayList<>();
+        role = new Role();
+        roles.add(role);
+        selectedPaths = new ArrayList<>();
     }
 
     public void delete() {
-	userService.deleteRole(role);
-	role = null;
-	init();
+        userService.deleteRole(role);
+        role = null;
+        init();
     }
 
     public void save() {
-	userService.saveRole(role, selectedPaths);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Role '" +
-						       role.getName() + "' byla uložena."));
-	role = null;
-	init();
+        userService.saveRole(role, selectedPaths);
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Role '" +
+                    role.getName() + "' byla uložena."));
+        role = null;
+        init();
     }
 
     public void cancelEdit() {
-	role = null;
-	init();
+        role = null;
+        init();
     }
 
     public void onRoleSelect() {
-	selectedPaths = new ArrayList<>(role.getPaths());
+        selectedPaths = new ArrayList<>(role.getPaths());
     }
 
     /**
      * @return the roles
      */
     public List<Role> getRoles() {
-	return roles;
+        return roles;
     }
 
     /**
      * @param roles the roles to set
      */
     public void setRoles(List<Role> roles) {
-	this.roles = roles;
+        this.roles = roles;
     }
 
     /**
      * @return the paths
      */
     public List<Path> getPaths() {
-	return paths;
+        return paths;
     }
 
     /**
      * @param paths the paths to set
      */
     public void setPaths(List<Path> paths) {
-	this.paths = paths;
+        this.paths = paths;
     }
 
     /**
      * @return the selectedPaths
      */
     public List<Path> getSelectedPaths() {
-	return selectedPaths;
+        return selectedPaths;
     }
 
     /**
      * @param selectedPaths the selectedPaths to set
      */
     public void setSelectedPaths(List<Path> selectedPaths) {
-	this.selectedPaths = selectedPaths;
+        this.selectedPaths = selectedPaths;
     }
 
     /**
      * @return the role
      */
     public Role getRole() {
-	return role;
+        return role;
     }
 
     /**
      * @param role the role to set
      */
     public void setRole(Role role) {
-	this.role = role;
+        this.role = role;
     }
 }

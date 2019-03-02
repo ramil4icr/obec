@@ -23,26 +23,26 @@ public class SessionBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	//prepareDevData.createData();
+        //prepareDevData.createData();
     }
 
     public String logout() {
-	user = null;
-	facesContext.getExternalContext().invalidateSession();
-	return "/index.xhtml?faces-redirect=true";
+        user = null;
+        facesContext.getExternalContext().invalidateSession();
+        return "/index.xhtml?faces-redirect=true";
     }
 
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
 
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
-	}
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

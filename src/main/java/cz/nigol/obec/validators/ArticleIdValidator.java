@@ -17,12 +17,12 @@ public class ArticleIdValidator implements Validator {
     @Inject
     private ArticleService articleService;
 
-	@Override
-	public void validate(FacesContext arg0, UIComponent arg1, Object arg2) throws ValidatorException {
-	    String id = (String) arg2;
-	    if (articleService.getArticleById(id) != null) {
-		throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							      "Článek s tímto jménem již existuje.", null));
-	    }
-	}
+    @Override
+    public void validate(FacesContext arg0, UIComponent arg1, Object arg2) throws ValidatorException {
+        String id = (String) arg2;
+        if (articleService.getArticleById(id) != null) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Článek s tímto jménem již existuje.", null));
+        }
+    }
 }

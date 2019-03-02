@@ -35,64 +35,64 @@ public class AnnouncementsBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	user = userService.getUserById(user.getId());
-	loadAll();
+        user = userService.getUserById(user.getId());
+        loadAll();
     }
 
     private void loadAll() {
-	announcements = announcementService.getAll();
+        announcements = announcementService.getAll();
     }
 
     public void newAnnouncement() {
-	announcement = new Announcement();
-	announcement.setCreatedAt(new Date());
-	announcement.setCreatedBy(user);
-	announcements.add(announcement);
+        announcement = new Announcement();
+        announcement.setCreatedAt(new Date());
+        announcement.setCreatedBy(user);
+        announcements.add(announcement);
     }
 
     public void delete() {
-	announcementService.delete(announcement);
-	announcement = null;
-	loadAll();
+        announcementService.delete(announcement);
+        announcement = null;
+        loadAll();
     }
 
     public void save() {
-	announcementService.save(announcement);
-	announcement = null;
-	loadAll();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Hlášení bylo uloženo."));
+        announcementService.save(announcement);
+        announcement = null;
+        loadAll();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Hlášení bylo uloženo."));
     }
 
     public void cancel() {
-	announcement = null;
-	loadAll();
+        announcement = null;
+        loadAll();
     }
 
     /**
      * @return the announcements
      */
     public List<Announcement> getAnnouncements() {
-	return announcements;
+        return announcements;
     }
 
     /**
      * @param announcements the announcements to set
      */
     public void setAnnouncements(List<Announcement> announcements) {
-	this.announcements = announcements;
+        this.announcements = announcements;
     }
 
     /**
      * @return the announcement
      */
     public Announcement getAnnouncement() {
-	return announcement;
+        return announcement;
     }
 
     /**
      * @param announcement the announcement to set
      */
     public void setAnnouncement(Announcement announcement) {
-	this.announcement = announcement;
+        this.announcement = announcement;
     }
 }
