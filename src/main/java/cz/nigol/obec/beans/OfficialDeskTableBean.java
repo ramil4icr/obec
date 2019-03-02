@@ -22,7 +22,7 @@ public class OfficialDeskTableBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	deskItems = officialDeskService.getAllDeskItems();
+    	deskItems = officialDeskService.getAllValidDeskItems(new Date());
     }
 
     public boolean activeItem(DeskItem deskItem) {

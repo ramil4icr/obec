@@ -11,4 +11,5 @@ public interface OfficialDeskService {
     void deleteDeskItem(DeskItem deskItem);
     List<DeskItem> getAllDeskItems();
     List<DeskItem> getActiveDeskItemsFor(Date date);
+    List<DeskItem> getAllValidDeskItems(Date date);
 }
