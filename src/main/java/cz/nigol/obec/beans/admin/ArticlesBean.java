@@ -33,7 +33,7 @@ public class ArticlesBean implements Serializable {
     private List<Article> articles;
     private Article article;
     private String body;
-    private boolean editSource;
+    private String edit = "Text";
     private static final String NEW_ID = "článek";
 
     @PostConstruct
@@ -122,13 +122,20 @@ public class ArticlesBean implements Serializable {
      * @return the editSource
      */
     public boolean isEditSource() {
-        return editSource;
+        return "HTML".equals(edit);
     }
 
     /**
-     * @param editSource the editSource to set
+     * @return the edit
      */
-    public void setEditSource(boolean editSource) {
-        this.editSource = editSource;
+    public String getEdit() {
+        return edit;
+    }
+
+    /**
+     * @param edit the edit to set
+     */
+    public void setEdit(String edit) {
+        this.edit = edit;
     }
 }

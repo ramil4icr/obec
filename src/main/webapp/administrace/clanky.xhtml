@@ -31,12 +31,11 @@
                     update="@form :growl"
                     resetValues="true"
                     immediate="true"/>
-            <p:selectBooleanButton value="#{articlesBean.editSource}"
-                    style="padding: 5px"
-                    onLabel="HTML"
-                    offLabel="Text">
+            <p:selectOneButton value="#{articlesBean.edit}">
+                <f:selectItem itemLabel="Text" itemValue="Text"/>
+                <f:selectItem itemLabel="HTML" itemValue="HTML"/>
                 <p:ajax update="@form"/>
-            </p:selectBooleanButton>
+            </p:selectOneButton>
         </p:panelGrid>
 
       <p:dataTable id="articles" 

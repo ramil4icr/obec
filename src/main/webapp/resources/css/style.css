@@ -91,6 +91,32 @@ button.ui-button {
     background: #fff !important;
 }
 
+.ui-selectonebutton {
+    padding: 4px !important;
+}
+
+.ui-selectonebutton .ui-button.ui-state-default {
+    background: #fff !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+}
+
+.ui-selectonebutton .ui-button.ui-state-default span {
+    text-shadow: none !important;
+    font-weight: normal !important;
+}
+
+.ui-button:hover {
+    text-shadow: none !important;
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+}
+
+.ui-buttonset:not(.ui-splitbutton) > .ui-button.ui-state-active:not(.ui-state-disabled) {
+    background: rgb(213,235,238) !important;
+    border-color: rgb(0,113,254) !important;
+    color: rgb(0,113,254) !important;
+}  
 
 button.ui-button span {
     text-shadow: none !important;
