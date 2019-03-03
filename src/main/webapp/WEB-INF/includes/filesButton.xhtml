@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://xmlns.jcp.org/jsf/html"
-		xmlns:f="http://xmlns.jcp.org/jsf/core"
-		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-		xmlns:p="http://primefaces.org/ui">
-  
-  <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
-    <p:column/>
-    <p:column/>
-    <p:column/>
-    <p:column/>
-    <p:column/>
-    <p:commandButton id="filesButton"
-		     value="Soubory"
-		     type="button"/>
-    <p:overlayPanel id="files"
-		    for="filesButton"
-		    hideEffect="fade"
-		    dynamic="true"
-		    my="left top"
-		    at="left bottom"
-		    style="width: 70%"
-		    modal="false">
-      <ui:include src="/WEB-INF/includes/filesHandling.xhtml"/>
-    </p:overlayPanel>
-  </p:panelGrid>
-</ui:composition>
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+        <p:commandButton id="filesButton"
+                icon="fa fa-file-o"
+                type="button"/>
+        <p:overlayPanel id="files"
+                for="filesButton"
+                hideEffect="fade"
+                dynamic="true"
+                my="left top"
+                at="left bottom"
+                style="width: 70%"
+                modal="false">
+            <ui:include src="/WEB-INF/includes/filesHandling.xhtml"/>
+        </p:overlayPanel>
+    </ui:composition>

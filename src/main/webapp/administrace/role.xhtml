@@ -13,22 +13,21 @@
     <h2>Uživatelské role, administrace</h2>
     
     <h:form id="rolesForm">
-      <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:commandButton value="Nová role" 
-                         action="#{rolesBean.newRole}"
-			 disabled="#{!empty rolesBean.role}"
-                         update="@form"
-			 resetValues="true"/>
-	<p:commandButton value="Smazat" 
-                         action="#{rolesBean.delete}"
-			 disabled="#{empty rolesBean.role}"
-			 onclick="return confirm('Opravdu smazat roli: #{rolesBean.role.name}?')"
-                         update="@form :growl"
-			 resetValues="true"
-                         immediate="true"/>
+      <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+          <p:commandButton value="Nová role" 
+                  icon="fa fa-plus-square-o"
+                  action="#{rolesBean.newRole}"
+                  disabled="#{!empty rolesBean.role}"
+                  update="@form"
+                  resetValues="true"/>
+          <p:commandButton value="Smazat" 
+                  icon="fa trash-o"
+                  action="#{rolesBean.delete}"
+                  disabled="#{empty rolesBean.role}"
+                  onclick="return confirm('Opravdu smazat roli: #{rolesBean.role.name}?')"
+                  update="@form :growl"
+                  resetValues="true"
+                  immediate="true"/>
       </p:panelGrid>
 
       <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
@@ -80,21 +79,23 @@
 	    </p:column>
 	  </p:selectManyMenu>
 
-	  <p:panelGrid layout="grid"
-		       columns="2"
-		       styleClass="ui-noborder">
-	    <p:commandButton value="Uložit" 
-                             action="#{rolesBean.save}"
-			     styleClass="default"
-			     update=":growl @form"/>
-	    <p:commandButton value="Zrušit" 
-                             action="#{rolesBean.cancelEdit}"
-			     immediate="true"
-			     resetValues="true"
-                             update="@form"/>
-	  </p:panelGrid>	
-	</p:panelGrid>
+      <p:panelGrid layout="grid"
+              columns="5"
+              styleClass="ui-noborder">
+          <p:commandButton value="Uložit" 
+                  icon="fa fa-save"
+                  action="#{rolesBean.save}"
+                  styleClass="default"
+                  update=":growl @form"/>
+          <p:commandButton value="Zrušit" 
+                  icon="fa fa-close"
+                  action="#{rolesBean.cancelEdit}"
+                  immediate="true"
+                  resetValues="true"
+                  update="@form"/>
+      </p:panelGrid>	
+  </p:panelGrid>
       </p:panelGrid>
-    </h:form>
+  </h:form>
   </ui:define>
 </ui:composition>

@@ -16,24 +16,22 @@
     <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>    
 
     <h:form>
-      <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:commandButton value="Nová aktualita" 
-                         action="#{newsBean.newNews}"
-			 disabled="#{!empty newsBean.news}"
-                         update="@form"
-			 resetValues="true"/>
-	<p:commandButton value="Smazat" 
-                         action="#{newsBean.delete}"
-			 disabled="#{empty newsBean.news}"
-			 onclick="return confirm('Opravdu smazat: #{newsBean.news.label}?')"
-                         update="@form :growl"
-			 resetValues="true"
-                         immediate="true"/>
-      </p:panelGrid>
+        <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+            <p:commandButton value="Nová aktualita" 
+                    icon="fa fa-plus-square-o"
+                    action="#{newsBean.newNews}"
+                    disabled="#{!empty newsBean.news}"
+                    update="@form"
+                    resetValues="true"/>
+            <p:commandButton value="Smazat" 
+                    icon="fa fa-trash-o"
+                    action="#{newsBean.delete}"
+                    disabled="#{empty newsBean.news}"
+                    onclick="return confirm('Opravdu smazat: #{newsBean.news.label}?')"
+                    update="@form :growl"
+                    resetValues="true"
+                    immediate="true"/>
+        </p:panelGrid>
 
       <p:dataTable id="news" 
                    value="#{newsBean.newsList}" 
@@ -96,20 +94,22 @@
 		      value="#{newsBean.body}"
 		      height="300"/>
 
-	<p:panelGrid layout="grid"
-		     columns="2"
-		     styleClass="ui-noborder">
-	  <p:commandButton value="Uložit" 
-                           action="#{newsBean.save}"
-			   styleClass="default"
-			   update=":growl @form"/>
-	  <p:commandButton value="Zrušit" 
-                           action="#{newsBean.cancelEdit}"
-			   immediate="true"
-			   resetValues="true"
-                           update="@form"/>
-	</p:panelGrid>	
+          <p:panelGrid layout="grid"
+                  columns="5"
+                  styleClass="ui-noborder">
+              <p:commandButton value="Uložit" 
+                      icon="fa fa-save"
+                      action="#{newsBean.save}"
+                      styleClass="default"
+                      update=":growl @form"/>
+              <p:commandButton value="Zrušit" 
+                      icon="fa fa-close"
+                      action="#{newsBean.cancelEdit}"
+                      immediate="true"
+                      resetValues="true"
+                      update="@form"/>
+          </p:panelGrid>	
       </p:panelGrid>
-    </h:form>    
+  </h:form>    
   </ui:define>
 </ui:composition>

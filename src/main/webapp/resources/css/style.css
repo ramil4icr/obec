@@ -112,6 +112,17 @@ button.ui-button {
     background: #fff !important;
 }
 
+#filesButton {
+    border-radius: 30px !important;
+    position: fixed;
+    top: 120px;
+    right: 40px;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+    box-shadow: 4px 4px 3px #e6e6e6 !important;
+}
+
 .ui-buttonset:not(.ui-splitbutton) > .ui-button.ui-state-active:not(.ui-state-disabled) {
     background: rgb(213,235,238) !important;
     border-color: rgb(0,113,254) !important;

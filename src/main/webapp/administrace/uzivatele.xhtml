@@ -13,17 +13,14 @@
     <h2>Uživatelé, administrace</h2>
     
     <h:form id="usersForm">
-      <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:commandButton value="Nový uživatel" 
-                         action="#{usersBean.newUser}"
-			 disabled="#{!empty usersBean.user}"
-                         update="@form"
-			 resetValues="true"/>
-      </p:panelGrid>
+        <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+            <p:commandButton value="Nový uživatel" 
+                    icon="fa fa-plus-square-o"
+                    action="#{usersBean.newUser}"
+                    disabled="#{!empty usersBean.user}"
+                    update="@form"
+                    resetValues="true"/>
+        </p:panelGrid>
 
       <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
 	<p:dataTable id="users" 
@@ -92,21 +89,23 @@
 	    <f:validateLength maximum="100"/>
 	  </p:password>
 
-	  <p:panelGrid layout="grid"
-		       columns="2"
-		       styleClass="ui-noborder">
-	    <p:commandButton value="Uložit" 
-                             action="#{usersBean.save}"
-			     styleClass="default"
-			     update=":growl @form"/>
-	    <p:commandButton value="Zrušit" 
-                             action="#{usersBean.cancelEdit}"
-			     immediate="true"
-			     resetValues="true"
-                             update="@form"/>
-	  </p:panelGrid>	
-	</p:panelGrid>
+      <p:panelGrid layout="grid"
+              columns="5"
+              styleClass="ui-noborder">
+          <p:commandButton value="Uložit" 
+                  icon="fa fa-save"
+                  action="#{usersBean.save}"
+                  styleClass="default"
+                  update=":growl @form"/>
+          <p:commandButton value="Zrušit" 
+                  icon="fa fa-close"
+                  action="#{usersBean.cancelEdit}"
+                  immediate="true"
+                  resetValues="true"
+                  update="@form"/>
+      </p:panelGrid>	
+  </p:panelGrid>
       </p:panelGrid>
-    </h:form>
+  </h:form>
   </ui:define>
 </ui:composition>

@@ -94,20 +94,22 @@
 			 style="max-height: 350px"
 			 rendered="#{articlesBean.editSource}"/>
 
-	<p:panelGrid layout="grid"
-		     columns="2"
-		     styleClass="ui-noborder">
-	  <p:commandButton value="Uložit" 
-                           action="#{articlesBean.save}"
-			   styleClass="default"
-			   update=":growl"/>
-	  <p:commandButton value="Zrušit" 
-                           action="#{articlesBean.cancelEdit}"
-			   immediate="true"
-			   resetValues="true"
-                           update="@form"/>
-	</p:panelGrid>	
-      </p:panelGrid>
-    </h:form>
+         <p:panelGrid layout="grid"
+                 columns="5"
+                 styleClass="ui-noborder">
+             <p:commandButton value="Uložit" 
+                     icon="fa fa-save"
+                     action="#{articlesBean.save}"
+                     styleClass="default"
+                     update=":growl"/>
+             <p:commandButton value="Zrušit" 
+                     icon="fa fa-close"
+                     action="#{articlesBean.cancelEdit}"
+                     immediate="true"
+                     resetValues="true"
+                     update="@form"/>
+         </p:panelGrid>	
+     </p:panelGrid>
+ </h:form>
   </ui:define>
 </ui:composition>

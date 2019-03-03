@@ -14,24 +14,22 @@
     <h2>Hlášení obecního rozhlasu, administrace</h2>
 
     <h:form>
-      <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:commandButton value="Nové hlášení" 
-                         action="#{announcementsBean.newAnnouncement}"
-			 disabled="#{!empty announcementsBean.announcement}"
-                         update="@form"
-			 resetValues="true"/>
-	<p:commandButton value="Smazat" 
-                         action="#{announcementsBean.delete}"
-			 disabled="#{empty announcementsBean.announcement}"
-			 onclick="return confirm('Opravdu smazat?')"
-                         update="@form :growl"
-			 resetValues="true"
-                         immediate="true"/>
-      </p:panelGrid>
+        <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+            <p:commandButton value="Nové hlášení" 
+                    icon="fa fa-plus-square-o"
+                    action="#{announcementsBean.newAnnouncement}"
+                    disabled="#{!empty announcementsBean.announcement}"
+                    update="@form"
+                    resetValues="true"/>
+            <p:commandButton value="Smazat" 
+                    icon="fa fa-trash-o"
+                    action="#{announcementsBean.delete}"
+                    disabled="#{empty announcementsBean.announcement}"
+                    onclick="return confirm('Opravdu smazat?')"
+                    update="@form :growl"
+                    resetValues="true"
+                    immediate="true"/>
+        </p:panelGrid>
 
       <p:dataTable id="announcements" 
                    value="#{announcementsBean.announcements}" 
@@ -70,20 +68,22 @@
 		      value="#{announcementsBean.announcement.body}"
 		      height="300"/>
 
-	<p:panelGrid layout="grid"
-		     columns="2"
-		     styleClass="ui-noborder">
-	  <p:commandButton value="Uložit" 
-                           action="#{announcementsBean.save}"
-			   styleClass="default"
-			   update=":growl @form"/>
-	  <p:commandButton value="Zrušit" 
-                           action="#{announcementsBean.cancel}"
-			   immediate="true"
-			   resetValues="true"
-                           update="@form"/>
-	</p:panelGrid>	
+          <p:panelGrid layout="grid"
+                  columns="5"
+                  styleClass="ui-noborder">
+              <p:commandButton value="Uložit" 
+                      icon="fa fa-save"
+                      action="#{announcementsBean.save}"
+                      styleClass="default"
+                      update=":growl @form"/>
+              <p:commandButton value="Zrušit" 
+                      icon="fa fa-close"
+                      action="#{announcementsBean.cancel}"
+                      immediate="true"
+                      resetValues="true"
+                      update="@form"/>
+          </p:panelGrid>	
       </p:panelGrid>
-    </h:form>    
+  </h:form>    
   </ui:define>
 </ui:composition>

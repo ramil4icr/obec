@@ -17,24 +17,22 @@
     <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>
 
     <h:form>
-      <p:panelGrid layout="grid" columns="6" styleClass="ui-noborder">
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:column/>
-	<p:commandButton value="Nový záznam"
-			 action="#{officialDeskBean.newDeskItem}"
-			 disabled="#{!empty officialDeskBean.deskItem}"
-			 update="@form"
-			 resetValues="true"/>
-	<p:commandButton value="Smazat"
-			 action="#{officialDeskBean.delete}"
-			 disabled="#{empty officialDeskBean.deskItem}"
-			 onclick="return confirm('Opravdu smazat?')"
-			 update="@form :growl"
-			 resetValues="true"
-			 immediate="true"/>
-      </p:panelGrid>
+        <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+            <p:commandButton value="Nový záznam"
+                    icon="fa fa-plus-square-o"
+                    action="#{officialDeskBean.newDeskItem}"
+                    disabled="#{!empty officialDeskBean.deskItem}"
+                    update="@form"
+                    resetValues="true"/>
+            <p:commandButton value="Smazat"
+                    icon="fa fa-trash-o"
+                    action="#{officialDeskBean.delete}"
+                    disabled="#{empty officialDeskBean.deskItem}"
+                    onclick="return confirm('Opravdu smazat?')"
+                    update="@form :growl"
+                    resetValues="true"
+                    immediate="true"/>
+        </p:panelGrid>
 
       <p:dataTable id="officialDesk" 
                    value="#{officialDeskBean.deskItems}" 
@@ -102,20 +100,22 @@
 		      value="#{officialDeskBean.deskItem.body}"
 		      height="300"/>
 
-	<p:panelGrid layout="grid"
-		     columns="2"
-		     styleClass="ui-noborder">
-	  <p:commandButton value="Uložit" 
-                           action="#{officialDeskBean.save}"
-			   styleClass="default"
-			   update=":growl @form"/>
-	  <p:commandButton value="Zrušit" 
-                           action="#{officialDeskBean.cancelEdit}"
-			   immediate="true"
-			   resetValues="true"
-                           update="@form"/>
-	</p:panelGrid>	
+          <p:panelGrid layout="grid"
+                  columns="5"
+                  styleClass="ui-noborder">
+              <p:commandButton value="Uložit" 
+                      icon="fa fa-save"
+                      action="#{officialDeskBean.save}"
+                      styleClass="default"
+                      update=":growl @form"/>
+              <p:commandButton value="Zrušit" 
+                      icon="fa fa-close"
+                      action="#{officialDeskBean.cancelEdit}"
+                      immediate="true"
+                      resetValues="true"
+                      update="@form"/>
+          </p:panelGrid>	
       </p:panelGrid>
-    </h:form>
+  </h:form>
   </ui:define>
 </ui:composition>
