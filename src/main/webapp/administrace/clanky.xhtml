@@ -79,7 +79,6 @@
 	<p:outputLabel value="Id" for="articleId"/>
 	<p:inputText id="articleId" value="#{articlesBean.article.id}">
 	  <f:validateLength maximum="300"/>
-	  <f:validator binding="#{articleIdValidator}"/>
 	</p:inputText>
 
 	<p:outputLabel value="Text článku" for="body"/>
