@@ -16,32 +16,35 @@
 			   immediate="true"/>
 	</p:panelGrid>
 
-	<p:dataGrid value="#{filesBean.files}"
-		    var="file"
-		    columns="3"
-		    rows="6"
-		    layout="grid"
-		    paginator="true"
-		    paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-		    emptyMessage="Nenalezen žádný výsledek."
-		    id="attachments">
-	  <p:panelGrid layout="grid"
-		       columns="1"
-		       style="border: 1px #eee solid; border-radius: 3px"
-		       styleClass="ui-noborder">
-	    <h:outputLink value="..#{file.path}"
-			  target="_blank">
-	      <h:outputText value="Odkaz"/>
-	    </h:outputLink>
-	    <h:outputText value="#{filesBean.endOfPath(file.path)}" style="font-size: 60%"/>
-	    <i>
-	      <h:outputText value="#{file.createdAt}">
-		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	      </h:outputText>
-	    </i>
-	  </p:panelGrid>
-	</p:dataGrid>
-      </p:column>
+    <p:dataGrid value="#{filesBean.files}"
+            var="file"
+            columns="3"
+            rows="6"
+            layout="grid"
+            paginator="true"
+            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+            emptyMessage="Nenalezen žádný výsledek."
+            id="attachments">
+        <p:panelGrid layout="grid"
+                columns="1"
+                style="border: 1px #eee solid; border-radius: 3px"
+                styleClass="ui-noborder">
+            <h:outputLink value="..#{file.path}"
+                    target="_blank">
+                <h:outputText value="Odkaz"/>
+            </h:outputLink>
+            <h:inputText value="#{file.path}" 
+                    onfocus="this.select()"
+                    style="width: 90%"/>
+            <h:outputText value="#{filesBean.endOfPath(file.path)}" style="font-size: 60%"/>
+            <i>
+                <h:outputText value="#{file.createdAt}">
+                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                </h:outputText>
+            </i>
+        </p:panelGrid>
+    </p:dataGrid>
+</p:column>
 
       <p:column>
 	<p:outputPanel rendered="#{!empty filesBean.file}">
