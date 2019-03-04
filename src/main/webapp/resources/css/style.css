@@ -77,6 +77,31 @@ footer .ui-panelgrid-cell {
     color: rgb(255,255,0) !important;
 }
 
+.ui-state-hover {
+    background: #fff;
+}
+
+.ui-widget-content .ui-state-hover {
+    background: #fff;
+}
+
+.ui-datatable thead th, .ui-datatable tfoot td {
+    text-align: center;
+    border: 1px solid #fff;
+    background: rgb(230, 238, 236) !important;
+}
+
+.ui-datatable tbody td {
+    border-color: #fff !important;
+    border-bottom: 2px solid rgb(230, 238, 236) !important;
+}
+
+.ui-datatable .ui-paginator, .ui-datatable .ui-paginator {
+    padding: 2px;
+    background: rgb(230, 238, 236) !important;
+    border: none !important;
+}
+
 input {
     border-radius: 0px !important;
     border: 0px #fff solid !important;
