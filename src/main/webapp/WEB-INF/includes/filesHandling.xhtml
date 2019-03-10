@@ -31,12 +31,11 @@
                 styleClass="ui-noborder">
             <h:outputLink value="..#{file.path}"
                     target="_blank">
-                <h:outputText value="Odkaz"/>
+                <h:outputText value="#{filesBean.endOfPath(file.path)}" style="font-size: 60%"/>
             </h:outputLink>
             <h:inputText value="#{file.path}" 
                     onfocus="this.select()"
                     style="width: 90%"/>
-            <h:outputText value="#{filesBean.endOfPath(file.path)}" style="font-size: 60%"/>
             <i>
                 <h:outputText value="#{file.createdAt}">
                     <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
