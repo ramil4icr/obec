@@ -33,102 +33,96 @@
 	Obec Tršice se nachazí v jihovýchodní části okresu Olomouc. K samotným Tršicím přísluší další místní části: Hostkovice, Lipňany, Přestavlky, Vacanovice a Zákřov.
       </p>
 
-      <h:panelGroup layout="block"
-		    styleClass="mapResponsive">
-	<iframe width="800"
-		height="350"
-		frameborder="0"
-		scrolling="no"
-		marginheight="0"
-		marginwidth="0"
-		src="https://www.openstreetmap.org/export/embed.html?bbox=17.35273361206055%2C49.51161227196599%2C17.49607086181641%2C49.567421204756734&amp;layer=mapnik">
-	</iframe>
-	<br/>
-	<small>
-	  <a href="https://www.openstreetmap.org/#map=14/49.5395/17.4244">Zobrazit větší mapu</a>
-	</small>
-      </h:panelGroup>
-
       <p:panelGrid layout="grid"
-		   columns="2"
-		   style="margin-top: 40px"
-		   styleClass="ui-noborder dottedTableBlock">
-	<h:panelGroup layout="block">
-	  <h4>
-	    <i class="fa fa-list"></i>
-	  </h4>
-	  <h5>Úřední deska</h5>
-	  <p:dataTable id="officialDesk" 
-                       value="#{indexBean.deskItems}" 
-                       emptyMessage="Nenalezen žádný výsledek."
-                       var="deskItem">
-            <p:column headerText="Dokument"
-		      style="width: 70%">
-              <h:outputText value="#{deskItem.body}" escape="false"/>
-            </p:column>
-	    <p:column headerText="Vyvěšeno" style="width: 30%">
-              <h:outputText value="#{deskItem.activeFrom}">
-		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	      </h:outputText>
-            </p:column>
-	  </p:dataTable>
-	  <br />
-	  <h:panelGroup layout="block"
-			style="text-align: right">
-	    <h:link outcome="/obecni-urad/uredni-deska/prehled.xhtml"
-		    value="Více">
-	    </h:link>
-	  </h:panelGroup>
-	</h:panelGroup>
+              columns="2"
+              style="margin-top: 40px"
+              styleClass="ui-noborder dottedTableBlock">
+          <h:panelGroup layout="block">
+              <h4>
+                  <i class="fa fa-volume-down"></i>
+              </h4>
+              <h5>Hlášení rozhlasu</h5>
+              <p:dataTable id="archive"
+                      value="#{indexBean.announcements}"
+                      rows="5"
+                      emptyMessage="Nenalezen žádný výsledek."
+                      var="announcement">
+                  <p:column headerText="Hlášení">
+                      <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
+                          <f:param name="id" value="#{announcement.id}"/>
+                          Hlášení obecního rozhlasu ze dne 
+                          <h:outputText value="#{announcement.createdAt}">
+                              <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                          </h:outputText>
+                      </h:link>
+                  </p:column>
+              </p:dataTable>
+              <br />
+              <h:panelGroup layout="block"
+                      style="text-align: right">
+                  <h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml"
+                          value="VÍCE >">
+                  </h:link>
+              </h:panelGroup>
+          </h:panelGroup>
 
-	<h:panelGroup layout="block">
-	  <h4>
-	    <i class="fa fa-volume-down"></i>
-	  </h4>
-	  <h5>Hlášení rozhlasu</h5>
-	  <p:dataTable id="archive"
-		       value="#{indexBean.announcements}"
-		       rows="5"
-		       emptyMessage="Nenalezen žádný výsledek."
-		       var="announcement">
-	    <p:column headerText="Hlášení">
-	      <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
-		<f:param name="id" value="#{announcement.id}"/>
-		Hlášení obecního rozhlasu ze dne 
-		<h:outputText value="#{announcement.createdAt}">
-		  <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-		</h:outputText>
-	      </h:link>
-	    </p:column>
-	  </p:dataTable>
-	  <br />
-	  <h:panelGroup layout="block"
-			style="text-align: right">
-	    <h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml"
-		    value="Více">
-	    </h:link>
-	  </h:panelGroup>
-	</h:panelGroup>
+          <h:panelGroup layout="block">
+              <h4>
+                  <i class="fa fa-calendar"></i>
+              </h4>
+              <h5>Nejbližší akce</h5>
+          </h:panelGroup>
       </p:panelGrid>
 
       <p:column/>
 
+      <h:panelGroup layout="block"
+              style="background: linear-gradient(to bottom, #f3f3f3, #dde3e8); margin-left: -10px; margin-right: -10px; padding: 10px">
+          <h4>
+              <i class="fa fa-institution"></i>
+          </h4>
+          <h5>Úřední deska</h5>
+          <p:dataTable id="officialDesk" 
+                  value="#{indexBean.deskItems}" 
+                  emptyMessage="Nenalezen žádný výsledek."
+                  var="deskItem">
+              <p:column headerText="Dokument"
+                      style="width: 70%">
+                  <h:outputText value="#{deskItem.body}" escape="false"/>
+              </p:column>
+              <p:column headerText="Vyvěšeno" style="width: 30%">
+                  <h:outputText value="#{deskItem.activeFrom}">
+                      <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                  </h:outputText>
+              </p:column>
+          </p:dataTable>
+          <br />
+          <h:panelGroup layout="block"
+                  style="text-align: right">
+              <h:link outcome="/obecni-urad/uredni-deska/prehled.xhtml"
+                      value="VÍCE >">
+              </h:link>
+          </h:panelGroup>
+      </h:panelGroup>
+
+      <p:column/>
+
       <h:panelGroup>
-	<h3 style="margin-bottom: 0px">Potřebuji</h3>
-	<p:panelGrid layout="grid"
-		     columns="3"
-		     style="margin-top: 40px"
-		     styleClass="ui-noborder">
-	  <h:link outcome="/prihlaseni.xhtml"
-		  style="text-decoration: none">
-	    <h:panelGroup layout="block"
-			  styleClass="grayTableBlock grayHoverBorder">
-	      <h4>
-		<i class="fa fa-id-card-o"></i>
-	      </h4>
-	      <h5 style="margin-bottom: 5px">Vyřídit</h5>
-	    </h:panelGroup>
-	  </h:link>
+          <h3 style="margin-bottom: 0px; text-align: center">Potřebuji</h3>
+          <p:panelGrid layout="grid"
+                  columns="3"
+                  style="margin-top: 40px"
+                  styleClass="ui-noborder">
+              <h:link outcome="/prihlaseni.xhtml"
+                      style="text-decoration: none">
+                  <h:panelGroup layout="block"
+                          styleClass="grayTableBlock grayHoverBorder">
+                      <h4>
+                          <i class="fa fa-id-card-o"></i>
+                      </h4>
+                      <h5 style="margin-bottom: 5px">Vyřídit</h5>
+                  </h:panelGroup>
+              </h:link>
 
 	  <h:link outcome="/prihlaseni.xhtml"
 		  style="text-decoration: none">
@@ -153,6 +147,22 @@
 	  </h:link>
 	</p:panelGrid>
       </h:panelGroup>
-    </p:panelGrid>
+      
+      <h:panelGroup layout="block"
+              styleClass="mapResponsive">
+          <iframe width="800"
+                  height="350"
+                  frameborder="0"
+                  scrolling="no"
+                  marginheight="0"
+                  marginwidth="0"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=17.35273361206055%2C49.51161227196599%2C17.49607086181641%2C49.567421204756734&amp;layer=mapnik">
+          </iframe>
+          <br/>
+          <small>
+              <a href="https://www.openstreetmap.org/#map=14/49.5395/17.4244">Zobrazit větší mapu</a>
+          </small>
+      </h:panelGroup>
+  </p:panelGrid>
   </ui:define>
 </ui:composition>
