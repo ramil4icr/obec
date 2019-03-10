@@ -22,20 +22,23 @@
 		   paginatorPosition="bottom"
                    var="news">
         <p:column headerText="Aktualita"
-		  style="width: 70%"
-		  filterBy="#{news.label}"
-		  filterMatchMode="contains">
-	  <h:link outcome="/obec/aktuality/detail.xhtml">
-	    <f:param name="id" value="#{news.id}"/>
-	    #{news.label}
-	  </h:link>
+                priority="1"
+                style="width: 70%"
+                filterBy="#{news.label}"
+                filterMatchMode="contains">
+            <h:link outcome="/obec/aktuality/detail.xhtml">
+                <f:param name="id" value="#{news.id}"/>
+                #{news.label}
+            </h:link>
         </p:column>
-	<p:column headerText="Vytvořeno" style="width: 30%">
-          <h:outputText value="#{news.createdAt}">
-	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	  </h:outputText>
+        <p:column headerText="Vytvořeno" 
+                priority="2"
+                style="width: 30%">
+            <h:outputText value="#{news.createdAt}">
+                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+            </h:outputText>
         </p:column>
-      </p:dataTable>
-    </h:form>
+    </p:dataTable>
+</h:form>
   </ui:define>
 </ui:composition>

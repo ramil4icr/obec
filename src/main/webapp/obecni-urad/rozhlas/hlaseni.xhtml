@@ -9,29 +9,29 @@
   <ui:param name="title" value="Hlášení obecního rozhlasu - Obec Tršice"/>
 
   <ui:define name="content">
-    <h2>Hlášení obecního rozhlasu</h2>
-    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-      <h:form>
-	<p:dataTable id="announcements" 
-                     value="#{announcementTableBean.announcements}" 
-                     emptyMessage="Nenalezen žádný výsledek."
-                     rowKey="#{announcement.id}"
-		     rows="20"
-		     paginator="true"
-		     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-		     paginatorPosition="bottom"
-                     var="announcement">
-          <p:column headerText="Hlášení">
-	    <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
-	      <f:param name="id" value="#{announcement.id}"/>
-	      Hlášení obecního rozhlasu ze dne 
-	      <h:outputText value="#{announcement.createdAt}">
-		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	      </h:outputText>
-	    </h:link>
-          </p:column>
-	</p:dataTable>
-      </h:form>
-    </p:panelGrid>
+      <h2>Hlášení obecního rozhlasu</h2>
+      <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+          <h:form>
+              <p:dataTable id="announcements" 
+                      value="#{announcementTableBean.announcements}" 
+                      emptyMessage="Nenalezen žádný výsledek."
+                      rowKey="#{announcement.id}"
+                      rows="20"
+                      paginator="true"
+                      paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                      paginatorPosition="bottom"
+                      var="announcement">
+                  <p:column headerText="Hlášení">
+                      <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
+                          <f:param name="id" value="#{announcement.id}"/>
+                          Hlášení obecního rozhlasu ze dne 
+                          <h:outputText value="#{announcement.createdAt}">
+                              <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                          </h:outputText>
+                      </h:link>
+                  </p:column>
+              </p:dataTable>
+          </h:form>
+      </p:panelGrid>
   </ui:define>
 </ui:composition>

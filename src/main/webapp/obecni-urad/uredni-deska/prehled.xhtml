@@ -12,31 +12,36 @@
     <h2>Úřední deska</h2>
     <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
       <p:dataTable id="officialDesk" 
-                   value="#{officialDeskTableBean.deskItems}" 
-                   emptyMessage="Nenalezen žádný výsledek."
-		   rows="20"
-		   paginator="true"
-		   paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-		   paginatorPosition="bottom"
-                   var="deskItem"
-		   rowStyleClass="#{officialDeskTableBean.activeItem(deskItem) ? 'activeDeskItem' : null}">
-        <p:column headerText="Dokument"
-		  style="width: 70%"
-		  filterBy="#{deskItem.body}"
-		  filterMatchMode="contains">
-          <h:outputText value="#{deskItem.body}" escape="false"/>
-        </p:column>
-	<p:column headerText="Vyvěšeno" style="width: 15%">
-          <h:outputText value="#{deskItem.activeFrom}">
-	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	  </h:outputText>
-        </p:column>
-	<p:column headerText="Sejmuto" style="width: 15%">
-          <h:outputText value="#{deskItem.activeTo}">
-	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	  </h:outputText>
-        </p:column>
+              value="#{officialDeskTableBean.deskItems}" 
+              emptyMessage="Nenalezen žádný výsledek."
+              rows="20"
+              paginator="true"
+              paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+              paginatorPosition="bottom"
+              var="deskItem"
+              rowStyleClass="#{officialDeskTableBean.activeItem(deskItem) ? 'activeDeskItem' : null}">
+          <p:column headerText="Dokument"
+                  priority="1"
+                  style="width: 70%"
+                  filterBy="#{deskItem.body}"
+                  filterMatchMode="contains">
+              <h:outputText value="#{deskItem.body}" escape="false"/>
+          </p:column>
+          <p:column headerText="Vyvěšeno" 
+                  priority="2"
+                  style="width: 15%">
+              <h:outputText value="#{deskItem.activeFrom}">
+                  <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+              </h:outputText>
+          </p:column>
+          <p:column headerText="Sejmuto" 
+                  priority="3"
+                  style="width: 15%">
+              <h:outputText value="#{deskItem.activeTo}">
+                  <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+              </h:outputText>
+          </p:column>
       </p:dataTable>
-    </p:panelGrid>
-  </ui:define>
+  </p:panelGrid>
+</ui:define>
 </ui:composition>

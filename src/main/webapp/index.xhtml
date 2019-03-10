@@ -87,10 +87,13 @@
                   emptyMessage="Nenalezen žádný výsledek."
                   var="deskItem">
               <p:column headerText="Dokument"
+                      priority="1"
                       style="width: 70%">
                   <h:outputText value="#{deskItem.body}" escape="false"/>
               </p:column>
-              <p:column headerText="Vyvěšeno" style="width: 30%">
+              <p:column headerText="Vyvěšeno" 
+                      priority="2"
+                      style="width: 30%">
                   <h:outputText value="#{deskItem.activeFrom}">
                       <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
                   </h:outputText>
