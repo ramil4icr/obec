@@ -29,7 +29,8 @@
     </p:submenu>
     <p:submenu label="STAVEBNÍ ÚŘAD">
     </p:submenu>
-    <p:submenu label="UŽIVATEL">
+    <p:submenu label="UŽIVATEL" rendered="#{!empty sessionBean.user}">
+      <ui:include src="submenus/uzivatelNabidka.xhtml"/>
       <ui:include src="submenus/uzivatelAdministrace.xhtml"/>
     </p:submenu>
   </p:slideMenu>

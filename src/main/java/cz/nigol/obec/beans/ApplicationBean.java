@@ -33,6 +33,7 @@ public class ApplicationBean {
 
     private void preparePaths() {
         List<String> paths = new ArrayList<>();
+        paths.add("/uzivatel/prehled.jsf");
         paths.add("/administrace/clanky.jsf");
         paths.add("/administrace/nahled.jsf");
         paths.add("/obec/aktuality/administrace.jsf");
