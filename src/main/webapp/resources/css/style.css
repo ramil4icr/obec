@@ -51,10 +51,19 @@ label {
     text-transform: uppercase;
     margin-top: 2em;
     display: inline-block;
+    color: #222;
 }
 
 header {
     flex-shrink: 0;
+}
+
+a {
+    color: #222;
+}
+
+a:visited {
+    color: #222;
 }
 
 footer {

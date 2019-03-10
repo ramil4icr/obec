@@ -28,7 +28,7 @@ public class LoginBean {
         User user = userService.getActiveUserByUserId(loginName);
         if (user != null && user.isActive() && BCrypt.checkpw(password, user.getPassword())) {
             sessionBean.setUser(user);
-            result = "/index.xhtml?faces-redirect=true";
+            result = "/uzivatel/prehled.xhtml?faces-redirect=true";
         } else {
             sessionBean.setUser(null);
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
