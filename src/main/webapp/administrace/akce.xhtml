@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="Akce, administrace - Obec Tršice"/>
+
+        <ui:define name="content">
+            <h2>Akce, administrace</h2>
+
+            <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>
+
+            <h:form id="eventsForm">
+                <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                    <p:commandButton value="Nová akce" 
+                            icon="fa fa-plus-square-o"
+                            action="#{eventsBean.newEvent}"
+                            disabled="#{!empty eventsBean.event}"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:commandButton value="Smazat" 
+                            icon="fa fa-trash-o"
+                            action="#{eventsBean.delete}"
+                            disabled="#{empty eventsBean.event}"
+                            onclick="return confirm('Opravdu smazat akci?')"
+                            update="@form :growl"
+                            resetValues="true"
+                            immediate="true"/>
+                </p:panelGrid>
+
+                <p:dataTable id="events" 
+                        value="#{eventsBean.events}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        selectionMode="single"
+                        selection="#{eventsBean.event}"
+                        rowKey="#{event.id}"
+                        rows="5"
+                        paginator="true"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                        paginatorPosition="bottom"
+                        var="event">
+                    <p:ajax event="rowSelect"
+                            listener="#{eventsBean.onEventSelect}"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:column headerText="Událost"
+                            style="width: 50%"
+                            filterBy="#{event.description}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{event.description}"/>
+                    </p:column>
+                    <p:column headerText="Autor"
+                            style="width: 30%"
+                            filterBy="#{event.changedBy.fullName}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{event.createdBy.fullName}"/>
+                    </p:column>
+                    <p:column headerText="Změněno" style="width: 20%">
+                        <h:outputText value="#{event.createdAt}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+
+                <p:panelGrid layout="grid"
+                        columns="1"
+                        rendered="#{!empty eventsBean.event}"
+                        styleClass="ui-noborder">
+                    <p:outputLabel value="Událost" for="description"/>
+                    <p:inputText id="description" value="#{eventsBean.event.description}">
+                        <f:validateLength maximum="300"/>
+                    </p:inputText>
+
+                    <p:panelGrid layout="grid"
+                            columns="5"
+                            styleClass="ui-noborder">
+                        <p:commandButton value="Uložit" 
+                                icon="fa fa-save"
+                                action="#{eventsBean.save}"
+                                styleClass="default"
+                                update=":growl @form"/>
+                        <p:commandButton value="Zrušit" 
+                                icon="fa fa-close"
+                                action="#{eventsBean.cancelEdit}"
+                                immediate="true"
+                                resetValues="true"
+                                update="@form"/>
+                    </p:panelGrid>	
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
