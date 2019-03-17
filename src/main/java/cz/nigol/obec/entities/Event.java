@@ -21,7 +21,7 @@ import javax.persistence.NamedQueries;
 @NamedQuery(name=Event.GET_ALL,
 query="SELECT e FROM Event e ORDER BY e.startDate DESC"),
     @NamedQuery(name=Event.GET_VALID_TO_DATE,
-    query="SELECT e FROM Event e WHERE :date >= e.startDate ORDER BY e.startDate"),
+    query="SELECT e FROM Event e WHERE :date <= e.startDate ORDER BY e.startDate"),
 })
 @Entity
 @Table(name="OB_EVENT")

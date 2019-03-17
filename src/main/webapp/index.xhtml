@@ -71,12 +71,35 @@
                   <i class="fa fa-calendar"></i>
               </h4>
               <h5>Nejbližší akce</h5>
-              <ui:repeat value="#{indexBean.events}" var="event">
-                  <h:panelGrid columns="2" style="width: 100%"> 
-                  </h:panelGrid> 
-              </ui:repeat>
-          </h:panelGroup>
-      </p:panelGrid>
+                  <table class="events">
+                      <ui:repeat value="#{indexBean.events}" var="event">
+                          <tr>
+                              <td>
+                                  <h:panelGroup layout="block" styleClass="date">
+                                      <h:outputText value="#{event.startDate}" styleClass="day">
+                                          <f:convertDateTime type="date" pattern="dd"/>
+                                      </h:outputText>
+                                      <h:outputText value="#{event.startDate}" styleClass="month">
+                                          <f:convertDateTime locale="cs_CZ" type="date" pattern="LLL"/>
+                                      </h:outputText>
+                                      <h:outputText value="#{event.startDate}" styleClass="year">
+                                          <f:convertDateTime type="date" pattern="yyyy"/>
+                                      </h:outputText>
+                                  </h:panelGroup>
+                              </td>
+                              <td style="vertical-align: bottom">
+                                  <h:outputText value="#{event.description}"
+                                          rendered="#{empty event.link}"/>
+                                  <h:outputLink value="https://www.trsice.cz/zpravodaj"
+                                          rendered="#{!empty event.link}">
+                                      #{event.description}
+                                  </h:outputLink>
+                              </td>
+                          </tr>
+                      </ui:repeat>
+                  </table>
+              </h:panelGroup>
+          </p:panelGrid>
 
       <p:column/>
 
