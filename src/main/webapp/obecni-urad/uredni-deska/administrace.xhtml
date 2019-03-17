@@ -78,7 +78,7 @@
 	    <p:calendar id="from"
 			value="#{officialDeskBean.deskItem.activeFrom}"
 			locale="cz"
-			pattern="dd-MM-yyyy"
+			pattern="dd.MM.yyyy"
 			mask="true">
 	      <p:ajax event="dateSelect" update="to"/>
 	    </p:calendar>
@@ -89,7 +89,7 @@
 	    <p:calendar id="to"
 			value="#{officialDeskBean.deskItem.activeTo}"
 			locale="cz"
-			pattern="dd-MM-yyyy"
+			pattern="dd.MM.yyyy"
 			mask="true"
 			mindate="#{officialDeskBean.deskItem.activeFrom}"/>
 	  </p:panelGrid>
