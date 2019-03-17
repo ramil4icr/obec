@@ -229,6 +229,13 @@ button.ui-button.ui-state-default {
     background-repeat: no-repeat;
 }
 
+.ui-menu .ui-widget-header {
+    border-radius: none !important;
+    background: #fff !important;
+    border: none !important;
+    border-bottom: 1px solid rgb(230, 238, 236) !important;
+}
+
 .articleBody .ql-indent-1 {
     padding-left: 1.5em;
 }
