@@ -195,10 +195,10 @@ button.ui-button.ui-state-default {
     margin-top: -6px !important;
 }
 
-.dottedTableBlock {
+.tableBlock {
     border-radius: 3px;
     padding: 5px;
-    border: 1px dotted #ccc;
+    box-shadow: 3px 3px 5px #888;
 }
 
 .grayTableBlock {
