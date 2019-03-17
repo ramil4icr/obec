@@ -229,6 +229,47 @@ button.ui-button.ui-state-default {
     background-repeat: no-repeat;
 }
 
+.articleBody .ql-indent-1 {
+    padding-left: 1.5em;
+}
+
+.articleBody .ql-indent-2 {
+    padding-left: 3em;
+}
+
+.articleBody .ql-indent-3 {
+    padding-left: 4.5em;
+}
+
+.articleBody .ql-indent-4 {
+    padding-left: 6em;
+}
+
+.articleBody .ql-indent-5 {
+    padding-left: 7.5em;
+}
+
+.articleBody .ql-indent-6 {
+    padding-left: 9em;
+}
+
+.articleBody .ql-indent-7 {
+    padding-left: 10.5em;
+}
+
+.articleBody .ql-indent-8 {
+    padding-left: 12em;
+}
+
+.articleBody .ql-indent-9 {
+    padding-left: 13.5em;
+}
+
+.articleBody p {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
 .articleBody .ql-align-center {
     text-align: center;
 }
