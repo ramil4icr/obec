@@ -69,9 +69,22 @@
                         columns="1"
                         rendered="#{!empty eventsBean.event}"
                         styleClass="ui-noborder">
+                    <p:outputLabel value="Datum" for="date"/>
+                    <p:calendar id="date"
+                            value="#{eventsBean.event.startDate}"
+                            locale="cz"
+                            pattern="dd.MM.yyyy"
+                            required="true"
+                            mask="true"/>
                     <p:outputLabel value="Událost" for="description"/>
-                    <p:inputText id="description" value="#{eventsBean.event.description}">
-                        <f:validateLength maximum="300"/>
+                    <p:inputText id="description" 
+                            required="true"
+                            value="#{eventsBean.event.description}">
+                        <f:validateLength maximum="200"/>
+                    </p:inputText>
+                    <p:outputLabel value="Odkaz" for="link"/>
+                    <p:inputText id="link" value="#{eventsBean.event.link}">
+                        <f:validateLength maximum="200"/>
                     </p:inputText>
 
                     <p:panelGrid layout="grid"

@@ -10,8 +10,10 @@ import javax.inject.Named;
 
 import cz.nigol.obec.entities.Announcement;
 import cz.nigol.obec.entities.DeskItem;
+import cz.nigol.obec.entities.Event;
 import cz.nigol.obec.entities.News;
 import cz.nigol.obec.services.AnnouncementService;
+import cz.nigol.obec.services.EventsService;
 import cz.nigol.obec.services.NewsService;
 import cz.nigol.obec.services.OfficialDeskService;
 
@@ -25,15 +27,19 @@ public class IndexBean {
     private AnnouncementService announcementService;
     @Inject
     private OfficialDeskService officialDeskService;
+    @Inject
+    private EventsService eventsService;
     private List<News> newsList;
     private List<Announcement> announcements;
     private List<DeskItem> deskItems;
+    private List<Event> events;
 
     @PostConstruct
     public void init() {
         newsList = newsService.getFeatured();
         announcements = announcementService.getLastFive();
         deskItems = officialDeskService.getActiveDeskItemsFor(new Date());
+        events = eventsService.getValidToDate(new Date());
     }
 
     /**
@@ -76,6 +82,20 @@ public class IndexBean {
      */
     public void setDeskItems(List<DeskItem> deskItems) {
         this.deskItems = deskItems;
+    }
+
+    /**
+     * @return the events
+     */
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    /**
+     * @param events the events to set
+     */
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 
 }

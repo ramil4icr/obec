@@ -71,6 +71,10 @@
                   <i class="fa fa-calendar"></i>
               </h4>
               <h5>Nejbližší akce</h5>
+              <ui:repeat value="#{indexBean.events}" var="event">
+                  <h:panelGrid columns="2" style="width: 100%"> 
+                  </h:panelGrid> 
+              </ui:repeat>
           </h:panelGroup>
       </p:panelGrid>
 
