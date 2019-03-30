@@ -23,6 +23,12 @@
             </p:submenu>
 
             <p:submenu label="STAVEBNÍ ÚŘAD">
+                <p:column>
+                    <ui:include src="submenus/stavebniUradInformace.xhtml"/>
+                </p:column>
+                <p:column>
+                    <ui:include src="submenus/stavebniUradFormulare.xhtml"/>
+                </p:column>
             </p:submenu>
 
             <p:submenu label="UŽIVATEL" rendered="#{!empty sessionBean.user}">
