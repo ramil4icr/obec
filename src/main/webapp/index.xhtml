@@ -96,7 +96,7 @@
                                     <td style="vertical-align: bottom">
                                         <h:outputText value="#{event.description}"
                                                 rendered="#{empty event.link}"/>
-                                        <h:outputLink value="https://www.trsice.cz/zpravodaj"
+                                        <h:outputLink value="#{event.link}"
                                                 rendered="#{!empty event.link}">
                                             #{event.description}
                                         </h:outputLink>
