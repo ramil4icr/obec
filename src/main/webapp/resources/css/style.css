@@ -12,7 +12,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    border-bottom: 1px solid rgb(0,113,254);
+    border-bottom: 1px solid rgb(230,238,236);
+    color: #666;
 }
 
 h3 {
