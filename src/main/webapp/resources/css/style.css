@@ -212,6 +212,27 @@ button.ui-button.ui-state-default {
     font-weight: bold;
 }
 
+.zpravodajRss h6 {
+    color: black;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2em;
+    font-variant: small-caps;
+    margin-bottom: .1em;
+    margin-top: 0em;
+}
+
+.zpravodajRss img {
+    width: 1.7em;
+    height: 2em;
+    margin-top: .6em;
+}
+
+.zpravodajRss .logo {
+    display: flex;
+    justify-content: center;
+}
+
 .grayTableBlock {
     background-color: #eee;
     border-radius: 3px;
@@ -473,5 +494,26 @@ button.ui-button.ui-state-default {
 
     .menuButtonContainer {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 1599px) {
+    .zpravodajRss {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .zpravodajRss {
+        position: fixed;
+        top: 300px;
+        right: 50px;
+        width: 230px;
+        line-height: 1.5;
+        background: #fff;
+        box-shadow: 3px 3px 5px #888 !important;
+        border: 1px solid #eee;
+        border-radius: 3px;
+        padding: 1em;
     }
 }
