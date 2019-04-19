@@ -59,8 +59,8 @@
                             filterMatchMode="contains">
                         <h:outputText value="#{event.createdBy.fullName}"/>
                     </p:column>
-                    <p:column headerText="Vytvořeno" style="width: 20%">
-                        <h:outputText value="#{event.createdAt}">
+                    <p:column headerText="Datum" style="width: 20%">
+                        <h:outputText value="#{event.startDate}">
                             <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
                         </h:outputText>
                     </p:column>
