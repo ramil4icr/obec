@@ -13,6 +13,8 @@
     <p:menuitem value="Aktuality" url="/obec/aktuality/administrace.jsf"/>
     <p:menuitem value="Obecní rozhlas" url="/obecni-urad/rozhlas/administrace.jsf"/>
     <p:menuitem value="Úřední deska" url="/obecni-urad/uredni-deska/administrace.jsf"/>
-    <p:menuitem value="Akce" url="/administrace/akce.jsf"/>
-  </p:submenu>
+    <p:menuitem value="Akce"
+            url="/administrace/akce.jsf"
+            rendered="#{sessionBean.pathAllowed('/administrace/akce.jsf')}"/>
+</p:submenu>
 </ui:composition>
