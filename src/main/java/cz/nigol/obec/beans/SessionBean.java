@@ -33,6 +33,14 @@ public class SessionBean implements Serializable {
         return user.getRole().getPaths().contains(pt);
     }
 
+    public boolean pathsAllowed(String... paths) {
+        boolean result = false;
+        for (String path : paths) {
+            result = result || pathAllowed(path);
+        }
+        return result;
+    }
+
     public String logout() {
         user = null;
         facesContext.getExternalContext().invalidateSession();
