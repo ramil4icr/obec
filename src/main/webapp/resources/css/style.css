@@ -223,7 +223,7 @@ button.ui-button.ui-state-default {
 }
 
 .zpravodajRss img {
-    width: 1.7em;
+    width: 1.8em;
     height: 2em;
     margin-top: .6em;
 }
@@ -359,8 +359,8 @@ button.ui-button.ui-state-default {
     padding-bottom:36.25%;
     position:relative;
     height:0;
-    margin-left: calc(-100vw / 2 + 960px / 2);
-    margin-right: calc(-100vw / 2 + 960px / 2);
+    margin-left: calc((-100vw / 2 + 960px / 2) - 2px);
+    margin-right: calc((-100vw / 2 + 960px / 2) - 4px);
 }
 
 .mapResponsive {
