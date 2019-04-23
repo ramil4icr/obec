@@ -354,6 +354,15 @@ button.ui-button.ui-state-default {
     font-variant: small-caps;
 }
 
+.fullWidthPicture {
+    overflow:hidden;
+    padding-bottom:36.25%;
+    position:relative;
+    height:0;
+    margin-left: calc(-100vw / 2 + 960px / 2);
+    margin-right: calc(-100vw / 2 + 960px / 2);
+}
+
 .mapResponsive {
     overflow:hidden;
     padding-bottom:36.25%;
@@ -363,6 +372,7 @@ button.ui-button.ui-state-default {
     margin-left: calc(-100vw / 2 + 960px / 2);
     margin-right: calc(-100vw / 2 + 960px / 2);
 }
+
 .mapResponsive iframe {
     left:0;
     top:0;
