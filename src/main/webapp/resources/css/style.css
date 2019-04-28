@@ -485,6 +485,10 @@ button.ui-button.ui-state-default {
     .menuButtonContainer {
         display: block;
     }
+
+    .fullWidthPicture {
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 980px) {
@@ -504,6 +508,10 @@ button.ui-button.ui-state-default {
 
     .menuButtonContainer {
         display: none;
+    }
+
+    .fullWidthPicture {
+        display: block;
     }
 }
 
