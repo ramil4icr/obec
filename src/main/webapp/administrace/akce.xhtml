@@ -12,6 +12,7 @@
             <h2>Akce, administrace</h2>
 
             <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>
+            <ui:include src="/WEB-INF/includes/inputCalendarSettings.xhtml"/>
 
             <h:form id="eventsForm">
                 <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
@@ -58,8 +59,8 @@
                             filterMatchMode="contains">
                         <h:outputText value="#{event.createdBy.fullName}"/>
                     </p:column>
-                    <p:column headerText="Vytvořeno" style="width: 20%">
-                        <h:outputText value="#{event.createdAt}">
+                    <p:column headerText="Datum" style="width: 20%">
+                        <h:outputText value="#{event.startDate}">
                             <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
                         </h:outputText>
                     </p:column>

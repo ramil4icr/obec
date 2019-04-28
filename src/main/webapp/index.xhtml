@@ -12,6 +12,10 @@
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
                 <h1>Obec Tršice</h1>
 
+                <p style="text-align: center; font-size: 150%; font-family: serif; font-style: italic; font-weight: normal;">
+                    Obec Tršice se nachazí v jihovýchodní části okresu Olomouc. K samotným Tršicím přísluší další místní části: Hostkovice, Lipňany, Přestavlky, Vacanovice a Zákřov.
+                </p>
+
                 <p:carousel numVisible="1"
                         value="#{indexBean.newsList}"
                         var="news"
@@ -29,15 +33,43 @@
                     </h:link>
                 </p:carousel>
                 <h:panelGroup layout="block"
+                        styleClass="moreInfoLink"
                         style="text-align: right">
                     <h:link outcome="/obec/aktuality/aktuality.xhtml"
-                            value="VÍCE >">
+                            value="VŠECHNY AKTUALITY >">
                     </h:link>
                 </h:panelGroup>
 
-                <p style="text-align: center; font-size: 130%">
-                    Obec Tršice se nachazí v jihovýchodní části okresu Olomouc. K samotným Tršicím přísluší další místní části: Hostkovice, Lipňany, Přestavlky, Vacanovice a Zákřov.
-                </p>
+                <p:panelGrid layout="grid"
+                        columns="2"
+                        styleClass="ui-noborder">
+                    <h:panelGroup layout="block">
+                        <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center">
+                            Historie
+                        </h3>
+                        <p>
+                            Nejstarší dochovaná písemná zpráva o existenci Tršic je z roku 1282.
+                        </p>
+                        <p>
+                            O feudálech, kteří měli v Tršicích majetek, jsme informování ze zápisů v zemských deskách od poloviny 14.století. Na základě žádosti tehdejšího majitele panství Jiřího Žabky z Limberka povýšil král Ludvík Jagellonský ves Tršice na městečko.
+                        </p>
+                        <p>
+                            Na základě královského povýšení získala obec právo šenkovat pivo, víno i pálenku, stavět pivovary, konat každé pondělí trh a v týdnu po sv. Kunhutě trh výroční, pečetit černým voskem. Ve znaku městečka byl štít blankytné barvy rozdělený v půli vodorovně dvěma břevny, v horní polovině se žlutým vyobrazením polovice orla, v dolní s vyobrazením žabky s hlavou obrácenou vlevo.
+                        </p>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block">
+                        <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center">
+                            Současnost 
+                        </h3>
+                        <p>
+                            Obec Tršice je moderní obcí s dobrou občanskou vybaveností. V obci se nachází zákkladní i mateřská škola, dětský lékař, praktický lékař pro dospělé a zubní ordinace. Je vybudován obecní vodovod, obec je plynofikována. 
+                        </p>
+                        <p>
+                            Velice výhodná je poloha obce mezi dvěma regionálními centry - Olomoucí a Přerovem. Krajinný ráz mírné pahorkatiny přímo vybízí k relaxaci.
+                        </p>
+                    </h:panelGroup>
+                </p:panelGrid>
 
                 <p:panelGrid layout="grid"
                         columns="2"
@@ -65,6 +97,7 @@
                         </p:dataTable>
                         <br />
                         <h:panelGroup layout="block"
+                                styleClass="moreInfoLink"
                                 style="text-align: right">
                             <h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml"
                                     value="VÍCE >">
@@ -96,7 +129,7 @@
                                     <td style="vertical-align: bottom">
                                         <h:outputText value="#{event.description}"
                                                 rendered="#{empty event.link}"/>
-                                        <h:outputLink value="https://www.trsice.cz/zpravodaj"
+                                        <h:outputLink value="#{event.link}"
                                                 rendered="#{!empty event.link}">
                                             #{event.description}
                                         </h:outputLink>
@@ -108,6 +141,15 @@
                 </p:panelGrid>
 
                 <p:column/>
+
+                <h:panelGroup layout="block"
+                        styleClass="fullWidthPicture">
+                    <h:graphicImage
+                            library="image"
+                            name="index1.jpeg"
+                            style="max-width: 100%; height: auto"
+                            alt="Tršice"/>
+                </h:panelGroup>
 
                 <h:panelGroup layout="block"
                         style="background: linear-gradient(to bottom, #f3f3f3, #dde3e8); margin-left: -10px; margin-right: -10px; padding: 10px">
@@ -134,6 +176,7 @@
                     </p:dataTable>
                     <br />
                     <h:panelGroup layout="block"
+                            styleClass="moreInfoLink"
                             style="text-align: right">
                         <h:link outcome="/obecni-urad/uredni-deska/prehled.xhtml"
                                 value="VÍCE >">
@@ -192,6 +235,7 @@
                             scrolling="no"
                             marginheight="0"
                             marginwidth="0"
+                            style="pointer-events: none"
                             src="https://www.openstreetmap.org/export/embed.html?bbox=17.35273361206055%2C49.51161227196599%2C17.49607086181641%2C49.567421204756734&amp;layer=mapnik">
                     </iframe>
                     <br/>
@@ -200,5 +244,25 @@
                     </small>
                 </h:panelGroup>
             </p:panelGrid>
+
+            <div class="zpravodajRss">
+                <div class="logo">
+                    <h6>Tršický&#160;</h6>
+                    <h:graphicImage library="image" name="erb.png" alt="Erb obce Tršice"/>
+                    <h6>&#160;Zpravodaj</h6>
+                </div>
+                <p:separator/>
+                <p:feedReader value="http://www.trsice.cz/zpravodaj/index.jsf?rss=true" 
+                        var="feed"
+                        size="5">
+                    <h:outputLink value="#{feed.link}">
+                        <h:outputText value="#{feed.title}" 
+                                style="font-weight: bold;display:block"/>
+                    </h:outputLink>
+                    <f:facet name="error">
+                        Nelze načíst články.
+                    </f:facet>
+                </p:feedReader>
+            </div>
         </ui:define>
     </ui:composition>

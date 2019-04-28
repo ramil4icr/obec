@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.obec.dev.PrepareDevData;
+import cz.nigol.obec.entities.Path;
 import cz.nigol.obec.entities.User;
 
 @Named
@@ -24,6 +25,20 @@ public class SessionBean implements Serializable {
     @PostConstruct
     public void init() {
         //prepareDevData.createData();
+    }
+
+    public boolean pathAllowed(String path) {
+        Path pt = new Path();
+        pt.setId(path);
+        return user.getRole().getPaths().contains(pt);
+    }
+
+    public boolean pathsAllowed(String... paths) {
+        boolean result = false;
+        for (String path : paths) {
+            result = result || pathAllowed(path);
+        }
+        return result;
     }
 
     public String logout() {

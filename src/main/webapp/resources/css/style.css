@@ -12,7 +12,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    border-bottom: 1px solid rgb(0,113,254);
+    border-bottom: 1px solid rgb(230,238,236);
+    color: #666;
 }
 
 h3 {
@@ -201,6 +202,37 @@ button.ui-button.ui-state-default {
     box-shadow: 3px 3px 5px #888;
 }
 
+.moreInfoLink a {
+    color: rgb(0, 154, 206);
+    font-weight: bold;
+}
+
+.moreInfoLink a:visited {
+    color: rgb(0, 154, 206);
+    font-weight: bold;
+}
+
+.zpravodajRss h6 {
+    color: black;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2em;
+    font-variant: small-caps;
+    margin-bottom: .1em;
+    margin-top: 0em;
+}
+
+.zpravodajRss img {
+    width: 1.8em;
+    height: 2em;
+    margin-top: .6em;
+}
+
+.zpravodajRss .logo {
+    display: flex;
+    justify-content: center;
+}
+
 .grayTableBlock {
     background-color: #eee;
     border-radius: 3px;
@@ -322,12 +354,25 @@ button.ui-button.ui-state-default {
     font-variant: small-caps;
 }
 
+.fullWidthPicture {
+    overflow:hidden;
+    padding-bottom:36.25%;
+    position:relative;
+    height:0;
+    margin-left: calc((-100vw / 2 + 960px / 2) - 2px);
+    margin-right: calc((-100vw / 2 + 960px / 2) - 4px);
+}
+
 .mapResponsive {
     overflow:hidden;
     padding-bottom:36.25%;
     position:relative;
     height:0;
+    margin-bottom: -43px;
+    margin-left: calc(-100vw / 2 + 960px / 2);
+    margin-right: calc(-100vw / 2 + 960px / 2);
 }
+
 .mapResponsive iframe {
     left:0;
     top:0;
@@ -415,7 +460,8 @@ button.ui-button.ui-state-default {
 
 .events {
     width: 100%;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
+    margin-top: -2em;
 }
 
 .events tr {
@@ -439,6 +485,10 @@ button.ui-button.ui-state-default {
     .menuButtonContainer {
         display: block;
     }
+
+    .fullWidthPicture {
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 980px) {
@@ -458,5 +508,30 @@ button.ui-button.ui-state-default {
 
     .menuButtonContainer {
         display: none;
+    }
+
+    .fullWidthPicture {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 1599px) {
+    .zpravodajRss {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .zpravodajRss {
+        position: fixed;
+        top: 300px;
+        right: 50px;
+        width: 230px;
+        line-height: 1.5;
+        background: #fff;
+        box-shadow: 3px 3px 5px #888 !important;
+        border: 1px solid #eee;
+        border-radius: 3px;
+        padding: 1em;
     }
 }

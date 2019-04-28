@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -44,12 +45,22 @@ public class FilesBean implements Serializable {
     @PathToWebapp
     private String path;
     private List<FileMetadata> files;
+    private List<FileMetadata> databaseFiles;
     private FileMetadata file;
+    private String search;
 
     @PostConstruct
     public void init() {
         user = userService.getUserById(user.getId());
-        files = fileMetadataService.getByUser(user);
+        databaseFiles = fileMetadataService.getByUser(user);
+        files = databaseFiles;
+        search = null;
+    }
+
+    public void filter() {
+        files = databaseFiles.stream()
+            .filter(fm -> fm.getPath().toLowerCase().contains(search.toLowerCase()))
+            .collect(Collectors.toList());
     }
 
     public String endOfPath(String path) {
@@ -115,6 +126,20 @@ public class FilesBean implements Serializable {
      */
     public void setFile(FileMetadata file) {
         this.file = file;
+    }
+
+    /**
+     * @return the search
+     */
+    public String getSearch() {
+        return search;
+    }
+
+    /**
+     * @param search the search to set
+     */
+    public void setSearch(String search) {
+        this.search = search;
     }}
 
 
