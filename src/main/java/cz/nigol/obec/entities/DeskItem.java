@@ -21,9 +21,9 @@ import javax.persistence.TemporalType;
 @NamedQuery(name=DeskItem.GET_ALL,
 query="SELECT d FROM DeskItem d ORDER BY d.activeFrom DESC"),
     @NamedQuery(name=DeskItem.GET_ACTIVE_TO_DATE,
-    query="SELECT d FROM DeskItem d WHERE (:date BETWEEN d.activeFrom AND d.activeTo) OR (:date >= d.activeFrom AND d.activeTo IS NULL) ORDER BY d.activeFrom"),
+    query="SELECT d FROM DeskItem d WHERE (:date BETWEEN d.activeFrom AND d.activeTo) OR (:date >= d.activeFrom AND d.activeTo IS NULL) ORDER BY d.activeFrom DESC"),
     @NamedQuery(name=DeskItem.GET_VALID_TO_DATE,
-    query="SELECT d FROM DeskItem d WHERE :date >= d.activeFrom ORDER BY d.activeFrom"),
+    query="SELECT d FROM DeskItem d WHERE :date >= d.activeFrom ORDER BY d.activeFrom DESC"),
 })
 @Entity
 @Table(name="OB_DESK_ITEM")
