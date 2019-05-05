@@ -45,7 +45,7 @@ public class Event implements Serializable {
     private String link;
 
     @Column(name="START_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date startDate;
 
     @Column(name="CREATED_AT")

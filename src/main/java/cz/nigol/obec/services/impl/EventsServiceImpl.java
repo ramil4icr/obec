@@ -1,5 +1,7 @@
 package cz.nigol.obec.services.impl;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +33,14 @@ public class EventsServiceImpl implements EventsService {
     @Override
     public List<Event> getValidToDate(Date date) {
         TypedQuery<Event> typedQuery = em.createNamedQuery(Event.GET_VALID_TO_DATE, Event.class);
-        typedQuery.setParameter(Event.DATE_PARAM, date);
+        LocalDate localDate = date.toInstant()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate();
+        Date adjustedDate = Date.from(localDate.minusDays(1)
+            .atStartOfDay()
+            .atZone(ZoneId.systemDefault())
+            .toInstant());
+        typedQuery.setParameter(Event.DATE_PARAM, adjustedDate);
         typedQuery.setMaxResults(5);
         return new ArrayList<>(typedQuery.getResultList());
     }
