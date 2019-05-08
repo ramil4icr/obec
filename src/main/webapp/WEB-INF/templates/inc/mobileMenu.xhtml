@@ -7,9 +7,9 @@
 
         <h:panelGroup styleClass="menuButtonContainer">
             <p:commandButton id="menuButton"
-                    value="Nabídka"
+                    value="MENU"
                     type="button"
-                    style="box-shadow: 3px 3px 5px #888 !important;"
+                    style="box-shadow: 3px 3px 5px #888 !important; background: rgb(230, 238, 236) !important;"
                     styleClass="menuButton"
                     icon="fa fa-bars"/>
         </h:panelGroup>
@@ -23,10 +23,12 @@
             <p:submenu label="OBEC">
                 <ui:include src="submenus/obecInformace.xhtml"/>
                 <ui:include src="submenus/obecZastupitelstvo.xhtml"/>
+                <ui:include src="submenus/obecZivotVObci.xhtml"/>
             </p:submenu>
             <p:submenu label="OBECNÍ ÚŘAD">
                 <ui:include src="submenus/obecniUradInformace.xhtml"/>
                 <ui:include src="submenus/obecniUradPotrebuji.xhtml"/>
+                <ui:include src="submenus/obecniUradUzemniPlan.xhtml"/>
             </p:submenu>
             <p:submenu label="STAVEBNÍ ÚŘAD">
                 <ui:include src="submenus/stavebniUradInformace.xhtml"/>
