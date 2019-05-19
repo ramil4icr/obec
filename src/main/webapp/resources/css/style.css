@@ -273,6 +273,11 @@ button.ui-button.ui-state-default {
     border-bottom: 1px solid rgb(230, 238, 236) !important;
 }
 
+.articleBody li {
+    line-height: 1.5em;
+    height: auto;
+}
+
 .articleBody .ql-video.ql-align-center {
     margin: 0px auto;
     display: block;
