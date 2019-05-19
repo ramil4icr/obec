@@ -195,6 +195,9 @@ button.ui-button.ui-state-default {
 
 .ui-icon.fa {
     color: rgb(0, 154, 206) !important;
+}
+
+.ui-button-icon-left.ui-menuitem-link.ui-icon.fa {
     margin-top: -6px !important;
 }
 
