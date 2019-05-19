@@ -43,7 +43,8 @@
                 <p:panelGrid layout="grid"
                         columns="2"
                         styleClass="ui-noborder">
-                    <h:panelGroup layout="block">
+                    <h:panelGroup layout="block"
+                            style="opacity: 0; animation-name: bottomFadeIn; animation-duration: 2s; animation-fill-mode: forwards">
                         <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center">
                             Historie
                         </h3>
@@ -58,7 +59,8 @@
                         </p>
                     </h:panelGroup>
 
-                    <h:panelGroup layout="block">
+                    <h:panelGroup layout="block"
+                            style="opacity: 0; animation-name: topFadeIn; animation-duration: 2s; animation-fill-mode: forwards">
                         <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center">
                             Současnost 
                         </h3>
@@ -142,8 +144,7 @@
 
                 <p:column/>
 
-                <h:panelGroup layout="block"
-                        styleClass="fullWidthPicture">
+                <h:panelGroup layout="block">
                     <h:graphicImage
                             library="image"
                             name="index1.jpeg"

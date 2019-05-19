@@ -14,6 +14,8 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     border-bottom: 1px solid rgb(230,238,236);
     color: #666;
+    text-align: center;
+    font-weight: 800;
 }
 
 h3 {
@@ -193,6 +195,9 @@ button.ui-button.ui-state-default {
 
 .ui-icon.fa {
     color: rgb(0, 154, 206) !important;
+}
+
+.ui-button-icon-left.ui-menuitem-link.ui-icon.fa {
     margin-top: -6px !important;
 }
 
@@ -266,6 +271,16 @@ button.ui-button.ui-state-default {
     background: #fff !important;
     border: none !important;
     border-bottom: 1px solid rgb(230, 238, 236) !important;
+}
+
+.articleBody li {
+    line-height: 1.5em;
+    height: auto;
+}
+
+.articleBody .ql-video.ql-align-center {
+    margin: 0px auto;
+    display: block;
 }
 
 .articleBody .ql-indent-1 {
@@ -466,6 +481,30 @@ button.ui-button.ui-state-default {
 
 .events tr {
     height: 5em;
+}
+
+@keyframes topFadeIn {
+    0% {
+        margin-top: -50px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes bottomFadeIn {
+    0% {
+        margin-top: 70px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-top: 0px;
+        opacity: 1;
+    }
 }
 
 @media only screen and (max-width: 979px) {
