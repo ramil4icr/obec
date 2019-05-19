@@ -470,6 +470,30 @@ button.ui-button.ui-state-default {
     height: 5em;
 }
 
+@keyframes topFadeIn {
+    0% {
+        margin-top: -50px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes bottomFadeIn {
+    0% {
+        margin-top: 70px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-top: 0px;
+        opacity: 1;
+    }
+}
+
 @media only screen and (max-width: 979px) {
     #content {
         margin-left: 1em;
