@@ -10,8 +10,11 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import cz.nigol.obec.beans.SessionBean;
+import cz.nigol.obec.entities.Path;
+import cz.nigol.obec.entities.User;
 
 @Named
 @RequestScoped
@@ -25,7 +28,18 @@ public class AuthPhaseListener implements PhaseListener {
     public void beforePhase(PhaseEvent pe) {
         HttpServletRequest req = (HttpServletRequest) pe.getFacesContext().getExternalContext().getRequest();
         String uri = req.getRequestURI();
-        boolean reject = pe.getPhaseId() == PhaseId.RESTORE_VIEW;
+        User user = sessionBean.getUser();
+        boolean reject = false;
+        if (uri.contains("admin") || uri.contains("uzivatel")) {
+            Path pt = new Path();
+            pt.setId(req.getServletPath());
+            reject = user == null || !user.getRole().getPaths().contains(pt);
+        }
+        if (reject) {
+            FacesContext facesContext = pe.getFacesContext();
+            facesContext.getApplication().getNavigationHandler()
+                .handleNavigation(facesContext, null, "prihlaseni.xhtml?faces-redirect=true");
+        }
     }
 
     public void afterPhase(PhaseEvent pe) {
@@ -33,6 +47,6 @@ public class AuthPhaseListener implements PhaseListener {
     }
 
     public PhaseId getPhaseId() {
-        return PhaseId.ANY_PHASE;
+        return PhaseId.RESTORE_VIEW;
     }
 }
