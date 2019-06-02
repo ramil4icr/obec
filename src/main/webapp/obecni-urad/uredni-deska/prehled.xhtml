@@ -12,6 +12,20 @@
             <h2>Úřední deska</h2>
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
                 <h:form>
+                    <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                        <h:outputText value="Zobrazit" 
+                                style="display: inline-block; margin-top: .5em"/>
+                        <p:selectOneButton id="selectButton" 
+                                value="#{officialDeskTableBean.display}">
+                            <f:selectItem itemLabel="Aktivní" 
+                                    itemValue="#{officialDeskTableBean.active}"/>
+                            <f:selectItem itemLabel="Vše" 
+                                    itemValue="#{officialDeskTableBean.all}"/>
+                            <p:ajax update="@form" 
+                                    listener="#{officialDeskTableBean.loadData}"/>
+                        </p:selectOneButton>
+                    </p:panelGrid>
+
                     <p:dataTable id="officialDesk" 
                             value="#{officialDeskTableBean.deskItems}" 
                             emptyMessage="Nenalezen žádný výsledek."

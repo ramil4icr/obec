@@ -3,6 +3,7 @@ package cz.nigol.obec.beans;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -97,7 +98,9 @@ public class FilesBean implements Serializable {
         String open = user.getId() + msString + fileName;
         MessageDigest digest = MessageDigest.getInstance("MD5");
         byte[] hashBytes = digest.digest(open.getBytes());
-        return "/upload/" + folder + "/" + String.valueOf(hashBytes) + "~" + fileName;
+        return "/upload/" + folder + "/" + 
+            Base64.getEncoder().encodeToString(hashBytes) + 
+            "~" + fileName;
     }
 
     /**
