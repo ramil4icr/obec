@@ -48,6 +48,12 @@
                     </h:link>
                 </h:panelGroup>
 
+                <h:panelGroup layout="block">
+                    <ui:include src="/WEB-INF/includes/article.xhtml">
+                        <ui:param name="articleId" value="/index.jsf"/>
+                    </ui:include>
+                </h:panelGroup>
+
                 <p:panelGrid layout="grid"
                         columns="2"
                         styleClass="ui-noborder">
