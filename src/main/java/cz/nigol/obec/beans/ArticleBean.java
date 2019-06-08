@@ -13,6 +13,7 @@ public class ArticleBean {
     @Inject
     private ArticleService articleService;
     private Article article;
+    private String articleId;
 
     public void loadArticle(String id) {
         article = articleService.getArticleById(id);
@@ -33,5 +34,19 @@ public class ArticleBean {
      */
     public void setArticle(Article article) {
         this.article = article;
+    }
+
+    /**
+     * @return the articleId
+     */
+    public String getArticleId() {
+        return articleId;
+    }
+
+    /**
+     * @param articleId the articleId to set
+     */
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
 }
