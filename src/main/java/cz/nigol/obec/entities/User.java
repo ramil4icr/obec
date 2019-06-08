@@ -41,17 +41,17 @@ public class User implements Serializable {
     private long id;
 
     @Column(name="USER_ID", columnDefinition="VARCHAR(50)")
-        private String userId;
+    private String userId;
 
     @Column(name="CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
     @Column(name="EMAIL", columnDefinition="VARCHAR(300)")
-        private String email;
+    private String email;
 
     @Column(name="FULL_NAME", columnDefinition="VARCHAR(200)")
-        private String fullName;
+    private String fullName;
 
     @Column(name="PASSWORD")
     private String password;
@@ -61,6 +61,9 @@ public class User implements Serializable {
 
     @OneToOne(fetch=FetchType.EAGER)
     private Role role;
+
+    @Column(name="SALUTATION", columnDefinition="VARCHAR(300)")
+    private String salutation;
 
     /**
      * @return the id
@@ -172,6 +175,20 @@ public class User implements Serializable {
      */
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    /**
+     * @return the salutation
+     */
+    public String getSalutation() {
+        return salutation;
+    }
+
+    /**
+     * @param salutation the salutation to set
+     */
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
     }
 
     @Override

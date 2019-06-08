@@ -47,7 +47,7 @@ public class Article implements Serializable {
     private String body;
 
     @Column(name="LABEL", columnDefinition="VARCHAR(200)")
-        private String label;
+    private String label;
 
     @Column(name="CHANGED_AT")
     @Temporal(TemporalType.TIMESTAMP)

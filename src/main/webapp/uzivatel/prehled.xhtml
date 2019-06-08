@@ -11,7 +11,14 @@
         <ui:define name="content">
 
             <h2>Přehled</h2>
-            #{sessionBean.user.fullName}
+
+            <h3 style="font-family: serif; font-size: 2em; font-style: italic; font-weight: normal;">
+                #{sessionBean.user.salutation},
+            </h3>
+
+            <p style="font-weight: bold">
+                zde naleznete užitečné informace a nastavení týkající se Vás a Vaší obce.
+            </p>
 
             <h:link outcome="/index.xhtml">
                 <p>

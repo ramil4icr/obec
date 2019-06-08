@@ -1,114 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/template.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
 
-  <ui:param name="title" value="Články, administrace - Obec Tršice"/>
+        <ui:param name="title" value="Články, administrace - Obec Tršice"/>
 
-  <ui:define name="content">
-    <ui:include src="/WEB-INF/includes/editorSettings.xhtml"/>
+        <ui:define name="content">
+            <ui:include src="/WEB-INF/includes/editorSettings.xhtml"/>
 
-    <h2>Články, administrace</h2>
-    
-    <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>
+            <h2>Články, administrace</h2>
 
-    <h:form id="articleForm">
-        <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
-            <p:commandButton value="Nový článek" 
-                    icon="fa fa-plus-square-o"
-                    action="#{articlesBean.newArticle}"
-                    disabled="#{!empty articlesBean.article}"
-                    update="@form"
-                    resetValues="true"/>
-            <p:commandButton value="Smazat" 
-                    icon="fa fa-trash-o"
-                    action="#{articlesBean.delete}"
-                    disabled="#{empty articlesBean.article}"
-                    onclick="return confirm('Opravdu smazat článek: #{articlesBean.article.id}?')"
-                    update="@form :growl"
-                    resetValues="true"
-                    immediate="true"/>
-            <p:selectOneButton value="#{articlesBean.edit}">
-                <f:selectItem itemLabel="Text" itemValue="Text"/>
-                <f:selectItem itemLabel="HTML" itemValue="HTML"/>
-                <p:ajax update="@form"/>
-            </p:selectOneButton>
-        </p:panelGrid>
+            <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>
 
-      <p:dataTable id="articles" 
-                   value="#{articlesBean.articles}" 
-                   emptyMessage="Nenalezen žádný výsledek."
-                   selectionMode="single"
-                   selection="#{articlesBean.article}"
-                   rowKey="#{article.id}"
-		   rows="5"
-		   paginator="true"
-		   paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-		   paginatorPosition="bottom"
-                   var="article">
-        <p:ajax event="rowSelect"
-		listener="#{articlesBean.onArticleSelect}"
-		update="@form"
-		resetValues="true"/>
-        <p:column headerText="Id článku"
-		  style="width: 50%"
-		  filterBy="#{article.id}"
-		  filterMatchMode="contains">
-          <h:outputText value="#{article.id}"/>
-        </p:column>
-	<p:column headerText="Autor"
-		  style="width: 30%"
-		  filterBy="#{article.changedBy.fullName}"
-		  filterMatchMode="contains">
-          <h:outputText value="#{article.changedBy.fullName}"/>
-        </p:column>
-	<p:column headerText="Změněno" style="width: 20%">
-          <h:outputText value="#{article.changedAt}">
-	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	  </h:outputText>
-        </p:column>
-      </p:dataTable>
+            <h:form id="articleForm">
+                <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                    <p:commandButton value="Nový článek" 
+                            icon="fa fa-plus-square-o"
+                            action="#{articlesBean.newArticle}"
+                            disabled="#{!empty articlesBean.article}"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:commandButton value="Smazat" 
+                            icon="fa fa-trash-o"
+                            action="#{articlesBean.delete}"
+                            disabled="#{empty articlesBean.article}"
+                            onclick="return confirm('Opravdu smazat článek: #{articlesBean.article.id}?')"
+                            update="@form :growl"
+                            resetValues="true"
+                            immediate="true"/>
+                    <p:selectOneButton value="#{articlesBean.edit}">
+                        <f:selectItem itemLabel="Text" itemValue="Text"/>
+                        <f:selectItem itemLabel="HTML" itemValue="HTML"/>
+                        <p:ajax update="@form"/>
+                    </p:selectOneButton>
+                </p:panelGrid>
 
-      <p:panelGrid layout="grid"
-		   columns="1"
-		   rendered="#{!empty articlesBean.article}"
-		   styleClass="ui-noborder">
-	<p:outputLabel value="Id" for="articleId"/>
-	<p:inputText id="articleId" value="#{articlesBean.article.id}">
-	  <f:validateLength maximum="300"/>
-	</p:inputText>
+                <p:dataTable id="articles" 
+                        value="#{articlesBean.articles}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        selectionMode="single"
+                        selection="#{articlesBean.article}"
+                        rowKey="#{article.id}"
+                        rows="5"
+                        paginator="true"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                        paginatorPosition="bottom"
+                        var="article">
+                    <p:ajax event="rowSelect"
+                            listener="#{articlesBean.onArticleSelect}"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:column headerText="Id článku"
+                            style="width: 50%"
+                            filterBy="#{article.id}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{article.id}"/>
+                    </p:column>
+                    <p:column headerText="Autor"
+                            style="width: 30%"
+                            filterBy="#{article.changedBy.fullName}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{article.changedBy.fullName}"/>
+                    </p:column>
+                    <p:column headerText="Změněno" style="width: 20%">
+                        <h:outputText value="#{article.changedAt}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
 
-	<p:outputLabel value="Text článku" for="body"/>
-        <p:textEditor id="body"
-		      value="#{articlesBean.body}"
-		      rendered="#{!articlesBean.editSource}"
-		      height="300"/>
-	<p:inputTextarea id="textarea"
-			 rows="20"
-			 cols="30"
-			 value="#{articlesBean.body}"
-			 style="max-height: 350px"
-			 rendered="#{articlesBean.editSource}"/>
+                <p:panelGrid layout="grid"
+                        columns="1"
+                        rendered="#{!empty articlesBean.article}"
+                        styleClass="ui-noborder">
+                    <p:outputLabel value="Id" for="articleId"/>
+                    <p:inputText id="articleId" value="#{articlesBean.article.id}">
+                        <f:validateLength maximum="300"/>
+                    </p:inputText>
 
-         <p:panelGrid layout="grid"
-                 columns="5"
-                 styleClass="ui-noborder">
-             <p:commandButton value="Uložit" 
-                     icon="fa fa-save"
-                     action="#{articlesBean.save}"
-                     styleClass="default"
-                     update=":growl"/>
-             <p:commandButton value="Zrušit" 
-                     icon="fa fa-close"
-                     action="#{articlesBean.cancelEdit}"
-                     immediate="true"
-                     resetValues="true"
-                     update="@form"/>
-         </p:panelGrid>	
-     </p:panelGrid>
- </h:form>
-  </ui:define>
-</ui:composition>
+                    <p:outputLabel value="Nadpis" for="label"/>
+                    <p:inputText id="label" value="#{articlesBean.article.label}">
+                        <f:validateLength maximum="300"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Text článku" for="body"/>
+                    <p:textEditor id="body"
+                            value="#{articlesBean.body}"
+                            rendered="#{!articlesBean.editSource}"
+                            height="300"/>
+                    <p:inputTextarea id="textarea"
+                            rows="20"
+                            cols="30"
+                            value="#{articlesBean.body}"
+                            style="max-height: 350px"
+                            rendered="#{articlesBean.editSource}"/>
+
+                        <p:panelGrid layout="grid"
+                                columns="5"
+                                styleClass="ui-noborder">
+                            <p:commandButton value="Uložit" 
+                                    icon="fa fa-save"
+                                    action="#{articlesBean.save}"
+                                    styleClass="default"
+                                    update=":growl"/>
+                            <p:commandButton value="Zrušit" 
+                                    icon="fa fa-close"
+                                    action="#{articlesBean.cancelEdit}"
+                                    immediate="true"
+                                    resetValues="true"
+                                    update="@form"/>
+                        </p:panelGrid>	
+                    </p:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>

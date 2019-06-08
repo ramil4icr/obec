@@ -13,7 +13,7 @@
                 <h1>Obec Tršice</h1>
 
                 <p style="text-align: center; font-size: 150%; font-family: serif; font-style: italic; font-weight: normal;">
-                    Obec Tršice se nachazí v jihovýchodní části okresu Olomouc. K samotným Tršicím přísluší další místní části: Hostkovice, Lipňany, Přestavlky, Vacanovice a Zákřov.
+                    Obec Tršice se nachází v jihovýchodní části okresu Olomouc. K samotným Tršicím přísluší další místní části: Hostkovice, Lipňany, Přestavlky, Vacanovice a Zákřov.
                 </p>
                 <p style="text-align: center; font-weight: bold;">
                     První věrohodná písemná zpráva o tehdejší vesnici pochází z druhé poloviny 13. století. V roce 1526 byly Tršice povýšeny na městečko.
@@ -46,6 +46,12 @@
                     <h:link outcome="/obec/aktuality/aktuality.xhtml"
                             value="VŠECHNY AKTUALITY >">
                     </h:link>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block">
+                    <ui:include src="/WEB-INF/includes/article.xhtml">
+                        <ui:param name="articleId" value="/index.jsf"/>
+                    </ui:include>
                 </h:panelGroup>
 
                 <p:panelGrid layout="grid"
