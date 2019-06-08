@@ -14,6 +14,11 @@
                     icon="fa fa-home"/>
             <p:submenu label="OBEC">
                 <p:column>
+                    <h4>
+                        <i class="fa fa-home"></i>
+                    </h4>
+                </p:column>
+                <p:column>
                     <ui:include src="submenus/obecInformace.xhtml"/>
                     <ui:include src="submenus/obecZastupitelstvo.xhtml"/>
                 </p:column>
@@ -23,6 +28,11 @@
             </p:submenu>
 
             <p:submenu label="OBECNÍ ÚŘAD">
+                <p:column>
+                    <h4>
+                        <i class="fa fa-institution"></i>
+                    </h4>
+                </p:column>
                 <p:column>
                     <ui:include src="submenus/obecniUradInformace.xhtml"/>
                 </p:column>
@@ -36,6 +46,11 @@
 
             <p:submenu label="STAVEBNÍ ÚŘAD">
                 <p:column>
+                    <h4>
+                        <i class="fa fa-cubes"></i>
+                    </h4>
+                </p:column>
+                <p:column>
                     <ui:include src="submenus/stavebniUradInformace.xhtml"/>
                 </p:column>
                 <p:column>
@@ -44,6 +59,11 @@
             </p:submenu>
 
             <p:submenu label="UŽIVATEL" rendered="#{!empty sessionBean.user}">
+                <p:column>
+                    <h4>
+                        <i class="fa fa-user"></i>
+                    </h4>
+                </p:column>
                 <p:column>
                     <ui:include src="submenus/uzivatelNabidka.xhtml"/>
                 </p:column>
