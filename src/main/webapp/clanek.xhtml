@@ -9,6 +9,7 @@
         <ui:define name="metadata">
             <f:metadata>
                 <f:viewParam name="id" value="#{articleBean.articleId}"/>
+                <f:viewAction action="#{articleBean.onLoad}"/>
             </f:metadata>
         </ui:define>
 

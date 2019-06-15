@@ -6,6 +6,13 @@
         template="/WEB-INF/templates/template.xhtml"
         xmlns:p="http://primefaces.org/ui">
 
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="f" value="#{articlesBean.pattern}"/>
+                <f:viewAction action="#{articlesBean.onLoad}"/>
+            </f:metadata>
+        </ui:define>
+
         <ui:param name="title" value="Články, administrace - Obec Tršice"/>
 
         <ui:define name="content">
@@ -105,7 +112,7 @@
                                     icon="fa fa-save"
                                     action="#{articlesBean.save}"
                                     styleClass="default"
-                                    update=":growl"/>
+                                    update=":growl articles"/>
                             <p:commandButton value="Zrušit" 
                                     icon="fa fa-close"
                                     action="#{articlesBean.cancelEdit}"

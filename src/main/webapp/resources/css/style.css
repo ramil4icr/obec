@@ -18,6 +18,11 @@ h1 {
     font-weight: 800;
 }
 
+h2 {
+    text-align: center;
+    border-bottom: 1px solid rgb(230,238,236);
+}
+
 h3 {
     font-size: 160%;
 }
@@ -481,6 +486,21 @@ button.ui-button.ui-state-default {
 
 .events tr {
     height: 5em;
+}
+
+.ui-menuitem-icon.ui-icon {
+    margin-right: 5px;
+}
+
+@keyframes riseIcon {
+    0% {
+        text-shadow: none;
+    }
+
+    100% {
+        font-size: 150%;
+        text-shadow: 3px 3px 5px #888;
+    }
 }
 
 @keyframes topFadeIn {

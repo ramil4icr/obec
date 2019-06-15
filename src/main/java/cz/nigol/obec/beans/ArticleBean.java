@@ -15,6 +15,10 @@ public class ArticleBean {
     private Article article;
     private String articleId;
 
+    public void onLoad() {
+        loadArticle(articleId);
+    }
+
     public void loadArticle(String id) {
         article = articleService.getArticleById(id);
         if (article != null) {

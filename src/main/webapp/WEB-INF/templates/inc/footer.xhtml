@@ -1,74 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-		xmlns:p="http://primefaces.org/ui">
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
 
-  <footer>
-    <div class="ui-fluid">
-      <p:panelGrid layout="grid"
-		   columns="1"
-		   styleClass="ui-noborder">
-	&#169; 2019 Obec Tršice • IČ: 00299588 • DIČ: CZ00299588 • Obec Tršice je plátcem DPH
-      </p:panelGrid>
+        <footer>
+            <div class="ui-fluid">
+                <p:panelGrid layout="grid"
+                        columns="1"
+                        styleClass="ui-noborder">
+                    <h:panelGroup>
+                        &#169; 2019 Obec Tršice • IČ: 00299588 • DIČ: CZ00299588 • Obec Tršice je plátcem DPH • 
+                        <h:outputLink value="/clanek.jsf?id=gdpr">Ochrana osobních údajů</h:outputLink>
+                    </h:panelGroup>
+                </p:panelGrid>
 
-      <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
-	<p:column>
-	  <h:link outcome="/index.xhtml"
-		  value="Úvod">
-	  </h:link>
-	  <br/>
-	  <h:outputLink value="https://www.trsice.cz/zpravodaj">
-	    Tršický Zpravodaj
-	  </h:outputLink>
-	  <br />
-	  <h:link outcome="/prihlaseni.xhtml"
-		  value="Přihlášení">
-	  </h:link>
-	  <br />
-	  <h:outputLink value="http://www.edpp.cz/dpp/trsice/">
-	    Povodňový plán obce Tršice <i class="fa fa-external-link"></i>
-	  </h:outputLink>
-	  <br/>
-	  <h:outputLink value="http://monitor.statnipokladna.cz/2018/obce/detail/00299588#">
-	    Monitor obecních rozpočtů, Obec Tršice <i class="fa fa-external-link"></i>
-	  </h:outputLink>
-	  <br />
-	  <h:outputLink value="https://www.kdv.cz/profil.php?ic=00299588">
-	    Profil zadavatele veřejných zakázek, Obec Tršice <i class="fa fa-external-link"></i>
-	  </h:outputLink>
-	  <br />
-	  <h:outputLink value="http://www.masbystricka.cz">
-	    Místní akční skupina Bystřička, o.p.s. <i class="fa fa-external-link"></i>
-	  </h:outputLink>
-	</p:column>
+                <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+                    <p:column>
+                        <h:link outcome="/index.xhtml"
+                                value="Úvod">
+                        </h:link>
+                        <br/>
+                        <h:outputLink value="https://www.trsice.cz/zpravodaj">
+                            Tršický Zpravodaj
+                        </h:outputLink>
+                        <br />
+                        <h:link outcome="/prihlaseni.xhtml"
+                                value="Přihlášení">
+                        </h:link>
+                        <br />
+                        <h:outputLink value="http://www.edpp.cz/dpp/trsice/">
+                            Povodňový plán obce Tršice <i class="fa fa-external-link"></i>
+                        </h:outputLink>
+                        <br/>
+                        <h:outputLink value="http://monitor.statnipokladna.cz/2018/obce/detail/00299588#">
+                            Monitor obecních rozpočtů, Obec Tršice <i class="fa fa-external-link"></i>
+                        </h:outputLink>
+                        <br />
+                        <h:outputLink value="https://www.kdv.cz/profil.php?ic=00299588">
+                            Profil zadavatele veřejných zakázek, Obec Tršice <i class="fa fa-external-link"></i>
+                        </h:outputLink>
+                        <br />
+                        <h:outputLink value="http://www.masbystricka.cz">
+                            Místní akční skupina Bystřička, o.p.s. <i class="fa fa-external-link"></i>
+                        </h:outputLink>
+                    </p:column>
 
-	<p:column>
-	  <b>Obecní úřad Tršice</b><br/>
-	  Tršice 50<br/>
-	  783 57 Tršice<br/>
-	  <i class="fa fa-phone"></i> 585 957 230<br/>
-	  <i class="fa fa-at"></i> ou@trsice.cz<br/>
-	  Datová schránka: <b>wsvbawp</b><br/>
-	  <br/>
-	  <b>Stavební úřad Tršice</b><br/>
-	  Tršice 50<br/>
-	  783 57 Tršice<br/>
-	  <i class="fa fa-phone"></i> 585 750 663<br/>
-	  <i class="fa fa-at"></i> su.trsice@seznam.cz<br/>
-	  Datová schránka: <b>wsvbawp</b><br/>
-	</p:column>
+                    <p:column>
+                        <b>Obecní úřad Tršice</b><br/>
+                        Tršice 50<br/>
+                        783 57 Tršice<br/>
+                        <i class="fa fa-phone"></i> 585 957 230<br/>
+                        <i class="fa fa-at"></i> ou@trsice.cz<br/>
+                        Datová schránka: <b>wsvbawp</b><br/>
+                        <br/>
+                        <b>Stavební úřad Tršice</b><br/>
+                        Tršice 50<br/>
+                        783 57 Tršice<br/>
+                        <i class="fa fa-phone"></i> 585 750 663<br/>
+                        <i class="fa fa-at"></i> su.trsice@seznam.cz<br/>
+                        Datová schránka: <b>wsvbawp</b><br/>
+                    </p:column>
 
-	<p:column>
-	  <b>Provozní doba OÚ Tršice</b><br/>
-	  Pondělí : 8.00-12.00 hodin a 13.00-17.00 hodin - úřední den<br />
-	  Úterý : <i>vyřizování žádostí pouze po předchozí domluvě</i><br />
-	  Středa : 8.00-12.00 hodin a 13.00-17.00 hodin - úřední den<br />
-	  Čtvrtek : <i>budova OÚ pro veřejnost uzavřena</i><br />
-	  Pátek : <i>vyřizování žádostí pouze po předchozí domluvě</i><br />
-	</p:column>
-      </p:panelGrid>
-    </div>
-  </footer>
-</ui:composition>
+                    <p:column>
+                        <b>Provozní doba OÚ Tršice</b><br/>
+                        Pondělí : 8.00-12.00 hodin a 13.00-17.00 hodin - úřední den<br />
+                        Úterý : <i>vyřizování žádostí pouze po předchozí domluvě</i><br />
+                        Středa : 8.00-12.00 hodin a 13.00-17.00 hodin - úřední den<br />
+                        Čtvrtek : <i>budova OÚ pro veřejnost uzavřena</i><br />
+                        Pátek : <i>vyřizování žádostí pouze po předchozí domluvě</i><br />
+                    </p:column>
+                </p:panelGrid>
+
+                <p:panelGrid layout="grid"
+                        columns="1"
+                        styleClass="ui-noborder">
+                    <h:panelGroup>
+                        <h:outputLink value="https://fb.com/obectrsice">
+                            <i class="fa fa-facebook-official"/>
+                        </h:outputLink>
+
+                        &#160;&#160;&#160;
+
+                        <h:outputLink value="https://github.com/nigol/obec">
+                            <i class="fa fa-git"/>
+                        </h:outputLink>
+                    </h:panelGroup>
+                </p:panelGrid>
+            </div>
+        </footer>
+    </ui:composition>
