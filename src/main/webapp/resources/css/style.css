@@ -488,6 +488,10 @@ button.ui-button.ui-state-default {
     height: 5em;
 }
 
+.ui-menuitem-icon.ui-icon {
+    margin-right: 5px;
+}
+
 @keyframes topFadeIn {
     0% {
         margin-top: -50px;
