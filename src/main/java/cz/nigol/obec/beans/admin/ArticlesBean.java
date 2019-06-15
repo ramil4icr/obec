@@ -35,11 +35,18 @@ public class ArticlesBean implements Serializable {
     private String body;
     private String edit = "Text";
     private static final String NEW_ID = "článek";
+    private String pattern;
 
     @PostConstruct
     public void init() {
-        articles = articleService.getAllArticles();
         user = userService.getUserById(user.getId());
+    }
+
+    public void onLoad() {
+        if (pattern != null ) {
+            articles = articleService.getArticlesByPattern(pattern
+                    .replaceAll("\\*", "%"));
+        }
     }
 
     public void newArticle() {
@@ -137,5 +144,19 @@ public class ArticlesBean implements Serializable {
      */
     public void setEdit(String edit) {
         this.edit = edit;
+    }
+
+    /**
+     * @return the pattern
+     */
+    public String getPattern() {
+        return pattern;
+    }
+
+    /**
+     * @param pattern the pattern to set
+     */
+    public void setPattern(String pattern) {
+        this.pattern = pattern;
     }
 }

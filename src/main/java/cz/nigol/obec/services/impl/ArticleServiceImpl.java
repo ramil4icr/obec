@@ -53,4 +53,12 @@ public class ArticleServiceImpl implements ArticleService {
     public void deleteArticle(Article article) {
         em.remove(em.merge(article));
     }
+
+    @Override
+    public List<Article> getArticlesByPattern(String pattern) {
+        TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_BY_PATTERN,
+                Article.class);
+        typedQuery.setParameter(Article.PATTERN_PARAM, pattern);
+        return new ArrayList<>(typedQuery.getResultList());
+    }
 }

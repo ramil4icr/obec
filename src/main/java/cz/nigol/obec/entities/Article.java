@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 @NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a ORDER BY a.changedAt DESC"),
     @NamedQuery(name=Article.GET_BY_USER,
     query="SELECT a FROM Article a WHERE a.changedBy = :user ORDER BY a.changedAt DESC"),
+    @NamedQuery(name=Article.GET_BY_PATTERN,
+    query="SELECT a FROM Article a WHERE a.id LIKE :pattern ORDER BY a.changedAt DESC"),
 })
 @Entity
 @Table(name = "OB_ARTICLE")
@@ -30,8 +32,10 @@ public class Article implements Serializable {
 
     public static final String GET_ALL = "Article.GET_ALL";
     public static final String GET_BY_USER = "Article.GET_BY_USER";
+    public static final String GET_BY_PATTERN = "Article.GET_BY_PATTERN";
 
     public static final String USER_PARAM = "user";
+    public static final String PATTERN_PARAM = "pattern";
 
     @Id
     @Column(name="ID", columnDefinition="VARCHAR(300)")
