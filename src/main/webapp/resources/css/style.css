@@ -259,7 +259,6 @@ button.ui-button.ui-state-default {
 
 .mainMenu {
     background-color: rgb(230, 238, 236) !important;
-    box-shadow: 3px 3px 5px #888 !important;
     border: none !important;
     margin-top: -5px;
     margin-bottom: 10px;
@@ -269,6 +268,8 @@ button.ui-button.ui-state-default {
     background-size: 200px 36px;
     background-position: left center;
     background-repeat: no-repeat;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 
 .ui-menu .ui-widget-header {
