@@ -52,4 +52,11 @@ public class OfficialDeskServiceImpl implements OfficialDeskService {
         return new ArrayList<>(typedQuery.getResultList());
     }
 
+    @Override
+    public List<DeskItem> getTenActiveDeskItemsFor(Date date) {
+        TypedQuery<DeskItem> typedQuery = em.createNamedQuery(DeskItem.GET_ACTIVE_TO_DATE, DeskItem.class);
+        typedQuery.setParameter(DeskItem.DATE_PARAM, date);
+        typedQuery.setMaxResults(10);
+        return new ArrayList<>(typedQuery.getResultList());
+    }
 }

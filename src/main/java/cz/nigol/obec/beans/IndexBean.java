@@ -38,7 +38,7 @@ public class IndexBean {
     public void init() {
         newsList = newsService.getFeatured();
         announcements = announcementService.getLastFive();
-        deskItems = officialDeskService.getActiveDeskItemsFor(new Date());
+        deskItems = officialDeskService.getTenActiveDeskItemsFor(new Date());
         events = eventsService.getValidToDate(new Date());
     }
 
