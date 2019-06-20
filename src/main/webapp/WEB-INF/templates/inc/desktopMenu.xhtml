@@ -12,6 +12,17 @@
             <p:menuitem value="Úvod" 
                     url="/"
                     icon="fa fa-home"/>
+            <p:submenu label="Potřebuji"
+                    icon="fa fa-puzzle-piece">
+                <p:column>
+                    <h4>
+                        <i class="fa fa-puzzle-piece"></i>
+                    </h4>
+                </p:column>
+                <p:column>
+                    <ui:include src="submenus/obecniUradPotrebuji.xhtml"/>
+                </p:column>
+            </p:submenu>
             <p:submenu label="OBEC">
                 <p:column>
                     <h4>
