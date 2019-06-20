@@ -10,20 +10,8 @@
 
         <ui:define name="content">
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-                <h1>Obec Tršice</h1>
-
-                <p style="text-align: center; font-size: 150%; font-family: serif; font-style: italic; font-weight: normal;">
-                    Obec Tršice se nachází v jihovýchodní části okresu Olomouc. K samotným Tršicím přísluší další místní části: Hostkovice, Lipňany, Přestavlky, Vacanovice a Zákřov.
-                </p>
-                <p style="text-align: center; font-weight: bold;">
-                    První věrohodná písemná zpráva o tehdejší vesnici pochází z druhé poloviny 13. století. V roce 1526 byly Tršice povýšeny na městečko.
-                </p>
-                <h:graphicImage
-                        library="image"
-                        name="pecet.gif"
-                        style="display: block; margin-left: auto; margin-right: auto"
-                        alt="Tršice"/>
-
+                <h2>Aktuality</h2>
+                
                 <p:carousel numVisible="1"
                         value="#{indexBean.newsList}"
                         var="news"
@@ -120,41 +108,6 @@
                                 </tr>
                             </ui:repeat>
                         </table>
-                    </h:panelGroup>
-                </p:panelGrid>
-
-
-
-                <p:panelGrid layout="grid"
-                        columns="2"
-                        styleClass="ui-noborder">
-                    <h:panelGroup layout="block"
-                            style="opacity: 0; animation-name: bottomFadeIn; animation-duration: 2s; animation-fill-mode: forwards">
-                        <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center">
-                            Historie
-                        </h3>
-                        <p>
-                            Nejstarší dochovaná písemná zpráva o existenci Tršic je z roku 1282.
-                        </p>
-                        <p>
-                            O feudálech, kteří měli v Tršicích majetek, jsme informování ze zápisů v zemských deskách od poloviny 14.století. Na základě žádosti tehdejšího majitele panství Jiřího Žabky z Limberka povýšil král Ludvík Jagellonský ves Tršice na městečko.
-                        </p>
-                        <p>
-                            Na základě královského povýšení získala obec právo šenkovat pivo, víno i pálenku, stavět pivovary, konat každé pondělí trh a v týdnu po sv. Kunhutě trh výroční, pečetit černým voskem. Ve znaku městečka byl štít blankytné barvy rozdělený v půli vodorovně dvěma břevny, v horní polovině se žlutým vyobrazením polovice orla, v dolní s vyobrazením žabky s hlavou obrácenou vlevo.
-                        </p>
-                    </h:panelGroup>
-
-                    <h:panelGroup layout="block"
-                            style="opacity: 0; animation-name: topFadeIn; animation-duration: 2s; animation-fill-mode: forwards">
-                        <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center">
-                            Současnost 
-                        </h3>
-                        <p>
-                            Obec Tršice je moderní obcí s dobrou občanskou vybaveností. V obci se nachází základní i mateřská škola, dětský lékař, praktický lékař pro dospělé a zubní ordinace. Je vybudován obecní vodovod, kanalizace, obec je plynofikována. V místních částech je vybudován obecní vodovod, jsou plynofikovány a využívají občanskou vybavenost samotných Tršic. Uvažuje se o vybudování kanalizace.
-                        </p>
-                        <p>
-                            Velice výhodná je poloha obce mezi dvěma regionálními centry – Olomoucí a Přerovem. Krajinný ráz mírné pahorkatiny přímo vybízí k relaxaci.
-                        </p>
                     </h:panelGroup>
                 </p:panelGrid>
 
