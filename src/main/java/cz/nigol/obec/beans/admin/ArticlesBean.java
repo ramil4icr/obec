@@ -60,7 +60,7 @@ public class ArticlesBean implements Serializable {
         articleService.deleteArticle(article);
         article = null;
         body = null;
-        init();
+        onLoad();
     }
 
     public void save() {
@@ -80,7 +80,7 @@ public class ArticlesBean implements Serializable {
     public void cancelEdit() {
         article = null;
         body = null;
-        init();
+        onLoad();
     }
 
     /**
