@@ -12,22 +12,25 @@
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
                 <h2>Aktuality</h2>
                 
-                <p:carousel numVisible="1"
+                <p:dataGrid var="news"
                         value="#{indexBean.newsList}"
-                        var="news"
-                        effect="easeInStrong"
-                        autoPlayInterval="5000"
-                        circular="true"
-                        headerText="Aktuality"
-                        responsive="true"
-                        pageLinks="6">
-                    <h:link outcome="/obec/aktuality/detail.xhtml" style="text-decoration: none">
-                        <f:param name="id" value="#{news.id}"/>
-                        <p style="font-size: 120%; font-style: italic; color: #888; padding-left: 1em">
-                            #{news.label}
-                        </p>
-                    </h:link>
-                </p:carousel>
+                        layout="grid"
+                        columns="4"
+                        rows="4">
+                    <h:panelGroup layout="block"
+                            styleClass="newsBox">
+                        <h4>
+                            <i class="fa fa-bell-o"></i>
+                        </h4>
+                        <h:link outcome="/obec/aktuality/detail.xhtml" style="text-decoration: none">
+                            <f:param name="id" value="#{news.id}"/>
+                            <p style="font-size: 120%; font-style: italic; color: #888; padding-left: 1em">
+                                #{news.label}
+                            </p>
+                        </h:link>
+                    </h:panelGroup>
+                </p:dataGrid>
+
                 <h:panelGroup layout="block"
                         styleClass="moreInfoLink"
                         style="text-align: right">
@@ -35,6 +38,48 @@
                             value="VŠECHNY AKTUALITY >">
                     </h:link>
                 </h:panelGroup>
+
+                <h:panelGroup>
+                    <h3 style="margin-bottom: 0px; text-align: center">Potřebuji</h3>
+                    <p:panelGrid layout="grid"
+                            columns="3"
+                            style="margin-top: 40px"
+                            styleClass="ui-noborder">
+                        <h:link outcome="/obecni-urad/vyridit.xhtml"
+                                style="text-decoration: none">
+                            <h:panelGroup layout="block"
+                                    styleClass="grayTableBlock grayHoverBorder">
+                                <h4>
+                                    <i class="fa fa-id-card-o"></i>
+                                </h4>
+                                <h5 style="margin-bottom: 5px">Vyřídit</h5>
+                            </h:panelGroup>
+                        </h:link>
+
+                        <h:link outcome="/obecni-urad/zaplatit.xhtml"
+                                style="text-decoration: none">
+                            <h:panelGroup layout="block"
+                                    styleClass="grayTableBlock grayHoverBorder">
+                                <h4>
+                                    <i class="fa fa-credit-card"></i>
+                                </h4>
+                                <h5 style="margin-bottom: 5px">Zaplatit</h5>
+                            </h:panelGroup>
+                        </h:link>
+
+                        <h:link outcome="/obecni-urad/nahlasit.xhtml"
+                                style="text-decoration: none">
+                            <h:panelGroup layout="block"
+                                    styleClass="grayTableBlock grayHoverBorder">
+                                <h4>
+                                    <i class="fa fa-comment-o"></i>
+                                </h4>
+                                <h5 style="margin-bottom: 5px">Nahlásit</h5>
+                            </h:panelGroup>
+                        </h:link>
+                    </p:panelGrid>
+                </h:panelGroup>
+
 
                 <h:panelGroup layout="block">
                     <ui:include src="/WEB-INF/includes/article.xhtml">
@@ -48,7 +93,7 @@
                         styleClass="ui-noborder tableBlock">
                     <h:panelGroup layout="block">
                         <h4>
-                            <i class="fa fa-volume-down"></i>
+                            <i class="fa fa-bullhorn"></i>
                         </h4>
                         <h5>Hlášení rozhlasu</h5>
                         <p:dataTable id="archive"
@@ -113,14 +158,6 @@
 
                 <p:column/>
 
-                <h:panelGroup layout="block">
-                    <h:graphicImage
-                            library="image"
-                            name="index1.jpeg"
-                            style="max-width: 100%; height: auto"
-                            alt="Tršice"/>
-                </h:panelGroup>
-
                 <h:panelGroup layout="block"
                         style="background: linear-gradient(to bottom, #f3f3f3, #dde3e8); margin-left: -10px; margin-right: -10px; padding: 10px">
                     <h4>
@@ -155,47 +192,6 @@
                 </h:panelGroup>
 
                 <p:column/>
-
-                <h:panelGroup>
-                    <h3 style="margin-bottom: 0px; text-align: center">Potřebuji</h3>
-                    <p:panelGrid layout="grid"
-                            columns="3"
-                            style="margin-top: 40px"
-                            styleClass="ui-noborder">
-                        <h:link outcome="/obecni-urad/vyridit.xhtml"
-                                style="text-decoration: none">
-                            <h:panelGroup layout="block"
-                                    styleClass="grayTableBlock grayHoverBorder">
-                                <h4>
-                                    <i class="fa fa-id-card-o"></i>
-                                </h4>
-                                <h5 style="margin-bottom: 5px">Vyřídit</h5>
-                            </h:panelGroup>
-                        </h:link>
-
-                        <h:link outcome="/obecni-urad/zaplatit.xhtml"
-                                style="text-decoration: none">
-                            <h:panelGroup layout="block"
-                                    styleClass="grayTableBlock grayHoverBorder">
-                                <h4>
-                                    <i class="fa fa-credit-card"></i>
-                                </h4>
-                                <h5 style="margin-bottom: 5px">Zaplatit</h5>
-                            </h:panelGroup>
-                        </h:link>
-
-                        <h:link outcome="/obecni-urad/nahlasit.xhtml"
-                                style="text-decoration: none">
-                            <h:panelGroup layout="block"
-                                    styleClass="grayTableBlock grayHoverBorder">
-                                <h4>
-                                    <i class="fa fa-comment-o"></i>
-                                </h4>
-                                <h5 style="margin-bottom: 5px">Nahlásit</h5>
-                            </h:panelGroup>
-                        </h:link>
-                    </p:panelGrid>
-                </h:panelGroup>
 
                 <h:panelGroup layout="block"
                         styleClass="mapResponsive">

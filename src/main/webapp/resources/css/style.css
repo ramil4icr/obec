@@ -239,6 +239,15 @@ button.ui-button.ui-state-default {
     justify-content: center;
 }
 
+.newsBox {
+    background: linear-gradient(to bottom, #f3f3f3, #dde3e8);
+    border-radius: 3px;
+    padding: 20px;
+    width: 190px;
+    height: 160px;
+    overflow: hidden;
+}
+
 .grayTableBlock {
     background-color: #eee;
     border-radius: 3px;
@@ -515,6 +524,7 @@ button.ui-button.ui-state-default {
 
     .menuButtonContainer {
         display: block;
+        background: white;
     }
 
     .fullWidthPicture {
