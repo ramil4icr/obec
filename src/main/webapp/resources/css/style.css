@@ -202,12 +202,6 @@ button.ui-button.ui-state-default {
     margin-top: -6px !important;
 }
 
-.tableBlock {
-    border-radius: 3px;
-    padding: 5px;
-    box-shadow: 3px 3px 5px #888;
-}
-
 .moreInfoLink a {
     color: rgb(0, 154, 206);
     font-weight: bold;
