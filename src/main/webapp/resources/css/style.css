@@ -59,7 +59,6 @@ label {
 
 header {
     flex-shrink: 0;
-    margin-top: -5px;
 }
 
 a {
@@ -237,7 +236,7 @@ button.ui-button.ui-state-default {
     background: linear-gradient(to bottom, #f3f3f3, #dde3e8);
     border-radius: 3px;
     padding: 20px;
-    width: 190px;
+    width: 185px;
     height: 160px;
     overflow: hidden;
 }
@@ -519,6 +518,11 @@ button.ui-button.ui-state-default {
     .menuButtonContainer {
         display: block;
         background: white;
+        height: 36px;
+        background-image: url("#{resource['image/menu.png']}");
+        background-size: 200px 36px;
+        background-position: right center;
+        background-repeat: no-repeat;
     }
 
     .fullWidthPicture {
