@@ -29,10 +29,12 @@ public class IndexBean {
     private OfficialDeskService officialDeskService;
     @Inject
     private EventsService eventsService;
+    private static final int NUMBER_OF_PHOTOS = 2;
     private List<News> newsList;
     private List<Announcement> announcements;
     private List<DeskItem> deskItems;
     private List<Event> events;
+    private String nameOfPhoto;
 
     @PostConstruct
     public void init() {
@@ -40,6 +42,13 @@ public class IndexBean {
         announcements = announcementService.getLastFive();
         deskItems = officialDeskService.getTenActiveDeskItemsFor(new Date());
         events = eventsService.getValidToDate(new Date());
+        nameOfPhoto = preparePhoto(NUMBER_OF_PHOTOS);
+    }
+
+    private String preparePhoto(int numOfPhotos) {
+        Date date = new Date();
+        long suffix = date.getTime() % numOfPhotos;
+        return "index" + suffix + ".jpeg";
     }
 
     /**
@@ -96,6 +105,20 @@ public class IndexBean {
      */
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    /**
+     * @return the nameOfPhoto
+     */
+    public String getNameOfPhoto() {
+        return nameOfPhoto;
+    }
+
+    /**
+     * @param nameOfPhoto the nameOfPhoto to set
+     */
+    public void setNameOfPhoto(String nameOfPhoto) {
+        this.nameOfPhoto = nameOfPhoto;
     }
 
 }
