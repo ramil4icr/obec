@@ -10,36 +10,27 @@
 
         <ui:define name="content">
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-                <h1>Obec Tršice</h1>
-
-                <p style="text-align: center; font-size: 150%; font-family: serif; font-style: italic; font-weight: normal;">
-                    Obec Tršice se nachází v jihovýchodní části okresu Olomouc. K samotným Tršicím přísluší další místní části: Hostkovice, Lipňany, Přestavlky, Vacanovice a Zákřov.
-                </p>
-                <p style="text-align: center; font-weight: bold;">
-                    První věrohodná písemná zpráva o tehdejší vesnici pochází z druhé poloviny 13. století. V roce 1526 byly Tršice povýšeny na městečko.
-                </p>
-                <h:graphicImage
-                        library="image"
-                        name="pecet.gif"
-                        style="display: block; margin-left: auto; margin-right: auto"
-                        alt="Tršice"/>
-
-                <p:carousel numVisible="1"
+                <h2>Aktuality</h2>
+                
+                <p:dataGrid var="news"
                         value="#{indexBean.newsList}"
-                        var="news"
-                        effect="easeInStrong"
-                        autoPlayInterval="5000"
-                        circular="true"
-                        headerText="Aktuality"
-                        responsive="true"
-                        pageLinks="6">
-                    <h:link outcome="/obec/aktuality/detail.xhtml" style="text-decoration: none">
-                        <f:param name="id" value="#{news.id}"/>
-                        <p style="font-size: 120%; font-style: italic; color: #888; padding-left: 1em">
-                            #{news.label}
-                        </p>
-                    </h:link>
-                </p:carousel>
+                        layout="grid"
+                        columns="4"
+                        rows="4">
+                    <h:panelGroup layout="block"
+                            styleClass="newsBox">
+                        <h4>
+                            <i class="fa fa-bell-o"></i>
+                        </h4>
+                        <h:link outcome="/obec/aktuality/detail.xhtml" style="text-decoration: none">
+                            <f:param name="id" value="#{news.id}"/>
+                            <p style="font-size: 120%; font-style: italic; color: #888; padding-left: 1em">
+                                #{news.label}
+                            </p>
+                        </h:link>
+                    </h:panelGroup>
+                </p:dataGrid>
+
                 <h:panelGroup layout="block"
                         styleClass="moreInfoLink"
                         style="text-align: right">
@@ -53,155 +44,6 @@
                         <ui:param name="articleId" value="/index.jsf"/>
                     </ui:include>
                 </h:panelGroup>
-
-                <p:panelGrid layout="grid"
-                        columns="2"
-                        style="margin-top: 40px"
-                        styleClass="ui-noborder tableBlock">
-                    <h:panelGroup layout="block">
-                        <h4>
-                            <i class="fa fa-volume-down"></i>
-                        </h4>
-                        <h5>Hlášení rozhlasu</h5>
-                        <p:dataTable id="archive"
-                                value="#{indexBean.announcements}"
-                                rows="5"
-                                emptyMessage="Nenalezen žádný výsledek."
-                                var="announcement">
-                            <p:column headerText="Hlášení">
-                                <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
-                                    <f:param name="id" value="#{announcement.id}"/>
-                                    Hlášení obecního rozhlasu ze dne 
-                                    <h:outputText value="#{announcement.createdAt}">
-                                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-                                    </h:outputText>
-                                </h:link>
-                            </p:column>
-                        </p:dataTable>
-                        <br />
-                        <h:panelGroup layout="block"
-                                styleClass="moreInfoLink"
-                                style="text-align: right">
-                            <h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml"
-                                    value="VÍCE >">
-                            </h:link>
-                        </h:panelGroup>
-                    </h:panelGroup>
-
-                    <h:panelGroup layout="block">
-                        <h4>
-                            <i class="fa fa-calendar"></i>
-                        </h4>
-                        <h5>Nejbližší akce</h5>
-                        <table class="events">
-                            <ui:repeat value="#{indexBean.events}" var="event">
-                                <tr>
-                                    <td>
-                                        <h:panelGroup layout="block" styleClass="date">
-                                            <h:outputText value="#{event.startDate}" styleClass="day">
-                                                <f:convertDateTime type="date" pattern="dd"/>
-                                            </h:outputText>
-                                            <h:outputText value="#{event.startDate}" styleClass="month">
-                                                <f:convertDateTime locale="cs_CZ" type="date" pattern="LLL"/>
-                                            </h:outputText>
-                                            <h:outputText value="#{event.startDate}" styleClass="year">
-                                                <f:convertDateTime type="date" pattern="yyyy"/>
-                                            </h:outputText>
-                                        </h:panelGroup>
-                                    </td>
-                                    <td style="vertical-align: bottom">
-                                        <h:outputText value="#{event.description}"
-                                                rendered="#{empty event.link}"/>
-                                        <h:outputLink value="#{event.link}"
-                                                rendered="#{!empty event.link}">
-                                            #{event.description}
-                                        </h:outputLink>
-                                    </td>
-                                </tr>
-                            </ui:repeat>
-                        </table>
-                    </h:panelGroup>
-                </p:panelGrid>
-
-
-
-                <p:panelGrid layout="grid"
-                        columns="2"
-                        styleClass="ui-noborder">
-                    <h:panelGroup layout="block"
-                            style="opacity: 0; animation-name: bottomFadeIn; animation-duration: 2s; animation-fill-mode: forwards">
-                        <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center">
-                            Historie
-                        </h3>
-                        <p>
-                            Nejstarší dochovaná písemná zpráva o existenci Tršic je z roku 1282.
-                        </p>
-                        <p>
-                            O feudálech, kteří měli v Tršicích majetek, jsme informování ze zápisů v zemských deskách od poloviny 14.století. Na základě žádosti tehdejšího majitele panství Jiřího Žabky z Limberka povýšil král Ludvík Jagellonský ves Tršice na městečko.
-                        </p>
-                        <p>
-                            Na základě královského povýšení získala obec právo šenkovat pivo, víno i pálenku, stavět pivovary, konat každé pondělí trh a v týdnu po sv. Kunhutě trh výroční, pečetit černým voskem. Ve znaku městečka byl štít blankytné barvy rozdělený v půli vodorovně dvěma břevny, v horní polovině se žlutým vyobrazením polovice orla, v dolní s vyobrazením žabky s hlavou obrácenou vlevo.
-                        </p>
-                    </h:panelGroup>
-
-                    <h:panelGroup layout="block"
-                            style="opacity: 0; animation-name: topFadeIn; animation-duration: 2s; animation-fill-mode: forwards">
-                        <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center">
-                            Současnost 
-                        </h3>
-                        <p>
-                            Obec Tršice je moderní obcí s dobrou občanskou vybaveností. V obci se nachází základní i mateřská škola, dětský lékař, praktický lékař pro dospělé a zubní ordinace. Je vybudován obecní vodovod, kanalizace, obec je plynofikována. V místních částech je vybudován obecní vodovod, jsou plynofikovány a využívají občanskou vybavenost samotných Tršic. Uvažuje se o vybudování kanalizace.
-                        </p>
-                        <p>
-                            Velice výhodná je poloha obce mezi dvěma regionálními centry – Olomoucí a Přerovem. Krajinný ráz mírné pahorkatiny přímo vybízí k relaxaci.
-                        </p>
-                    </h:panelGroup>
-                </p:panelGrid>
-
-                <p:column/>
-
-                <h:panelGroup layout="block">
-                    <h:graphicImage
-                            library="image"
-                            name="index1.jpeg"
-                            style="max-width: 100%; height: auto"
-                            alt="Tršice"/>
-                </h:panelGroup>
-
-                <h:panelGroup layout="block"
-                        style="background: linear-gradient(to bottom, #f3f3f3, #dde3e8); margin-left: -10px; margin-right: -10px; padding: 10px">
-                    <h4>
-                        <i class="fa fa-institution"></i>
-                    </h4>
-                    <h5>Úřední deska</h5>
-                    <p:dataTable id="officialDesk" 
-                            value="#{indexBean.deskItems}" 
-                            emptyMessage="Nenalezen žádný výsledek."
-                            var="deskItem">
-                        <p:column headerText="Dokument"
-                                priority="1"
-                                style="width: 70%">
-                            <h:outputText value="#{deskItem.body}" escape="false"/>
-                        </p:column>
-                        <p:column headerText="Vyvěšeno" 
-                                priority="2"
-                                style="width: 30%">
-                            <h:outputText value="#{deskItem.activeFrom}">
-                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-                            </h:outputText>
-                        </p:column>
-                    </p:dataTable>
-                    <br />
-                    <h:panelGroup layout="block"
-                            styleClass="moreInfoLink"
-                            style="text-align: right">
-                        <h:link outcome="/obecni-urad/uredni-deska/prehled.xhtml"
-                                value="VÍCE >">
-                        </h:link>
-                    </h:panelGroup>
-                </h:panelGroup>
-
-                <p:column/>
 
                 <h:panelGroup>
                     <h3 style="margin-bottom: 0px; text-align: center">Potřebuji</h3>
@@ -244,42 +86,160 @@
                     </p:panelGrid>
                 </h:panelGroup>
 
-                <h:panelGroup layout="block"
-                        styleClass="mapResponsive">
-                    <iframe width="800"
-                            height="350"
-                            frameborder="0"
-                            scrolling="no"
-                            marginheight="0"
-                            marginwidth="0"
-                            style="pointer-events: none"
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=17.35273361206055%2C49.51161227196599%2C17.49607086181641%2C49.567421204756734&amp;layer=mapnik">
-                    </iframe>
-                    <br/>
-                    <small>
-                        <a href="https://www.openstreetmap.org/#map=14/49.5395/17.4244">Zobrazit větší mapu</a>
-                    </small>
-                </h:panelGroup>
-            </p:panelGrid>
+                <p:panelGrid layout="grid"
+                        columns="2"
+                        columnClasses="ui-grid-col-8,ui-grid-col-4"
+                        style="margin-top: 40px"
+                        styleClass="ui-noborder">
 
-            <div class="zpravodajRss">
-                <div class="logo">
-                    <h6>Tršický&#160;</h6>
-                    <h:graphicImage library="image" name="erb.png" alt="Erb obce Tršice"/>
-                    <h6>&#160;Zpravodaj</h6>
-                </div>
-                <p:separator/>
-                <p:feedReader value="http://www.trsice.cz/zpravodaj/index.jsf?rss=true" 
-                        var="feed"
-                        size="5">
-                    <h:outputLink value="#{feed.link}">
-                        <h:outputText value="#{feed.title}" 
-                                style="font-weight: bold;display:block"/>
-                    </h:outputLink>
-                    <f:facet name="error">
-                        Nelze načíst články.
-                    </f:facet>
-                </p:feedReader>
-            </div>
-        </ui:define>
-    </ui:composition>
+                        <h:graphicImage
+                                library="image"
+                                name="#{indexBean.nameOfPhoto}"
+                                style="max-width: 100%; height: auto"
+                                alt="Foto obce"/>
+
+                            <h:panelGroup layout="block">
+                                <h4>
+                                    <i class="fa fa-calendar"></i>
+                                </h4>
+                                <h5>Nejbližší akce</h5>
+                                <table class="events">
+                                    <ui:repeat value="#{indexBean.events}" var="event">
+                                        <tr>
+                                            <td>
+                                                <h:panelGroup layout="block" styleClass="date">
+                                                    <h:outputText value="#{event.startDate}" styleClass="day">
+                                                        <f:convertDateTime type="date" pattern="dd"/>
+                                                    </h:outputText>
+                                                    <h:outputText value="#{event.startDate}" styleClass="month">
+                                                        <f:convertDateTime locale="cs_CZ" type="date" pattern="LLL"/>
+                                                    </h:outputText>
+                                                    <h:outputText value="#{event.startDate}" styleClass="year">
+                                                        <f:convertDateTime type="date" pattern="yyyy"/>
+                                                    </h:outputText>
+                                                </h:panelGroup>
+                                            </td>
+                                            <td style="vertical-align: bottom">
+                                                <h:outputText value="#{event.description}"
+                                                        rendered="#{empty event.link}"/>
+                                                <h:outputLink value="#{event.link}"
+                                                        rendered="#{!empty event.link}">
+                                                    #{event.description}
+                                                </h:outputLink>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                </table>
+                            </h:panelGroup>
+                        </p:panelGrid>
+
+                        <p:panelGrid layout="grid"
+                                columns="2"
+                                style="margin-top: 40px"
+                                styleClass="ui-noborder">
+                            <h:panelGroup layout="block">
+                                <h4>
+                                    <i class="fa fa-bullhorn"></i>
+                                </h4>
+                                <h5>Hlášení rozhlasu</h5>
+                                <p:dataTable id="archive"
+                                        value="#{indexBean.announcements}"
+                                        rows="5"
+                                        emptyMessage="Nenalezen žádný výsledek."
+                                        var="announcement">
+                                    <p:column headerText="Hlášení">
+                                        <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
+                                            <f:param name="id" value="#{announcement.id}"/>
+                                            Hlášení obecního rozhlasu ze dne 
+                                            <h:outputText value="#{announcement.createdAt}">
+                                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                            </h:outputText>
+                                        </h:link>
+                                    </p:column>
+                                </p:dataTable>
+                                <br />
+                                <h:panelGroup layout="block"
+                                        styleClass="moreInfoLink"
+                                        style="text-align: right">
+                                    <h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml"
+                                            value="VÍCE >">
+                                    </h:link>
+                                </h:panelGroup>
+                            </h:panelGroup>
+
+                            <h:panelGroup layout="block">
+                                <h4>
+                                    <i class="fa fa-institution"></i>
+                                </h4>
+                                <h5>Úřední deska</h5>
+                                <p:dataTable id="officialDesk" 
+                                        value="#{indexBean.deskItems}" 
+                                        emptyMessage="Nenalezen žádný výsledek."
+                                        var="deskItem">
+                                    <p:column headerText="Dokument"
+                                            priority="1"
+                                            style="width: 70%">
+                                        <h:outputText value="#{deskItem.body}" escape="false"/>
+                                    </p:column>
+                                    <p:column headerText="Vyvěšeno" 
+                                            priority="2"
+                                            style="width: 30%">
+                                        <h:outputText value="#{deskItem.activeFrom}">
+                                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                        </h:outputText>
+                                    </p:column>
+                                </p:dataTable>
+                                <br />
+                                <h:panelGroup layout="block"
+                                        styleClass="moreInfoLink"
+                                        style="text-align: right">
+                                    <h:link outcome="/obecni-urad/uredni-deska/prehled.xhtml"
+                                            value="VÍCE >">
+                                    </h:link>
+                                </h:panelGroup>
+                            </h:panelGroup>
+                        </p:panelGrid>
+
+                        <p:column/>
+
+                        <p:column/>
+
+                        <h:panelGroup layout="block"
+                                styleClass="mapResponsive">
+                            <iframe width="800"
+                                    height="350"
+                                    frameborder="0"
+                                    scrolling="no"
+                                    marginheight="0"
+                                    marginwidth="0"
+                                    style="pointer-events: none"
+                                    src="https://www.openstreetmap.org/export/embed.html?bbox=17.35273361206055%2C49.51161227196599%2C17.49607086181641%2C49.567421204756734&amp;layer=mapnik">
+                            </iframe>
+                            <br/>
+                            <small>
+                                <a href="https://www.openstreetmap.org/#map=14/49.5395/17.4244">Zobrazit větší mapu</a>
+                            </small>
+                        </h:panelGroup>
+                    </p:panelGrid>
+
+                    <div class="zpravodajRss">
+                        <div class="logo">
+                            <h6>Tršický&#160;</h6>
+                            <h:graphicImage library="image" name="erb.png" alt="Erb obce Tršice"/>
+                            <h6>&#160;Zpravodaj</h6>
+                        </div>
+                        <p:separator/>
+                        <p:feedReader value="http://www.trsice.cz/zpravodaj/index.jsf?rss=true" 
+                                var="feed"
+                                size="5">
+                            <h:outputLink value="#{feed.link}">
+                                <h:outputText value="#{feed.title}" 
+                                        style="font-weight: bold;display:block"/>
+                            </h:outputLink>
+                            <f:facet name="error">
+                                Nelze načíst články.
+                            </f:facet>
+                        </p:feedReader>
+                    </div>
+                </ui:define>
+            </ui:composition>

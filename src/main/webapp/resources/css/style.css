@@ -18,11 +18,6 @@ h1 {
     font-weight: 800;
 }
 
-h2 {
-    text-align: center;
-    border-bottom: 1px solid rgb(230,238,236);
-}
-
 h3 {
     font-size: 160%;
 }
@@ -206,12 +201,6 @@ button.ui-button.ui-state-default {
     margin-top: -6px !important;
 }
 
-.tableBlock {
-    border-radius: 3px;
-    padding: 5px;
-    box-shadow: 3px 3px 5px #888;
-}
-
 .moreInfoLink a {
     color: rgb(0, 154, 206);
     font-weight: bold;
@@ -243,6 +232,15 @@ button.ui-button.ui-state-default {
     justify-content: center;
 }
 
+.newsBox {
+    background: linear-gradient(to bottom, #f3f3f3, #dde3e8);
+    border-radius: 3px;
+    padding: 20px;
+    width: 185px;
+    height: 160px;
+    overflow: hidden;
+}
+
 .grayTableBlock {
     background-color: #eee;
     border-radius: 3px;
@@ -258,17 +256,17 @@ button.ui-button.ui-state-default {
 }
 
 .mainMenu {
-    background-color: rgb(230, 238, 236) !important;
-    box-shadow: 3px 3px 5px #888 !important;
     border: none !important;
-    margin-top: -5px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 15px;
     border-radius: 0px !important;
     padding-left: 220px !important;
     background-image: url("#{resource['image/menu.png']}");
     background-size: 200px 36px;
     background-position: left center;
     background-repeat: no-repeat;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 
 .ui-menu .ui-widget-header {
@@ -498,32 +496,8 @@ button.ui-button.ui-state-default {
     }
 
     100% {
-        font-size: 150%;
+        font-size: 350%;
         text-shadow: 3px 3px 5px #888;
-    }
-}
-
-@keyframes topFadeIn {
-    0% {
-        margin-top: -50px;
-        opacity: 0;
-    }
-
-    100% {
-        margin-top: 0px;
-        opacity: 1;
-    }
-}
-
-@keyframes bottomFadeIn {
-    0% {
-        margin-top: 70px;
-        opacity: 0;
-    }
-
-    100% {
-        margin-top: 0px;
-        opacity: 1;
     }
 }
 
@@ -543,6 +517,12 @@ button.ui-button.ui-state-default {
 
     .menuButtonContainer {
         display: block;
+        background: white;
+        height: 36px;
+        background-image: url("#{resource['image/menu.png']}");
+        background-size: 200px 36px;
+        background-position: right center;
+        background-repeat: no-repeat;
     }
 
     .fullWidthPicture {

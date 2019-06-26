@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-		xmlns:p="http://primefaces.org/ui">
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
 
-  <header>
-    <h:form>
-      <h:link outcome="/prihlaseni.xhtml"
-	      value="PŘIHLÁSIT"
-	      rendered="#{empty sessionBean.user}"
-	      style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 3px; right: 3px; z-index: 10; text-shadow: 2px 2px 5px #000">
-      </h:link>
-      <h:commandLink action="#{sessionBean.logout}"
-		     value="#{sessionBean.user.fullName} (ODHLÁSIT)"
-		     rendered="#{!empty sessionBean.user}"
-		     style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 3px; right: 3px; z-index: 10; text-shadow: 2px 2px 5px #000">
-      </h:commandLink>
-    </h:form>
-    
-    <h:link outcome="/index.xhtml">
-      <h:graphicImage
-	library="image"
-	name="header.jpeg"
-	style="max-width: 100%; height: auto"
-	alt="Logo stránek"/>
-    </h:link>
-  </header>
-</ui:composition>
+        <header>
+            <h:form>
+                <h:link outcome="/prihlaseni.xhtml"
+                        value="PŘIHLÁSIT"
+                        rendered="#{empty sessionBean.user}"
+                        style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 80px; right: 10px; z-index: 10; text-shadow: 2px 2px 5px #000">
+                </h:link>
+                <h:commandLink action="#{sessionBean.logout}"
+                        value="#{sessionBean.user.fullName} (ODHLÁSIT)"
+                        rendered="#{!empty sessionBean.user}"
+                        style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 80px; right: 10px; z-index: 10; text-shadow: 2px 2px 5px #000">
+                </h:commandLink>
+            </h:form>
+
+            <h:graphicImage
+                    library="image"
+                    name="header.jpeg"
+                    style="max-width: 100%; height: auto"
+                    alt="Logo stránek"/>
+        </header>
+    </ui:composition>
