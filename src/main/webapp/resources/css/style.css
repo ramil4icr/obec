@@ -241,9 +241,10 @@ button.ui-button.ui-state-default {
 }
 
 .grayTableBlock {
-    background-color: #eee;
+    background: linear-gradient(to bottom, rgb(255, 244, 176), rgb(255, 233, 0));
+    border: 1px solid rgb(37, 40, 42);
     border-radius: 3px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .grayTableBlock th {
