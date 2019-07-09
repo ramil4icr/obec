@@ -1,158 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/template.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
 
-  <ui:param name="title" value="Úřední deska - Obec Tršice"/>
+        <ui:param name="title" value="Úřední deska - Obec Tršice"/>
 
-  <ui:define name="content">
-    <ui:include src="/WEB-INF/includes/editorSettings.xhtml"/>
-    <ui:include src="/WEB-INF/includes/inputCalendarSettings.xhtml"/>
-    
-    <h2>Úřední deska, administrace</h2>
+        <ui:define name="content">
+            <ui:include src="/WEB-INF/includes/editorSettings.xhtml"/>
+            <ui:include src="/WEB-INF/includes/inputCalendarSettings.xhtml"/>
 
-    <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>
+            <h2>Úřední deska, administrace</h2>
 
-    <h:form>
-        <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
-            <p:commandButton value="Nový záznam"
-                    icon="fa fa-plus-square-o"
-                    action="#{officialDeskBean.newDeskItem}"
-                    disabled="#{!empty officialDeskBean.deskItem}"
-                    update="@form"
-                    resetValues="true"/>
-            <p:commandButton value="Smazat"
-                    icon="fa fa-trash-o"
-                    action="#{officialDeskBean.delete}"
-                    disabled="#{empty officialDeskBean.deskItem}"
-                    onclick="return confirm('Opravdu smazat?')"
-                    update="@form :growl"
-                    resetValues="true"
-                    immediate="true"/>
-        </p:panelGrid>
+            <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>
 
-      <p:dataTable id="officialDesk" 
-                   value="#{officialDeskBean.deskItems}" 
-                   emptyMessage="Nenalezen žádný výsledek."
-                   selectionMode="single"
-                   selection="#{officialDeskBean.deskItem}"
-                   rowKey="#{deskItem.id}"
-		   rows="5"
-		   paginator="true"
-		   paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-		   paginatorPosition="bottom"
-                   var="deskItem">
-        <p:ajax event="rowSelect"
-		update="@form"
-		resetValues="true"/>
-	<p:column selectionMode="single"
-		  style="width:16px;text-align:center"/>
-        <p:column headerText="Dokument"
-		  style="width: 70%"
-		  filterBy="#{deskItem.body}"
-		  filterMatchMode="contains">
-          <h:outputText value="#{deskItem.body}" escape="false"/>
-        </p:column>
-	<p:column headerText="Vyvěšeno" style="width: 15%">
-          <h:outputText value="#{deskItem.activeFrom}">
-	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	  </h:outputText>
-        </p:column>
-	<p:column headerText="Sejmuto" style="width: 15%">
-          <h:outputText value="#{deskItem.activeTo}">
-	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	  </h:outputText>
-        </p:column>
-      </p:dataTable>
+            <h:form>
+                <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                    <p:commandButton value="Nový záznam"
+                            icon="fa fa-plus-square-o"
+                            action="#{officialDeskBean.newDeskItem}"
+                            disabled="#{!empty officialDeskBean.deskItem}"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:commandButton value="Smazat"
+                            icon="fa fa-trash-o"
+                            action="#{officialDeskBean.delete}"
+                            disabled="#{empty officialDeskBean.deskItem}"
+                            onclick="return confirm('Opravdu smazat?')"
+                            update="@form :growl"
+                            resetValues="true"
+                            immediate="true"/>
+                </p:panelGrid>
 
-      <p:panelGrid layout="grid"
-		   columns="1"
-		   rendered="#{!empty officialDeskBean.deskItem}"
-		   styleClass="ui-noborder">
-	<p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-	  <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	    <p:outputLabel value="Vyvěšeno" for="from"/>
-	    <p:calendar id="from"
-			value="#{officialDeskBean.deskItem.activeFrom}"
-			locale="cz"
-			pattern="dd.MM.yyyy"
-			mask="true">
-	      <p:ajax event="dateSelect" update="to"/>
-	    </p:calendar>
-	  </p:panelGrid>
+                <p:dataTable id="officialDesk" 
+                        value="#{officialDeskBean.deskItems}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        selectionMode="single"
+                        selection="#{officialDeskBean.deskItem}"
+                        rowKey="#{deskItem.id}"
+                        rows="5"
+                        paginator="true"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                        paginatorPosition="bottom"
+                        var="deskItem">
+                    <p:ajax event="rowSelect"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:column selectionMode="single"
+                            style="width:16px;text-align:center"/>
+                    <p:column headerText="Dokument"
+                            style="width: 70%"
+                            filterBy="#{deskItem.body}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{deskItem.body}" escape="false"/>
+                    </p:column>
+                    <p:column headerText="Vyvěšeno" style="width: 15%">
+                        <h:outputText value="#{deskItem.activeFrom}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Sejmuto" style="width: 15%">
+                        <h:outputText value="#{deskItem.activeTo}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
 
- 	  <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	    <p:outputLabel value="Sejmuto" for="to"/>
-	    <p:calendar id="to"
-			value="#{officialDeskBean.deskItem.activeTo}"
-			locale="cz"
-			pattern="dd.MM.yyyy"
-			mask="true"
-			mindate="#{officialDeskBean.deskItem.activeFrom}"/>
-	  </p:panelGrid>
-	</p:panelGrid>
+                <p:panelGrid layout="grid"
+                        columns="1"
+                        rendered="#{!empty officialDeskBean.deskItem}"
+                        styleClass="ui-noborder">
+                    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+                        <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                            <p:outputLabel value="Vyvěšeno" for="from"/>
+                            <p:calendar id="from"
+                                    value="#{officialDeskBean.deskItem.activeFrom}"
+                                    locale="cz"
+                                    pattern="dd.MM.yyyy"
+                                    mask="true">
+                                <p:ajax event="dateSelect" update="to"/>
+                            </p:calendar>
+                        </p:panelGrid>
 
-    <p:outputLabel value="Dokument" for="body"/>
-    <p:textEditor id="body"
-            value="#{officialDeskBean.deskItem.body}"
-            height="300">
-        <f:facet name="toolbar">
-            <span class="ql-formats">
-                <select class="ql-font" />
-                <select class="ql-size" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-bold" />
-                <button class="ql-italic" />
-                <button class="ql-underline" />
-                <button class="ql-strike" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-script" value="sub" />
-                <button class="ql-script" value="super" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-blockquote" />
-                <button class="ql-code-block" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-list" value="ordered" />
-                <button class="ql-list" value="bullet" />
-                <button class="ql-indent" value="-1" />
-                <button class="ql-indent" value="+1" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-direction" value="rtl" />
-                <select class="ql-align" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-link" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-clean" />
-            </span>
-        </f:facet>
-    </p:textEditor>
+                        <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                            <p:outputLabel value="Sejmuto" for="to"/>
+                            <p:calendar id="to"
+                                    value="#{officialDeskBean.deskItem.activeTo}"
+                                    locale="cz"
+                                    pattern="dd.MM.yyyy"
+                                    mask="true"
+                                    mindate="#{officialDeskBean.deskItem.activeFrom}"/>
+                        </p:panelGrid>
+                    </p:panelGrid>
 
-          <p:panelGrid layout="grid"
-                  columns="5"
-                  styleClass="ui-noborder">
-              <p:commandButton value="Uložit" 
-                      icon="fa fa-save"
-                      action="#{officialDeskBean.save}"
-                      styleClass="default"
-                      update=":growl @form"/>
-              <p:commandButton value="Zrušit" 
-                      icon="fa fa-close"
-                      action="#{officialDeskBean.cancelEdit}"
-                      immediate="true"
-                      resetValues="true"
-                      update="@form"/>
-          </p:panelGrid>	
-      </p:panelGrid>
-  </h:form>
-  </ui:define>
-</ui:composition>
+                    <p:importEnum type="cz.nigol.obec.enums.OfficialDeskCategory" 
+                            var="Categories" 
+                            allSuffix="ALL_VALUES"/>
+                    <p:outputLabel value="Kategorie" for="section"/>
+                    <p:selectOneMenu id="section" 
+                            value="#{officialDeskBean.deskItem.category}">
+                        <f:selectItems value="#{Categories.ALL_VALUES}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Dokument" for="body"/>
+                    <p:textEditor id="body"
+                            value="#{officialDeskBean.deskItem.body}"
+                            height="300">
+                        <f:facet name="toolbar">
+                            <span class="ql-formats">
+                                <select class="ql-font" />
+                                <select class="ql-size" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-bold" />
+                                <button class="ql-italic" />
+                                <button class="ql-underline" />
+                                <button class="ql-strike" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-script" value="sub" />
+                                <button class="ql-script" value="super" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-blockquote" />
+                                <button class="ql-code-block" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-list" value="ordered" />
+                                <button class="ql-list" value="bullet" />
+                                <button class="ql-indent" value="-1" />
+                                <button class="ql-indent" value="+1" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-direction" value="rtl" />
+                                <select class="ql-align" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-link" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-clean" />
+                            </span>
+                        </f:facet>
+                    </p:textEditor>
+
+                    <p:panelGrid layout="grid"
+                            columns="5"
+                            styleClass="ui-noborder">
+                        <p:commandButton value="Uložit" 
+                                icon="fa fa-save"
+                                action="#{officialDeskBean.save}"
+                                styleClass="default"
+                                update=":growl @form"/>
+                        <p:commandButton value="Zrušit" 
+                                icon="fa fa-close"
+                                action="#{officialDeskBean.cancelEdit}"
+                                immediate="true"
+                                resetValues="true"
+                                update="@form"/>
+                    </p:panelGrid>	
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
