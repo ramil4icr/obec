@@ -11,6 +11,39 @@
         <ui:define name="content">
             <h2>Usnesení zastupitelstva</h2>
 
+            <h:form>
+                <p:dataTable id="officialDesk" 
+                        value="#{resolutionBean.deskItems}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        rows="20"
+                        paginator="true"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                        paginatorPosition="bottom"
+                        var="deskItem">
+                    <p:column headerText="Dokument"
+                            priority="1"
+                            style="width: 70%"
+                            filterBy="#{deskItem.body}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{deskItem.body}" escape="false"/>
+                    </p:column>
+                    <p:column headerText="Vyvěšeno" 
+                            priority="2"
+                            style="width: 15%">
+                        <h:outputText value="#{deskItem.activeFrom}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Sejmuto" 
+                            priority="3"
+                            style="width: 15%">
+                        <h:outputText value="#{deskItem.activeTo}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
             <ui:include src="/WEB-INF/includes/article.xhtml">
                 <ui:param name="articleId" value="/obec/zastupitelstvo/usneseni.jsf"/>
             </ui:include>

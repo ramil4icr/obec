@@ -28,6 +28,8 @@ query="SELECT d FROM DeskItem d ORDER BY d.activeFrom DESC"),
     query="SELECT d FROM DeskItem d WHERE (:date BETWEEN d.activeFrom AND d.activeTo) OR (:date >= d.activeFrom AND d.activeTo IS NULL) ORDER BY d.activeFrom DESC"),
     @NamedQuery(name=DeskItem.GET_VALID_TO_DATE,
     query="SELECT d FROM DeskItem d WHERE :date >= d.activeFrom ORDER BY d.activeFrom DESC"),
+    @NamedQuery(name=DeskItem.GET_BY_CATEGORY,
+    query="SELECT d FROM DeskItem d WHERE d.category = :category ORDER BY d.activeFrom DESC"),
 })
 @Entity
 @Table(name="OB_DESK_ITEM")
@@ -37,8 +39,10 @@ public class DeskItem implements Serializable {
     public static final String GET_ALL = "DeskItem.GET_ALL";
     public static final String GET_ACTIVE_TO_DATE = "DeskItem.GET_ACTIVE_TO_DATE";
     public static final String GET_VALID_TO_DATE = "DeskItem.GET_VALID_TO_DATE";
+    public static final String GET_BY_CATEGORY = "DeskItem.GET_BY_CATEGORY";
 
     public static final String DATE_PARAM = "date";
+    public static final String CATEGORY_PARAM = "category";
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
