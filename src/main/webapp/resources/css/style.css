@@ -236,15 +236,14 @@ button.ui-button.ui-state-default {
     background: linear-gradient(to bottom, #f3f3f3, #dde3e8);
     border-radius: 3px;
     padding: 20px;
-    width: 185px;
     height: 160px;
     overflow: hidden;
 }
 
 .grayTableBlock {
-    background-color: #eee;
+    background: linear-gradient(to right, rgb(224, 234, 252), rgb(207, 222, 243));
     border-radius: 3px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .grayTableBlock th {

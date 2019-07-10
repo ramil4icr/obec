@@ -14,6 +14,7 @@ import javax.inject.Named;
 
 import cz.nigol.obec.entities.DeskItem;
 import cz.nigol.obec.entities.User;
+import cz.nigol.obec.enums.OfficialDeskCategory;
 import cz.nigol.obec.qualifiers.LoggedUser;
 import cz.nigol.obec.services.OfficialDeskService;
 import cz.nigol.obec.services.UserService;
@@ -49,6 +50,7 @@ public class OfficialDeskBean implements Serializable {
         deskItem.setCreatedAt(new Date());
         deskItem.setCreatedBy(user);
         deskItem.setActiveFrom(new Date());
+        deskItem.setCategory(OfficialDeskCategory.OSTATNI);
         deskItems.add(deskItem);
     }
 

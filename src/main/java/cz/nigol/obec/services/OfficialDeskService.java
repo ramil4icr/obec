@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import cz.nigol.obec.entities.DeskItem;
+import cz.nigol.obec.enums.OfficialDeskCategory;
 
 public interface OfficialDeskService {
     DeskItem getDeskItemById(long id);
@@ -13,4 +14,5 @@ public interface OfficialDeskService {
     List<DeskItem> getActiveDeskItemsFor(Date date);
     List<DeskItem> getAllValidDeskItems(Date date);
     List<DeskItem> getTenActiveDeskItemsFor(Date date);
+    List<DeskItem> getDeskItemsByCategory(OfficialDeskCategory category);
 }

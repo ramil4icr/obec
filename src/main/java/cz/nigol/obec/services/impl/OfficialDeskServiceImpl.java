@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import cz.nigol.obec.entities.DeskItem;
+import cz.nigol.obec.enums.OfficialDeskCategory;
 import cz.nigol.obec.services.OfficialDeskService;
 
 @Stateless
@@ -57,6 +58,14 @@ public class OfficialDeskServiceImpl implements OfficialDeskService {
         TypedQuery<DeskItem> typedQuery = em.createNamedQuery(DeskItem.GET_ACTIVE_TO_DATE, DeskItem.class);
         typedQuery.setParameter(DeskItem.DATE_PARAM, date);
         typedQuery.setMaxResults(10);
+        return new ArrayList<>(typedQuery.getResultList());
+    }
+
+    @Override
+    public List<DeskItem> getDeskItemsByCategory(OfficialDeskCategory category) {
+        TypedQuery<DeskItem> typedQuery = em.createNamedQuery(DeskItem.GET_BY_CATEGORY,
+                DeskItem.class);
+        typedQuery.setParameter(DeskItem.CATEGORY_PARAM, category);
         return new ArrayList<>(typedQuery.getResultList());
     }
 }
