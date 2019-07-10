@@ -4,5 +4,6 @@ public enum OfficialDeskCategory {
     OSTATNI,
     ROZPOCET,
     USNESENI,
-    EXTERNI
+    EXTERNI,
+    VYHLASKY
 }
