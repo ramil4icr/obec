@@ -275,6 +275,12 @@ button.ui-button.ui-state-default {
     border-bottom: 1px solid rgb(230, 238, 236) !important;
 }
 
+.articleBody img {
+    max-width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .articleBody li {
     line-height: 1.5em;
     height: auto;
@@ -352,12 +358,6 @@ button.ui-button.ui-state-default {
 
 .articleBody .ql-size-huge {
     font-size: 2.5em;
-}
-
-.articleBody img {
-    max-width: 100%;
-    margin-left: 1em;
-    margin-right: 1em;
 }
 
 .categoryArticle {
