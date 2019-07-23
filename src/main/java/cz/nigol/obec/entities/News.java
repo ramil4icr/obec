@@ -36,7 +36,7 @@ public class News implements Serializable {
     private long id;
 
     @Column(name="LABEL", columnDefinition="VARCHAR(300)")
-        private String label;
+    private String label;
 
     @Column(name="CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
@@ -47,6 +47,13 @@ public class News implements Serializable {
 
     @Column(name="FEATURED")
     private boolean featured;
+
+    public String getTruncatedLabel() {
+        if (label.length() > 78) {
+            return label.substring(0, 78) + "…";
+        }
+        return label;
+    }
 
     /**
      * @return the id
