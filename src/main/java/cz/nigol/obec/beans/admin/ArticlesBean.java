@@ -34,7 +34,7 @@ public class ArticlesBean implements Serializable {
     private Article article;
     private String body;
     private String edit = "Text";
-    private static final String NEW_ID = "článek";
+    public static final String NEW_ID = "článek";
     private String pattern;
 
     @PostConstruct
