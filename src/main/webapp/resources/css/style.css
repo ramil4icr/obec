@@ -286,6 +286,14 @@ button.ui-button.ui-state-default {
     height: auto;
 }
 
+.articleBody .ql-font-serif {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.articleBody .ql-font-monospace {
+    font-family: Monaco, "Courier New", monospace;
+}
+
 .articleBody .ql-video.ql-align-center {
     margin: 0px auto;
     display: block;
