@@ -52,7 +52,8 @@
                         <p:column headerText="Sejmuto" 
                                 priority="3"
                                 style="width: 15%">
-                            <h:outputText value="#{deskItem.activeTo}">
+                            <h:outputText value="#{deskItem.activeTo}"
+                                    rendered="#{!(officialDeskTableBean.activeItem(deskItem) and !empty deskItem.activeTo)}">
                                 <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
                             </h:outputText>
                         </p:column>
