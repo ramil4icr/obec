@@ -275,6 +275,10 @@ button.ui-button.ui-state-default {
     border-bottom: 1px solid rgb(230, 238, 236) !important;
 }
 
+.articleBody {
+    line-height: 1.5;
+}
+
 .articleBody img {
     max-width: 95%;
     margin-right: auto;
