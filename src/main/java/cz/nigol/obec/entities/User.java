@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQueries({
-@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u ORDER BY u.id ASC"),
+@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u ORDER BY u.userId ASC"),
     @NamedQuery(name=User.GET_ACTIVE, query="SELECT u FROM User u WHERE u.active = true"),
     @NamedQuery(name=User.GET_ACTIVE_BY_USER_ID, query="SELECT u FROM User u WHERE u.userId = :userId AND u.active = true"),
     @NamedQuery(name=User.GET_BY_USER_ID, query="SELECT u FROM User u WHERE u.userId = :userId"),
