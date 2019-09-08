@@ -64,7 +64,11 @@ public class NewsBean implements Serializable {
     public void save() {
         Article article = news.getArticle();
         article.setChangedAt(news.getCreatedAt());
-        article.setId(article.getId() == null ? news.getLabel() : article.getId());
+        if (article.getId() == null) {
+            String id = news.getLabel().split(" ",2)[0]; 
+            id = id + "-" + new Date();
+            article.setId(id);
+        }
         article.setChangedBy(user);
         article.setBody(body);
         newsService.save(news);
