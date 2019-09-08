@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.obec.entities.News;
+import cz.nigol.obec.entities.Settings;
+import cz.nigol.obec.qualifiers.CurrentSettings;
 import cz.nigol.obec.services.ArticleService;
 import cz.nigol.obec.services.NewsService;
 
@@ -15,6 +17,9 @@ public class NewsDetailBean {
     private NewsService newsService;
     @Inject
     private ArticleService articleService;
+    @Inject
+    @CurrentSettings
+    private Settings settings;
     private News news;
     private long id;
 
@@ -23,6 +28,11 @@ public class NewsDetailBean {
         if (news != null) {
             news.setArticle(articleService.loadArticleBody(news.getArticle()));
         }
+        
+    }
+
+    public String getUrl() {
+        return settings.getBaseUrl() + "/obec/aktuality/detail.jsf?id=" + news.getId();
     }
 
     /**

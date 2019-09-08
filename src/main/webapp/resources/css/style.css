@@ -502,6 +502,29 @@ button.ui-button.ui-state-default {
     margin-right: 5px;
 }
 
+.icon-bar {
+    margin: 2em;
+}
+
+.icon-bar a {
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 20px;
+    width: 30px;
+}
+
+.icon-bar a:hover {
+    background-color: #000;
+}
+
+.facebook {
+    background: #3B5998;
+    color: white;
+}
+
 @keyframes riseIcon {
     0% {
         text-shadow: none;

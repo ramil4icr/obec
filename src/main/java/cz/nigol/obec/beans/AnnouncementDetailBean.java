@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.obec.entities.Announcement;
+import cz.nigol.obec.entities.Settings;
+import cz.nigol.obec.qualifiers.CurrentSettings;
 import cz.nigol.obec.services.AnnouncementService;
 
 @Named
@@ -12,11 +14,18 @@ import cz.nigol.obec.services.AnnouncementService;
 public class AnnouncementDetailBean {
     @Inject
     private AnnouncementService announcementService;
+    @Inject
+    @CurrentSettings
+    private Settings settings;
     private long id;
     private Announcement announcement;
 
     public void onLoad() {
         announcement = announcementService.getById(id);
+    }
+
+    public String getUrl() {
+        return settings.getBaseUrl() + "/obecni-urad/rozhlas/detail.jsf?id=" + announcement.getId();
     }
 
     /**

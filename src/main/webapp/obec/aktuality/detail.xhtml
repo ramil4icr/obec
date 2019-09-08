@@ -21,9 +21,16 @@
     <div class="articleBody">
       <h:outputText value="#{newsDetailBean.news.article.body}" escape="false"/>
     </div>
-    
+
+    <div class="icon-bar">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=#{newsDetailBean.url}"
+                class="facebook">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
     <p>
-      <h:link outcome="/obec/aktuality/aktuality.xhtml" value="Seznam aktualit"/>
+        <h:link outcome="/obec/aktuality/aktuality.xhtml" value="Seznam aktualit"/>
     </p>
-  </ui:define>
+</ui:define>
 </ui:composition>
