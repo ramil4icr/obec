@@ -7,6 +7,10 @@
 
         <p:submenu label="Administrace"
                 rendered="#{sessionBean.pathsAllowed('/administrace/clanky.jsf', '/administrace/role.jsf', '/administrace/role.jsf', '/administrace/uzivatele.jsf', '/administrace/nahled.jsf', '/obec/aktuality/administrace.jsf', '/obecni-urad/rozhlas/administrace.jsf', '/obecni-urad/uredni-deska/administrace.jsf', '/administrace/akce.jsf')}">
+            <p:menuitem value="Obecné nastavení" 
+                    icon="fa fa-cog"
+                    url="/administrace/nastaveni.jsf"
+                    rendered="#{sessionBean.pathAllowed('/administrace/nastaveni.jsf')}"/>
             <p:menuitem value="Uživatelské role" 
                     icon="fa fa-sitemap"
                     url="/administrace/role.jsf"

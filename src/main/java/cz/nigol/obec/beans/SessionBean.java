@@ -8,9 +8,12 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import cz.nigol.obec.beans.admin.SettingsBean;
 import cz.nigol.obec.dev.PrepareDevData;
 import cz.nigol.obec.entities.Path;
+import cz.nigol.obec.entities.Settings;
 import cz.nigol.obec.entities.User;
+import cz.nigol.obec.services.SettingsService;
 
 @Named
 @SessionScoped
@@ -20,11 +23,15 @@ public class SessionBean implements Serializable {
     private FacesContext facesContext;
     @Inject
     private PrepareDevData prepareDevData;
+    @Inject
+    private SettingsService settingsService;
     private User user;
+    private Settings settings;
 
     @PostConstruct
     public void init() {
         //prepareDevData.createData();
+        settings = settingsService.findById(SettingsBean.ID);
     }
 
     public boolean pathAllowed(String path) {
@@ -59,5 +66,19 @@ public class SessionBean implements Serializable {
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * @return the settings
+     */
+    public Settings getSettings() {
+        return settings;
+    }
+
+    /**
+     * @param settings the settings to set
+     */
+    public void setSettings(Settings settings) {
+        this.settings = settings;
     }
 }

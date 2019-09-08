@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="Obecné nastavení - Obec Tršice"/>
+
+        <ui:define name="content">
+            <h2>Obecné nastavení</h2>
+
+            <h:form id="settingsForm">
+                <p:panelGrid layout="grid"
+                        columns="1"
+                        styleClass="ui-noborder">
+                    <p:outputLabel value="URL adresa stránek" for="baseUrl"/>
+                    <p:inputText id="baseUrl" 
+                            required="true"
+                            value="#{settingsBean.settings.baseUrl}">
+                        <f:validateLength maximum="200"/>
+                    </p:inputText>
+                    <p:outputLabel value="Výchozí URL pro obrázek aktualit" for="ogImageUrl"/>
+                    <p:inputText id="ogImageUrl" value="#{settingsBean.settings.ogImageUrl}">
+                        <f:validateLength maximum="200"/>
+                    </p:inputText>
+
+                    <p:panelGrid layout="grid"
+                            columns="5"
+                            styleClass="ui-noborder">
+                        <p:commandButton value="Uložit" 
+                                icon="fa fa-save"
+                                action="#{settingsBean.save}"
+                                styleClass="default"
+                                update=":growl @form"/>
+                    </p:panelGrid>	
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
