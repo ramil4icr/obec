@@ -89,6 +89,18 @@
                         <f:validator binding="#{articleIdValidator}"/>
                     </p:inputText>
 
+                    <p:outputLabel value="URL obrázku" for="ogImageUrl"/>
+                    <p:inputText id="ogImageUrl" value="#{articlesBean.article.ogImageUrl}">
+                        <f:validateLength maximum="200"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Popis článku" for="ogDescription"/>
+                    <p:inputTextarea id="ogDescription"
+                            rows="6"
+                            cols="30"
+                            value="#{articlesBean.article.ogDescription}"
+                            style="max-height: 350px"/>
+
                     <p:outputLabel value="Nadpis" for="label"/>
                     <p:inputText id="label" value="#{articlesBean.article.label}">
                         <f:validateLength maximum="300"/>

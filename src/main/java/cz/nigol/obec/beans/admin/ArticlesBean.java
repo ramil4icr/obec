@@ -12,7 +12,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.obec.entities.Article;
+import cz.nigol.obec.entities.Settings;
 import cz.nigol.obec.entities.User;
+import cz.nigol.obec.qualifiers.CurrentSettings;
 import cz.nigol.obec.qualifiers.LoggedUser;
 import cz.nigol.obec.services.ArticleService;
 import cz.nigol.obec.services.UserService;
@@ -30,6 +32,9 @@ public class ArticlesBean implements Serializable {
     private User user;
     @Inject
     private FacesContext facesContext;
+    @Inject
+    @CurrentSettings
+    private Settings settings;
     private List<Article> articles;
     private Article article;
     private String body;
@@ -53,6 +58,7 @@ public class ArticlesBean implements Serializable {
         article = new Article();
         body = null;
         article.setId(NEW_ID);
+        article.setOgImageUrl(settings.getOgImageUrl());
         articles.add(article);
     }
 
