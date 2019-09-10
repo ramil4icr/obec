@@ -1,153 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/template.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
 
-  <ui:param name="title" value="Aktuality, administrace - Obec Tršice"/>
+        <ui:param name="title" value="Aktuality, administrace - Obec Tršice"/>
 
-  <ui:define name="content">
-    <ui:include src="/WEB-INF/includes/editorSettings.xhtml"/>
-    
-    <h2>Aktuality, administrace</h2>
+        <ui:define name="content">
+            <ui:include src="/WEB-INF/includes/editorSettings.xhtml"/>
 
-    <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>    
+            <h2>Aktuality, administrace</h2>
 
-    <h:form>
-        <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
-            <p:commandButton value="Nová aktualita" 
-                    icon="fa fa-plus-square-o"
-                    action="#{newsBean.newNews}"
-                    disabled="#{!empty newsBean.news}"
-                    update="@form"
-                    resetValues="true"/>
-            <p:commandButton value="Smazat" 
-                    icon="fa fa-trash-o"
-                    action="#{newsBean.delete}"
-                    disabled="#{empty newsBean.news}"
-                    onclick="return confirm('Opravdu smazat: #{newsBean.news.label}?')"
-                    update="@form :growl"
-                    resetValues="true"
-                    immediate="true"/>
-        </p:panelGrid>
+            <ui:include src="/WEB-INF/includes/filesButton.xhtml"/>    
 
-      <p:dataTable id="news" 
-                   value="#{newsBean.newsList}" 
-                   emptyMessage="Nenalezen žádný výsledek."
-                   selectionMode="single"
-                   selection="#{newsBean.news}"
-                   rowKey="#{news.id}"
-		   rows="5"
-		   paginator="true"
-		   paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-		   paginatorPosition="bottom"
-                   var="news">
-        <p:ajax event="rowSelect"
-		listener="#{newsBean.onNewsSelect}"
-		update="@form"
-		resetValues="true"/>
-        <p:column headerText="Aktualita"
-		  style="width: 50%"
-		  filterBy="#{news.label}"
-		  filterMatchMode="contains">
-          <h:outputText value="#{news.label}"/>
-        </p:column>
-	<p:column headerText="Změnil"
-		  style="width: 30%"
-		  filterBy="#{news.article.changedBy.fullName}"
-		  filterMatchMode="contains">
-          <h:outputText value="#{news.article.changedBy.fullName}"/>
-        </p:column>
-	<p:column headerText="Vytvořeno" style="width: 15%">
-          <h:outputText value="#{news.createdAt}">
-	    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	  </h:outputText>
-        </p:column>
-	<p:column headerText="Úvod" style="width: 5%">
-	  <p:selectBooleanCheckbox value="#{news.featured}" disabled="true"/>
-        </p:column>
-      </p:dataTable>
+            <h:form>
+                <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                    <p:commandButton value="Nová aktualita" 
+                            icon="fa fa-plus-square-o"
+                            action="#{newsBean.newNews}"
+                            disabled="#{!empty newsBean.news}"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:commandButton value="Smazat" 
+                            icon="fa fa-trash-o"
+                            action="#{newsBean.delete}"
+                            disabled="#{empty newsBean.news}"
+                            onclick="return confirm('Opravdu smazat: #{newsBean.news.label}?')"
+                            update="@form :growl"
+                            resetValues="true"
+                            immediate="true"/>
+                </p:panelGrid>
 
-      <p:panelGrid layout="grid"
-		   columns="1"
-		   rendered="#{!empty newsBean.news}"
-		   styleClass="ui-noborder">
-	<p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-	  <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	    <p:outputLabel value="Název" for="label"/>
-	    <p:inputText id="label" value="#{newsBean.news.label}">
-	      <f:validateLength maximum="300"/>
-	    </p:inputText>
-	  </p:panelGrid>
+                <p:dataTable id="news" 
+                        value="#{newsBean.newsList}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        selectionMode="single"
+                        selection="#{newsBean.news}"
+                        rowKey="#{news.id}"
+                        rows="5"
+                        paginator="true"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                        paginatorPosition="bottom"
+                        var="news">
+                    <p:ajax event="rowSelect"
+                            listener="#{newsBean.onNewsSelect}"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:column headerText="Aktualita"
+                            style="width: 50%"
+                            filterBy="#{news.label}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{news.label}"/>
+                    </p:column>
+                    <p:column headerText="Změnil"
+                            style="width: 30%"
+                            filterBy="#{news.article.changedBy.fullName}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{news.article.changedBy.fullName}"/>
+                    </p:column>
+                    <p:column headerText="Vytvořeno" style="width: 15%">
+                        <h:outputText value="#{news.createdAt}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Úvod" style="width: 5%">
+                        <p:selectBooleanCheckbox value="#{news.featured}" disabled="true"/>
+                    </p:column>
+                </p:dataTable>
 
-	  <p:column>
-	    <p:selectBooleanCheckbox id="featured" value="#{newsBean.news.featured}"/>
-	    &#160;&#160;
-	    <p:outputLabel value="Úvodní stránka" for="featured"/>
-	  </p:column>
-	</p:panelGrid>
+                <p:panelGrid layout="grid"
+                        columns="1"
+                        rendered="#{!empty newsBean.news}"
+                        styleClass="ui-noborder">
+                    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+                        <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                            <p:outputLabel value="Název" for="label"/>
+                            <p:inputText id="label" 
+                                    value="#{newsBean.news.label}"
+                                    required="true">
+                                <f:validateLength maximum="300"/>
+                            </p:inputText>
+                        </p:panelGrid>
 
-    <p:outputLabel value="Text" for="body"/>
-    <p:textEditor id="body"
-            value="#{newsBean.body}"
-            height="300">
-        <f:facet name="toolbar">
-            <span class="ql-formats">
-                <select class="ql-font" />
-                <select class="ql-size" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-bold" />
-                <button class="ql-italic" />
-                <button class="ql-underline" />
-                <button class="ql-strike" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-script" value="sub" />
-                <button class="ql-script" value="super" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-blockquote" />
-                <button class="ql-code-block" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-list" value="ordered" />
-                <button class="ql-list" value="bullet" />
-                <button class="ql-indent" value="-1" />
-                <button class="ql-indent" value="+1" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-direction" value="rtl" />
-                <select class="ql-align" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-link" />
-                <button class="ql-image" />
-            </span>
-            <span class="ql-formats">
-                <button class="ql-clean" />
-            </span>
-        </f:facet>
-    </p:textEditor>
+                        <p:column>
+                            <p:selectBooleanCheckbox id="featured" value="#{newsBean.news.featured}"/>
+                            &#160;&#160;
+                            <p:outputLabel value="Úvodní stránka" for="featured"/>
+                        </p:column>
+                    </p:panelGrid>
 
-          <p:panelGrid layout="grid"
-                  columns="5"
-                  styleClass="ui-noborder">
-              <p:commandButton value="Uložit" 
-                      icon="fa fa-save"
-                      action="#{newsBean.save}"
-                      styleClass="default"
-                      update=":growl @form"/>
-              <p:commandButton value="Zrušit" 
-                      icon="fa fa-close"
-                      action="#{newsBean.cancelEdit}"
-                      immediate="true"
-                      resetValues="true"
-                      update="@form"/>
-          </p:panelGrid>	
-      </p:panelGrid>
-  </h:form>    
-  </ui:define>
-</ui:composition>
+                    <p:outputLabel value="URL obrázku" for="ogImageUrl"/>
+                    <p:inputText id="ogImageUrl" 
+                            value="#{newsBean.news.article.ogImageUrl}"
+                            required="true">
+                        <f:validateLength maximum="200"/>
+                    </p:inputText>
+
+                    <h:link outcome="/clanek.xhtml" target="_blank">
+                        <f:param name="id" value="aktuality-obrazky"/>
+                        Výběr obrázků pro aktuality
+                    </h:link>
+
+                    <p:outputLabel value="Text" for="body"/>
+                    <p:textEditor id="body"
+                            value="#{newsBean.body}"
+                            height="300">
+                        <f:facet name="toolbar">
+                            <span class="ql-formats">
+                                <select class="ql-font" />
+                                <select class="ql-size" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-bold" />
+                                <button class="ql-italic" />
+                                <button class="ql-underline" />
+                                <button class="ql-strike" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-script" value="sub" />
+                                <button class="ql-script" value="super" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-blockquote" />
+                                <button class="ql-code-block" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-list" value="ordered" />
+                                <button class="ql-list" value="bullet" />
+                                <button class="ql-indent" value="-1" />
+                                <button class="ql-indent" value="+1" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-direction" value="rtl" />
+                                <select class="ql-align" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-link" />
+                                <button class="ql-image" />
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-clean" />
+                            </span>
+                        </f:facet>
+                    </p:textEditor>
+
+                    <p:panelGrid layout="grid"
+                            columns="5"
+                            styleClass="ui-noborder">
+                        <p:commandButton value="Uložit" 
+                                icon="fa fa-save"
+                                action="#{newsBean.save}"
+                                styleClass="default"
+                                update=":growl @form"/>
+                        <p:commandButton value="Zrušit" 
+                                icon="fa fa-close"
+                                action="#{newsBean.cancelEdit}"
+                                immediate="true"
+                                resetValues="true"
+                                update="@form"/>
+                    </p:panelGrid>	
+                </p:panelGrid>
+            </h:form>    
+        </ui:define>
+    </ui:composition>
