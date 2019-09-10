@@ -24,11 +24,11 @@ public class LoginBean {
     private String password;
 
     public String login() {
-        String result;
+        String result = sessionBean.getPathAfterLogin();
         User user = userService.getActiveUserByUserId(loginName);
         if (user != null && user.isActive() && BCrypt.checkpw(password, user.getPassword())) {
             sessionBean.setUser(user);
-            result = "/uzivatel/prehled.xhtml?faces-redirect=true";
+            sessionBean.setPathAfterLogin("/uzivatel/prehled.xhtml?faces-redirect=true");
         } else {
             sessionBean.setUser(null);
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
