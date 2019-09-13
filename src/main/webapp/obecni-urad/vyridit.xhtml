@@ -6,6 +6,13 @@
         template="/WEB-INF/templates/template-transient.xhtml"
         xmlns:p="http://primefaces.org/ui">
 
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewAction action="#{articleBean.loadArticle('/obecni-urad/vyridit.jsf')}"/>
+            </f:metadata>
+        </ui:define>
+        <ui:param name="ogImageUrl" value="#{articleBean.article.ogImageUrl}"/>
+        <ui:param name="ogDescription" value="#{articleBean.article.ogDescription}"/>
         <ui:param name="title" value="Potřebuji vyřídit - Obec Tršice"/>
 
         <ui:define name="content">

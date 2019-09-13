@@ -5,13 +5,21 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/template-transient.xhtml"
         xmlns:p="http://primefaces.org/ui">
+    
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewAction action="#{articleBean.loadArticle('/index.jsf')}"/>
+            </f:metadata>
+        </ui:define>
+        <ui:param name="ogImageUrl" value="#{articleBean.article.ogImageUrl}"/>
+        <ui:param name="ogDescription" value="#{articleBean.article.ogDescription}"/>
 
         <ui:param name="title" value="Obec Tršice"/>
 
         <ui:define name="content">
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
                 <h2>Aktuality</h2>
-                
+
                 <p:dataGrid var="news"
                         value="#{indexBean.newsList}"
                         layout="grid"
