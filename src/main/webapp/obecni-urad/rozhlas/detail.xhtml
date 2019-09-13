@@ -17,13 +17,12 @@
 
         <ui:define name="content">
             <h:panelGroup id="printingArea" layout="block">
-                <h2>Hlášení obecního rozhlasu</h2>
-
-                <div style="text-align: center">
+                <h2>
+                    Hlášení obecního rozhlasu ze dne 
                     <h:outputText value="#{announcementDetailBean.announcement.createdAt}">
                         <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
                     </h:outputText>
-                </div>
+                </h2>
 
                 <div class="articleBody">
                     <h:outputText value="#{announcementDetailBean.announcement.body}" escape="false"/>
