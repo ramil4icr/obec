@@ -19,10 +19,17 @@
                         rows="4">
                     <h:panelGroup layout="block"
                             styleClass="newsBox">
-                        <h4>
-                            <i class="fa fa-bell-o"></i>
-                        </h4>
-                        <h:link outcome="/obec/aktuality/detail.xhtml" style="text-decoration: none">
+                        <h:link outcome="/obec/aktuality/detail.xhtml"
+                                style="text-decoration: none">
+                            <f:param name="id" value="#{news.id}"/>
+                            <h:graphicImage
+                                    value="#{news.article.ogImageUrl}"
+                                    style="width: 100%"
+                                    alt="Foto aktualita"/>
+                        </h:link>
+
+                        <h:link outcome="/obec/aktuality/detail.xhtml" 
+                                style="text-decoration: none">
                             <f:param name="id" value="#{news.id}"/>
                             <p style="font-size: 120%; font-style: italic; color: #888; padding-left: 1em">
                                 #{news.truncatedLabel}
