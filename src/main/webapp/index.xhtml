@@ -125,17 +125,21 @@
                                 <ui:repeat value="#{indexBean.events}" var="event">
                                     <tr>
                                         <td>
-                                            <h:panelGroup layout="block" styleClass="date">
-                                                <h:outputText value="#{event.startDate}" styleClass="day">
-                                                    <f:convertDateTime type="date" pattern="dd"/>
-                                                </h:outputText>
-                                                <h:outputText value="#{event.startDate}" styleClass="month">
-                                                    <f:convertDateTime locale="cs_CZ" type="date" pattern="LLLL"/>
-                                                </h:outputText>
-                                                <h:outputText value="#{event.startDate}" styleClass="year">
-                                                    <f:convertDateTime type="date" pattern="yyyy"/>
-                                                </h:outputText>
-                                            </h:panelGroup>
+                                            <h:link outcome="akce.xhtml">
+                                                <f:param name="ical" value="true"/>
+                                                <f:param name="id" value="#{event.id}"/>
+                                                <h:panelGroup layout="block" styleClass="date">
+                                                    <h:outputText value="#{event.startDate}" styleClass="day">
+                                                        <f:convertDateTime type="date" pattern="dd"/>
+                                                    </h:outputText>
+                                                    <h:outputText value="#{event.startDate}" styleClass="month">
+                                                        <f:convertDateTime locale="cs_CZ" type="date" pattern="LLLL"/>
+                                                    </h:outputText>
+                                                    <h:outputText value="#{event.startDate}" styleClass="year">
+                                                        <f:convertDateTime type="date" pattern="yyyy"/>
+                                                    </h:outputText>
+                                                </h:panelGroup>
+                                            </h:link>
                                         </td>
                                         <td style="vertical-align: bottom">
                                             <h:outputText value="#{event.description}"
