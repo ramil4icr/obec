@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import cz.nigol.obec.entities.interfaces.RssItem;
+
 @NamedQueries({
 @NamedQuery(name=News.GET_ALL, query="SELECT n FROM News n ORDER BY n.createdAt DESC"),
     @NamedQuery(name=News.GET_FEATURED,
@@ -24,7 +26,7 @@ import javax.persistence.TemporalType;
 })
 @Entity
 @Table(name="OB_NEWS")
-public class News implements Serializable {
+public class News implements Serializable, RssItem {
     private static final long serialVersionUID = -4378072789330339015L;
 
     public static final String GET_ALL = "News.GET_ALL";
@@ -123,6 +125,21 @@ public class News implements Serializable {
      */
     public void setFeatured(boolean featured) {
         this.featured = featured;
+    }
+
+    @Override
+    public String getDescription() {
+        return label;
+    }
+
+    @Override
+    public Date getDate() {
+        return createdAt;
+    }
+
+    @Override
+    public String getGuid() {
+        return "" + id;
     }
 
     @Override

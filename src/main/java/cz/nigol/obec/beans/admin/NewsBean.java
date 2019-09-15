@@ -13,7 +13,9 @@ import javax.inject.Named;
 
 import cz.nigol.obec.entities.Article;
 import cz.nigol.obec.entities.News;
+import cz.nigol.obec.entities.Settings;
 import cz.nigol.obec.entities.User;
+import cz.nigol.obec.qualifiers.CurrentSettings;
 import cz.nigol.obec.qualifiers.LoggedUser;
 import cz.nigol.obec.services.ArticleService;
 import cz.nigol.obec.services.NewsService;
@@ -34,6 +36,9 @@ public class NewsBean implements Serializable {
     private UserService userService;
     @Inject
     private ArticleService articleService;
+    @Inject
+    @CurrentSettings
+    private Settings settings;
     private List<News> newsList;
     private News news;
     private String body;
@@ -56,6 +61,7 @@ public class NewsBean implements Serializable {
     public void newNews() {
         news = new News();
         news.setArticle(new Article());
+        news.getArticle().setOgImageUrl(settings.getOgImageUrl());
         newsList.add(news);
         news.setCreatedAt(new Date());
         body = null;
@@ -64,7 +70,11 @@ public class NewsBean implements Serializable {
     public void save() {
         Article article = news.getArticle();
         article.setChangedAt(news.getCreatedAt());
-        article.setId(article.getId() == null ? news.getLabel() : article.getId());
+        if (article.getId() == null) {
+            String id = news.getLabel().split(" ",2)[0]; 
+            id = id + "-" + new Date();
+            article.setId(id);
+        }
         article.setChangedBy(user);
         article.setBody(body);
         newsService.save(news);

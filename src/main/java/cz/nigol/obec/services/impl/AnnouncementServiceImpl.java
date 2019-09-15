@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import cz.nigol.obec.entities.Announcement;
+import cz.nigol.obec.entities.interfaces.RssItem;
 import cz.nigol.obec.services.AnnouncementService;
 
 @Stateless
@@ -41,7 +42,12 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     public List<Announcement> getLastFive() {
         TypedQuery<Announcement> typedQuery = em.createNamedQuery(Announcement.GET_ALL, Announcement.class);
         typedQuery.setMaxResults(5);
-        return new ArrayList<>(typedQuery.getResultList());	
+        return new ArrayList<>(typedQuery.getResultList()); 
     }
 
+    @Override
+    public List<RssItem> getAllRss() {
+        TypedQuery<RssItem> typedQuery = em.createNamedQuery(Announcement.GET_ALL, RssItem.class);
+        return new ArrayList<>(typedQuery.getResultList());
+    }
 }

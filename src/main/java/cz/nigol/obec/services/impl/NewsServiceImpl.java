@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import cz.nigol.obec.entities.Article;
 import cz.nigol.obec.entities.News;
+import cz.nigol.obec.entities.interfaces.RssItem;
 import cz.nigol.obec.services.ArticleService;
 import cz.nigol.obec.services.NewsService;
 
@@ -47,6 +48,12 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public List<News> getFeatured() {
         TypedQuery<News> typedQuery = em.createNamedQuery(News.GET_FEATURED, News.class);
+        return new ArrayList<>(typedQuery.getResultList());
+    }
+
+    @Override
+    public List<RssItem> getAllRss() {
+        TypedQuery<RssItem> typedQuery = em.createNamedQuery(News.GET_ALL, RssItem.class);
         return new ArrayList<>(typedQuery.getResultList());
     }
 }

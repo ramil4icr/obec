@@ -234,9 +234,9 @@ button.ui-button.ui-state-default {
 
 .newsBox {
     background: linear-gradient(to bottom, #f3f3f3, #dde3e8);
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 20px;
-    height: 160px;
+    height: 250px;
     overflow: hidden;
 }
 
@@ -273,6 +273,10 @@ button.ui-button.ui-state-default {
     background: #fff !important;
     border: none !important;
     border-bottom: 1px solid rgb(230, 238, 236) !important;
+}
+
+.articleBody {
+    line-height: 1.5;
 }
 
 .articleBody img {
@@ -472,8 +476,9 @@ button.ui-button.ui-state-default {
 
 .month { 
     top: 0;
-    left: 0;  
-    font-size: 18px;
+    left: 0;
+    font-size: 10px;
+    margin-top: 5px;
 }
 
 .year { 
@@ -495,6 +500,29 @@ button.ui-button.ui-state-default {
 
 .ui-menuitem-icon.ui-icon {
     margin-right: 5px;
+}
+
+.icon-bar {
+    margin: 2em;
+}
+
+.icon-bar a {
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 20px;
+    width: 30px;
+}
+
+.icon-bar a:hover {
+    background-color: #000;
+}
+
+.facebook {
+    background: #3B5998;
+    color: white;
 }
 
 @keyframes riseIcon {

@@ -1,5 +1,7 @@
 package cz.nigol.obec.services.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -53,5 +55,35 @@ public class EventsServiceImpl implements EventsService {
     @Override
     public void delete(Event event) {
         em.remove(em.merge(event));
+    }
+
+    @Override
+    public String getAsIcal(Event event) {
+        StringBuilder result = new StringBuilder();
+        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        result.append("BEGIN:VCALENDAR\r\n");
+        result.append("PRODID:-//Obec Tršice//\r\n");
+        result.append("VERSION:2.0\r\n");
+        result.append("METHOD:PUBLISH\r\n");
+        result.append("BEGIN:VEVENT\r\n");
+        result.append("UID:trsice.cz");
+        result.append(event.getId());
+        result.append("\r\n");
+        result.append("DTSTAMP:");
+        result.append(formatter.format(event.getStartDate()));
+        result.append("T000000Z\r\n");
+        result.append("CLASS:PUBLIC\r\n");
+        result.append("DESCRIPTION:");
+        result.append(event.getDescription());
+        result.append("\r\n");
+        result.append("DTSTART;VALUE=DATE:");
+        result.append(formatter.format(event.getStartDate()));
+        result.append("\r\n");
+        result.append("SUMMARY:");
+        result.append(event.getDescription());
+        result.append("\r\n");
+        result.append("END:VEVENT\r\n");
+        result.append("END:VCALENDAR\r\n");
+        return result.toString();
     }
 }

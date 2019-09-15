@@ -13,7 +13,9 @@
                 <link rel="shortcut icon" href="#{resource['image/icon.png']}"/>
                 <link rel="apple-touch-icon" href="#{resource['image/icon.png']}"/>
                 <meta property="og:title" content="#{title}"/>
-                <meta property="og:image" content="https://www.trsice.cz/erb.png"/>
+                <meta property="og:image" content="#{ogImageUrl}"/>
+                <meta property="og:description" content="#{ogDescription}"/>
+                <meta property="description" content="#{ogDescription}"/>
                 <h:outputStylesheet name="css/style.css"/>
                 <title>#{title}</title>
             </h:head>

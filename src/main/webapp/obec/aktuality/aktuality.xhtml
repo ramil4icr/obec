@@ -6,39 +6,52 @@
                 template="/WEB-INF/templates/template.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
-  <ui:param name="title" value="Aktuality - Obec Tršice"/>
+                <ui:define name="metadata">
+                    <f:metadata>
+                        <f:viewParam name="rss" value="#{newsTableBean.rss}"/>
+                        <f:viewAction action="#{newsTableBean.onLoad}"/>
+                    </f:metadata>
+                </ui:define>
+                <ui:param name="title" value="Aktuality - Obec Tršice"/>
 
-  <ui:define name="content">
-    <h2>Aktuality</h2>
-    
-    <h:form>
-      <p:dataTable id="news" 
-                   value="#{newsTableBean.newsList}" 
-                   emptyMessage="Nenalezen žádný výsledek."
-                   rowKey="#{news.id}"
-		   rows="20"
-		   paginator="true"
-		   paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-		   paginatorPosition="bottom"
-                   var="news">
-        <p:column headerText="Aktualita"
-                priority="1"
-                style="width: 70%"
-                filterBy="#{news.label}"
-                filterMatchMode="contains">
-            <h:link outcome="/obec/aktuality/detail.xhtml">
-                <f:param name="id" value="#{news.id}"/>
-                #{news.label}
-            </h:link>
-        </p:column>
-        <p:column headerText="Vytvořeno" 
-                priority="2"
-                style="width: 30%">
-            <h:outputText value="#{news.createdAt}">
-                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-            </h:outputText>
-        </p:column>
-    </p:dataTable>
-</h:form>
-  </ui:define>
-</ui:composition>
+                <ui:define name="content">
+                    <h2>Aktuality</h2>
+
+                    <h:form>
+                        <p:dataTable id="news" 
+                                value="#{newsTableBean.newsList}" 
+                                emptyMessage="Nenalezen žádný výsledek."
+                                rowKey="#{news.id}"
+                                rows="20"
+                                paginator="true"
+                                paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                paginatorPosition="bottom"
+                                var="news">
+                            <p:column headerText="Aktualita"
+                                    priority="1"
+                                    style="width: 70%"
+                                    filterBy="#{news.label}"
+                                    filterMatchMode="contains">
+                                <h:link outcome="/obec/aktuality/detail.xhtml">
+                                    <f:param name="id" value="#{news.id}"/>
+                                    #{news.label}
+                                </h:link>
+                            </p:column>
+                            <p:column headerText="Vytvořeno" 
+                                    priority="2"
+                                    style="width: 30%">
+                                <h:outputText value="#{news.createdAt}">
+                                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+
+                    <p>
+                        <h:link outcome="aktuality.xhtml">
+                            <f:param name="rss" value="true"/>
+                            <i class="fa fa-rss"></i> RSS
+                        </h:link>
+                    </p>
+                </ui:define>
+            </ui:composition>

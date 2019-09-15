@@ -57,6 +57,12 @@ public class Article implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date changedAt;
 
+    @Column(name="OG_IMAGE_URL", columnDefinition="VARCHAR(200)")
+    private String ogImageUrl;
+
+    @Column(name="OG_DESCRIPTION", columnDefinition="VARCHAR(1000)")
+    private String ogDescription;
+
     /**
      * @return the id
      */
@@ -125,6 +131,34 @@ public class Article implements Serializable {
      */
     public void setChangedAt(Date changedAt) {
         this.changedAt = changedAt;
+    }
+
+    /**
+     * @return the ogImageUrl
+     */
+    public String getOgImageUrl() {
+        return ogImageUrl;
+    }
+
+    /**
+     * @param ogImageUrl the ogImageUrl to set
+     */
+    public void setOgImageUrl(String ogImageUrl) {
+        this.ogImageUrl = ogImageUrl;
+    }
+
+    /**
+     * @return the ogDescription
+     */
+    public String getOgDescription() {
+        return ogDescription;
+    }
+
+    /**
+     * @param ogDescription the ogDescription to set
+     */
+    public void setOgDescription(String ogDescription) {
+        this.ogDescription = ogDescription;
     }
 
     @Override

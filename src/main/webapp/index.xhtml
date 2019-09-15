@@ -5,13 +5,21 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         template="/WEB-INF/templates/template-transient.xhtml"
         xmlns:p="http://primefaces.org/ui">
+    
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewAction action="#{articleBean.loadArticle('/index.jsf')}"/>
+            </f:metadata>
+        </ui:define>
+        <ui:param name="ogImageUrl" value="#{articleBean.article.ogImageUrl}"/>
+        <ui:param name="ogDescription" value="#{articleBean.article.ogDescription}"/>
 
         <ui:param name="title" value="Obec Tršice"/>
 
         <ui:define name="content">
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
                 <h2>Aktuality</h2>
-                
+
                 <p:dataGrid var="news"
                         value="#{indexBean.newsList}"
                         layout="grid"
@@ -19,10 +27,17 @@
                         rows="4">
                     <h:panelGroup layout="block"
                             styleClass="newsBox">
-                        <h4>
-                            <i class="fa fa-bell-o"></i>
-                        </h4>
-                        <h:link outcome="/obec/aktuality/detail.xhtml" style="text-decoration: none">
+                        <h:link outcome="/obec/aktuality/detail.xhtml"
+                                style="text-decoration: none">
+                            <f:param name="id" value="#{news.id}"/>
+                            <h:graphicImage
+                                    value="#{news.article.ogImageUrl}"
+                                    style="width: 100%"
+                                    alt="Foto aktualita"/>
+                        </h:link>
+
+                        <h:link outcome="/obec/aktuality/detail.xhtml" 
+                                style="text-decoration: none">
                             <f:param name="id" value="#{news.id}"/>
                             <p style="font-size: 120%; font-style: italic; color: #888; padding-left: 1em">
                                 #{news.truncatedLabel}
@@ -110,17 +125,21 @@
                                 <ui:repeat value="#{indexBean.events}" var="event">
                                     <tr>
                                         <td>
-                                            <h:panelGroup layout="block" styleClass="date">
-                                                <h:outputText value="#{event.startDate}" styleClass="day">
-                                                    <f:convertDateTime type="date" pattern="dd"/>
-                                                </h:outputText>
-                                                <h:outputText value="#{event.startDate}" styleClass="month">
-                                                    <f:convertDateTime locale="cs_CZ" type="date" pattern="LLL"/>
-                                                </h:outputText>
-                                                <h:outputText value="#{event.startDate}" styleClass="year">
-                                                    <f:convertDateTime type="date" pattern="yyyy"/>
-                                                </h:outputText>
-                                            </h:panelGroup>
+                                            <h:link outcome="akce.xhtml">
+                                                <f:param name="ical" value="true"/>
+                                                <f:param name="id" value="#{event.id}"/>
+                                                <h:panelGroup layout="block" styleClass="date">
+                                                    <h:outputText value="#{event.startDate}" styleClass="day">
+                                                        <f:convertDateTime type="date" pattern="dd"/>
+                                                    </h:outputText>
+                                                    <h:outputText value="#{event.startDate}" styleClass="month">
+                                                        <f:convertDateTime locale="cs_CZ" type="date" pattern="LLLL"/>
+                                                    </h:outputText>
+                                                    <h:outputText value="#{event.startDate}" styleClass="year">
+                                                        <f:convertDateTime type="date" pattern="yyyy"/>
+                                                    </h:outputText>
+                                                </h:panelGroup>
+                                            </h:link>
                                         </td>
                                         <td style="vertical-align: bottom">
                                             <h:outputText value="#{event.description}"
@@ -232,7 +251,7 @@
                         <h6>&#160;Zpravodaj</h6>
                     </div>
                     <p:separator/>
-                    <p:feedReader value="http://www.trsice.cz/zpravodaj/index.jsf?rss=true" 
+                    <p:feedReader value="https://www.trsice.cz/zpravodaj/index.jsf?rss=true" 
                             var="feed"
                             size="5">
                         <h:outputLink value="#{feed.link}">

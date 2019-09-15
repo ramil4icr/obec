@@ -11,4 +11,5 @@ public interface EventsService {
     List<Event> getValidToDate(Date date);
     Event save(Event event);
     void delete(Event event);
+    String getAsIcal(Event event);
 }
