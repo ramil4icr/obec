@@ -2,6 +2,17 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.1
+
+* Opraveno generování ID pro článek v aktualitě.
+* Kliknutím na logo obce přejít na úvodní stránku.
+* RSS pro aktuality.
+* RSS pro hlášení rozhlasu.
+* Generování iCal exportu pro akce.
+* U článků nepovinná pole pro obrázek a popis (kvůli OpenGraph).
+* V administraci obecné nastavení.
+* Několik menších oprav / vylepšení.
+
 ### Verze 1.0
 
 * První dostupná verze.
