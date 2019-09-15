@@ -17,12 +17,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import cz.nigol.obec.entities.interfaces.RssItem;
+
 @NamedQueries({
 @NamedQuery(name=Announcement.GET_ALL, query="SELECT a FROM Announcement a ORDER BY a.createdAt DESC"),
 })
 @Entity
 @Table(name="OB_ANNOUNCEMENT")
-public class Announcement implements Serializable {
+public class Announcement implements Serializable, RssItem {
     private static final long serialVersionUID = -4378072789330339015L;
 
     public static final String GET_ALL = "Announcement.GET_ALL";
@@ -97,6 +99,26 @@ public class Announcement implements Serializable {
      */
     public void setBody(String body) {
         this.body = body;
+    }
+
+    @Override
+    public String getLabel() {
+        return createdAt.toString();
+    }
+
+    @Override
+    public String getDescription() {
+        return body;
+    }
+
+    @Override
+    public Date getDate() {
+        return createdAt;
+    }
+
+    @Override
+    public String getGuid() {
+        return "" + id;
     }
 
     @Override
