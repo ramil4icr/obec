@@ -42,7 +42,7 @@ public class EventsServiceImpl implements EventsService {
             .atStartOfDay()
             .atZone(ZoneId.systemDefault())
             .toInstant());
-        typedQuery.setParameter(Event.DATE_PARAM, adjustedDate);
+        typedQuery.setParameter(Event.DATE_PARAM, date);
         typedQuery.setMaxResults(5);
         return new ArrayList<>(typedQuery.getResultList());
     }
