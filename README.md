@@ -2,6 +2,12 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.2
+
+* Zlepšena přístupnost pro znevýhodněné uživatele.
+* Nová položka do menu UtilityReport.
+* U desktop menu odebrána zbytečná položka úvod.
+
 ### Verze 1.1
 
 * Opraveno generování ID pro článek v aktualitě.
