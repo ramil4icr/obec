@@ -238,6 +238,9 @@ button.ui-button.ui-state-default {
     padding: 20px;
     height: 250px;
     overflow: hidden;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .grayTableBlock {
