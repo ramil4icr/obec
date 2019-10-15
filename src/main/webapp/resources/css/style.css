@@ -272,7 +272,7 @@ button.ui-button.ui-state-default {
 }
 
 .ui-menu .ui-widget-header {
-    border-radius: none !important;
+    border-radius: 0px !important;
     background: #fff !important;
     border: none !important;
     border-bottom: 1px solid rgb(230, 238, 236) !important;
