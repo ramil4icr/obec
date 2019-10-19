@@ -9,5 +9,9 @@
             <p:menuitem value="Přehled" 
                     icon="fa fa-dashboard"
                     url="/uzivatel/prehled.jsf"/>
+            <p:menuitem value="Informace, zastupitel" 
+                    icon="fa fa-info"
+                    url="/uzivatel/informace-zastupitel.jsf"
+                    rendered="#{sessionBean.pathAllowed('/uzivatel/informace-zastupitel.jsf')}"/>
         </p:submenu>
     </ui:composition>

@@ -28,15 +28,18 @@ public class LoginBean {
         User user = userService.getActiveUserByUserId(loginName);
         if (user != null && user.isActive() && BCrypt.checkpw(password, user.getPassword())) {
             sessionBean.setUser(user);
+            if (!sessionBean.pathAllowed(sessionBean.getPathAfterLogin())) {
+                result = "/prihlaseni.xhtml?faces-redirect=true";
+            }
             sessionBean.setPathAfterLogin("/uzivatel/prehled.xhtml?faces-redirect=true");
-        } else {
-            sessionBean.setUser(null);
-            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                        "",  "Nesprávné přihlašovací údaje."));
-            facesContext.getExternalContext().getFlash().setKeepMessages(true);
-            result = "/prihlaseni.xhtml?faces-redirect=true";
-        }
-        return result;
+            } else {
+                sessionBean.setUser(null);
+                facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "",  "Nesprávné přihlašovací údaje."));
+                facesContext.getExternalContext().getFlash().setKeepMessages(true);
+                result = "/prihlaseni.xhtml?faces-redirect=true";
+            }
+            return result;
     }
 
     /**
