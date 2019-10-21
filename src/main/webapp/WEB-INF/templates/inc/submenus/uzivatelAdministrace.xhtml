@@ -43,5 +43,9 @@
                     icon="fa fa-calendar"
                     url="/administrace/akce.jsf"
                     rendered="#{sessionBean.pathAllowed('/administrace/akce.jsf')}"/>
+            <p:menuitem value="Plnění rozpočtu"
+                    icon="fa fa-euro"
+                    url="/administrace/plneni-rozpoctu.jsf"
+                    rendered="#{sessionBean.pathAllowed('/administrace/plneni-rozpoctu.jsf')}"/>
         </p:submenu>
     </ui:composition>

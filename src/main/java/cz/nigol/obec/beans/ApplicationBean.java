@@ -41,6 +41,7 @@ public class ApplicationBean {
         paths.add("/administrace/akce.jsf");
         paths.add("/administrace/role.jsf");
         paths.add("/administrace/uzivatele.jsf");
+        paths.add("/administrace/plneni-rozpoctu.jsf");
         paths.add("/obec/aktuality/administrace.jsf");
         paths.add("/obecni-urad/rozhlas/administrace.jsf");
         paths.add("/obecni-urad/uredni-deska/administrace.jsf");
