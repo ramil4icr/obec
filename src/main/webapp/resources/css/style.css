@@ -89,6 +89,14 @@ footer .ui-panelgrid-cell {
     color: rgb(255,255,0) !important;
 }
 
+.indexArticle .articleBody {
+    background-color: #eee !important;
+    margin-left: -2em;
+    margin-right: -2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
 .ui-state-hover {
     background: #fff;
 }
@@ -245,8 +253,16 @@ button.ui-button.ui-state-default {
 
 .grayTableBlock {
     background: linear-gradient(to right, rgb(224, 234, 252), rgb(207, 222, 243));
-    border-radius: 3px;
+    background: #1f4a99;
     padding: 10px;
+}
+
+.grayTableBlock h5 {
+    color: #ffcc01;
+}
+
+.grayTableBlock h4 i {
+    color: #eee !important;
 }
 
 .grayTableBlock th {
