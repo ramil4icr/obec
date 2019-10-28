@@ -29,7 +29,7 @@ public class IndexBean {
     private OfficialDeskService officialDeskService;
     @Inject
     private EventsService eventsService;
-    private static final int NUMBER_OF_PHOTOS = 2;
+    private static final int NUMBER_OF_PHOTOS = 8;
     private List<News> newsList;
     private List<Announcement> announcements;
     private List<DeskItem> deskItems;
