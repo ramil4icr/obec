@@ -10,15 +10,15 @@
                 <h:link outcome="/prihlaseni.xhtml"
                         value="PŘIHLÁSIT"
                         rendered="#{empty sessionBean.user}"
-                        style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 80px; right: 10px; z-index: 10; text-shadow: 2px 2px 5px #000">
+                        style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 80px; right: 10px; z-index: 10; text-shadow: 2px 2px 5px #000; background: rgba(0,0,0,.6); display: inline-block; padding: 1em;">
                 </h:link>
                 <h:commandLink action="#{sessionBean.logout}"
                         value="#{sessionBean.user.fullName} (ODHLÁSIT)"
                         rendered="#{!empty sessionBean.user}"
-                        style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 80px; right: 10px; z-index: 10; text-shadow: 2px 2px 5px #000">
+                        style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 80px; right: 10px; z-index: 10; text-shadow: 2px 2px 5px #000; background: rgba(0,0,0,.6); display: inline-block; padding: 1em;">
                 </h:commandLink>
                 <h:outputLink value="/clanek.jsf?id=navigace"
-                        style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 80px; left: 10px; z-index: 10; text-shadow: 2px 2px 5px #000">
+                        style="text-decoration: none; color: #fff; font-weight: bold; position: absolute; top: 80px; left: 10px; z-index: 10; text-shadow: 2px 2px 5px #000; background: rgba(0,0,0,.6); display: inline-block; padding: 1em;">
                     Textová navigace
                 </h:outputLink>
             </h:form>
