@@ -50,11 +50,12 @@
                         styleClass="moreInfoLink"
                         style="text-align: right">
                     <h:link outcome="/obec/aktuality/aktuality.xhtml"
-                            value="VŠECHNY AKTUALITY >">
+                            value="VŠECHNY AKTUALITY">
                     </h:link>
                 </h:panelGroup>
 
-                <h:panelGroup layout="block">
+                <h:panelGroup layout="block"
+                        styleClass="indexArticle">
                     <ui:include src="/WEB-INF/includes/article.xhtml">
                         <ui:param name="articleId" value="/index.jsf"/>
                     </ui:include>
@@ -109,11 +110,13 @@
 
                         <h:link outcome="/obec/fotogalerie.xhtml"
                                 style="text-decoration: none">
-                            <h:graphicImage
-                                    library="image"
-                                    name="#{indexBean.nameOfPhoto}"
-                                    style="max-width: 606px; width: 100%"
-                                    alt="Foto obce"/>
+                            <p:outputPanel deferred="true" deferredMode="visible">
+                                <h:graphicImage
+                                        library="image"
+                                        name="#{indexBean.nameOfPhoto}"
+                                        style="max-width: 606px; width: 100%"
+                                        alt="Foto obce"/>
+                            </p:outputPanel>
                         </h:link>
 
                         <h:panelGroup layout="block">
@@ -184,7 +187,7 @@
                                     styleClass="moreInfoLink"
                                     style="text-align: right">
                                 <h:link outcome="/obecni-urad/rozhlas/hlaseni.xhtml"
-                                        value="VÍCE >">
+                                        value="VÍCE">
                                 </h:link>
                             </h:panelGroup>
                         </h:panelGroup>
@@ -216,7 +219,7 @@
                                     styleClass="moreInfoLink"
                                     style="text-align: right">
                                 <h:link outcome="/obecni-urad/uredni-deska/prehled.xhtml"
-                                        value="VÍCE >">
+                                        value="VÍCE">
                                 </h:link>
                             </h:panelGroup>
                         </h:panelGroup>

@@ -71,7 +71,7 @@ a:visited {
 
 footer {
     background-color: rgb(37, 40, 42);
-    color: rgb(255,255,0);
+    color: #ffcc01;
     margin-top: auto;
     padding-left: 5%;
     padding-right: 5%;
@@ -81,12 +81,20 @@ footer {
 }
 
 footer a {
-    color: rgb(255,255,0) !important;
+    color: #ffcc01 !important;
 }
 
 footer .ui-panelgrid-cell {
     background-color: rgb(37, 40, 42) !important;
-    color: rgb(255,255,0) !important;
+    color: #ffcc01 !important;
+}
+
+.indexArticle .articleBody {
+    background-color: #eee !important;
+    margin-left: -2em;
+    margin-right: -2em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .ui-state-hover {
@@ -194,7 +202,7 @@ button.ui-button.ui-state-default {
 }
 
 .ui-icon.fa {
-    color: rgb(0, 154, 206) !important;
+    color: #1f4a99 !important;
 }
 
 .ui-button-icon-left.ui-menuitem-link.ui-icon.fa {
@@ -238,12 +246,23 @@ button.ui-button.ui-state-default {
     padding: 20px;
     height: 250px;
     overflow: hidden;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .grayTableBlock {
     background: linear-gradient(to right, rgb(224, 234, 252), rgb(207, 222, 243));
-    border-radius: 3px;
+    background: #1f4a99;
     padding: 10px;
+}
+
+.grayTableBlock h5 {
+    color: #ffcc01;
+}
+
+.grayTableBlock h4 i {
+    color: #eee !important;
 }
 
 .grayTableBlock th {
@@ -269,7 +288,7 @@ button.ui-button.ui-state-default {
 }
 
 .ui-menu .ui-widget-header {
-    border-radius: none !important;
+    border-radius: 0px !important;
     background: #fff !important;
     border: none !important;
     border-bottom: 1px solid rgb(230, 238, 236) !important;

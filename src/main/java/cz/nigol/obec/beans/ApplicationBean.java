@@ -34,12 +34,14 @@ public class ApplicationBean {
     private void preparePaths() {
         List<String> paths = new ArrayList<>();
         paths.add("/uzivatel/prehled.jsf");
+        paths.add("/uzivatel/informace-zastupitel.jsf");
         paths.add("/administrace/nastaveni.jsf");
         paths.add("/administrace/clanky.jsf");
         paths.add("/administrace/nahled.jsf");
         paths.add("/administrace/akce.jsf");
         paths.add("/administrace/role.jsf");
         paths.add("/administrace/uzivatele.jsf");
+        paths.add("/administrace/plneni-rozpoctu.jsf");
         paths.add("/obec/aktuality/administrace.jsf");
         paths.add("/obecni-urad/rozhlas/administrace.jsf");
         paths.add("/obecni-urad/uredni-deska/administrace.jsf");

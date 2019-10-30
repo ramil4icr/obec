@@ -12,6 +12,34 @@
             <h2>Rozpočet</h2>
 
             <h:form>
+                <h:panelGroup layout="block"
+                        rendered="#{!empty budgetBean.budgetFulfillment}">
+                    <h3 style="text-align: center">Plnění rozpočtu #{budgetBean.budgetFulfillment.year}</h3>
+
+
+                    <p:panelGrid layout="grid" 
+                            columns="2" 
+                            styleClass="ui-noborder">
+                        <h:panelGroup layout="block">
+                            <center>
+                                <p:outputLabel value="Příjmy" for="incomeChart"/>
+                            </center>
+                            <p:donutChart id="incomeChart" model="#{budgetBean.incomeChart}"/>
+                        </h:panelGroup>
+
+                        <h:panelGroup layout="block">
+                            <center>
+                                <p:outputLabel value="Výdaje" for="expenditureChart"/>
+                            </center>
+                            <p:donutChart id="expenditureChart" model="#{budgetBean.expenditureChart}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                </h:panelGroup>
+
+                <ui:include src="/WEB-INF/includes/article.xhtml">
+                    <ui:param name="articleId" value="/obec/zastupitelstvo/rozpocet.jsf"/>
+                </ui:include>
+
                 <p:dataTable id="officialDesk" 
                         value="#{budgetBean.deskItems}" 
                         emptyMessage="Nenalezen žádný výsledek."
@@ -36,9 +64,5 @@
                     </p:column>
                 </p:dataTable>
             </h:form>
-
-            <ui:include src="/WEB-INF/includes/article.xhtml">
-                <ui:param name="articleId" value="/obec/zastupitelstvo/rozpocet.jsf"/>
-            </ui:include>
         </ui:define>
     </ui:composition>

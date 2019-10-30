@@ -27,7 +27,7 @@ public class SessionBean implements Serializable {
     private SettingsService settingsService;
     private User user;
     private Settings settings;
-    private String pathAfterLogin = "/uzivatel/prehled.xhtml?faces-redirect=true";
+    private String pathAfterLogin = "/uzivatel/prehled.jsf";
 
     @PostConstruct
     public void init() {
