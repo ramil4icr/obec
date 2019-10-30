@@ -2,6 +2,17 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.3
+
+* Ve WYSIWYG editoru se při vložení obrázku vloží i atribut "alt".
+* Změněn vzhled menu.
+* Graf plnění rozpočtu.
+* Stránka s informacemi pro zastupitele (po přihlášení).
+* Opravena chyba při přesměrování po přihlášení (mohla nastat jen za určitých okolností).
+* Na úvodní stránce nyní načítá 10 položek z archivu hlášení rozhlasu.
+* Fotky s odkazem na fotogalerii se načítají až ve chvíli, kdy na ně uživatel naroluje.
+* Změněn design (jiné barvy, modernější logo, jiná fotka v záhlaví).
+
 ### Verze 1.2
 
 * Zlepšena přístupnost pro znevýhodněné uživatele.
