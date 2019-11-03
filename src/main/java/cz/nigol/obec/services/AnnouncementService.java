@@ -12,4 +12,5 @@ public interface AnnouncementService {
     void delete(Announcement announcement);
     List<Announcement> getLastFive();
     List<RssItem> getAllRss();
+    List<Announcement> getLastTen();
 }

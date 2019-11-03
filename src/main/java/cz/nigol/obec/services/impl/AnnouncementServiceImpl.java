@@ -50,4 +50,11 @@ public class AnnouncementServiceImpl implements AnnouncementService {
         TypedQuery<RssItem> typedQuery = em.createNamedQuery(Announcement.GET_ALL, RssItem.class);
         return new ArrayList<>(typedQuery.getResultList());
     }
+
+    @Override
+    public List<Announcement> getLastTen() {
+        TypedQuery<Announcement> typedQuery = em.createNamedQuery(Announcement.GET_ALL, Announcement.class);
+        typedQuery.setMaxResults(10);
+        return new ArrayList<>(typedQuery.getResultList()); 
+    }
 }
