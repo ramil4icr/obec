@@ -39,7 +39,7 @@ public class IndexBean {
     @PostConstruct
     public void init() {
         newsList = newsService.getFeatured();
-        announcements = announcementService.getLastFive();
+        announcements = announcementService.getLastTen();
         deskItems = officialDeskService.getTenActiveDeskItemsFor(new Date());
         events = eventsService.getValidToDate(new Date());
         nameOfPhoto = preparePhoto(NUMBER_OF_PHOTOS);
