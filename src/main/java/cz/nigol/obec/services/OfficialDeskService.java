@@ -14,5 +14,5 @@ public interface OfficialDeskService {
     List<DeskItem> getActiveDeskItemsFor(Date date);
     List<DeskItem> getAllValidDeskItems(Date date);
     List<DeskItem> getTenActiveDeskItemsFor(Date date);
-    List<DeskItem> getDeskItemsByCategory(OfficialDeskCategory category);
+	List<DeskItem> getDeskItemsByCategory(OfficialDeskCategory category, Date date);
 }

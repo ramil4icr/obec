@@ -62,10 +62,11 @@ public class OfficialDeskServiceImpl implements OfficialDeskService {
     }
 
     @Override
-    public List<DeskItem> getDeskItemsByCategory(OfficialDeskCategory category) {
+    public List<DeskItem> getDeskItemsByCategory(OfficialDeskCategory category, Date date) {
         TypedQuery<DeskItem> typedQuery = em.createNamedQuery(DeskItem.GET_BY_CATEGORY,
                 DeskItem.class);
         typedQuery.setParameter(DeskItem.CATEGORY_PARAM, category);
+        typedQuery.setParameter(DeskItem.DATE_PARAM, date);
         return new ArrayList<>(typedQuery.getResultList());
     }
 }
