@@ -31,7 +31,7 @@ public class SessionBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        //prepareDevData.createData();
+        prepareDevData.createData();
         settings = settingsService.findById(SettingsBean.ID);
     }
 

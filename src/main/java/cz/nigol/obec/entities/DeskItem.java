@@ -29,7 +29,7 @@ query="SELECT d FROM DeskItem d ORDER BY d.activeFrom DESC"),
     @NamedQuery(name=DeskItem.GET_VALID_TO_DATE,
     query="SELECT d FROM DeskItem d WHERE :date >= d.activeFrom ORDER BY d.activeFrom DESC"),
     @NamedQuery(name=DeskItem.GET_BY_CATEGORY,
-    query="SELECT d FROM DeskItem d WHERE d.category = :category ORDER BY d.activeFrom DESC"),
+    query="SELECT d FROM DeskItem d WHERE d.category = :category AND :date >= d.activeFrom ORDER BY d.activeFrom DESC"),
 })
 @Entity
 @Table(name="OB_DESK_ITEM")

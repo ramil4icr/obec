@@ -1,6 +1,7 @@
 package cz.nigol.obec.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -22,7 +23,7 @@ public class ResolutionBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        deskItems = officialDeskService.getDeskItemsByCategory(OfficialDeskCategory.USNESENI);
+        deskItems = officialDeskService.getDeskItemsByCategory(OfficialDeskCategory.USNESENI, new Date());
     }
 
     /**

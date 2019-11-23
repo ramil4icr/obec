@@ -2,6 +2,7 @@ package cz.nigol.obec.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -34,7 +35,7 @@ public class BudgetBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        deskItems = officialDeskService.getDeskItemsByCategory(OfficialDeskCategory.ROZPOCET);
+        deskItems = officialDeskService.getDeskItemsByCategory(OfficialDeskCategory.ROZPOCET, new Date());
         budgetFulfillment = budgetService.getLatestBudgetFulfillment();
         if (budgetFulfillment != null) {
             prepareChartsData();
