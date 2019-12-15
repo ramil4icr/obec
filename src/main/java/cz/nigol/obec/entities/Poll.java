@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 
 @NamedQueries({
 @NamedQuery(name=Poll.GET_ALL, query="SELECT p FROM Poll p ORDER BY p.createdAt DESC"),
+    @NamedQuery(name=Poll.GET_ACTIVE, query="SELECT p FROM Poll p WHERE p.active = true ORDER BY p.createdAt DESC"),
 })
 @Entity
 @Table(name="OB_POLL")
@@ -29,6 +30,7 @@ public class Poll implements Serializable {
     private static final long serialVersionUID = 2441041195650043052L;
 
     public static final String GET_ALL = "Poll.GET_ALL";
+    public static final String GET_ACTIVE = "Poll.GET_ACTIVE";
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -48,6 +50,9 @@ public class Poll implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
     private List<PollQuestion> pollQuestions;
+
+    @Column(name="ACTIVE")
+    private boolean active;
 
     @Override
     public boolean equals(Object o) {
@@ -130,5 +135,19 @@ public class Poll implements Serializable {
      */
     public void setPollQuestions(List<PollQuestion> pollQuestions) {
         this.pollQuestions = pollQuestions;
+    }
+
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
