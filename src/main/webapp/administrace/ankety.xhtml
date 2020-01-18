@@ -18,7 +18,6 @@
                             action="#{pollAdminBean.newPoll}"
                             disabled="#{!empty pollAdminBean.poll}"
                             update="@form"
-                            ajax="false"
                             resetValues="true"/>
                 </p:panelGrid>
 
@@ -48,6 +47,11 @@
                         columns="1"
                         rendered="#{!empty pollAdminBean.poll}"
                         styleClass="ui-noborder">
+                    <h:panelGroup>
+                        <p:selectBooleanCheckbox id="active" value="#{pollAdminBean.poll.active}"/>
+                        &#160;&#160;
+                        <p:outputLabel value="Aktivní" for="active"/>
+                    </h:panelGroup>
                     <p:outputLabel value="Název ankety" for="label"/>
                     <p:inputText id="label" 
                             required="true"
@@ -95,7 +99,6 @@
                                 icon="fa fa-save"
                                 action="#{pollAdminBean.savePoll}"
                                 styleClass="default"
-                                ajax="false"
                                 update=":growl @form"/>
                         <p:commandButton value="Zrušit" 
                                 icon="fa fa-close"
