@@ -17,6 +17,13 @@
         <ui:param name="title" value="Obec Tršice"/>
 
         <ui:define name="content">
+            <h:panelGroup rendered="#{!empty indexBean.poll}">
+                <h2>Anketa</h2>
+                <ui:include src="/WEB-INF/includes/poll-results.xhtml">
+                    <ui:param name="pollId" value="#{indexBean.poll.id}"/>
+                </ui:include>
+            </h:panelGroup>
+
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
                 <h2>Aktuality</h2>
 
