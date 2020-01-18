@@ -34,6 +34,10 @@
                             <p:donutChart id="expenditureChart" model="#{budgetBean.expenditureChart}"/>
                         </h:panelGroup>
                     </p:panelGrid>
+                    <p style="text-align: center">
+                        <h:outputText value="Údaje v grafu jsou pouze informativního charakteru." 
+                                style="font-size: 70%; font-weight: bold"/>
+                    </p>
                 </h:panelGroup>
 
                 <ui:include src="/WEB-INF/includes/article.xhtml">
