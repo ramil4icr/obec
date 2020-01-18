@@ -2,6 +2,12 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.3.3
+
+* Upraveno třídění položek na úřední desce.
+* Upraveno zobrazování položek z úřední desky na stránce rozpočtu,...
+* Informační nápis u grafu čerpání rozpočtu, přídán odkaz na muzeum do footeru.
+
 ### Verze 1.3
 
 * Ve WYSIWYG editoru se při vložení obrázku vloží i atribut "alt".
