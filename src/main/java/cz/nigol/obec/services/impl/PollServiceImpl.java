@@ -1,5 +1,6 @@
 package cz.nigol.obec.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -35,6 +36,6 @@ public class PollServiceImpl implements PollService {
     @Override
     public List<Poll> getAllPolls() {
         TypedQuery<Poll> typedQuery = em.createNamedQuery(Poll.GET_ALL, Poll.class);
-        return typedQuery.getResultList();
+        return new ArrayList<>(typedQuery.getResultList());
     }
 }

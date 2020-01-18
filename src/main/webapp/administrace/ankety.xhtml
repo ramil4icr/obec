@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="Ankety, administrace - Obec Tršice"/>
+
+        <ui:define name="content">
+            <h2>Ankety, administrace</h2>
+
+            <h:form id="pollsForm">
+                <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                    <p:commandButton value="Nová anketa" 
+                            icon="fa fa-plus-square-o"
+                            action="#{pollAdminBean.newPoll}"
+                            disabled="#{!empty pollAdminBean.poll}"
+                            update="@form"
+                            ajax="false"
+                            resetValues="true"/>
+                </p:panelGrid>
+
+                <p:dataTable id="polls" 
+                        value="#{pollAdminBean.polls}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        selectionMode="single"
+                        selection="#{pollAdminBean.poll}"
+                        rowKey="#{poll.id}"
+                        rows="5"
+                        paginator="true"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                        paginatorPosition="bottom"
+                        var="poll">
+                    <p:ajax event="rowSelect"
+                            listener="#{pollAdminBean.onPollSelect}"
+                            update="@form"
+                            resetValues="true"/>
+                    <p:column headerText="Anketa"
+                            filterBy="#{poll.label}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{poll.label}"/>
+                    </p:column>
+                </p:dataTable>
+
+                <p:panelGrid layout="grid"
+                        columns="1"
+                        rendered="#{!empty pollAdminBean.poll}"
+                        styleClass="ui-noborder">
+                    <p:outputLabel value="Název ankety" for="label"/>
+                    <p:inputText id="label" 
+                            required="true"
+                            value="#{pollAdminBean.poll.label}">
+                        <f:validateLength maximum="300"/>
+                    </p:inputText>
+
+                    <p:panelGrid layout="grid"
+                            columns="2"
+                            styleClass="ui-noborder">
+                        <h:panelGroup>
+                            <p:outputLabel value="1. otázka" for="question1"/>
+                            <p:inputText id="question1" 
+                                    value="#{pollAdminBean.question1.question}">
+                                <f:validateLength maximum="300"/>
+                            </p:inputText>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <p:outputLabel value="2. otázka" for="question2"/>
+                            <p:inputText id="question2" 
+                                    value="#{pollAdminBean.question2.question}">
+                                <f:validateLength maximum="300"/>
+                            </p:inputText>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <p:outputLabel value="3. otázka" for="question3"/>
+                            <p:inputText id="question3" 
+                                    value="#{pollAdminBean.question3.question}">
+                                <f:validateLength maximum="300"/>
+                            </p:inputText>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <p:outputLabel value="4. otázka" for="question4"/>
+                            <p:inputText id="question4" 
+                                    value="#{pollAdminBean.question4.question}">
+                                <f:validateLength maximum="300"/>
+                            </p:inputText>
+                        </h:panelGroup>
+                    </p:panelGrid>
+
+                    <p:panelGrid layout="grid"
+                            columns="5"
+                            styleClass="ui-noborder">
+                        <p:commandButton value="Uložit" 
+                                icon="fa fa-save"
+                                action="#{pollAdminBean.savePoll}"
+                                styleClass="default"
+                                ajax="false"
+                                update=":growl @form"/>
+                        <p:commandButton value="Zrušit" 
+                                icon="fa fa-close"
+                                action="#{pollAdminBean.cancelEdit}"
+                                immediate="true"
+                                resetValues="true"
+                                update="@form"/>
+                    </p:panelGrid>	
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>

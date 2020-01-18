@@ -55,6 +55,11 @@ public class PollAdminBean implements Serializable {
         poll.setPollQuestions(new ArrayList<>());
         poll.setCreatedAt(new Date());
         poll.setCreatedBy(user);
+        prepareQuestions();
+        polls.add(poll);
+    }
+
+    private void prepareQuestions() {
         question1 = new PollQuestion();
         question2 = new PollQuestion();
         question3 = new PollQuestion();
@@ -75,8 +80,33 @@ public class PollAdminBean implements Serializable {
             poll.getPollQuestions().add(question4);
         }
         pollService.savePoll(poll);
+        poll = null;
         loadAll();
+        prepareQuestions();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Anketa byla uložena."));
+    }
+
+    public void onPollSelect() {
+        int count = poll.getPollQuestions().size();
+        prepareQuestions();
+        switch (count) {
+            case 4:
+                question4 = poll.getPollQuestions().get(3);
+            case 3:
+                question3 = poll.getPollQuestions().get(2);
+            case 2:
+                question2 = poll.getPollQuestions().get(1);
+            case 1:
+                question1 = poll.getPollQuestions().get(0);
+            default:
+        }
+        poll.setPollQuestions(new ArrayList<>());
+    }
+
+    public void cancelEdit() {
+        poll = null;
+        loadAll();
+        prepareQuestions();
     }
 
     /**
