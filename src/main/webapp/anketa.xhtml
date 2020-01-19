@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="#{pollBean.poll.label} - Obec Tršice"/>
+
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="id" value="#{pollBean.id}"/>
+                <f:viewAction action="#{pollBean.onLoad}"/>
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form>
+                <p style="text-align: center">
+                    <h:outputText value="#{pollBean.poll.label}"
+                            style="text-decoration: underline; font-size: 200%"/>
+
+                        <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+                            <p:column/>
+                            <ui:repeat var="question" value="#{pollBean.poll.pollQuestions}">
+                                <h:panelGroup layout="block">
+                                    <p:commandLink action="#{pollBean.vote(question)}" update=":growl @form">
+                                        <h:outputText value="#{question.question}"
+                                                style="font-weight: bold"/>
+                                    </p:commandLink>
+                                </h:panelGroup>
+                                <br/>
+                                <br/>
+                            </ui:repeat>
+                            <p:column/>
+                        </p:panelGrid>
+                    </p>
+                </h:form>
+            </ui:define>
+        </ui:composition>

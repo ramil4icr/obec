@@ -22,6 +22,13 @@
                 <ui:include src="/WEB-INF/includes/poll-results.xhtml">
                     <ui:param name="pollId" value="#{indexBean.poll.id}"/>
                 </ui:include>
+                <h:link outcome="/anketa.xhtml" 
+                        style="text-decoration: none">
+                    <f:param name="id" value="#{indexBean.poll.id}"/>
+                    <p style="text-align: center; text-decoration: underline">
+                        HLASOVAT
+                    </p>
+                </h:link>
             </h:panelGroup>
 
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
