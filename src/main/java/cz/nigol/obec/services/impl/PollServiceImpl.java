@@ -41,6 +41,7 @@ public class PollServiceImpl implements PollService {
 
     @Override
     public void savePollAnswer(PollAnswer pollAnswer) {
-        em.merge(pollAnswer);
-    }
+        PollQuestion question = em.find(PollQuestion.class, pollAnswer.getPollQuestion().getId());
+        question.getPollAnswers().add(pollAnswer);
+    }    
 }
