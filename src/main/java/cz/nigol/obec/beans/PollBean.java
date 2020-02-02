@@ -1,6 +1,7 @@
 package cz.nigol.obec.beans;
 
 import java.io.Serializable;
+import java.util.*;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -8,8 +9,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import cz.nigol.obec.entities.Poll;
-import cz.nigol.obec.entities.PollQuestion;
+import cz.nigol.obec.entities.*;
 import cz.nigol.obec.services.PollService;
 
 @Named
@@ -28,6 +28,10 @@ public class PollBean implements Serializable {
     }
 
     public void vote(PollQuestion question) {
+        PollAnswer answer = new PollAnswer();
+        answer.setCreatedAt(new Date());
+        answer.setPollQuestion(question);
+        pollService.savePollAnswer(answer);
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", 
                     "Děkujeme za Váš hlas pro volbu '" + question.getQuestion() + "'."));
     }

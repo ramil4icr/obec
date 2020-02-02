@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import cz.nigol.obec.entities.Poll;
+import cz.nigol.obec.entities.*;
 import cz.nigol.obec.services.PollService; 
 
 @Stateless
@@ -37,5 +37,10 @@ public class PollServiceImpl implements PollService {
     public List<Poll> getAllPolls() {
         TypedQuery<Poll> typedQuery = em.createNamedQuery(Poll.GET_ALL, Poll.class);
         return new ArrayList<>(typedQuery.getResultList());
+    }
+
+    @Override
+    public void savePollAnswer(PollAnswer pollAnswer) {
+        em.merge(pollAnswer);
     }
 }
