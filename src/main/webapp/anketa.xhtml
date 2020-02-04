@@ -6,7 +6,7 @@
         template="/WEB-INF/templates/template.xhtml"
         xmlns:p="http://primefaces.org/ui">
 
-        <ui:param name="title" value="#{pollBean.poll.label} - Obec Tršice"/>
+        <ui:param name="title" value="Anketa: #{pollBean.poll.label} - Obec Tršice"/>
 
         <ui:define name="metadata">
             <f:metadata>
@@ -17,16 +17,26 @@
 
         <ui:define name="content">
             <h:form>
-                <h:panelGroup rendered="#{sessionBean.pollPerformed}">
+                <h:panelGroup rendered="#{!pollBean.poll.active or sessionBean.pollPerformed}">
                     <ui:include src="/WEB-INF/includes/poll-results.xhtml">
                         <ui:param name="pollId" value="#{pollBean.id}"/>
                     </ui:include>
+
+                    <h:panelGroup rendered="#{pollBean.poll.active}">
+                        <p style="font-size: small; text-align: center">
+                            Zobrazené výsledky jsou průběžné / orientační. Konečné výsledky se mohou lišit.
+                        </p>
+                    </h:panelGroup>
                 </h:panelGroup>
                 
-                <h:panelGroup rendered="#{!sessionBean.pollPerformed}">
+                <h:panelGroup rendered="#{pollBean.poll.active and !sessionBean.pollPerformed}">
                     <p style="text-align: center">
                         <h:outputText value="#{pollBean.poll.label}"
                                 style="text-decoration: underline; font-size: 200%"/>
+
+                        <p style="font-size: small; text-align: center">
+                            Hlasujte kliknutím na jednu z možností.
+                        </p>
 
                             <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
                                 <p:column/>
@@ -41,9 +51,18 @@
                                     <br/>
                                 </ui:repeat>
                                 <p:column/>
-                            </p:panelGrid>
+                            </p:panelGrid>                            
                         </p>
                     </h:panelGroup>
                 </h:form>
+
+                <div class="icon-bar">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=#{pollBean.url}"
+                            class="facebook"
+                            title="Sdílet na Facebooku">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </div>
+
             </ui:define>
         </ui:composition>

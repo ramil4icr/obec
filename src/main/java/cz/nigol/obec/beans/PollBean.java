@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import cz.nigol.obec.entities.*;
 import cz.nigol.obec.services.PollService;
+import cz.nigol.obec.qualifiers.CurrentSettings;
 
 @Named
 @ViewScoped
@@ -22,6 +23,9 @@ public class PollBean implements Serializable {
     private FacesContext facesContext;
     @Inject
     private SessionBean sessionBean;
+    @Inject
+    @CurrentSettings
+    private Settings settings;
     private Poll poll;
     private long id;
 
@@ -38,6 +42,11 @@ public class PollBean implements Serializable {
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", 
                     "Děkujeme za Váš hlas pro volbu '" + question.getQuestion() + "'."));
     }
+
+    public String getUrl() {
+        return settings.getBaseUrl() + "/anketa.jsf?id=" + poll.getId();
+    }
+
 
     /**
      * @return the poll

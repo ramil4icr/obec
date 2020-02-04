@@ -23,6 +23,7 @@
                     <ui:param name="pollId" value="#{indexBean.poll.id}"/>
                 </ui:include>
                 <h:link outcome="/anketa.xhtml" 
+                        rendered="#{!sessionBean.pollPerformed}"
                         style="text-decoration: none">
                     <f:param name="id" value="#{indexBean.poll.id}"/>
                     <p style="text-align: center; text-decoration: underline">
