@@ -17,25 +17,33 @@
 
         <ui:define name="content">
             <h:form>
-                <p style="text-align: center">
-                    <h:outputText value="#{pollBean.poll.label}"
-                            style="text-decoration: underline; font-size: 200%"/>
+                <h:panelGroup rendered="#{sessionBean.pollPerformed}">
+                    <ui:include src="/WEB-INF/includes/poll-results.xhtml">
+                        <ui:param name="pollId" value="#{pollBean.id}"/>
+                    </ui:include>
+                </h:panelGroup>
+                
+                <h:panelGroup rendered="#{!sessionBean.pollPerformed}">
+                    <p style="text-align: center">
+                        <h:outputText value="#{pollBean.poll.label}"
+                                style="text-decoration: underline; font-size: 200%"/>
 
-                        <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
-                            <p:column/>
-                            <ui:repeat var="question" value="#{pollBean.poll.pollQuestions}">
-                                <h:panelGroup layout="block">
-                                    <p:commandLink action="#{pollBean.vote(question)}" update=":growl @form">
-                                        <h:outputText value="#{question.question}"
-                                                style="font-weight: bold"/>
-                                    </p:commandLink>
-                                </h:panelGroup>
-                                <br/>
-                                <br/>
-                            </ui:repeat>
-                            <p:column/>
-                        </p:panelGrid>
-                    </p>
+                            <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+                                <p:column/>
+                                <ui:repeat var="question" value="#{pollBean.poll.pollQuestions}">
+                                    <h:panelGroup layout="block">
+                                        <p:commandLink action="#{pollBean.vote(question)}" update=":growl @form">
+                                            <h:outputText value="#{question.question}"
+                                                    style="font-weight: bold"/>
+                                        </p:commandLink>
+                                    </h:panelGroup>
+                                    <br/>
+                                    <br/>
+                                </ui:repeat>
+                                <p:column/>
+                            </p:panelGrid>
+                        </p>
+                    </h:panelGroup>
                 </h:form>
             </ui:define>
         </ui:composition>

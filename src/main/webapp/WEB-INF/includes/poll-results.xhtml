@@ -19,6 +19,7 @@
                         <h:outputText value=" (#{question.pollAnswers.size()})"
                                 style="font-weight: normal"/>
                         <p:progressBar value="#{pollResultsBean.answerPercentage(question)}" labelTemplate="" displayOnly="true"/>
+                        <br/>
                     </h:panelGroup>
                 </ui:repeat>
                 <p:column/>

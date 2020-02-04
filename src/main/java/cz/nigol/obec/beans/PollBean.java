@@ -20,6 +20,8 @@ public class PollBean implements Serializable {
     private PollService pollService;
     @Inject
     private FacesContext facesContext;
+    @Inject
+    private SessionBean sessionBean;
     private Poll poll;
     private long id;
 
@@ -32,6 +34,7 @@ public class PollBean implements Serializable {
         answer.setCreatedAt(new Date());
         answer.setPollQuestion(question);
         pollService.savePollAnswer(answer);
+        sessionBean.setPollPerformed(true);
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", 
                     "Děkujeme za Váš hlas pro volbu '" + question.getQuestion() + "'."));
     }
