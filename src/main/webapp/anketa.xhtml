@@ -16,7 +16,9 @@
         </ui:define>
 
         <ui:define name="content">
-            <h:form>
+            <h:outputScript name="script/fingerprint.js" target="head"/>
+            
+            <h:form id="pollForm">
                 <h:panelGroup rendered="#{!pollBean.poll.active or sessionBean.pollPerformed}">
                     <ui:include src="/WEB-INF/includes/poll-results.xhtml">
                         <ui:param name="pollId" value="#{pollBean.id}"/>
@@ -37,6 +39,8 @@
                         <p style="font-size: small; text-align: center">
                             Hlasujte kliknutím na jednu z možností.
                         </p>
+
+                        <h:inputHidden id="finger" value="#{pollBean.fingerprint}"/>
 
                             <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
                                 <p:column/>
@@ -64,5 +68,9 @@
                     </a>
                 </div>
 
+                <script>
+                    var hid = document.getElementById("pollForm\:finger");
+                    hid.value = new Fingerprint().get();
+                </script>
             </ui:define>
         </ui:composition>

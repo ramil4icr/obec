@@ -2,6 +2,7 @@ package cz.nigol.obec.beans;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.*;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -28,6 +29,7 @@ public class PollBean implements Serializable {
     private Settings settings;
     private Poll poll;
     private long id;
+    private String fingerprint;
 
     public void onLoad() {
         poll = pollService.findById(id);
@@ -37,10 +39,22 @@ public class PollBean implements Serializable {
         PollAnswer answer = new PollAnswer();
         answer.setCreatedAt(new Date());
         answer.setPollQuestion(question);
-        pollService.savePollAnswer(answer);
+        answer.setFingerPrint(fingerprint);
+        if (isAnswerUnique(fingerprint)) {
+            pollService.savePollAnswer(answer);    
+        }
         sessionBean.setPollPerformed(true);
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", 
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "",
                     "Děkujeme za Váš hlas pro volbu '" + question.getQuestion() + "'."));
+    }
+
+    private boolean isAnswerUnique(String fingerprint) {
+        int size = poll.getPollQuestions().stream()
+                        .flatMap(pq -> pq.getPollAnswers().stream())
+                        .map(PollAnswer::getFingerPrint)
+                        .filter(fp -> fingerprint.equals(fp))
+                        .collect(Collectors.toList()).size();
+        return size == 0;
     }
 
     public String getUrl() {
@@ -74,5 +88,13 @@ public class PollBean implements Serializable {
      */
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getFingerprint() {
+        return fingerprint;
+    }
+
+    public void setFingerprint(String fingerprint) {
+        this.fingerprint = fingerprint;
     }
 }
