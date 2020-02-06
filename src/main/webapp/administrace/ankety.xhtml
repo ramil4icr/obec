@@ -92,6 +92,13 @@
                         </h:panelGroup>
                     </p:panelGrid>
 
+                    <h:panelGroup
+                        rendered="#{!empty pollAdminBean.poll}">
+                        <ui:include src="/WEB-INF/includes/poll-results.xhtml">
+                            <ui:param name="pollId" value="#{pollAdminBean.poll.id}"/>
+                        </ui:include>
+                    </h:panelGroup>
+
                     <p:panelGrid layout="grid"
                             columns="5"
                             styleClass="ui-noborder">
