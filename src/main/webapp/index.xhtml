@@ -17,6 +17,21 @@
         <ui:param name="title" value="Obec Tršice"/>
 
         <ui:define name="content">
+            <h:panelGroup rendered="#{!empty indexBean.poll}">
+                <h2>Anketa</h2>
+                <ui:include src="/WEB-INF/includes/poll-results.xhtml">
+                    <ui:param name="pollId" value="#{indexBean.poll.id}"/>
+                </ui:include>
+                <h:link outcome="/anketa.xhtml" 
+                        rendered="#{!sessionBean.pollPerformed}"
+                        style="text-decoration: none">
+                    <f:param name="id" value="#{indexBean.poll.id}"/>
+                    <p style="text-align: center; text-decoration: underline">
+                        HLASOVAT
+                    </p>
+                </h:link>
+            </h:panelGroup>
+
             <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
                 <h2>Aktuality</h2>
 

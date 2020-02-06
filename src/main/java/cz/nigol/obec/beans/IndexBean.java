@@ -12,11 +12,12 @@ import cz.nigol.obec.entities.Announcement;
 import cz.nigol.obec.entities.DeskItem;
 import cz.nigol.obec.entities.Event;
 import cz.nigol.obec.entities.News;
+import cz.nigol.obec.entities.Poll;
 import cz.nigol.obec.services.AnnouncementService;
 import cz.nigol.obec.services.EventsService;
 import cz.nigol.obec.services.NewsService;
 import cz.nigol.obec.services.OfficialDeskService;
-
+import cz.nigol.obec.services.PollService;
 
 @Named
 @RequestScoped
@@ -29,12 +30,15 @@ public class IndexBean {
     private OfficialDeskService officialDeskService;
     @Inject
     private EventsService eventsService;
+    @Inject
+    private PollService pollService;
     private static final int NUMBER_OF_PHOTOS = 8;
     private List<News> newsList;
     private List<Announcement> announcements;
     private List<DeskItem> deskItems;
     private List<Event> events;
     private String nameOfPhoto;
+    private Poll poll;
 
     @PostConstruct
     public void init() {
@@ -43,6 +47,7 @@ public class IndexBean {
         deskItems = officialDeskService.getTenActiveDeskItemsFor(new Date());
         events = eventsService.getValidToDate(new Date());
         nameOfPhoto = preparePhoto(NUMBER_OF_PHOTOS);
+        poll = pollService.getActivePoll();
     }
 
     private String preparePhoto(int numOfPhotos) {
@@ -119,6 +124,20 @@ public class IndexBean {
      */
     public void setNameOfPhoto(String nameOfPhoto) {
         this.nameOfPhoto = nameOfPhoto;
+    }
+
+    /**
+     * @return the poll
+     */
+    public Poll getPoll() {
+        return poll;
+    }
+
+    /**
+     * @param poll the poll to set
+     */
+    public void setPoll(Poll poll) {
+        this.poll = poll;
     }
 
 }

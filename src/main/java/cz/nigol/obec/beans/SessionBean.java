@@ -28,6 +28,7 @@ public class SessionBean implements Serializable {
     private User user;
     private Settings settings;
     private String pathAfterLogin = "/uzivatel/prehled.jsf";
+    private boolean pollPerformed = false;
 
     @PostConstruct
     public void init() {
@@ -95,5 +96,13 @@ public class SessionBean implements Serializable {
      */
     public void setPathAfterLogin(String pathAfterLogin) {
         this.pathAfterLogin = pathAfterLogin;
+    }
+
+    public boolean getPollPerformed() {
+        return pollPerformed;
+    }
+
+    public void setPollPerformed(boolean pollPerformed) {
+        this.pollPerformed = pollPerformed;
     }
 }

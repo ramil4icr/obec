@@ -35,7 +35,7 @@ public class EventBean {
         ExternalContext externalContext = facesContext.getExternalContext();
         externalContext.responseReset();
         externalContext.setResponseHeader("Content-Type", "text/calendar; charset=utf-8");
-        externalContext.setResponseHeader("Content-Disposition", "attachment;filename=event.ics");
+        externalContext.setResponseHeader("Content-Disposition", "inline;filename=event.ics");
         OutputStream outputStream = externalContext.getResponseOutputStream();
         outputStream.write(eventsService.getAsIcal(event).getBytes(Charset.forName("UTF-8")));
         outputStream.close();
