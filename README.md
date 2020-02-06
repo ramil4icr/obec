@@ -2,6 +2,11 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.4
+
+* Přidány ankety.
+* Změněno tlačítko menu, jiný content disposition pro události.
+
 ### Verze 1.3.3
 
 * Upraveno třídění položek na úřední desce.
