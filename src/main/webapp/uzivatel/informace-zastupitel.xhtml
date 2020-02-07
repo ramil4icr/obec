@@ -3,7 +3,7 @@
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        template="/WEB-INF/templates/template-transient.xhtml"
+        template="/WEB-INF/templates/template.xhtml"
         xmlns:p="http://primefaces.org/ui">
 
         <ui:param name="title" value="Informační servis pro zastupitele - Obec Tršice"/>
@@ -14,5 +14,39 @@
             <ui:include src="/WEB-INF/includes/article.xhtml">
                 <ui:param name="articleId" value="/uzivatel/informace-zastupitel.jsf"/>
             </ui:include>
+
+            <h:form>
+                <p:panelGrid layout="grid"
+                        columns="2"
+                        styleClass="ui-noborder">
+                    <p:dataTable id="polls" 
+                            value="#{pollAdminBean.polls}" 
+                            emptyMessage="Nenalezen žádný výsledek."
+                            selectionMode="single"
+                            selection="#{pollAdminBean.poll}"
+                            rowKey="#{poll.id}"
+                            rows="5"
+                            paginator="true"
+                            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                            paginatorPosition="bottom"
+                            var="poll">
+                        <p:ajax event="rowSelect"
+                                listener="#{pollAdminBean.onPollSelect}"
+                                update="@form"
+                                resetValues="true"/>
+                        <p:column headerText="Anketa"
+                                filterBy="#{poll.label}"
+                                filterMatchMode="contains">
+                            <h:outputText value="#{poll.label}"/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <h:panelGroup rendered="#{!empty pollAdminBean.poll}">
+                        <ui:include src="/WEB-INF/includes/poll-results.xhtml">
+                            <ui:param name="pollId" value="#{pollAdminBean.poll.id}"/>
+                        </ui:include>
+                    </h:panelGroup>
+                </p:panelGrid>
+            </h:form>
         </ui:define>
     </ui:composition>
