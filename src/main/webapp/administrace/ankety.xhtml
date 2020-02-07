@@ -93,7 +93,7 @@
                     </p:panelGrid>
 
                     <h:panelGroup
-                        rendered="#{!empty pollAdminBean.poll}">
+                        rendered="#{!empty pollAdminBean.poll and pollAdminBean.poll.id ne 0}">
                         <ui:include src="/WEB-INF/includes/poll-results.xhtml">
                             <ui:param name="pollId" value="#{pollAdminBean.poll.id}"/>
                         </ui:include>
