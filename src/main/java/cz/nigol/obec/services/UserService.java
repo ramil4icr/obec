@@ -20,4 +20,5 @@ public interface UserService {
     List<Path> initializePaths(List<String> paths);
     Path getPathById(String id);
     Role saveRole(Role role, List<Path> paths);
+    List<User> findUsersByFullName(String name);
 }

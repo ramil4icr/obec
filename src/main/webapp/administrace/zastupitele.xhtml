@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="Zastupitelé, administrace - Obec Tršice"/>
+
+        <ui:define name="content">
+            <h2>Zastupitelé, administrace</h2>
+
+            <h:form id="councillorsForm">
+                <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                    <p:commandButton value="Nový zastupitel" 
+                            icon="fa fa-plus-square-o"
+                            action="#{councillorAdminBean.newCouncillor}"
+                            disabled="#{!empty councillorAdminBean.councillor}"
+                            update="@form"
+                            resetValues="true"/>
+                </p:panelGrid>
+
+                <p:panelGrid layout="grid"
+                        columns="2"
+                        styleClass="ui-noborder">
+                    <p:dataTable id="councillors" 
+                            value="#{councillorAdminBean.councillors}" 
+                            emptyMessage="Nenalezen žádný výsledek."
+                            selectionMode="single"
+                            selection="#{councillorAdminBean.councillor}"
+                            rowKey="#{councillor.id}"
+                            rows="5"
+                            paginator="true"
+                            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                            paginatorPosition="bottom"
+                            var="councillor">
+                        <p:ajax event="rowSelect"
+                                listener="#{councillorAdminBean.onCouncillorSelect}"
+                                update="@form"
+                                resetValues="true"/>
+                        <p:column headerText="Zastupitel"
+                                filterBy="#{councillor.user.fullName}"
+                                filterMatchMode="contains">
+                            <h:outputText value="#{councillor.user.fullName}"/>
+                        </p:column>
+                    </p:dataTable>
+    
+                    <p:panelGrid layout="grid"
+                            columns="1"
+                            rendered="#{!empty councillorAdminBean.councillor}"
+                            styleClass="ui-noborder">
+                        <p:outputLabel value="Volební období" for="period"/>
+                        <h:outputText id="period" value="#{councillorAdminBean.electionPeriod.label}"/>
+
+                        <p:outputLabel value="Uživatel" for="user"/>
+                        <p:autoComplete id="user" 
+                            required="true"
+                            minQueryLength="3" 
+                            maxResults="5"
+                            var="user"
+                            value="#{councillorAdminBean.user}" 
+                            itemLabel="#{user.fullName}"
+                            itemValue="#{user}"
+                            converter="#{userConverter}"
+                            completeMethod="#{councillorAdminBean.completeUser}"/>         
+
+                        <p:outputLabel value="Priorita (číslo pořadí)" for="priority"/>
+                        <p:inputText id="priority" value="#{councillorAdminBean.councillor.priority}" required="true">
+                            <f:validateLongRange minimum="1" maximum="100"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="Funkce" for="occupation"/>
+                        <p:inputText id="occupation" value="#{councillorAdminBean.councillor.occupation}" required="true">
+                            <f:validateLength maximum="200"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="Poznámka" for="note"/>
+                        <p:inputText id="note" value="#{councillorAdminBean.councillor.note}">
+                            <f:validateLength maximum="200"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="Začátek mandátu" for="startDate"/>
+                        <p:calendar id="startDate"
+                            value="#{councillorAdminBean.councillor.startDate}"
+                            locale="cz"
+                            pattern="dd.MM.yyyy"
+                            mask="true">
+                            <p:ajax event="dateSelect" update="endDate"/>
+                        </p:calendar>
+
+                        <p:outputLabel value="Konec mandátu" for="endDate"/>
+                        <p:calendar id="endDate"
+                            value="#{councillorAdminBean.councillor.endDate}"
+                            locale="cz"
+                            pattern="dd.MM.yyyy"
+                            mask="true"
+                            mindate="#{councillorAdminBean.councillor.startDate}"/>
+                                     
+                        <h:panelGroup>
+                            <p:selectBooleanCheckbox id="retired" value="#{councillorAdminBean.councillor.retired}"/>
+                            &#160;&#160;
+                            <p:outputLabel value="Předčasné ukončení mandátu" for="retired"/>
+                        </h:panelGroup>
+
+                        <h:panelGroup>
+                            <p:selectBooleanCheckbox id="leader" value="#{councillorAdminBean.councillor.leader}"/>
+                            &#160;&#160;
+                            <p:outputLabel value="Vedení (starosta, místostarosta, radní)" for="leader"/>
+                        </h:panelGroup>
+
+                        <p:panelGrid layout="grid"
+                            columns="5"
+                            rendered="#{!empty councillorAdminBean.councillor}"
+                            styleClass="ui-noborder">
+                            <p:commandButton value="Uložit" 
+                                icon="fa fa-save"
+                                action="#{councillorAdminBean.saveCouncillor}"
+                                styleClass="default"
+                                update=":growl @form"/>
+                            <p:commandButton value="Zrušit" 
+                                icon="fa fa-close"
+                                action="#{councillorAdminBean.cancelEdit}"
+                                immediate="true"
+                                resetValues="true"
+                                update="@form"/>
+                        </p:panelGrid>	
+                    </p:panelGrid>
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>

@@ -55,6 +55,9 @@
                     icon="fa fa-flag-checkered"
                     url="/administrace/volebni-obdobi.jsf"
                     rendered="#{sessionBean.pathAllowed('/administrace/volebni-obdobi.jsf')}"/>
-
+            <p:menuitem value="Zastupitelé"
+                    icon="fa fa-graduation-cap"
+                    url="/administrace/zastupitele.jsf"
+                    rendered="#{sessionBean.pathAllowed('/administrace/zastupitele.jsf')}"/>
         </p:submenu>
     </ui:composition>

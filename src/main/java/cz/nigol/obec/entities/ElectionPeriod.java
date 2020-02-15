@@ -5,7 +5,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @NamedQueries({
-    @NamedQuery(name=ElectionPeriod.GET_ALL, query="SELECT ep FROM ElectionPeriod ep ORDER BY ep.id DESC"),
+    @NamedQuery(name=ElectionPeriod.GET_ALL, query="SELECT ep FROM ElectionPeriod ep ORDER BY ep.active DESC, ep.id DESC"),
 })
 @Entity
 @Table(name="OB_ELECTION_PERIOD")
