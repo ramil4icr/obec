@@ -55,30 +55,31 @@
                             &#160;&#160;
                             <p:outputLabel value="Aktivní" for="active"/>
                         </h:panelGroup>
+
                         <p:outputLabel value="Volební období" for="label"/>
                         <p:inputText id="label" 
                                 required="true"
                                 value="#{electionPeriodAdminBean.electionPeriod.label}">
                             <f:validateLength maximum="200"/>
                         </p:inputText>
-                    </p:panelGrid>
 
-                    <p:panelGrid layout="grid"
-                            columns="5"
-                            rendered="#{!empty electionPeriodAdminBean.electionPeriod}"
-                            styleClass="ui-noborder">
-                        <p:commandButton value="Uložit" 
-                                icon="fa fa-save"
-                                action="#{electionPeriodAdminBean.saveElectionPeriod}"
-                                styleClass="default"
-                                update=":growl @form"/>
-                        <p:commandButton value="Zrušit" 
-                                icon="fa fa-close"
-                                action="#{electionPeriodAdminBean.cancelEdit}"
-                                immediate="true"
-                                resetValues="true"
-                                update="@form"/>
-                    </p:panelGrid>	
+                        <p:panelGrid layout="grid"
+                                columns="5"
+                                rendered="#{!empty electionPeriodAdminBean.electionPeriod}"
+                                styleClass="ui-noborder">
+                            <p:commandButton value="Uložit" 
+                                    icon="fa fa-save"
+                                    action="#{electionPeriodAdminBean.saveElectionPeriod}"
+                                    styleClass="default"
+                                    update=":growl @form"/>
+                            <p:commandButton value="Zrušit" 
+                                    icon="fa fa-close"
+                                    action="#{electionPeriodAdminBean.cancelEdit}"
+                                    immediate="true"
+                                    resetValues="true"
+                                    update="@form"/>
+                        </p:panelGrid>
+                    </p:panelGrid>
                 </p:panelGrid>
             </h:form>
         </ui:define>
