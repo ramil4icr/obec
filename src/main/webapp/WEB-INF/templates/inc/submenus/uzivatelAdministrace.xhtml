@@ -59,5 +59,9 @@
                     icon="fa fa-graduation-cap"
                     url="/administrace/zastupitele.jsf"
                     rendered="#{sessionBean.pathAllowed('/administrace/zastupitele.jsf')}"/>
+            <p:menuitem value="Zasedání zastupitelstva"
+                    icon="fa fa-list-alt"
+                    url="/administrace/zasedani-zastupitelstva.jsf"
+                    rendered="#{sessionBean.pathAllowed('/administrace/zasedani-zastupitelstva.jsf')}"/>
         </p:submenu>
     </ui:composition>
