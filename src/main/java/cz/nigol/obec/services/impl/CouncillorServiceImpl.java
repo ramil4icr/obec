@@ -35,8 +35,10 @@ public class CouncillorServiceImpl implements CouncillorService {
     }
 
     @Override
-    public void saveCouncilMeeting(CouncilMeeting councilMeeting) {
-        em.merge(councilMeeting);     
+    public void saveCouncilMeeting(CouncilMeeting councilMeeting, List<Councillor> councillors) {
+        CouncilMeeting cm = em.merge(councilMeeting);     
+        cm.getCouncillors().clear();
+        cm.getCouncillors().addAll(councillors);
     }
 
     @Override

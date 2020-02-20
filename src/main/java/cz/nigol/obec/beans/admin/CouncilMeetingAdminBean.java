@@ -23,12 +23,14 @@ public class CouncilMeetingAdminBean implements Serializable {
     private List<Councillor> councillors;
     private List<CouncilMeeting> councilMeetings;
     private CouncilMeeting councilMeeting;
+    private List<Councillor> selectedCouncillors;
 
     @PostConstruct
     public void init() {
         electionPeriods = councillorService.getAllElectionPeriods();    
         if (electionPeriods.size() != 0) {
             electionPeriod = electionPeriods.get(0);     
+            councillors = electionPeriod.getCouncillors();
         }
         councillors = councillorService.getAllCouncillors();
         councilMeetings = councillorService.getAllCouncilMeetings();
@@ -41,18 +43,29 @@ public class CouncilMeetingAdminBean implements Serializable {
 
     public void onCouncilMeetingSelect() {
         electionPeriod = councilMeeting.getElectionPeriod();
+        selectedCouncillors = councilMeeting.getCouncillors();
     }
 
     public void saveCouncilMeeting() {
         councilMeeting.setElectionPeriod(electionPeriod);
-        councillorService.saveCouncilMeeting(councilMeeting);
+        councilMeeting.setCouncillors(selectedCouncillors);
+        councillorService.saveCouncilMeeting(councilMeeting, selectedCouncillors);
         councilMeeting = null;
+        selectedCouncillors = new ArrayList<>();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Zasedání bylo uloženo."));
     }
 
     public void cancelEdit() {
         councilMeeting = null;
         init();     
+    }
+
+    public List<Councillor> getSelectedCouncillors() {
+        return selectedCouncillors;
+    }
+
+    public void setSelectedCouncillors(List<Councillor> selectedCouncillors) {
+        this.selectedCouncillors = selectedCouncillors;
     }
 
     public CouncilMeeting getCouncilMeeting() {

@@ -26,7 +26,7 @@ public class CouncilMeeting implements Serializable {
     @JoinColumn(name="ELECTION_PERIOD_ID")
     private ElectionPeriod electionPeriod;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
         name="OB_COUNCIL_MEETING_COUNCILLOR",
         joinColumns=@JoinColumn(name="COUNCIL_MEETING_ID", referencedColumnName="ID"),

@@ -18,6 +18,7 @@
                             action="#{councilMeetingAdminBean.newCouncilMeeting}"
                             disabled="#{!empty councilMeetingAdminBean.councilMeeting}"
                             update="@form"
+                            ajax="false"
                             resetValues="true"/>
                 </p:panelGrid>
 
@@ -60,6 +61,21 @@
 
                         <p:outputLabel value="Volební období" for="period"/>
                         <h:outputText id="period" value="#{councilMeetingAdminBean.electionPeriod.label}"/>
+
+                        <p:outputLabel value="Přítomní zastupitelé" for="councillors"/>
+                	    <p:selectManyMenu id="councillors"
+                			    value="#{councilMeetingAdminBean.selectedCouncillors}"
+                			    converter="#{councillorConverter}"
+                			    var="councillor"
+                			    showCheckbox="true">
+                	        <f:selectItems value="#{councilMeetingAdminBean.councillors}"
+                			    var="counc"
+                			    itemLabel="#{counc.user.fullName}"
+                			    itemValue="#{counc}"/>
+                	        <p:column>
+                	            <h:outputText value="#{councillor.user.fullName}" />
+                	        </p:column>
+                	    </p:selectManyMenu>
 
                         <p:panelGrid layout="grid"
                                 columns="5"
