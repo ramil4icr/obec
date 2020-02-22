@@ -50,4 +50,9 @@ public class CouncillorServiceImpl implements CouncillorService {
     public Councillor findCouncillorById(long id) {
         return em.find(Councillor.class, id);    
     }
+
+    @Override
+    public ElectionPeriod findElectionPeriodById(long id) {
+        return em.find(ElectionPeriod.class, id);    
+    }
 }

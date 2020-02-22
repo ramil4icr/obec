@@ -251,6 +251,22 @@ button.ui-button.ui-state-default {
     margin-right: auto;
 }
 
+.councillorBox {
+    background: #1f4a99;
+    color: #eee;
+    border-radius: 5px;
+    padding: 20px;
+    height: 200px;
+    overflow: hidden;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.councillorBox h5 {
+    color: #ffcc01;
+}
+
 .grayTableBlock {
     background: linear-gradient(to right, rgb(224, 234, 252), rgb(207, 222, 243));
     background: #1f4a99;
