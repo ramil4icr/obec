@@ -1,4 +1,4 @@
-package cz.nigol.obec.beans.admin;
+package cz.nigol.obec.beans;
 
 import java.io.*;
 import java.util.*;

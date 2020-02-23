@@ -12,7 +12,7 @@
         <h2>Zastupitelstvo obce</h2>
     
     <p:panelGrid 
-        rendered="true" 
+        rendered="false" 
         layout="grid"
         columns="1"
         styleClass="ui-noborder">
@@ -35,7 +35,7 @@
                 layout="grid"
                 emptyMessage="Nenalezen žádný výsledek."
                 id="leaders">
-                <h:link outcome="/obec/aktuality/detail.xhtml"
+                <h:link outcome="/obec/zastupitelstvo/zastupitel.xhtml"
                     style="text-decoration: none">
                     <f:param name="id" value="#{counc.id}"/>
                     <h:panelGroup layout="block"
@@ -62,7 +62,7 @@
                 layout="grid"
                 emptyMessage="Nenalezen žádný výsledek."
                 id="councillors">
-                <h:link outcome="/obec/aktuality/detail.xhtml"
+                <h:link outcome="/obec/zastupitelstvo/zastupitel.xhtml"
                     style="text-decoration: none">
                     <f:param name="id" value="#{counc.id}"/>
                     <h:panelGroup layout="block"
