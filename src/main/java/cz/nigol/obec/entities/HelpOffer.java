@@ -22,15 +22,26 @@ public class HelpOffer implements Serializable {
     @Column(name="FULLNAME")
     private String fullname;
 
-    @Column(name="email")
+    @Column(name="EMAIL")
     private String email;
 
-    @Column(name="phone")
+    @Column(name="PHONE")
     private String phone;
 
-    @Column(name="agreedAt")
+    @Column(name="AGREED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date agreedAt;
+
+    @Column(name="OFFER")
+    private String offer;
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(String offer) {
+        this.offer = offer;
+    }
 
     public Date getAgreedAt() {
         return agreedAt;
