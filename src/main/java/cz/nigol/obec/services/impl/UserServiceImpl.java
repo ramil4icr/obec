@@ -102,4 +102,11 @@ public class UserServiceImpl implements UserService {
         List<User> users = typedQuery.getResultList();
         return users.isEmpty() ? null : users.get(0);
     }
+
+    @Override
+    public List<User> findUsersByFullName(String name) {
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.FIND_ACTIVE_USER_NAME, User.class);
+        typedQuery.setParameter(User.NAME_PARAM, "%" + name + "%");
+        return typedQuery.getResultList();
+    }
 }

@@ -3,16 +3,89 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/template-transient.xhtml"
+                template="/WEB-INF/templates/template.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
-  <ui:param name="title" value="Zastupitelstvo obce - Obec Tršice"/>
+    <ui:param name="title" value="Zastupitelstvo obce - Obec Tršice"/>
 
-  <ui:define name="content">
-    <h2>Zastupitelstvo obce</h2>
+    <ui:define name="content">
+        <h2>Zastupitelstvo obce</h2>
     
-    <ui:include src="/WEB-INF/includes/article.xhtml">
-      <ui:param name="articleId" value="/obec/zastupitelstvo/zastupitelstvo.jsf"/>
-    </ui:include>
-  </ui:define>
+    <p:panelGrid 
+        rendered="false" 
+        layout="grid"
+        columns="1"
+        styleClass="ui-noborder">
+        <h:form>
+            <p:selectOneMenu id="electionPeriod"
+                value="#{councilBean.electionPeriod}"
+                converter="#{electionPeriodConverter}">
+                <f:selectItems value="#{councilBean.electionPeriods}"
+                    var="period"
+                    itemLabel="#{period.label}"
+                    itemValue="#{period}"/>
+                <p:ajax listener="#{councilBean.onElectionPeriodSelect}"
+                    update="@form"/>
+            </p:selectOneMenu>
+
+            <p:dataGrid value="#{councilBean.leaders}"
+                var="counc"
+                columns="3"
+                rows="6"
+                layout="grid"
+                emptyMessage="Nenalezen žádný výsledek."
+                id="leaders">
+                <h:link outcome="/obec/zastupitelstvo/zastupitel.xhtml"
+                    style="text-decoration: none">
+                    <f:param name="id" value="#{counc.id}"/>
+                    <h:panelGroup layout="block"
+                        styleClass="councillorBox">
+                        <h5>
+                            <h:outputText value="#{counc.user.fullName}"/>
+                        </h5>
+                        <b>
+                            <h:outputText value="#{counc.occupation}"/>
+                        </b>
+                        <br/>
+                        <br/>
+                        <i>
+                            <h:outputText value="#{counc.note}"/>
+                        </i>
+                    </h:panelGroup>
+                </h:link>
+            </p:dataGrid>
+
+            <p:dataGrid value="#{councilBean.councillors}"
+                var="counc"
+                columns="3"
+                rows="6"
+                layout="grid"
+                emptyMessage="Nenalezen žádný výsledek."
+                id="councillors">
+                <h:link outcome="/obec/zastupitelstvo/zastupitel.xhtml"
+                    style="text-decoration: none">
+                    <f:param name="id" value="#{counc.id}"/>
+                    <h:panelGroup layout="block"
+                        styleClass="councillorBox">
+                        <h5>
+                            <h:outputText value="#{counc.user.fullName}"/>
+                        </h5>
+                        <b>
+                            <h:outputText value="#{counc.occupation}"/>
+                        </b>
+                        <br/>
+                        <br/>
+                        <i>
+                            <h:outputText value="#{counc.note}"/>
+                        </i>
+                    </h:panelGroup>
+                </h:link>
+            </p:dataGrid>
+        </h:form>        
+    </p:panelGrid>
+
+        <ui:include src="/WEB-INF/includes/article.xhtml">
+            <ui:param name="articleId" value="/obec/zastupitelstvo/zastupitelstvo.jsf"/>
+        </ui:include>
+    </ui:define>
 </ui:composition>

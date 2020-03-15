@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="Zasedání zastupitelstva, administrace - Obec Tršice"/>
+
+        <ui:define name="content">
+            <h2>Zasedání zastupitelstva, administrace</h2>
+
+            <h:form id="periodsForm">
+                <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                    <p:commandButton value="Nové zasedání" 
+                            icon="fa fa-plus-square-o"
+                            action="#{councilMeetingAdminBean.newCouncilMeeting}"
+                            disabled="#{!empty councilMeetingAdminBean.councilMeeting}"
+                            update="@form"
+                            resetValues="true"/>
+                </p:panelGrid>
+
+                <p:panelGrid layout="grid"
+                        columns="2"
+                        styleClass="ui-noborder">
+                    <p:dataTable id="periods" 
+                            value="#{councilMeetingAdminBean.councilMeetings}" 
+                            emptyMessage="Nenalezen žádný výsledek."
+                            selectionMode="single"
+                            selection="#{councilMeetingAdminBean.councilMeeting}"
+                            rowKey="#{councilMeeting.id}"
+                            rows="5"
+                            paginator="true"
+                            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                            paginatorPosition="bottom"
+                            var="councilMeeting">
+                        <p:ajax event="rowSelect"
+                                listener="#{councilMeetingAdminBean.onCouncilMeetingSelect}"
+                                update="@form"
+                                resetValues="true"/>
+                        <p:column headerText="Zasedání"
+                                filterBy="#{councilMeeting.label}"
+                                filterMatchMode="contains">
+                            <h:outputText value="#{councilMeeting.label}"/>
+                        </p:column>
+                    </p:dataTable>
+    
+                    <p:panelGrid layout="grid"
+                            columns="1"
+                            rendered="#{!empty councilMeetingAdminBean.councilMeeting}"
+                            styleClass="ui-noborder">
+
+                        <p:outputLabel value="Zasedání zastupitelstva" for="label"/>
+                        <p:inputText id="label" 
+                                required="true"
+                                value="#{councilMeetingAdminBean.councilMeeting.label}">
+                            <f:validateLength maximum="200"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="Volební období" for="period"/>
+                        <h:outputText id="period" value="#{councilMeetingAdminBean.electionPeriod.label}"/>
+
+                        <p:outputLabel value="Přítomní zastupitelé" for="councillors"/>
+                	    <p:selectManyMenu id="councillors"
+                			    value="#{councilMeetingAdminBean.selectedCouncillors}"
+                			    converter="#{councillorConverter}"
+                			    var="councillor"
+                			    showCheckbox="true">
+                	        <f:selectItems value="#{councilMeetingAdminBean.councillors}"
+                			    var="counc"
+                			    itemLabel="#{counc.user.fullName}"
+                			    itemValue="#{counc}"/>
+                	        <p:column>
+                	            <h:outputText value="#{councillor.user.fullName}" />
+                	        </p:column>
+                	    </p:selectManyMenu>
+
+                        <p:panelGrid layout="grid"
+                                columns="5"
+                                rendered="#{!empty councilMeetingAdminBean.councilMeeting}"
+                                styleClass="ui-noborder">
+                            <p:commandButton value="Uložit" 
+                                    icon="fa fa-save"
+                                    action="#{councilMeetingAdminBean.saveCouncilMeeting}"
+                                    styleClass="default"
+                                    update=":growl @form"/>
+                            <p:commandButton value="Zrušit" 
+                                    icon="fa fa-close"
+                                    action="#{councilMeetingAdminBean.cancelEdit}"
+                                    immediate="true"
+                                    resetValues="true"
+                                    update="@form"/>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>

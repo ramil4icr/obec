@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="Volební období, administrace - Obec Tršice"/>
+
+        <ui:define name="content">
+            <h2>Volební období, administrace</h2>
+
+            <h:form id="periodsForm">
+                <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
+                    <p:commandButton value="Nové období" 
+                            icon="fa fa-plus-square-o"
+                            action="#{electionPeriodAdminBean.newElectionPeriod}"
+                            disabled="#{!empty electionPeriodAdminBean.electionPeriod}"
+                            update="@form"
+                            resetValues="true"/>
+                </p:panelGrid>
+
+                <p:panelGrid layout="grid"
+                        columns="2"
+                        styleClass="ui-noborder">
+                    <p:dataTable id="periods" 
+                            value="#{electionPeriodAdminBean.electionPeriods}" 
+                            emptyMessage="Nenalezen žádný výsledek."
+                            selectionMode="single"
+                            selection="#{electionPeriodAdminBean.electionPeriod}"
+                            rowKey="#{electionPeriod.id}"
+                            rows="5"
+                            paginator="true"
+                            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                            paginatorPosition="bottom"
+                            var="electionPeriod">
+                        <p:ajax event="rowSelect"
+                                listener="#{electionPeriodAdminBean.onElectionPeriodSelect}"
+                                update="@form"
+                                resetValues="true"/>
+                        <p:column headerText="Volební období"
+                                filterBy="#{electionPeriod.label}"
+                                filterMatchMode="contains">
+                            <h:outputText value="#{electionPeriod.label}"/>
+                        </p:column>
+                    </p:dataTable>
+    
+                    <p:panelGrid layout="grid"
+                            columns="1"
+                            rendered="#{!empty electionPeriodAdminBean.electionPeriod}"
+                            styleClass="ui-noborder">
+                        <h:panelGroup>
+                            <p:selectBooleanCheckbox id="active" value="#{electionPeriodAdminBean.electionPeriod.active}"/>
+                            &#160;&#160;
+                            <p:outputLabel value="Aktivní" for="active"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Volební období" for="label"/>
+                        <p:inputText id="label" 
+                                required="true"
+                                value="#{electionPeriodAdminBean.electionPeriod.label}">
+                            <f:validateLength maximum="200"/>
+                        </p:inputText>
+
+                        <p:panelGrid layout="grid"
+                                columns="5"
+                                rendered="#{!empty electionPeriodAdminBean.electionPeriod}"
+                                styleClass="ui-noborder">
+                            <p:commandButton value="Uložit" 
+                                    icon="fa fa-save"
+                                    action="#{electionPeriodAdminBean.saveElectionPeriod}"
+                                    styleClass="default"
+                                    update=":growl @form"/>
+                            <p:commandButton value="Zrušit" 
+                                    icon="fa fa-close"
+                                    action="#{electionPeriodAdminBean.cancelEdit}"
+                                    immediate="true"
+                                    resetValues="true"
+                                    update="@form"/>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>

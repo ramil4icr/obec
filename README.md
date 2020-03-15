@@ -2,6 +2,13 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.5
+
+* U editace ankety zobrazit pod formulářem výsledky ankety.
+* Do informačního servisu pro zastupitele dát přehled a výsledky anket.
+* Přidat správu zastupitelů.
+* Migrovat z log4j 1 na Log4j 2.
+
 ### Verze 1.4
 
 * Přidány ankety.
@@ -47,7 +54,7 @@ Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Nastavení
 
-Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _zpravodajdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou.
+Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _obecdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou.
 
 ```
 <Resource id="obecdb" type="DataSource">

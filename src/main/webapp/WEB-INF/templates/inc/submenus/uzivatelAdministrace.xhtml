@@ -51,5 +51,17 @@
                     icon="fa fa-check-square-o"
                     url="/administrace/ankety.jsf"
                     rendered="#{sessionBean.pathAllowed('/administrace/ankety.jsf')}"/>
+            <p:menuitem value="Volební období"
+                    icon="fa fa-flag-checkered"
+                    url="/administrace/volebni-obdobi.jsf"
+                    rendered="#{sessionBean.pathAllowed('/administrace/volebni-obdobi.jsf')}"/>
+            <p:menuitem value="Zastupitelé"
+                    icon="fa fa-graduation-cap"
+                    url="/administrace/zastupitele.jsf"
+                    rendered="#{sessionBean.pathAllowed('/administrace/zastupitele.jsf')}"/>
+            <p:menuitem value="Zasedání zast."
+                    icon="fa fa-list-alt"
+                    url="/administrace/zasedani-zastupitelstva.jsf"
+                    rendered="#{sessionBean.pathAllowed('/administrace/zasedani-zastupitelstva.jsf')}"/>
         </p:submenu>
     </ui:composition>
