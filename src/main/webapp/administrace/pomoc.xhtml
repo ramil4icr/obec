@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="Nabídka pomoci, administrace - Obec Tršice"/>
+
+        <ui:define name="content">
+            <h2>Nabídka pomoci, administrace</h2>
+
+            <h:form id="offersForm">
+                <p:dataTable id="offers" 
+                        value="#{helpOffersBean.helpOffers}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        rowKey="#{offer.id}"
+                        rows="20"
+                        paginator="true"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                        paginatorPosition="bottom"
+                        var="offer">
+                    <p:column headerText="Jméno"
+                            style="width: 20%"
+                            filterBy="#{offer.fullname}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{offer.fullname}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Email"
+                            style="width: 20%"
+                            filterBy="#{offer.email}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{offer.email}"/>
+                    </p:column>
+
+                    <p:column headerText="Telefon"
+                            style="width: 10%"
+                            filterBy="#{offer.phone}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{offer.phone}"/>
+                    </p:column>
+
+                    <p:column headerText="Nabídka"
+                            style="width: 50%"
+                            filterBy="#{offer.offer}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{offer.offer}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
