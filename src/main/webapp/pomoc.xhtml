@@ -57,13 +57,23 @@
                         value="#{helpOfferBean.helpOffer.offer}">
                         <f:validateLength maximum="200"/>
                     </p:inputText>                        
+
+                    <h:panelGroup>
+                        <p:selectBooleanCheckbox id="agree" value="#{helpOfferBean.agreed}">
+                            <p:ajax update="save"/>
+                        </p:selectBooleanCheckbox>
+                        &#160;&#160;
+                        <p:outputLabel value="Souhlasím se zpracováním kontaktních údajů" for="agree"/>
+                    </h:panelGroup>
                </p:panelGrid>         
 
                <p:panelGrid layout="grid"
                    columns="5"
                    styleClass="ui-noborder">
-                   <p:commandButton value="Uložit" 
+                   <p:commandButton value="Uložit"
+                       id="save" 
                        icon="fa fa-save"
+                       disabled="#{!helpOfferBean.agreed}"
                        action="#{helpOfferBean.save}"
                        styleClass="default"
                        update=":growl @form"/>

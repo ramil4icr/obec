@@ -19,9 +19,11 @@ public class HelpOfferBean implements Serializable {
     @Inject
     private FacesContext facesContext;
     private HelpOffer helpOffer;
+    private boolean agreed;
 
     @PostConstruct
     public void init() {
+        agreed = false;
         helpOffer = new HelpOffer();
     }
 
@@ -29,6 +31,14 @@ public class HelpOfferBean implements Serializable {
         helpOfferService.saveHelpOffer(helpOffer);
         init();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Vaše nabídka byla uložena. Děkujeme!"));
+    }
+
+    public boolean isAgreed() {
+        return agreed;
+    }
+
+    public void setAgreed(boolean agreed) {
+        this.agreed = agreed;
     }
 
     public HelpOffer getHelpOffer() {
