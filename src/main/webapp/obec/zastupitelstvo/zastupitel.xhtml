@@ -65,6 +65,20 @@
 
                     <p:donutChart id="chart" model="#{councillorBean.chartModel}"/>
                 </p:panelGrid>
+
+                <p:column/>
+
+                <p:dataTable id="councilMeetings" 
+                        value="#{councillorBean.councillor.councilMeetings}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        rowKey="#{councilMeeting.id}"
+                        var="councilMeeting">
+                    <p:column headerText="Zúčastnil(a) se"
+                            filterBy="#{councilMeeting.label}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{councilMeeting.label}"/>
+                    </p:column>
+                </p:dataTable>
             </p:panelGrid>
 
 
