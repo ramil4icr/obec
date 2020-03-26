@@ -26,7 +26,7 @@ public class EventBean {
 
     public void onLoad() throws IOException {
         event = eventsService.getById(Long.parseLong(id));
-        if (ical != null && "true".equals(ical)) {
+        if (event != null && ical != null && "true".equals(ical)) {
             generateIcal();
         }
     }
