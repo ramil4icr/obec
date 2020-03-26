@@ -15,7 +15,39 @@
                 <ui:param name="articleId" value="/uzivatel/informace-zastupitel.jsf"/>
             </ui:include>
 
+            <style>
+                h5 {
+                    margin-top: 2em;
+                }
+            </style>
+
+            <h5>Vyhlášky obce</h5>
+            <p:dataTable id="officialDesk" 
+                    value="#{councillorInfoBean.announcements}" 
+                    emptyMessage="Nenalezen žádný výsledek."
+                    rows="10"
+                    paginator="true"
+                    paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                    paginatorPosition="bottom"
+                    var="deskItem">
+                <p:column headerText="Dokument"
+                        priority="1"
+                        style="width: 70%"
+                        filterBy="#{deskItem.body}"
+                        filterMatchMode="contains">
+                    <h:outputText value="#{deskItem.body}" escape="false"/>
+                </p:column>
+                <p:column headerText="Vyvěšeno" 
+                        priority="2"
+                        style="width: 15%">
+                    <h:outputText value="#{deskItem.activeFrom}">
+                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+
             <h:form>
+                <h5>Ankety</h5>
                 <p:panelGrid layout="grid"
                         columns="2"
                         styleClass="ui-noborder">
