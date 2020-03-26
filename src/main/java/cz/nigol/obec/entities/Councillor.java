@@ -53,6 +53,17 @@ public class Councillor implements Serializable {
     @ManyToMany(mappedBy="councillors", fetch=FetchType.EAGER)
     private List<CouncilMeeting> councilMeetings;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+    private List<Question> questions;
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
     public List<CouncilMeeting> getCouncilMeetings() {
         return councilMeetings;     
     }

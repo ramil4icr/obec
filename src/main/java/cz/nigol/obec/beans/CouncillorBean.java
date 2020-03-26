@@ -32,6 +32,7 @@ public class CouncillorBean implements Serializable {
     private DonutChartModel chartModel;
     private int allMeetings;
     private int attendedMeetings;
+    private Question question;
 
     public void onLoad() {
         councillor = councillorService.findCouncillorById(id);
@@ -39,6 +40,15 @@ public class CouncillorBean implements Serializable {
         attendedMeetings = councillor.getCouncilMeetings().size();
         percentage = attendedMeetings / allMeetings * 100;
         prepareChartModel();
+        question = new Question();
+    }
+
+    public void sendQuestion() {
+        question.setCreatedAt(new Date());
+        councillor.getQuestions().add(question);
+        councillorService.saveCouncillor(councillor);
+        question = new Question();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Váš dotaz byl uložen. Bude doručen zastupiteli."));
     }
 
     private void prepareChartModel() {
@@ -59,6 +69,14 @@ public class CouncillorBean implements Serializable {
         data.setLabels(labels);
         data.addChartDataSet(dataSet);
         chartModel.setData(data);
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public String getUrl() {
