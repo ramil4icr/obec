@@ -21,11 +21,30 @@ public class CouncillorInfoBean implements Serializable {
     private FacesContext facesContext;
     @Inject
     private OfficialDeskService officialDeskService;
+    @Inject
+    @LoggedUser
+    private User user;
+    @Inject
+    private CouncillorService councillorService;
+    @Inject
+    private UserService userService;
     private List<DeskItem> announcements;
+    private Councillor councillor;
 
     @PostConstruct
     public void init() {
         announcements = officialDeskService.getDeskItemsByCategory(OfficialDeskCategory.VYHLASKY, new Date());
+        user = userService.getUserById(user.getId());
+        councillor = councillorService.getCouncillorByUser(user);
+        
+    }
+
+    public Councillor getCouncillor() {
+        return councillor;
+    }
+
+    public void setCouncillor(Councillor councillor) {
+        this.councillor = councillor;
     }
 
     public List<DeskItem> getAnnouncements() {

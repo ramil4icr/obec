@@ -122,6 +122,12 @@ footer .ui-panelgrid-cell {
     border: none !important;
 }
 
+.ui-paginator {
+    padding: 2px;
+    background: rgb(230, 238, 236) !important;
+    border: none !important;
+}
+
 input {
     border-radius: 0px !important;
     border: 0px #fff solid !important;

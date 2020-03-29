@@ -21,6 +21,33 @@
                 }
             </style>
 
+            <h:form>
+                <h5>Dotazy</h5>
+                <p:dataGrid value="#{councillorInfoBean.councillor.questions}"
+                    var="question"
+                    columns="2"
+                    rows="2"
+                    layout="grid"
+                    paginator="true"
+                    paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                    emptyMessage="Nenalezen žádný výsledek."
+                    id="questions">
+                    <p>
+                        <b>#{question.contact}</b>
+                    </p>
+                    <p>
+                        <i>
+                            <h:outputText value="#{question.createdAt}">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                            </h:outputText>
+                        </i>
+                    </p>
+                    <p>
+                        <pre>#{question.question}</pre>
+                    </p>
+                </p:dataGrid>
+            </h:form>
+
             <h5>Vyhlášky obce</h5>
             <p:dataTable id="officialDesk" 
                     value="#{councillorInfoBean.announcements}" 
