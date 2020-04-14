@@ -5,7 +5,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @NamedQueries({
-    @NamedQuery(name=WaterSpending.GET_ALL, query="SELECT w FROM WaterSpending w ORDER BY w.id DESC"),
+    @NamedQuery(name=WaterSpending.GET_ALL, query="SELECT w FROM WaterSpending w ORDER BY w.houseNumber"),
 })
 @Entity
 @Table(name="OB_WATER_SPENDING")
