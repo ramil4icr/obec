@@ -53,7 +53,7 @@
                         </h:panelGroup>
 
                         <h:panelGroup>
-                            <p:outputLabel value="Číslo popisné" for="houseNumber"/>
+                            <p:outputLabel value="Číslo popisné (příp. ev. nebo číslo parcely)" for="houseNumber"/>
                             <p:inputText id="houseNumber" 
                                 required="true"
                                 requiredMessage="Tato položka je povinná."
@@ -81,6 +81,8 @@
                                 pt:type="number"
                                 pt:min="0"
                                 pt:max="20"
+                                required="true"
+                                requiredMessage="Tato položka je povinná."
                                 value="#{waterSpendingBean.waterSpending.persons}">
                                 <f:validateLongRange minimum="0" maximum="20"/>
                             </p:inputText>
@@ -89,6 +91,8 @@
 
                     <p:outputLabel value="Kontakt (telefon, email)" for="contact"/>
                     <p:inputText id="contact"
+                        required="true"
+                        requiredMessage="Tato položka je povinná."
                         value="#{waterSpendingBean.waterSpending.contact}">
                         <f:validateLength maximum="200"/>
                     </p:inputText>                        
