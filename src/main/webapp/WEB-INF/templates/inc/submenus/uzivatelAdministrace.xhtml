@@ -63,5 +63,9 @@
                     icon="fa fa-list-alt"
                     url="/administrace/zasedani-zastupitelstva.jsf"
                     rendered="#{sessionBean.pathAllowed('/administrace/zasedani-zastupitelstva.jsf')}"/>
+            <p:menuitem value="Odečet vody"
+                    icon="fa fa-tint"
+                    url="/administrace/voda.jsf"
+                    rendered="#{sessionBean.pathAllowed('/administrace/voda.jsf')}"/>
         </p:submenu>
     </ui:composition>
