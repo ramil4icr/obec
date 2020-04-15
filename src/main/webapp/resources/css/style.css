@@ -163,6 +163,15 @@ button.ui-button {
     background: #fff !important;
 }
 
+.importantMsg {
+    text-align: center;
+    font-weight: bold;
+    color: #1f4a99;
+    padding: 2em;
+    border: 1px solid #1f4a99;
+    border-radius: 5px;
+}
+
 #filesButton {
     border-radius: 30px !important;
     position: fixed;
