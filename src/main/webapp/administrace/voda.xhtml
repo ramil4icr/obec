@@ -12,6 +12,10 @@
             <h2>Odečet vodoměrů, administrace</h2>
 
             <h:form id="spendingsForm">
+                <h:commandLink>
+                    <img src="xlsx.png" width="24"></img>
+                    <p:dataExporter type="xlsxstream" target="spendings" fileName="voda" />
+                </h:commandLink>
                 <p:dataTable id="spendings" 
                         value="#{waterSpendingsBean.waterSpendings}" 
                         emptyMessage="Nenalezen žádný výsledek."
