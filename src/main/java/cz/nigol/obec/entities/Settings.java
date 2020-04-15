@@ -23,6 +23,28 @@ public class Settings implements Serializable {
     @Column(name="OG_IMAGE_URL")
     private String ogImageUrl;
 
+    @Column(name="IMPORTANT_MSG")
+    private String importantMsg;
+
+    @Column(name="IMPORTANT_MSG_URL")
+    private String importantMsgUrl;
+
+    public String getImportantMsgUrl() {
+        return importantMsgUrl;
+    }
+
+    public void setImportantMsgUrl(String importantMsgUrl) {
+        this.importantMsgUrl = importantMsgUrl;
+    }
+
+    public String getImportantMsg() {
+        return importantMsg;
+    }
+
+    public void setImportantMsg(String importantMsg) {
+        this.importantMsg = importantMsg;
+    }
+
     /**
      * @return the id
      */

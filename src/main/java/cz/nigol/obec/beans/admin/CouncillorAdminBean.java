@@ -51,6 +51,7 @@ public class CouncillorAdminBean implements Serializable {
         councillorService.saveCouncillor(councillor);
         councillor = null;
         user = null;
+        init();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Zastupitel byl uložen."));
     }
 

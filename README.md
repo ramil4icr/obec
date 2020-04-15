@@ -2,6 +2,11 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.5.2
+
+* Formulář pro odečet vody.
+* Důležitá zpráva na úvodní straně.
+
 ### Verze 1.5
 
 * U editace ankety zobrazit pod formulářem výsledky ankety.

@@ -65,6 +65,55 @@
 
                     <p:donutChart id="chart" model="#{councillorBean.chartModel}"/>
                 </p:panelGrid>
+
+                <h:form>
+                    <h5>Dotaz pro zastupitele</h5>
+                    <p:panelGrid layout="grid"
+                                        columns="1"
+                                        styleClass="ui-noborder">
+                        <p:outputLabel value="Vaše jméno (+ email nebo telefon)" for="contact"/>
+                            <p:inputText id="contact" 
+                                required="true"
+                                requiredMessage="Povinná položka."
+                                value="#{councillorBean.question.contact}">
+                                <f:validateLength maximum="200"/>
+                            </p:inputText>                    
+
+                        <p:outputLabel value="Dotaz" for="question"/>
+                        <p:inputTextarea id="question"
+                            rows="10"
+                            cols="30"
+                            required="true"
+                            requiredMessage="Povinná položka."
+                            value="#{councillorBean.question.question}"
+                            style="max-height: 350px">
+                            <f:validateLength maximum="200"/>
+                        </p:inputTextarea>
+                    </p:panelGrid>
+
+                    <p:panelGrid layout="grid"
+                       columns="5"
+                       styleClass="ui-noborder">
+                       <p:commandButton value="Odeslat"
+                           id="send" 
+                           icon="fa fa-send-o"
+                           action="#{councillorBean.sendQuestion}"
+                           styleClass="default"
+                           update=":growl @form"/>
+                   </p:panelGrid>
+                </h:form>
+
+                <p:dataTable id="councilMeetings" 
+                        value="#{councillorBean.councillor.councilMeetings}" 
+                        emptyMessage="Nenalezen žádný výsledek."
+                        rowKey="#{councilMeeting.id}"
+                        var="councilMeeting">
+                    <p:column headerText="Zúčastnil(a) se"
+                            filterBy="#{councilMeeting.label}"
+                            filterMatchMode="contains">
+                        <h:outputText value="#{councilMeeting.label}"/>
+                    </p:column>
+                </p:dataTable>
             </p:panelGrid>
 
 

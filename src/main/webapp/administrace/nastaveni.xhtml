@@ -20,8 +20,19 @@
                             value="#{settingsBean.settings.baseUrl}">
                         <f:validateLength maximum="200"/>
                     </p:inputText>
+                    
                     <p:outputLabel value="Výchozí URL pro obrázek aktualit" for="ogImageUrl"/>
                     <p:inputText id="ogImageUrl" value="#{settingsBean.settings.ogImageUrl}">
+                        <f:validateLength maximum="200"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Důležitá zpráva" for="importantMsg"/>
+                    <p:inputText id="importantMsg" value="#{settingsBean.settings.importantMsg}">
+                        <f:validateLength maximum="200"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Důležitá zpráva URL" for="importantMsgUrl"/>
+                    <p:inputText id="importantMsgUrl" value="#{settingsBean.settings.importantMsgUrl}">
                         <f:validateLength maximum="200"/>
                     </p:inputText>
 

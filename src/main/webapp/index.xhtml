@@ -17,6 +17,22 @@
         <ui:param name="title" value="Obec Tršice"/>
 
         <ui:define name="content">
+            <h:panelGroup rendered="#{!empty indexBean.settings.importantMsg}">
+                <h:panelGroup rendered="#{empty indexBean.settings.importantMsgUrl}">
+                    <div class="importantMsg">
+                        #{indexBean.settings.importantMsg}
+                    </div>
+                </h:panelGroup>
+
+                <h:outputLink value="#{indexBean.settings.importantMsgUrl}" 
+                    style="text-decoration: none"
+                    rendered="#{!empty indexBean.settings.importantMsgUrl}">
+                    <div class="importantMsg">
+                        #{indexBean.settings.importantMsg}
+                    </div>
+                </h:outputLink>
+            </h:panelGroup>
+        
             <h:panelGroup rendered="#{!empty indexBean.poll}">
                 <h2>Anketa</h2>
                 <ui:include src="/WEB-INF/includes/poll-results.xhtml">

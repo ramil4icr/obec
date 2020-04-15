@@ -8,16 +8,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import cz.nigol.obec.entities.Announcement;
-import cz.nigol.obec.entities.DeskItem;
-import cz.nigol.obec.entities.Event;
-import cz.nigol.obec.entities.News;
-import cz.nigol.obec.entities.Poll;
-import cz.nigol.obec.services.AnnouncementService;
-import cz.nigol.obec.services.EventsService;
-import cz.nigol.obec.services.NewsService;
-import cz.nigol.obec.services.OfficialDeskService;
-import cz.nigol.obec.services.PollService;
+import cz.nigol.obec.entities.*;
+import cz.nigol.obec.qualifiers.*;
+import cz.nigol.obec.services.*;
 
 @Named
 @RequestScoped
@@ -32,6 +25,9 @@ public class IndexBean {
     private EventsService eventsService;
     @Inject
     private PollService pollService;
+    @Inject
+    @CurrentSettings
+    private Settings settings;
     private static final int NUMBER_OF_PHOTOS = 8;
     private List<News> newsList;
     private List<Announcement> announcements;
@@ -54,6 +50,14 @@ public class IndexBean {
         Date date = new Date();
         long suffix = date.getTime() % numOfPhotos;
         return "index" + suffix + ".jpeg";
+    }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
     }
 
     /**

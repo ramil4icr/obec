@@ -1,0 +1,3 @@
+Contact: mailto:stranky@trsice.cz
+Preferred-Languages: cz, en
+Canonical: https://www.trsice.cz/.well-known/security.txt

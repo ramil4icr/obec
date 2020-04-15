@@ -12,4 +12,5 @@ public interface CouncillorService {
     void saveElectionPeriod(ElectionPeriod electionPeriod);
     Councillor findCouncillorById(long id);
     ElectionPeriod findElectionPeriodById(long id);
+    Councillor getCouncillorByUser(User user);
 }
