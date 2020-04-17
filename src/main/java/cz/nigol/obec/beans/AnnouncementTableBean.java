@@ -46,7 +46,7 @@ public class AnnouncementTableBean implements Serializable {
     }
 
     private void generateRssChannel() throws IOException {
-        String url = settings.getBaseUrl() + "/obec/aktuality/detail.jsf?id=";
+        String url = settings.getBaseUrl() + "/obecni-urad/rozhlas/detail.jsf?id=";
         ExternalContext externalContext = facesContext.getExternalContext();
         externalContext.responseReset();
         externalContext.setResponseContentType("application/rss+xml");
