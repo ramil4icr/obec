@@ -19,18 +19,28 @@ public class WaterSpendingBean implements Serializable {
     @Inject
     private FacesContext facesContext;
     private WaterSpending waterSpending;
+    private boolean sent;
 
     @PostConstruct
     public void init() {
         waterSpending = new WaterSpending();
         waterSpending.setPeriod("4-2020");
         waterSpending.setCreatedAt(new Date());
+        sent = false;
     }
 
     public void save() {
         waterSpendingService.saveWaterSpending(waterSpending);
         init();
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Vaše spotřeba byla uložena. Děkujeme!"));
+        sent = true;
+    }
+
+    public boolean getSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
     }
 
     public WaterSpending getWaterSpending() {
