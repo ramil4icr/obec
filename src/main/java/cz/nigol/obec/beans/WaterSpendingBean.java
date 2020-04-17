@@ -33,7 +33,6 @@ public class WaterSpendingBean implements Serializable {
         waterSpendingService.saveWaterSpending(waterSpending);
         init();
         sent = true;
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Vaše spotřeba byla uložena. Děkujeme!"));
     }
 
     public boolean getSent() {
