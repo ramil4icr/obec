@@ -58,7 +58,7 @@ public class CouncillorServiceImpl implements CouncillorService {
 
     @Override
     public Councillor getCouncillorByUser(User user) {
-        TypedQuery typedQuery = em.createNamedQuery(Councillor.GET_BY_USER, Councillor.class);
+        TypedQuery<Councillor> typedQuery = em.createNamedQuery(Councillor.GET_BY_USER, Councillor.class);
         typedQuery.setParameter(Councillor.USER_PARAM, user);
         List<Councillor> councillors = typedQuery.getResultList();
         return councillors.isEmpty() ? null : councillors.get(0);
