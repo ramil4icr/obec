@@ -27,13 +27,13 @@
                     <p:commandButton value="Nový článek" 
                             icon="fa fa-plus-square-o"
                             action="#{articlesBean.newArticle}"
-                            disabled="#{!empty articlesBean.article}"
+                            disabled="#{!empty articlesBean.article or articlesBean.limited}"
                             update="@form"
                             resetValues="true"/>
                     <p:commandButton value="Smazat" 
                             icon="fa fa-trash-o"
                             action="#{articlesBean.delete}"
-                            disabled="#{empty articlesBean.article}"
+                            disabled="#{empty articlesBean.article or articlesBean.limited}"
                             onclick="return confirm('Opravdu smazat článek: #{articlesBean.article.id}?')"
                             update="@form :growl"
                             resetValues="true"
@@ -84,7 +84,9 @@
                         rendered="#{!empty articlesBean.article}"
                         styleClass="ui-noborder">
                     <p:outputLabel value="Id" for="articleId"/>
-                    <p:inputText id="articleId" value="#{articlesBean.article.id}">
+                    <p:inputText id="articleId" 
+                        disabled="#{articlesBean.limited}"
+                        value="#{articlesBean.article.id}">
                         <f:validateLength maximum="300"/>
                         <f:validator binding="#{articleIdValidator}"/>
                     </p:inputText>

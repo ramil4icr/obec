@@ -89,6 +89,10 @@ public class ArticlesBean implements Serializable {
         onLoad();
     }
 
+    public boolean isLimited() {
+        return !"*".equals(pattern);
+    }
+
     /**
      * @return the articles
      */

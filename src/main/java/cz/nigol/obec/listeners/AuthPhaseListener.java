@@ -28,13 +28,20 @@ public class AuthPhaseListener implements PhaseListener {
     public void beforePhase(PhaseEvent pe) {
         HttpServletRequest req = (HttpServletRequest) pe.getFacesContext().getExternalContext().getRequest();
         String uri = req.getRequestURI();
+        if (req.getQueryString() != null) {
+            sessionBean.setQueryString(req.getQueryString());
+        }
+        uri = uri + "?" + sessionBean.getQueryString();
         User user = sessionBean.getUser();
         boolean reject = false;
         if (uri.contains("admin") || uri.contains("uzivatel")) {
-            Path pt = new Path();
-            pt.setId(req.getServletPath());
-            sessionBean.setPathAfterLogin(pt.getId());
-            reject = user == null || !user.getRole().getPaths().contains(pt);
+            Path pt1 = new Path();
+            pt1.setId(req.getServletPath());
+            Path pt2 = new Path();
+            pt2.setId(uri);
+            sessionBean.setPathAfterLogin(pt2.getId());
+            reject = user == null || !(user.getRole().getPaths().contains(pt1) ||
+                user.getRole().getPaths().contains(pt2));
         }
         if (reject) {
             FacesContext facesContext = pe.getFacesContext();
