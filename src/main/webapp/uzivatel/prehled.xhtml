@@ -13,12 +13,47 @@
             <h2>Přehled</h2>
 
             <h3 style="font-family: serif; font-size: 2em; font-style: italic; font-weight: normal;">
-                #{sessionBean.user.salutation},
+                #{userOverviewBean.user.salutation},
             </h3>
 
             <p style="font-weight: bold">
                 zde naleznete užitečné informace a nastavení týkající se Vás a Vaší obce.
             </p>
+
+            <p:panelGrid layout="grid"
+                columns="2"
+                styleClass="ui-noborder">
+                <h:panelGroup>
+                    <div style="border: 1px solid #888; border-radius: 5px; padding: 5px; padding-bottom: 2em">
+                        <p:outputLabel for="email">Váš email</p:outputLabel>
+                        <br/>
+                        <h:outputText id="email" value="#{userOverviewBean.user.email}"/>
+                        <br/>
+                        <p:outputLabel for="salutation">Oslovení</p:outputLabel>
+                        <p:inputText id="salutation" 
+                            disabled="true" 
+                            value="#{userOverviewBean.user.salutation}"/>
+                    </div>
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <h:panelGroup rendered="#{!empty userOverviewBean.announcement}">
+                        <ul>
+                            <li>
+                                <h:link outcome="/obecni-urad/rozhlas/detail.xhtml">
+                                    <f:param name="id" value="#{userOverviewBean.announcement.id}"/>
+                                    Hlášení obecního rozhlasu ze dne 
+                                    <h:outputText value="#{userOverviewBean.announcement.createdAt}">
+                                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                    </h:outputText>
+                                </h:link>
+                            </li>
+                        </ul>
+                        <hr/>
+                    </h:panelGroup>
+                    
+                </h:panelGroup>
+            </p:panelGrid>
 
             <h:link outcome="/index.xhtml">
                 <p>
