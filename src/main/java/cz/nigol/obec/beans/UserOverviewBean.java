@@ -32,6 +32,7 @@ public class UserOverviewBean implements Serializable {
     private UserService userService;
     private List<News> newsList;
     private Announcement announcement;
+    private Event event;
 
     @PostConstruct
     public void init() {
@@ -41,6 +42,18 @@ public class UserOverviewBean implements Serializable {
         if (!announcements.isEmpty()) {
             announcement = announcements.get(0);
         }
+        List<Event> events = eventsService.getValidToDate(new Date());
+        if (!events.isEmpty()) {
+            event = events.get(0);
+        }
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
     public Announcement getAnnouncement() {
