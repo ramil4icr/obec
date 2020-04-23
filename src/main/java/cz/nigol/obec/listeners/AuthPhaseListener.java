@@ -39,7 +39,7 @@ public class AuthPhaseListener implements PhaseListener {
             pt1.setId(req.getServletPath());
             Path pt2 = new Path();
             pt2.setId(uri);
-            sessionBean.setPathAfterLogin(pt2.getId());
+            sessionBean.setPathAfterLogin(pt1.getId());
             reject = user == null || !(user.getRole().getPaths().contains(pt1) ||
                 user.getRole().getPaths().contains(pt2));
         }

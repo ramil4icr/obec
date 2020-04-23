@@ -6,6 +6,10 @@ html,body {
     font-size: 90%;
 }
 
+hr {
+    border: 1px solid #888;
+}
+
 h1, h2, h3, h4, h5, h6 {
     color: #222;
     font-weight: 400;
