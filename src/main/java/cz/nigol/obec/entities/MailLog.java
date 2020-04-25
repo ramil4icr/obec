@@ -19,7 +19,7 @@ public class MailLog implements Serializable {
     @Column(name="ID")
     private long id;
 
-    @Column(name="TO")
+    @Column(name="SENT_TO")
     private String to;
 
     @Column(name="SUBJECT")

@@ -59,12 +59,23 @@ Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Nastavení
 
-Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _obecdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou.
+Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _obecdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou. 
+Také je třeba nastavit _mailServer_ resource pro konfiguraci odesílání emailů.
 
 ```
 <Resource id="obecdb" type="DataSource">
-JdbcDriver = org.hsqldb.jdbcDriver
-JdbcUrl = jdbc:hsqldb:file:hsqldb
+    JdbcDriver = org.hsqldb.jdbcDriver
+    JdbcUrl = jdbc:hsqldb:file:hsqldb
 </Resource>
+<Resource id="mailServer" type="javax.mail.Session">
+    mail.from=
+    mail.smtp.port=25
+    mail.smtp.host=
+    mail.smtp.auth=true
+    mail.transport.protocol=smtp
+    mail.smtp.starttls.enable=true
+    mail.smtp.user=
+    mail.smtp.password=
+	</Resource>
 ```
 
