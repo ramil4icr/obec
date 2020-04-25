@@ -12,7 +12,7 @@ Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 * U editace ankety zobrazit pod formulářem výsledky ankety.
 * Do informačního servisu pro zastupitele dát přehled a výsledky anket.
 * Přidat správu zastupitelů.
-* Migrovat z log4j 1 na Log4j 2.
+* Migrace z log4j 1 na log4j 2.
 
 ### Verze 1.4
 
@@ -29,7 +29,7 @@ Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 * Ve WYSIWYG editoru se při vložení obrázku vloží i atribut "alt".
 * Změněn vzhled menu.
-* Graf plnění rozpočtu.
+* Graf plnění rozpočtu.
 * Stránka s informacemi pro zastupitele (po přihlášení).
 * Opravena chyba při přesměrování po přihlášení (mohla nastat jen za určitých okolností).
 * Na úvodní stránce nyní načítá 10 položek z archivu hlášení rozhlasu.
