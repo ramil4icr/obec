@@ -14,7 +14,13 @@ public class SettingsServiceImpl implements SettingsService {
 
     @Override
     public Settings findById(String id) {
-        return em.find(Settings.class, id);
+        Settings settings = em.find(Settings.class, id);
+        if (settings == null) {
+            settings = new Settings();
+            settings.setId(id);
+            settings = save(settings);
+        }
+        return settings;
     }
 
     @Override
