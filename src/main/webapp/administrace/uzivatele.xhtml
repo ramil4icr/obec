@@ -101,6 +101,9 @@
                                 <f:validateLength maximum="100"/>
                             </p:password>
 
+                            <p:selectBooleanCheckbox value="#{usersBean.user.sendAnnouncements}" 
+                                itemLabel="Posílat hlášení rozhlasu"/>
+
                             <p:panelGrid layout="grid"
                                     columns="5"
                                     styleClass="ui-noborder">

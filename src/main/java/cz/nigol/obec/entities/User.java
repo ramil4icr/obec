@@ -57,6 +57,17 @@ public class User implements Serializable {
     @Column(name="SALUTATION", columnDefinition="VARCHAR(300)")
     private String salutation;
 
+    @Column(name="SEND_ANNOUNCEMENTS")
+    private boolean sendAnnouncements;
+
+    public boolean isSendAnnouncements() {
+        return sendAnnouncements;
+    }
+
+    public void setSendAnnouncements(boolean sendAnnouncements) {
+        this.sendAnnouncements = sendAnnouncements;
+    }
+
     /**
      * @return the id
      */
