@@ -48,6 +48,11 @@ public class UserOverviewBean implements Serializable {
         }
     }
 
+    public void save() {
+        userService.saveUser(user);
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Údaje byly uloženy."));
+    }
+
     public Event getEvent() {
         return event;
     }

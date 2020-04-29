@@ -24,18 +24,36 @@
                 columns="2"
                 style="margin-top: 3em"
                 styleClass="ui-noborder">
-                <h:panelGroup>
-                    <div style="border: 1px solid #888; border-radius: 5px; padding: 5px; padding-bottom: 2em">
-                        <p:outputLabel for="email">Váš email</p:outputLabel>
-                        <br/>
-                        <h:outputText id="email" value="#{userOverviewBean.user.email}"/>
-                        <br/>
-                        <p:outputLabel for="salutation">Oslovení</p:outputLabel>
-                        <p:inputText id="salutation" 
-                            disabled="true" 
-                            value="#{userOverviewBean.user.salutation}"/>
-                    </div>
-                </h:panelGroup>
+                <h:form>
+                    <h:panelGroup>
+                        <div style="border: 1px solid #888; border-radius: 5px; padding: 5px; padding-bottom: 2em">
+                            <p:outputLabel for="email">Váš email</p:outputLabel>
+                            <br/>
+                            <h:outputText id="email" value="#{userOverviewBean.user.email}"/>
+                            <br/>
+                            <p:outputLabel for="salutation">Oslovení</p:outputLabel>
+                            <p:inputText id="salutation" 
+                                disabled="true" 
+                                value="#{userOverviewBean.user.salutation}"/>
+
+                            <br/>
+                            <br/>
+
+                            <p:selectBooleanCheckbox value="#{userOverviewBean.user.sendAnnouncements}" 
+                                itemLabel="Posílat hlášení rozhlasu"/>
+
+                            <p:panelGrid layout="grid"
+                                columns="5"
+                                styleClass="ui-noborder">
+                                <p:commandButton value="Uložit" 
+                                    icon="fa fa-save"
+                                    action="#{userOverviewBean.save}"
+                                    styleClass="default"
+                                    update=":growl @form"/>
+                            </p:panelGrid>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
 
                 <h:panelGroup>
                     <h:panelGroup rendered="#{!empty userOverviewBean.announcement}">
