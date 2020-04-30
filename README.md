@@ -2,6 +2,13 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.6
+
+* Na stránce uživatele základní nastavení a informace.
+* Hlášení rozhlasu posíláno emailem.
+* Nová stránka zastupitelstva.
+* Oprava chyb.
+
 ### Verze 1.5.2
 
 * Formulář pro odečet vody.
