@@ -13,4 +13,5 @@ public interface AnnouncementService {
     List<Announcement> getLastFive();
     List<RssItem> getAllRss();
     List<Announcement> getLastTen();
+    void sendAnnouncementByEmail(Announcement announcement);
 }

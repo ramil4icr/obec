@@ -115,4 +115,10 @@ public class UserServiceImpl implements UserService {
         User user = getUserById(id);
         user.setSendAnnouncements(false);
     }
+
+    @Override
+    public List<User> getAnnouncementSubscribers() {
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.FIND_ANNOUNCEMENT_SUBSCRIBERS, User.class);
+        return typedQuery.getResultList();
+    }
 }

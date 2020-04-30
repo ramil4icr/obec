@@ -58,6 +58,7 @@ public class AnnouncementsBean implements Serializable {
 
     public void save() {
         announcementService.save(announcement);
+        announcementService.sendAnnouncementByEmail(announcement);
         announcement = null;
         loadAll();
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Hlášení bylo uloženo."));

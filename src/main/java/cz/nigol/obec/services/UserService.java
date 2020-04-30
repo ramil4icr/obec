@@ -2,9 +2,7 @@ package cz.nigol.obec.services;
 
 import java.util.List;
 
-import cz.nigol.obec.entities.Path;
-import cz.nigol.obec.entities.Role;
-import cz.nigol.obec.entities.User;
+import cz.nigol.obec.entities.*;
 
 public interface UserService {
     List<User> getAllUsers();
@@ -22,4 +20,5 @@ public interface UserService {
     Role saveRole(Role role, List<Path> paths);
     List<User> findUsersByFullName(String name);
     void unsubscribeAnnouncements(long id);
+    List<User> getAnnouncementSubscribers();
 }
