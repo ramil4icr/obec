@@ -109,4 +109,10 @@ public class UserServiceImpl implements UserService {
         typedQuery.setParameter(User.NAME_PARAM, "%" + name + "%");
         return typedQuery.getResultList();
     }
+
+    @Override
+    public void unsubscribeAnnouncements(long id) {
+        User user = getUserById(id);
+        user.setSendAnnouncements(false);
+    }
 }

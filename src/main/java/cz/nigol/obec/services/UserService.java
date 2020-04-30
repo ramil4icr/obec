@@ -21,4 +21,5 @@ public interface UserService {
     Path getPathById(String id);
     Role saveRole(Role role, List<Path> paths);
     List<User> findUsersByFullName(String name);
+    void unsubscribeAnnouncements(long id);
 }
