@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/template-transient.xhtml"
+        xmlns:p="http://primefaces.org/ui">
+
+        <ui:param name="title" value="Odhlášení emailu - Obec Tršice"/>
+
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="r" value="#{unsubscribeBean.r}"/>
+                <f:viewAction action="#{unsubscribeBean.onLoad}"/>
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="content">
+            <h2>Odhlášení emailu</h2>
+            <div style="text-align: center">
+                <i class="fa fa-check-circle-o" style="font-size: 600%; color: green"></i>
+                <p style="font-size: 200%">
+                    Emailová adresa „#{unsubscribeBean.user.email}“ byla odhlášena.
+                </p>
+            </div>
+        </ui:define>
+    </ui:composition>

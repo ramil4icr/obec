@@ -2,6 +2,13 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.6
+
+* Na stránce uživatele základní nastavení a informace.
+* Hlášení rozhlasu posíláno emailem.
+* Nová stránka zastupitelstva.
+* Oprava chyb.
+
 ### Verze 1.5.2
 
 * Formulář pro odečet vody.
@@ -12,7 +19,7 @@ Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 * U editace ankety zobrazit pod formulářem výsledky ankety.
 * Do informačního servisu pro zastupitele dát přehled a výsledky anket.
 * Přidat správu zastupitelů.
-* Migrovat z log4j 1 na Log4j 2.
+* Migrace z log4j 1 na log4j 2.
 
 ### Verze 1.4
 
@@ -29,7 +36,7 @@ Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 * Ve WYSIWYG editoru se při vložení obrázku vloží i atribut "alt".
 * Změněn vzhled menu.
-* Graf plnění rozpočtu.
+* Graf plnění rozpočtu.
 * Stránka s informacemi pro zastupitele (po přihlášení).
 * Opravena chyba při přesměrování po přihlášení (mohla nastat jen za určitých okolností).
 * Na úvodní stránce nyní načítá 10 položek z archivu hlášení rozhlasu.
@@ -59,12 +66,23 @@ Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Nastavení
 
-Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _obecdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou.
+Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _obecdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou. 
+Také je třeba nastavit _mailServer_ resource pro konfiguraci odesílání emailů.
 
 ```
 <Resource id="obecdb" type="DataSource">
-JdbcDriver = org.hsqldb.jdbcDriver
-JdbcUrl = jdbc:hsqldb:file:hsqldb
+    JdbcDriver = org.hsqldb.jdbcDriver
+    JdbcUrl = jdbc:hsqldb:file:hsqldb
 </Resource>
+<Resource id="mailServer" type="javax.mail.Session">
+    mail.from=
+    mail.smtp.port=25
+    mail.smtp.host=
+    mail.smtp.auth=true
+    mail.transport.protocol=smtp
+    mail.smtp.starttls.enable=true
+    mail.smtp.user=
+    mail.smtp.password=
+	</Resource>
 ```
 

@@ -109,4 +109,16 @@ public class UserServiceImpl implements UserService {
         typedQuery.setParameter(User.NAME_PARAM, "%" + name + "%");
         return typedQuery.getResultList();
     }
+
+    @Override
+    public void unsubscribeAnnouncements(long id) {
+        User user = getUserById(id);
+        user.setSendAnnouncements(false);
+    }
+
+    @Override
+    public List<User> getAnnouncementSubscribers() {
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.FIND_ANNOUNCEMENT_SUBSCRIBERS, User.class);
+        return typedQuery.getResultList();
+    }
 }

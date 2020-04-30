@@ -29,10 +29,11 @@ public class SessionBean implements Serializable {
     private Settings settings;
     private String pathAfterLogin = "/uzivatel/prehled.jsf";
     private boolean pollPerformed = false;
+    private String queryString = "";
 
     @PostConstruct
     public void init() {
-        //prepareDevData.createData();
+        // prepareDevData.createData();
         settings = settingsService.findById(SettingsBean.ID);
     }
 
@@ -54,6 +55,14 @@ public class SessionBean implements Serializable {
         user = null;
         facesContext.getExternalContext().invalidateSession();
         return "/index.xhtml?faces-redirect=true";
+    }
+
+    public String getQueryString() {
+        return queryString;
+    }
+
+    public void setQueryString(String queryString) {
+        this.queryString = queryString;
     }
 
     /**
