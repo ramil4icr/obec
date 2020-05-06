@@ -37,7 +37,7 @@ public class UserOverviewBean implements Serializable {
     @PostConstruct
     public void init() {
         user = userService.getUserById(user.getId());
-        newsList = newsService.getFeatured();
+        newsList = newsService.getFeaturedCount(4);
         List<Announcement> announcements = announcementService.getLastTen();
         if (!announcements.isEmpty()) {
             announcement = announcements.get(0);

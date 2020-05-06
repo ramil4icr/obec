@@ -66,7 +66,7 @@
                     <p:donutChart id="chart" model="#{councillorBean.chartModel}"/>
                 </p:panelGrid>
 
-                <h:form>
+                <h:form rendered="#{empty councillorBean.councillor.endDate}">
                     <h5>Dotaz pro zastupitele</h5>
                     <p:panelGrid layout="grid"
                                         columns="1"
