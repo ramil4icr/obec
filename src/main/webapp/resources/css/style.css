@@ -262,7 +262,6 @@ button.ui-button.ui-state-default {
 .newsBox {
     background: linear-gradient(to bottom, #f3f3f3, #dde3e8);
     border-radius: 5px;
-    padding: 20px;
     height: 250px;
     overflow: hidden;
     max-width: 200px;
