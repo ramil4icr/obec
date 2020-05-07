@@ -56,4 +56,11 @@ public class NewsServiceImpl implements NewsService {
         TypedQuery<RssItem> typedQuery = em.createNamedQuery(News.GET_ALL, RssItem.class);
         return new ArrayList<>(typedQuery.getResultList());
     }
+
+    @Override
+    public List<News> getFeaturedCount(int count) {
+        TypedQuery<News> typedQuery = em.createNamedQuery(News.GET_FEATURED, News.class);
+        typedQuery.setMaxResults(count);
+        return new ArrayList<>(typedQuery.getResultList());
+    }
 }

@@ -12,4 +12,5 @@ public interface NewsService {
     void delete(News news);
     List<News> getFeatured();
     List<RssItem> getAllRss();
+    List<News> getFeaturedCount(int count);
 }

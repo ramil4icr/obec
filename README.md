@@ -2,6 +2,12 @@
 Repozitář pro webové stránky / aplikaci obce (primárně Tršice).
 
 ## Changelog
+### Verze 1.6.1
+
+* Řazení zastupitelů dle priority.
+* V přehledu uživatele jen 4 aktuality.
+* Vzhled boxu s obrázkem pro aktualitu na úvodní stránce.
+
 ### Verze 1.6
 
 * Na stránce uživatele základní nastavení a informace.
