@@ -51,8 +51,8 @@ public class News implements Serializable, RssItem {
     private boolean featured;
 
     public String getTruncatedLabel() {
-        if (label.length() > 78) {
-            return label.substring(0, 78) + "…";
+        if (label.length() > 50) {
+            return label.substring(0, 50) + "…";
         }
         return label;
     }
