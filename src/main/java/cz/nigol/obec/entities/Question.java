@@ -26,7 +26,7 @@ public class Question implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name="QUESTION", columnDefinition="VARCHAR(1000)")
+    @Column(name="QUESTION", columnDefinition="VARCHAR(2000)")
     private String question;
 
     public String getQuestion() {
