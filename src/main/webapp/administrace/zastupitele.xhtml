@@ -45,6 +45,7 @@
                                 filterBy="#{councillor.user.fullName}"
                                 filterMatchMode="contains">
                             <h:outputText value="#{councillor.user.fullName}"/>
+                            <sup>#{councillor.electionPeriod.label}</sup>
                         </p:column>
                     </p:dataTable>
     
