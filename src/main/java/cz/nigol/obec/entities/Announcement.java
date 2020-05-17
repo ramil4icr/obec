@@ -103,7 +103,7 @@ public class Announcement implements Serializable, RssItem {
 
     @Override
     public String getLabel() {
-        return createdAt.toString();
+        return "Hlášení obecního rozhlasu, " + id;
     }
 
     @Override
