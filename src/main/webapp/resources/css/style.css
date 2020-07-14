@@ -584,6 +584,54 @@ button.ui-button.ui-state-default {
     color: white;
 }
 
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  background-color: rgb(37, 40, 42);
+  color: #ffcc01;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+
+.sidenav ul {
+    list-style-type: none;  
+}
+
+.sidenav h2 {
+    color: #ffcc01;
+    padding-left: 1em;
+}
+
+.sidenav p {
+    padding-left: 8px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
 @keyframes riseIcon {
     0% {
         text-shadow: none;
@@ -615,7 +663,7 @@ button.ui-button.ui-state-default {
         height: 36px;
         background-image: url("#{resource['image/menu.png']}");
         background-size: 200px 36px;
-        background-position: right center;
+        background-position: left center;
         background-repeat: no-repeat;
     }
 
