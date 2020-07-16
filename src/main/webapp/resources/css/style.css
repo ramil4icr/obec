@@ -316,7 +316,7 @@ button.ui-button.ui-state-default {
 .mainMenu {
     border: none !important;
     margin-top: 0px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     border-radius: 0px !important;
     padding-left: 220px !important;
     background-image: url("#{resource['image/menu.png']}");
@@ -325,6 +325,7 @@ button.ui-button.ui-state-default {
     background-repeat: no-repeat;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+    height: 20px;
 }
 
 .ui-menu .ui-widget-header {
@@ -509,11 +510,11 @@ button.ui-button.ui-state-default {
 .mainMenuContainer {
     padding: 0px;
     margin: 0px;
-}
-
-.mainMenuContainer.ui-shadow {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    top: 0px;
+    left: 0px;
 }
 
 .date {
@@ -659,7 +660,6 @@ button.ui-button.ui-state-default {
 
     .menuButtonContainer {
         display: block;
-        background: white;
         height: 36px;
         background-image: url("#{resource['image/menu.png']}");
         background-size: 200px 36px;
