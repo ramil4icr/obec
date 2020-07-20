@@ -11,7 +11,7 @@ Menu jsou uložena v systému jako články (`/administrace/clanky.jsf`) se spec
 
 * Hlavní menu `navigace`
 * Uživatelské menu pro přihlášeného uživatele `navigace-<název role>`, kde `název role` je název, kterou má uživatelská role vytvořená v administraci rolí `/administrace/role.jsf`. Menu se pak zobrazí všem uživatelům, kteří mají přidělenu tuto roli.
-* Lišta z odkazy pro desktop verzi `bar-navigace`.
+* Lišta s odkazy pro desktop verzi `bar-navigace`.
 
 Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _obecdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou. 
 Také je třeba nastavit _mailServer_ resource pro konfiguraci odesílání emailů.
@@ -34,6 +34,14 @@ Také je třeba nastavit _mailServer_ resource pro konfiguraci odesílání emai
 ```
 
 ## Changelog
+### Verze 1.7
+
+* Kompletně přepracovaná menu.
+* Optimalizovaný obrázek v hlavičce webu.
+* Přihlášený uživatel - odhlásit jen po kliku na ODHLÁSIT, po kliku na jméno na uživatelskou stránku.
+* Počitadlo znaků při vyplňování názvu aktuality.
+* U editace článků odkaz pro zobrazení článku.
+
 ### Verze 1.6.1
 
 * Řazení zastupitelů dle priority.
