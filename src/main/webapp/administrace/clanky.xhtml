@@ -144,5 +144,9 @@
                         </p:panelGrid>	
                     </p:panelGrid>
                 </h:form>
+
+                <ui:include src="/WEB-INF/includes/article.xhtml">
+                    <ui:param name="articleId" value="/administrace/clanky.jsf"/>
+                </ui:include>
             </ui:define>
         </ui:composition>
