@@ -5,15 +5,36 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 		xmlns:p="http://primefaces.org/ui">
 
-  <h:form id="mainMenuForm">
-    <h:panelGroup id="mainMenu"
-		  layout="block"
-		  styleClass="mainMenuContainer">
-      <ui:include src="desktopMenu.xhtml"/>
+    <script>
+        function openSideMobileNav() {
+            document.getElementById("sideMobileNav").style.width = "95%";
+        }
+        
+        function closeSideMobileNav() {
+            document.getElementById("sideMobileNav").style.width = "0";
+        }
+    </script>        
+            
+    <div id="sideMobileNav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSideMobileNav()">&#215;</a>
+        <h2>#{menuBean.mainMenu.label}</h2>
 
-      <ui:include src="mobileMenu.xhtml"/>
+        <h:panelGroup rendered="#{!empty sessionBean.user}">
+            <div class="articleBody">
+                <h:outputText value="#{menuBean.userMenu.body}" escape="false"/>
+            </div>
+        </h:panelGroup>
+
+        <div class="articleBody">
+            <h:outputText value="#{menuBean.mainMenu.body}" escape="false"/>
+        </div>
+    </div>
+
+    <h:panelGroup layout="block"
+		  styleClass="mainMenuContainer">
+        <ui:include src="desktopMenu.xhtml"/>
+
+        <ui:include src="mobileMenu.xhtml"/>
     </h:panelGroup>
 
-    <p:sticky target="mainMenu"/>
-  </h:form>  
 </ui:composition>

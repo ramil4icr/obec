@@ -78,10 +78,14 @@
                         <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
                             <p:outputLabel value="Název" for="label"/>
                             <p:inputText id="label" 
+                                    onkeyup="document.getElementById('charCount').innerText = this.value.length"
                                     value="#{newsBean.news.label}"
                                     required="true">
                                 <f:validateLength maximum="300"/>
                             </p:inputText>
+                            <h:panelGroup style="font-size: 90%">
+                                Počet znaků: <span id="charCount">0</span>
+                            </h:panelGroup>
                         </p:panelGrid>
 
                         <p:column>

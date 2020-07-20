@@ -289,6 +289,12 @@ button.ui-button.ui-state-default {
     background: linear-gradient(to right, rgb(224, 234, 252), rgb(207, 222, 243));
     background: #1f4a99;
     padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.grayTableBlock:hover {
+    transform: scaleX(1.03) scaleY(1.03);
+    box-shadow: 4px 4px 4px #888;
 }
 
 .grayTableBlock h5 {
@@ -310,7 +316,7 @@ button.ui-button.ui-state-default {
 .mainMenu {
     border: none !important;
     margin-top: 0px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     border-radius: 0px !important;
     padding-left: 220px !important;
     background-image: url("#{resource['image/menu.png']}");
@@ -319,6 +325,7 @@ button.ui-button.ui-state-default {
     background-repeat: no-repeat;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+    height: 20px;
 }
 
 .ui-menu .ui-widget-header {
@@ -503,11 +510,11 @@ button.ui-button.ui-state-default {
 .mainMenuContainer {
     padding: 0px;
     margin: 0px;
-}
-
-.mainMenuContainer.ui-shadow {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    top: 0px;
+    left: 0px;
 }
 
 .date {
@@ -578,6 +585,54 @@ button.ui-button.ui-state-default {
     color: white;
 }
 
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  background-color: rgb(37, 40, 42);
+  color: #ffcc01;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+
+.sidenav ul {
+    list-style-type: none;  
+}
+
+.sidenav h2 {
+    color: #ffcc01;
+    padding-left: 1em;
+}
+
+.sidenav p {
+    padding-left: 8px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
 @keyframes riseIcon {
     0% {
         text-shadow: none;
@@ -605,11 +660,10 @@ button.ui-button.ui-state-default {
 
     .menuButtonContainer {
         display: block;
-        background: white;
         height: 36px;
         background-image: url("#{resource['image/menu.png']}");
         background-size: 200px 36px;
-        background-position: right center;
+        background-position: left center;
         background-repeat: no-repeat;
     }
 

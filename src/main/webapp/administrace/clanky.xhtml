@@ -83,6 +83,13 @@
                         columns="1"
                         rendered="#{!empty articlesBean.article}"
                         styleClass="ui-noborder">
+                        
+                    <h:link outcome="/clanek.xhtml"
+                            rendered="#{!empty articlesBean.article.id}"
+                            value="Odkaz na článek">
+                            <f:param name="id" value="#{articlesBean.article.id}"/>
+                    </h:link>
+
                     <p:outputLabel value="Id" for="articleId"/>
                     <p:inputText id="articleId" 
                         disabled="#{articlesBean.limited}"
@@ -137,5 +144,9 @@
                         </p:panelGrid>	
                     </p:panelGrid>
                 </h:form>
+
+                <ui:include src="/WEB-INF/includes/article.xhtml">
+                    <ui:param name="articleId" value="/administrace/clanky.jsf"/>
+                </ui:include>
             </ui:define>
         </ui:composition>

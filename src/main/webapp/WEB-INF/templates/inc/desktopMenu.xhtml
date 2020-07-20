@@ -10,90 +10,15 @@
                 style="position: fixed; top: 0px; left: 0px; display: block; width: 220px; height: 36px; z-index: 1000">
         </h:link>
 
-        <p:megaMenu id="mainMenuDesktop"
-                styleClass="mainMenu"
-                autoDisplay="false"
-                orientation="horizontal">
-            <p:submenu label="Potřebuji"
-                    icon="fa fa-puzzle-piece">
-                <p:column>
-                    <h4>
-                        <i class="fa fa-puzzle-piece"
-                                style="color: rgb(230, 238, 236) !important">
-                        </i>
-                    </h4>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/obecniUradPotrebuji.xhtml"/>
-                </p:column>
-            </p:submenu>
-            <p:submenu label="OBEC">
-                <p:column>
-                    <h4>
-                        <i class="fa fa-home"
-                                style="color: rgb(230, 238, 236) !important">
-                        </i>
-                    </h4>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/obecInformace.xhtml"/>
-                    <ui:include src="submenus/obecZastupitelstvo.xhtml"/>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/obecZivotVObci.xhtml"/>
-                </p:column>
-            </p:submenu>
+        <div class="mainMenu">
+            <span title="#{menuBean.mainMenu.label}"
+                style="font-size:30px;cursor:pointer; position: absolute; top: 0px; left: 230px; display: block;" 
+                onclick="openSideMobileNav()">&#9776; 
+            </span>
 
-            <p:submenu label="OBECNÍ ÚŘAD">
-                <p:column>
-                    <h4>
-                        <i class="fa fa-institution"
-                                style="color: rgb(230, 238, 236) !important">
-                        </i>
-                    </h4>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/obecniUradInformace.xhtml"/>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/obecniUradPotrebuji.xhtml"/>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/obecniUradUzemniPlan.xhtml"/>
-                </p:column>
-            </p:submenu>
-
-            <p:submenu label="STAVEBNÍ ÚŘAD">
-                <p:column>
-                    <h4>
-                        <i class="fa fa-cubes"
-                                style="color: rgb(230, 238, 236) !important">
-                        </i>
-                    </h4>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/stavebniUradInformace.xhtml"/>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/stavebniUradFormulare.xhtml"/>
-                </p:column>
-            </p:submenu>
-
-            <p:submenu label="UŽIVATEL" rendered="#{!empty sessionBean.user}">
-                <p:column>
-                    <h4>
-                        <i class="fa fa-user"
-                                style="color: rgb(230, 238, 236) !important">
-                        </i>
-                    </h4>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/uzivatelNabidka.xhtml"/>
-                </p:column>
-                <p:column>
-                    <ui:include src="submenus/uzivatelAdministrace.xhtml"/>
-                </p:column>
-            </p:submenu>
-        </p:megaMenu>
+            <div class="articleBody" style="margin-left: 80px;">
+                <h:outputText value="#{menuBean.barMenu.body}" escape="false"/>
+            </div>
+        </div>
 
     </ui:composition>

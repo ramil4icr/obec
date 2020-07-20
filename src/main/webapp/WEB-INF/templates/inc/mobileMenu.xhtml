@@ -7,55 +7,13 @@
 
         <h:link outcome="/index.xhtml"
                 title="Zpátky na úvod"
-                style="position: fixed; top: 0px; right: 0px; display: block; width: 220px; height: 36px; z-index: 1000">
+                style="position: fixed; top: 0px; left: 0px; display: block; width: 220px; height: 36px; z-index: 1000">
         </h:link>
 
-        <h:panelGroup layout="block"
-                styleClass="menuButtonContainer">
-            <p:commandButton id="menuButton"
-                    type="button"
-                    value="MENU"
-                    alt="Hlavní menu"
-                    title="Hlavní menu"
-                    style="margin: 5px; z-index: 2000"
-                    styleClass="menuButton"
-                    icon="fa fa-bars"/>
-        </h:panelGroup>
+        <div class="menuButtonContainer">
+            <span title="#{menuBean.mainMenu.label}" 
+            style="font-size:30px;cursor:pointer; position: absolute; top: 0px; right: 10px; display: block;" 
+                onclick="openSideMobileNav()">&#9776; </span>
+        </div>
 
-        <p:slideMenu overlay="true"
-                trigger="menuButton"
-                my="left top"
-                at="left bottom"
-                backLabel="Zpět"
-                style="width:180px">
-            <p:submenu label="OBEC">
-                <ui:include src="submenus/obecInformace.xhtml"/>
-                <ui:include src="submenus/obecZastupitelstvo.xhtml"/>
-                <ui:include src="submenus/obecZivotVObci.xhtml"/>
-            </p:submenu>
-            <p:submenu label="OBECNÍ ÚŘAD">
-                <ui:include src="submenus/obecniUradInformace.xhtml"/>
-                <ui:include src="submenus/obecniUradPotrebuji.xhtml"/>
-                <ui:include src="submenus/obecniUradUzemniPlan.xhtml"/>
-            </p:submenu>
-            <p:submenu label="STAVEBNÍ ÚŘAD">
-                <ui:include src="submenus/stavebniUradInformace.xhtml"/>
-                <ui:include src="submenus/stavebniUradFormulare.xhtml"/>
-            </p:submenu>
-            <p:submenu label="UŽIVATEL" rendered="#{!empty sessionBean.user}">
-                <ui:include src="submenus/uzivatelNabidka.xhtml"/>
-                <ui:include src="submenus/uzivatelAdministrace.xhtml"/>
-            </p:submenu>
-            <p:separator/>
-            <p:menuitem value="Zavolejte nám" 
-                    url="tel:+420585957230"
-                    icon="fa fa-phone"/>
-            <p:menuitem value="Napište nám" 
-                    url="mailto:ou@trsice.cz"
-                    icon="fa fa-envelope-o"/>
-            <p:separator/>
-            <p:menuitem value="Úvod" 
-                    url="/"
-                    icon="fa fa-home"/>
-        </p:slideMenu>
     </ui:composition>

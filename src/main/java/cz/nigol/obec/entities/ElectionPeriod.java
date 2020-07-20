@@ -26,7 +26,7 @@ public class ElectionPeriod implements Serializable {
     private boolean active;
 
     @OneToMany(mappedBy="electionPeriod", cascade = CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
-    @OrderBy("priority")
+    @OrderBy("priority DESC, electionPeriod DESC")
     private List<Councillor> councillors;
 
     @OneToMany(mappedBy="electionPeriod", cascade = CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
