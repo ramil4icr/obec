@@ -21,4 +21,6 @@ public interface UserService {
     List<User> findUsersByFullName(String name);
     void unsubscribeAnnouncements(long id);
     List<User> getAnnouncementSubscribers();
+    void subscribeAnnouncements(String email);
+    User getUSerByEmail(String email);
 }

@@ -121,4 +121,25 @@ public class UserServiceImpl implements UserService {
         TypedQuery<User> typedQuery = em.createNamedQuery(User.FIND_ANNOUNCEMENT_SUBSCRIBERS, User.class);
         return typedQuery.getResultList();
     }
+
+    @Override
+    public void subscribeAnnouncements(String email) {
+        User user = getUSerByEmail(email);
+        if (user == null) {
+            user = new User();
+            user.setUserId(email);
+            user.setEmail(email);
+            user = saveUser(user);
+        }
+        user.setSendAnnouncements(true);
+    }
+
+    @Override
+    public User getUSerByEmail(String email) {
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_EMAIL, 
+                User.class);
+        typedQuery.setParameter(User.EMAIL_PARAM, email.toLowerCase());
+        List<User> users = typedQuery.getResultList();
+        return users.isEmpty() ? null : users.get(0);
+    }
 }

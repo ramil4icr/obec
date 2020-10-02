@@ -15,8 +15,7 @@ import javax.inject.Named;
 import cz.nigol.obec.entities.Announcement;
 import cz.nigol.obec.entities.Settings;
 import cz.nigol.obec.qualifiers.CurrentSettings;
-import cz.nigol.obec.services.AnnouncementService;
-import cz.nigol.obec.services.RssService;
+import cz.nigol.obec.services.*;
 
 @Named
 @ViewScoped
@@ -31,8 +30,12 @@ public class AnnouncementTableBean implements Serializable {
     private FacesContext facesContext;
     @Inject
     private RssService rssService;
+    @Inject
+    private UserService userService;
     private List<Announcement> announcements;
     private String rss;
+    private String email;
+    private boolean sent;
 
     @PostConstruct
     public void init() {
@@ -54,6 +57,27 @@ public class AnnouncementTableBean implements Serializable {
         rssService.generateRss(announcementService.getAllRss(), url, "Hlášení rozhlasu, Obec Tršice", outputStream);
         outputStream.close();
         facesContext.responseComplete();
+    }
+
+    public void subscribe() {
+        userService.subscribeAnnouncements(email);
+        sent = true;
+    }
+
+    public boolean isSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
