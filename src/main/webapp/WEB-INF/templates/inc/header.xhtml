@@ -28,10 +28,9 @@
                 </h:panelGroup>
             </h:form>
 
-            <h:graphicImage
-                    library="image"
-                    name="header.jpeg"
-                    style="width: 100%; height: auto;"
-                    alt="Logo stránek"/>
+            <img src="#{sessionBean.settings.headerImageUrl}" 
+                style="width: 100%; height: auto;"
+                alt="Logo stránek">
+            </img>
         </header>
     </ui:composition>

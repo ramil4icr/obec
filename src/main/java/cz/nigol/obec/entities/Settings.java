@@ -29,6 +29,17 @@ public class Settings implements Serializable {
     @Column(name="IMPORTANT_MSG_URL")
     private String importantMsgUrl;
 
+    @Column(name="HEADER_IMAGE_URL")
+    private String headerImageUrl;
+
+    public String getHeaderImageUrl() {
+        return headerImageUrl;
+    }
+
+    public void setHeaderImageUrl(String headerImageUrl) {
+        this.headerImageUrl = headerImageUrl;
+    }
+
     public String getImportantMsgUrl() {
         return importantMsgUrl;
     }
