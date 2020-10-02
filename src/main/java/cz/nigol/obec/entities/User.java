@@ -13,6 +13,7 @@ import javax.persistence.*;
     @NamedQuery(name=User.GET_BY_USER_ID, query="SELECT u FROM User u WHERE u.userId = :userId"),
     @NamedQuery(name=User.FIND_ACTIVE_USER_NAME, query="SELECT u FROM User u WHERE u.fullName LIKE :name AND u.active = true"),
     @NamedQuery(name=User.FIND_ANNOUNCEMENT_SUBSCRIBERS, query="SELECT u FROM User u WHERE u.sendAnnouncements = true"),
+    @NamedQuery(name=User.GET_BY_EMAIL, query="SELECT u FROM User u WHERE u.email= :email"),
 })
 @Entity
 @Table(name = "OB_USER")
@@ -25,9 +26,11 @@ public class User implements Serializable {
     public static final String GET_ACTIVE_BY_USER_ID = "User.GET_ACTIVE_BY_USER_ID";
     public static final String FIND_ACTIVE_USER_NAME = "User.FIND_ACTIVE_USER_NAME";
     public static final String FIND_ANNOUNCEMENT_SUBSCRIBERS = "User.FIND_ANNOUNCEMENT_SUBSCRIBERS";
+    public static final String GET_BY_EMAIL = "User.GET_BY_EMAIL";
 
     public static final String USER_ID_PARAM = "userId";
     public static final String NAME_PARAM = "name";
+    public static final String EMAIL_PARAM = "email";
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

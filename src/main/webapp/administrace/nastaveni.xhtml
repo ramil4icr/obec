@@ -20,6 +20,11 @@
                             value="#{settingsBean.settings.baseUrl}">
                         <f:validateLength maximum="200"/>
                     </p:inputText>
+
+                    <p:outputLabel value="URL pro obrázek záhlaví" for="headerImageUrl"/>
+                    <p:inputText id="headerImageUrl" value="#{settingsBean.settings.headerImageUrl}">
+                        <f:validateLength maximum="200"/>
+                    </p:inputText>
                     
                     <p:outputLabel value="Výchozí URL pro obrázek aktualit" for="ogImageUrl"/>
                     <p:inputText id="ogImageUrl" value="#{settingsBean.settings.ogImageUrl}">

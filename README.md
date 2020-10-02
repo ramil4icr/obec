@@ -34,6 +34,12 @@ Také je třeba nastavit _mailServer_ resource pro konfiguraci odesílání emai
 ```
 
 ## Changelog
+### Verze 1.7.1
+
+* Obrázek pro záhlaví už není hardcoded, ale dá se nastavit v administraci.
+* Opraveno řazení zastupitelů a barva položek v menu.
+* Přidána možnost přihlašování k odběru hlášení rozhlasu.
+
 ### Verze 1.7
 
 * Kompletně přepracovaná menu.

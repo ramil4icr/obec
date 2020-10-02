@@ -9,6 +9,7 @@ tramp
 .\#*
 resources.xml
 *.class
+tags
 
 # Eclipse
 .classpath
