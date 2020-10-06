@@ -23,4 +23,5 @@ public interface UserService {
     List<User> getAnnouncementSubscribers();
     void subscribeAnnouncements(String email);
     User getUSerByEmail(String email);
+    void sendPasswordLinkByEmail(String email);
 }

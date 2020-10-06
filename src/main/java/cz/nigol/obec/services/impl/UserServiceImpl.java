@@ -1,24 +1,23 @@
 package cz.nigol.obec.services.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import javax.inject.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import cz.nigol.obec.entities.Path;
-import cz.nigol.obec.entities.Role;
-import cz.nigol.obec.entities.User;
-import cz.nigol.obec.services.UserService;
+import cz.nigol.obec.entities.*;
+import cz.nigol.obec.services.*;
 
 @Stateless
 public class UserServiceImpl implements UserService {
     @PersistenceContext(unitName="obecPU")
     private EntityManager em;
+    @Inject
+    private MailService mailService;
 
     @Override
     public List<User> getAllUsers() {
@@ -141,5 +140,12 @@ public class UserServiceImpl implements UserService {
         typedQuery.setParameter(User.EMAIL_PARAM, email.toLowerCase());
         List<User> users = typedQuery.getResultList();
         return users.isEmpty() ? null : users.get(0);
+    }
+
+    @Override
+    public void sendPasswordLinkByEmail(String email) {
+        User user = getUSerByEmail(email);
+        if (user == null) {
+        }
     }
 }
