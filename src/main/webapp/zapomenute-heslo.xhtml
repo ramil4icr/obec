@@ -14,18 +14,21 @@
     <p>
     Pokud jste zapomněli Vaše heslo, vyplňte <b>emailovou adresu, kterou jste
         použili při vytváření Vašeho účtu</b>. Během několika minut Vám bude doručen 
-        email s odkazem, pomocí kterého si můžete nastavit nové heslo.
+        email s odkazem na stránku, kde si můžete nastavit heslo nové.
     </p>
 
   <h:form>
     <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
       <p:column/>
 
-        <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+        <p:panelGrid layout="grid" 
+            rendered="#{!passwordResetBean.sent}"
+            columns="1" 
+            styleClass="ui-noborder">
             <p:outputLabel value="Email pro zaslání odkazu na heslo" 
                 for="email"/>
             <p:inputText id="email" 
-                    value="#{announcementTableBean.email}"
+                    value="#{passwordResetBean.email}"
                     required="true"
                     validatorMessage="Vyplňte platnou emailovou adresu, prosím.">
                 <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
@@ -35,11 +38,22 @@
                 columns="5"
                 styleClass="ui-noborder">
                 <p:commandButton value="Odeslat" 
-                    action="#{announcementTableBean.subscribe}"
+                    action="#{passwordResetBean.send}"
                     styleClass="default"
                     update=":growl @form"/>
             </p:panelGrid>	
         </p:panelGrid>
+
+        <h:panelGroup rendered="#{passwordResetBean.sent}">
+            <div style="text-align: center">
+                <i class="fa fa-check-circle-o" 
+                    style="font-size: 600%; color: green">
+                </i>
+                <p style="font-size: 200%">
+                    Email byl odeslán.
+                </p>
+            </div>
+        </h:panelGroup>
 
       <p:column/>
    </p:panelGrid>
