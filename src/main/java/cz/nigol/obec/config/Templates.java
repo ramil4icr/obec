@@ -22,7 +22,8 @@ public class Templates {
         "<a href='https://www.trsice.cz/zmena-hesla.jsf?t=VARIABLE1'>ZDE</a>.</p><br>" +
         "<p>Pokud Vám nefunguje odkaz, zkopírujte a vložte do prohlížeče adresu " + 
         "https://www.trsice.cz/zmena-hesla.jsf?t=VARIABLE1</p><br><br>" +
-        "<p style='font-size: small'>Tento email dostáváte, protože jste se přihlásil(a) k odběru hlášení. " +
-        "Pokud již nechcete tato hlášení dostávat, <a href='https://www.trsice.cz/odhlaseni.jsf?r=VARIABLE2'>klikněte pro odhlášení</a>.</p>" +
+        "<p style='font-size: small'>Tento email dostáváte, protože jste si " +
+        "vyžádal/a změnu hesla na www.trsice.cz. " + 
+        "Pokud jste o změnu nežádal/a, můžete tento email smazat.</p>" +
         "</body></html>";
 }

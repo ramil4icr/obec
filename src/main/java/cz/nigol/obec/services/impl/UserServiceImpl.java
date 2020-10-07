@@ -4,13 +4,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 import javax.inject.*;
 
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import cz.nigol.obec.entities.*;
 import cz.nigol.obec.services.*;
+import cz.nigol.obec.config.*;
 
 @Stateless
 public class UserServiceImpl implements UserService {
@@ -143,9 +144,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Asynchronous
     public void sendPasswordLinkByEmail(String email) {
         User user = getUSerByEmail(email);
-        if (user == null) {
+        if (user != null) {
+            String body = Templates.PASS_RESET
+                .replaceAll("VARIABLE1", "token");
+            mailService.sendEmail(user.getEmail(), Templates.PASS_RESET_SUBJ, 
+                    body);
         }
     }
 }

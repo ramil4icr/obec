@@ -35,6 +35,7 @@ public class PasswordResetBean implements Serializable {
     }
 
     public void send() {
+        userService.sendPasswordLinkByEmail(email);
         sent = true;
     }
 
