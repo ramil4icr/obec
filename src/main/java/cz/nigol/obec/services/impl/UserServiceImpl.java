@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void subscribeAnnouncements(String email) {
-        User user = getUSerByEmail(email);
+        User user = getUserByEmail(email);
         if (user == null) {
             user = new User();
             user.setUserId(email);
@@ -135,7 +135,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUSerByEmail(String email) {
+    public User getUserByEmail(String email) {
         TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_EMAIL, 
                 User.class);
         typedQuery.setParameter(User.EMAIL_PARAM, email.toLowerCase());
@@ -146,7 +146,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Asynchronous
     public void sendPasswordLinkByEmail(String email) {
-        User user = getUSerByEmail(email);
+        User user = getUserByEmail(email);
         if (user != null) {
             String body = Templates.PASS_RESET
                 .replaceAll("VARIABLE1", "token");
