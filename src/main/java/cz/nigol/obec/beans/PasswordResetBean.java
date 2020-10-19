@@ -26,17 +26,75 @@ public class PasswordResetBean implements Serializable {
     private UserService userService;
     private String email;
     private boolean sent;
+    private String token;
+    private boolean validToken;
+    private User user;
+    private boolean changed;
+    private String password1;
+    private String password2;
 
     @PostConstruct
     public void init() {
     }
 
     public void onLoad() throws IOException {
+        validToken = "token".equals(token);
     }
 
     public void send() {
         userService.sendPasswordLinkByEmail(email);
         sent = true;
+    }
+
+    public void change() {
+    }
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
+
+    public String getPassword1() {
+        return password1;
+    }
+
+    public void setPassword1(String password1) {
+        this.password1 = password1;
+    }
+
+    public boolean isChanged() {
+        return changed;
+    }
+
+    public void setChanged(boolean changed) {
+        this.changed = changed;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean isValidToken() {
+        return validToken;
+    }
+
+    public void setValidToken(boolean validToken) {
+        this.validToken = validToken;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public boolean isSent() {
