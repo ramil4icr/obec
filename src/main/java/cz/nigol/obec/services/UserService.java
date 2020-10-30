@@ -24,4 +24,5 @@ public interface UserService {
     void subscribeAnnouncements(String email);
     User getUserByEmail(String email);
     void sendPasswordLinkByEmail(String email);
+    User getUserByToken(String token);
 }

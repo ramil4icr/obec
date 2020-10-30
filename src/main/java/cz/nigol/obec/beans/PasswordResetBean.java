@@ -38,7 +38,12 @@ public class PasswordResetBean implements Serializable {
     }
 
     public void onLoad() throws IOException {
-        validToken = "token".equals(token);
+        user = userService.getUserByToken(token);
+        if (user != null) {
+            validToken = user.getToken().equals(token);
+            user.setToken("");
+            userService.saveUser(user);
+        }
     }
 
     public void send() {

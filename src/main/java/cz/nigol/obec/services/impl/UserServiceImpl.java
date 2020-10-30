@@ -163,4 +163,13 @@ public class UserServiceImpl implements UserService {
         user.setToken(token);
         return token;
     }
+
+    @Override
+    public User getUserByToken(String token) {
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_TOKEN, 
+                User.class);
+        typedQuery.setParameter(User.TOKEN_PARAM, token);
+        List<User> users = typedQuery.getResultList();
+        return users.isEmpty() ? null : users.get(0);
+    }
 }
