@@ -3,6 +3,7 @@ package cz.nigol.obec.services.impl;
 import java.util.*;
 import java.util.stream.Collectors;
 import javax.inject.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
@@ -149,9 +150,17 @@ public class UserServiceImpl implements UserService {
         User user = getUserByEmail(email);
         if (user != null) {
             String body = Templates.PASS_RESET
-                .replaceAll("VARIABLE1", "token");
+                .replaceAll("VARIABLE1", generateStoreToken(user));
             mailService.sendEmail(user.getEmail(), Templates.PASS_RESET_SUBJ, 
                     body);
         }
+    }
+
+    private String generateStoreToken(User user) {
+        String token = "" + user.getId() + new Date();
+        token = BCrypt.hashpw(token, BCrypt.gensalt());
+        token = Base64.getEncoder().encodeToString(token.getBytes());
+        user.setToken(token);
+        return token;
     }
 }

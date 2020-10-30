@@ -65,6 +65,17 @@ public class User implements Serializable {
     @Column(name="SEND_ANNOUNCEMENTS")
     private boolean sendAnnouncements;
 
+    @Column(name="TOKEN")
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public boolean isSendAnnouncements() {
         return sendAnnouncements;
     }
