@@ -41,6 +41,15 @@
                         <f:validateLength maximum="200"/>
                     </p:inputText>
 
+                    <p:outputLabel value="Obrázky galerie (URL)" for="gallery"/>
+                    <p:inputTextarea id="gallery"
+                            rows="20"
+                            cols="30"
+                            value="#{settingsBean.settings.galleryUrl}"
+                            style="max-height: 350px">
+                        <f:validateLength maximum="4000"/>
+                    </p:inputTextarea>
+
                     <p:panelGrid layout="grid"
                             columns="5"
                             styleClass="ui-noborder">

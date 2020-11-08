@@ -32,6 +32,17 @@ public class Settings implements Serializable {
     @Column(name="HEADER_IMAGE_URL")
     private String headerImageUrl;
 
+    @Column(name="GALLERY_URL", columnDefinition="VARCHAR(4000)")
+    private String galleryUrl;
+
+    public String getGalleryUrl() {
+        return galleryUrl;
+    }
+
+    public void setGalleryUrl(String galleryUrl) {
+        this.galleryUrl = galleryUrl;
+    }
+
     public String getHeaderImageUrl() {
         return headerImageUrl;
     }
