@@ -1,7 +1,6 @@
 package cz.nigol.obec.beans;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -28,13 +27,15 @@ public class IndexBean {
     @Inject
     @CurrentSettings
     private Settings settings;
-    private static final int NUMBER_OF_PHOTOS = 8;
+    @Inject
+    private SettingsService settingsService;
     private List<News> newsList;
     private List<Announcement> announcements;
     private List<DeskItem> deskItems;
     private List<Event> events;
     private String nameOfPhoto;
     private Poll poll;
+    private List<String> galleryPhotos;
 
     @PostConstruct
     public void init() {
@@ -42,14 +43,15 @@ public class IndexBean {
         announcements = announcementService.getLastTen();
         deskItems = officialDeskService.getTenActiveDeskItemsFor(new Date());
         events = eventsService.getValidToDate(new Date());
-        nameOfPhoto = preparePhoto(NUMBER_OF_PHOTOS);
+        galleryPhotos = settingsService.processGalleryUrls(settings);
+        nameOfPhoto = preparePhoto(galleryPhotos.size());
         poll = pollService.getActivePoll();
     }
 
     private String preparePhoto(int numOfPhotos) {
-        Date date = new Date();
-        long suffix = date.getTime() % numOfPhotos;
-        return "index" + suffix + ".jpeg";
+        Random random = new Random();
+        int num = random.nextInt(numOfPhotos); 
+        return galleryPhotos.get(num);
     }
 
     public Settings getSettings() {
