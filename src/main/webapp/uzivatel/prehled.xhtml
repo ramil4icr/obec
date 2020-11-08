@@ -17,7 +17,8 @@
             </h3>
 
             <p style="font-weight: bold">
-                zde naleznete užitečné informace a nastavení týkající se Vás a Vaší obce.
+                zde naleznete užitečné informace a nastavení týkající se Vás 
+                a Vaší obce.
             </p>
 
             <p:panelGrid layout="grid"
@@ -31,10 +32,17 @@
                             <br/>
                             <h:outputText id="email" value="#{userOverviewBean.user.email}"/>
                             <br/>
+
                             <p:outputLabel for="salutation">Oslovení</p:outputLabel>
                             <p:inputText id="salutation" 
                                 disabled="true" 
                                 value="#{userOverviewBean.user.salutation}"/>
+                            <br/>
+                            <br/>
+
+                            <h:link outcome="/zmena-hesla.xhtml"
+                                    value="Změna hesla">
+                            </h:link>
 
                             <br/>
                             <br/>
