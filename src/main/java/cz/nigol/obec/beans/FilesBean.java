@@ -49,14 +49,23 @@ public class FilesBean implements Serializable {
     private List<FileMetadata> databaseFiles;
     private FileMetadata file;
     private String search;
+    private String mode = "";
 
     @PostConstruct
     public void init() {
         user = userService.getUserById(user.getId());
-        databaseFiles = fileMetadataService.getByUser(user);
-        files = databaseFiles;
         search = null;
+        onLoad();
     }
+
+    public void onLoad() {
+        if ("ALL".equals(mode)) {
+            databaseFiles = fileMetadataService.getAll();
+        } else {
+            databaseFiles = fileMetadataService.getByUser(user);
+        }
+        files = databaseFiles;
+    } 
 
     public void filter() {
         files = databaseFiles.stream()
@@ -101,6 +110,14 @@ public class FilesBean implements Serializable {
         return "/upload/" + folder + "/" + 
             Base64.getEncoder().encodeToString(hashBytes) + 
             "~" + fileName;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     /**

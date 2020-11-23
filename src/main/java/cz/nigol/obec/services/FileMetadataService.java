@@ -9,4 +9,5 @@ import cz.nigol.obec.exceptions.UploadFailedException;
 public interface FileMetadataService {
     List<FileMetadata> getByUser(User user);
     FileMetadata save(FileMetadata fileMetadata, String path, byte[] bytes) throws UploadFailedException;
+    List<FileMetadata> getAll();
 }

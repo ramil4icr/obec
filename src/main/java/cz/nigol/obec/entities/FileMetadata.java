@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 
 @NamedQueries({
 @NamedQuery(name=FileMetadata.GET_ALL,
-query="SELECT f FROM Filemetadata f"),
+query="SELECT f FROM FileMetadata f"),
     @NamedQuery(name=FileMetadata.GET_BY_USER,
     query="SELECT f FROM FileMetadata f WHERE f.user = :user ORDER BY f.createdAt DESC"),
 })

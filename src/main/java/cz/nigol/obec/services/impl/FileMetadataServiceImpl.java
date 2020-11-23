@@ -62,4 +62,11 @@ public class FileMetadataServiceImpl implements FileMetadataService {
         }
         return result;
     }
+
+    @Override
+    public List<FileMetadata> getAll() {
+        TypedQuery<FileMetadata> typedQuery = em
+            .createNamedQuery(FileMetadata.GET_ALL, FileMetadata.class);
+        return new ArrayList<>(typedQuery.getResultList());
+    }
 }
