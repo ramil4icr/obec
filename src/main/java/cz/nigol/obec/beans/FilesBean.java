@@ -1,6 +1,6 @@
 package cz.nigol.obec.beans;
 
-import java.io.Serializable;
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -81,6 +81,20 @@ public class FilesBean implements Serializable {
         file = new FileMetadata();
     }
 
+    public void delete(FileMetadata file) {
+        try {
+            fileMetadataService.delete(file, path);
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                        "Smazáno",  "Soubor '" + endOfPath(file.getPath()) + 
+                        "' byl smazán."));
+            onLoad();
+        } catch(IOException e) {
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                        "Chyba",  "Soubor '" + endOfPath(file.getPath()) + 
+                        "' se nepodařilo smazat."));
+        }
+    }
+
     public void handleUpload(FileUploadEvent event) {
         file.setCreatedAt(new Date());
         file.setUser(user);
@@ -95,7 +109,8 @@ public class FilesBean implements Serializable {
         }
         file = null;
         init();
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo",  "Soubor byl uložen."));
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                    "Uloženo",  "Soubor byl uložen."));
     }
 
     private String preparePath(UploadedFile uploadedFile)
@@ -110,6 +125,10 @@ public class FilesBean implements Serializable {
         return "/upload/" + folder + "/" + 
             Base64.getEncoder().encodeToString(hashBytes) + 
             "~" + fileName;
+    }
+
+    public boolean isAll() {
+        return "ALL".equals(mode);
     }
 
     public String getMode() {

@@ -24,7 +24,7 @@ import cz.nigol.obec.services.FileMetadataService;
 
 import static java.nio.file.StandardOpenOption.*;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.SeekableByteChannel;
 
@@ -68,5 +68,13 @@ public class FileMetadataServiceImpl implements FileMetadataService {
         TypedQuery<FileMetadata> typedQuery = em
             .createNamedQuery(FileMetadata.GET_ALL, FileMetadata.class);
         return new ArrayList<>(typedQuery.getResultList());
+    }
+
+    @Override
+    public void delete(FileMetadata fileMetadata, String path) throws IOException {
+        Path filepath = Paths.get(path + fileMetadata.getPath());
+        Files.delete(filepath);
+        FileMetadata fm = em.find(FileMetadata.class, fileMetadata.getId());
+        em.remove(fm);
     }
 }

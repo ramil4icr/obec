@@ -211,6 +211,11 @@ button.default {
     border-color: rgb(0,113,254) !important;
 }
 
+button.danger{
+    background: #ff6347 !important;
+    border-color: #8b0000 !important;
+}
+
 button.ui-button.ui-state-default {
     box-shadow: 0px 1px #e6e6e6 !important;
 }
