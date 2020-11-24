@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/template-transient.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:param name="title" value="Nové heslo - Obec Tršice"/>
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="t" value="#{newPasswordBean.token}"/>
+            <f:viewAction action="#{newPasswordBean.onLoad}"/>
+        </f:metadata>
+    </ui:define>
+
+  <ui:define name="content">
+	<h2>Nové heslo</h2>
+
+    <h:panelGroup rendered="#{!newPasswordBean.validToken}">
+        <p>
+        Žádost o změnu hesla <b>není platná</b>.
+        </p>
+    </h:panelGroup>
+
+    <h:panelGroup rendered="true">
+        <p>
+            Zvolte si nové heslo pro uživatelský účet s emailovou adresou
+            <b>#{newPasswordBean.user.email}</b>. Pro kontrolu zadejte 
+            stejné heslo dvakrát.
+        </p>
+
+      <h:form>
+        <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+          <p:column/>
+
+            <p:panelGrid layout="grid" 
+                rendered="#{!newPasswordBean.changed}"
+                columns="1" 
+                styleClass="ui-noborder">
+                <p:outputLabel value="Nové heslo" 
+                    for="password1"/>
+                <p:password id="password1" 
+                        value="#{newPasswordBean.password1}"
+                        required="true"/>
+
+                <p:outputLabel value="Nové heslo pro kontrolu" 
+                    for="password2"/>
+                <p:password id="password2" 
+                        value="#{newPasswordBean.password2}"
+                        required="true"/>
+
+                <p:panelGrid layout="grid"
+                    columns="5"
+                    styleClass="ui-noborder">
+                    <p:commandButton value="Změnit heslo" 
+                        action="#{newPasswordBean.change}"
+                        styleClass="default"
+                        update=":growl @form"/>
+                </p:panelGrid>	
+            </p:panelGrid>
+
+            <h:panelGroup rendered="#{newPasswordBean.changed}">
+                <div style="text-align: center">
+                    <i class="fa fa-check-circle-o" 
+                        style="font-size: 600%; color: green">
+                    </i>
+                    <p style="font-size: 200%">
+                        Heslo bylo změněno. Nyní se můžete 
+                        <h:link outcome="/prihlaseni.xhtml"
+                                value="přihlásit.">
+                        </h:link>
+                    </p>
+                </div>
+            </h:panelGroup>
+      <p:column/>
+   </p:panelGrid>
+  </h:form>
+    </h:panelGroup>
+</ui:define>
+</ui:composition>

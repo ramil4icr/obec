@@ -23,15 +23,26 @@
       <h:form>
 	<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 	  <p:outputLabel for="loginName" value="Uživatelské jméno"/>
-	  <p:inputText id="loginName" value="#{loginBean.loginName}" required="true" requiredMessage="Jméno: Musí být vyplněno."/>
+	  <p:inputText id="loginName" 
+        value="#{loginBean.loginName}" 
+        required="true" 
+        requiredMessage="Jméno: Musí být vyplněno."/>
 	  <p:outputLabel for="password" value="Heslo"/>
-	  <p:password id="password" value="#{loginBean.password}" required="true" requiredMessage="Heslo: Musí být vyplněno."/>
+	  <p:password id="password" 
+        value="#{loginBean.password}" 
+        required="true" 
+        requiredMessage="Heslo: Musí být vyplněno."/>
       <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
           <p:commandButton value="Přihlásit"
                   action="#{loginBean.login}"
                   icon="fa fa-sign-in"
                   styleClass="default"
                   ajax="false"/>
+
+            <h:link outcome="/zmena-hesla.xhtml"
+                    style="display: inline-block; padding-top: 0.7em;"
+                    value="Zapomněli jste heslo?">
+            </h:link>
       </p:panelGrid>
   </p:panelGrid>
   </h:form>

@@ -1,24 +1,25 @@
 package cz.nigol.obec.services.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import javax.inject.*;
+import org.mindrot.jbcrypt.BCrypt;
 
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import cz.nigol.obec.entities.Path;
-import cz.nigol.obec.entities.Role;
-import cz.nigol.obec.entities.User;
-import cz.nigol.obec.services.UserService;
+import cz.nigol.obec.entities.*;
+import cz.nigol.obec.services.*;
+import cz.nigol.obec.config.*;
 
 @Stateless
 public class UserServiceImpl implements UserService {
     @PersistenceContext(unitName="obecPU")
     private EntityManager em;
+    @Inject
+    private MailService mailService;
 
     @Override
     public List<User> getAllUsers() {
@@ -124,7 +125,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void subscribeAnnouncements(String email) {
-        User user = getUSerByEmail(email);
+        User user = getUserByEmail(email);
         if (user == null) {
             user = new User();
             user.setUserId(email);
@@ -135,10 +136,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUSerByEmail(String email) {
+    public User getUserByEmail(String email) {
         TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_EMAIL, 
                 User.class);
         typedQuery.setParameter(User.EMAIL_PARAM, email.toLowerCase());
+        List<User> users = typedQuery.getResultList();
+        return users.isEmpty() ? null : users.get(0);
+    }
+
+    @Override
+    @Asynchronous
+    public void sendPasswordLinkByEmail(String email) {
+        User user = getUserByEmail(email);
+        if (user != null) {
+            String body = Templates.PASS_RESET
+                .replaceAll("VARIABLE1", generateStoreToken(user));
+            mailService.sendEmail(user.getEmail(), Templates.PASS_RESET_SUBJ, 
+                    body);
+        }
+    }
+
+    private String generateStoreToken(User user) {
+        String token = "" + user.getId() + new Date();
+        token = BCrypt.hashpw(token, BCrypt.gensalt());
+        token = Base64.getEncoder().encodeToString(token.getBytes());
+        user.setToken(token);
+        return token;
+    }
+
+    @Override
+    public User getUserByToken(String token) {
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_BY_TOKEN, 
+                User.class);
+        typedQuery.setParameter(User.TOKEN_PARAM, token);
         List<User> users = typedQuery.getResultList();
         return users.isEmpty() ? null : users.get(0);
     }

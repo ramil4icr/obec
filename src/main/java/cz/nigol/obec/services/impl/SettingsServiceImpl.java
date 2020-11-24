@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 
 import cz.nigol.obec.entities.Settings;
 import cz.nigol.obec.services.SettingsService;
+import java.util.*;
 
 @Stateless
 public class SettingsServiceImpl implements SettingsService {
@@ -26,5 +27,11 @@ public class SettingsServiceImpl implements SettingsService {
     @Override
     public Settings save(Settings settings) {
         return em.merge(settings);
+    }
+
+    @Override
+    public List<String> processGalleryUrls(Settings settings) {
+        String[] urls = settings.getGalleryUrl().split("\\r?\\n");
+        return Arrays.asList(urls);
     }
 }

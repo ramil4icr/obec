@@ -22,5 +22,7 @@ public interface UserService {
     void unsubscribeAnnouncements(long id);
     List<User> getAnnouncementSubscribers();
     void subscribeAnnouncements(String email);
-    User getUSerByEmail(String email);
+    User getUserByEmail(String email);
+    void sendPasswordLinkByEmail(String email);
+    User getUserByToken(String token);
 }

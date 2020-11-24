@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/template-transient.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:param name="title" value="Změna hesla - Obec Tršice"/>
+
+  <ui:define name="content">
+	<h2>Změna hesla</h2>
+
+    <p>
+    Pokud chcete změnit Vaše heslo, vyplňte <b>emailovou adresu, kterou jste
+        použili při vytváření Vašeho účtu</b>. Během několika minut Vám bude doručen 
+        email s odkazem na stránku, kde si můžete nastavit heslo nové.
+    </p>
+
+  <h:form>
+    <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+      <p:column/>
+
+        <p:panelGrid layout="grid" 
+            rendered="#{!passwordResetBean.sent}"
+            columns="1" 
+            styleClass="ui-noborder">
+            <p:outputLabel value="Email pro zaslání odkazu na heslo" 
+                for="email"/>
+            <p:inputText id="email" 
+                    value="#{passwordResetBean.email}"
+                    required="true"
+                    validatorMessage="Vyplňte platnou emailovou adresu, prosím.">
+                <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+            </p:inputText>
+
+            <p:panelGrid layout="grid"
+                columns="5"
+                styleClass="ui-noborder">
+                <p:commandButton value="Odeslat" 
+                    action="#{passwordResetBean.send}"
+                    styleClass="default"
+                    update=":growl @form"/>
+            </p:panelGrid>	
+        </p:panelGrid>
+
+        <h:panelGroup rendered="#{passwordResetBean.sent}">
+            <div style="text-align: center">
+                <i class="fa fa-check-circle-o" 
+                    style="font-size: 600%; color: green">
+                </i>
+                <p style="font-size: 200%">
+                    Email byl odeslán.
+                </p>
+            </div>
+        </h:panelGroup>
+
+      <p:column/>
+   </p:panelGrid>
+  </h:form>
+</ui:define>
+</ui:composition>

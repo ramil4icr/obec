@@ -5,7 +5,7 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui">
 
-        <h:form>
+        <h:form id="attForm">
             <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
                 <p:column>
                     <p:panelGrid layout="grid" columns="5" styleClass="ui-noborder">
@@ -37,16 +37,23 @@
                                 styleClass="ui-noborder">
                             <h:outputLink value="#{file.path}"
                                     target="_blank">
-                                <h:outputText value="#{filesBean.endOfPath(file.path)}" style="font-size: 60%"/>
+                                <h:outputText value="#{filesBean.endOfPath(file.path)}" 
+                                    style="font-size: 60%"/>
                             </h:outputLink>
                             <h:inputText value="#{file.path}" 
                                     onfocus="this.select()"
                                     style="width: 90%"/>
-                            <i>
                                 <h:outputText value="#{file.createdAt}">
-                                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                    <f:convertDateTime type="date" 
+                                        pattern="dd.MM.yyyy"/>
                                 </h:outputText>
-                            </i>
+
+                            <p:commandButton value="Smazat" 
+                                    action="#{filesBean.delete(file)}"
+                                    styleClass="danger"
+                                    rendered="#{filesBean.all}"
+                                    onclick="return confirm('Operace mazání je nebezpečná a NEVRATNÁ. Chcete opravdu soubor smazat?')"
+                                    update=":growl :attForm:attachments"/>
                         </p:panelGrid>
                     </p:dataGrid>
                 </p:column>

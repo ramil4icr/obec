@@ -142,11 +142,9 @@
                         <h:link outcome="/obec/fotogalerie.xhtml"
                                 style="text-decoration: none">
                             <p:outputPanel deferred="true" deferredMode="visible">
-                                <h:graphicImage
-                                        library="image"
-                                        name="#{indexBean.nameOfPhoto}"
-                                        style="max-width: 606px; width: 100%"
-                                        alt="Foto obce"/>
+                                <img src="#{indexBean.nameOfPhoto}"
+                                    style="max-width: 606px; width: 100%"
+                                    alt="Foto obce"/>
                             </p:outputPanel>
                         </h:link>
 
