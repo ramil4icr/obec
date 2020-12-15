@@ -34,6 +34,17 @@ public class Settings implements Serializable {
 
     @Column(name="GALLERY_URL", columnDefinition="VARCHAR(4000)")
     private String galleryUrl;
+    
+    @Column(name="WATER_SPEND_PERIOD")
+    private String waterSpendPeriod;
+    
+    public String getWaterSpendPeriod() {
+        return waterSpendPeriod;
+    }
+    
+    public void setWaterSpendPeriod(String waterSpendPeriod) {
+        this.waterSpendPeriod = waterSpendPeriod;
+    }
 
     public String getGalleryUrl() {
         return galleryUrl;

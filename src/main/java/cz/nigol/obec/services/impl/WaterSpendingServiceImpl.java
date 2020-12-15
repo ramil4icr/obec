@@ -21,4 +21,11 @@ public class WaterSpendingServiceImpl implements WaterSpendingService {
     public void saveWaterSpending(WaterSpending waterSpending) {
         em.merge(waterSpending);
     }
+    
+    @Override
+    public List<WaterSpending> getWaterSpendingsByPeriod(String period) {
+        TypedQuery<WaterSpending> typedQuery = em.createNamedQuery(WaterSpending.GET_BY_PERIOD, WaterSpending.class);
+        typedQuery.setParameter(WaterSpending.PERIOD_PARAM, period);
+        return typedQuery.getResultList();
+    }
 }

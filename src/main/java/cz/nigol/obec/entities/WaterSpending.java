@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @NamedQueries({
     @NamedQuery(name=WaterSpending.GET_ALL, query="SELECT w FROM WaterSpending w ORDER BY w.houseNumber"),
+    @NamedQuery(name=WaterSpending.GET_BY_PERIOD, query="SELECT w FROM WaterSpending w WHERE w.period = :period ORDER BY w.houseNumber"),
 })
 @Entity
 @Table(name="OB_WATER_SPENDING")
@@ -13,6 +14,9 @@ public class WaterSpending implements Serializable {
     private static final long serialVersionUID = -4378072789330339015L;
 
     public static final String GET_ALL = "WaterSpending.GET_ALL";
+    public static final String GET_BY_PERIOD = "WaterSpending.GET_BY_PERIOD";
+    
+    public static final String PERIOD_PARAM = "period";
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

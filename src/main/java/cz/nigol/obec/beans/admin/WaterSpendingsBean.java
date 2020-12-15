@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.annotation.*;
 import cz.nigol.obec.entities.*;
 import cz.nigol.obec.services.*;
+import cz.nigol.obec.qualifiers.*;
 
 @Named
 @ViewScoped
@@ -18,11 +19,14 @@ public class WaterSpendingsBean implements Serializable {
     private WaterSpendingService waterSpendingService;
     @Inject
     private FacesContext facesContext;
+    @Inject
+    @CurrentSettings
+    private Settings settings;
     private List<WaterSpending> waterSpendings;
 
     @PostConstruct
     public void init() {
-        waterSpendings = waterSpendingService.getAllWaterSpendings();
+        waterSpendings = waterSpendingService.getWaterSpendingsByPeriod(settings.getWaterSpendPeriod());
     }
 
     public List<WaterSpending> getWaterSpendings() {

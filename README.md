@@ -34,6 +34,10 @@ Také je třeba nastavit _mailServer_ resource pro konfiguraci odesílání emai
 ```
 
 ## Changelog
+### Verze 1.7.3
+
+* Možnost konfigurace období pro odečet vody. Pokud není zadáno, formulář je skryt.
+
 ### Verze 1.7.2
 
 * Obrázky v galerii na úvodní straně jsou konfigurovatelné.
