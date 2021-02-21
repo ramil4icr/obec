@@ -1,5 +1,6 @@
 package cz.nigol.obec.beans;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
@@ -49,7 +50,7 @@ public class IndexBean {
     }
 
     private String preparePhoto(int numOfPhotos) {
-        Random random = new Random();
+        SecureRandom random = new SecureRandom();
         int num = random.nextInt(numOfPhotos); 
         return galleryPhotos.get(num);
     }
